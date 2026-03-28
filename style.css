@@ -7,7 +7,7 @@ h1.center {
 }
 
 nav {
-    background-color: #1a237e;
+    background-color: #40ffb6 ;
     padding: 20px;
     text-align: center;
 }
@@ -15,6 +15,6 @@ nav {
 nav a {
     text-decoration: none;
     margin:0 15px;
-    color: #ffffff;
+    color: #1a237e;
     font-size: 18px;
 }
