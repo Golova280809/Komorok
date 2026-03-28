@@ -1,0 +1,20 @@
+body {
+    background: #d3d3d3;
+}
+
+h1.center {
+    text-align: center;
+}
+
+nav {
+    background-color: #40ffb6;
+    padding: 20px;
+    text-align: center;
+}
+
+nav a {
+    text-decoration: none;
+    margin:0 15px;
+    color: #ffffff;
+    font-size: 18px;
+}
