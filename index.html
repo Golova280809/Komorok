@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,31 +8,61 @@
     <title>Komorok</title>
 </head>
 <body>
-    <!-- Скрытый чекбокс для управления меню -->
+    <!-- Боковое меню (главное, одинаковое на всех страницах) -->
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-    
-    <!-- Кнопка-гамбургер -->
     <label for="menu-toggle" class="menu-toggle">
         <span></span>
         <span></span>
         <span></span>
     </label>
-
-    <!-- Боковое меню -->
-    <div class="sidebar">
+    
+    <nav class="sidebar">
         <div class="sidebar-title">Меню</div>
         <a href="index.html">Главная</a>
         <a href="#">Стихи</a>
         <a href="China/china.html">Китай</a>
         <a href="#">Обо мне</a>
-    </div>
-
-    <!-- Затемнение фона -->
+    </nav>
+    
     <label for="menu-toggle" class="overlay"></label>
 
     <!-- Основной контент -->
-    <div class="content">
-        <h1 class="center">Komorok</h1>
-    </div>
+    <main>
+        <!-- Приветствие -->
+        <header class="hero">
+            <h1>Добро пожаловать</h1>
+            <p>Это мой личный сайт открытый для всех.</p>
+        </header>
+
+        <!-- Описание разделов -->
+        <section class="menu-info">
+            <h2>Разделы сайта</h2>
+            
+            <article class="menu-item">
+                <h3>📝 Стихи</h3>
+                <p>Мои стихотворения.</p>
+            </article>
+            
+            <article class="menu-item">
+                <h3>📖 Рассказы</h3>
+                <p>Мои рассказы.</p>
+            </article>
+            
+            <article class="menu-item">
+                <h3>🇨🇳 Китай</h3>
+                <p>Немного про Китай.</p>
+            </article>
+            
+            <article class="menu-item">
+                <h3>👤 Обо мне</h3>
+                <p>Обо мне и этом сайте.</p>
+            </article>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <p>© 2024 Komorok</p>
+    </footer>
 </body>
 </html>
