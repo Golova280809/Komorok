@@ -1,20 +1,104 @@
 body {
-    background: #d3d3d3 ;
+    background: #d3d3d3; /* Светло-серый фон */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 h1.center {
     text-align: center;
+    margin-top: 50px;
 }
 
-nav {
-    background-color: #40ffb6 ;
-    padding: 20px;
+/* Скрываем чекбокс */
+.menu-checkbox {
+    display: none;
+}
+
+/* Кнопка меню (Гамбургер) */
+.menu-toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 45px;
+    height: 45px;
+    background: #1a1a2e; /* Темный фон для кнопки, чтобы ее было видно */
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #fff; /* Белые полоски */
+    border-radius: 2px;
+}
+
+/* Боковая панель */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    padding-top: 60px;
+    z-index: 1002;
+    transition: left 0.3s ease;
+    box-shadow: 5px 0 20px rgba(0,0,0,0.5);
+}
+
+.sidebar-title {
+    color: #40ffb6;
+    font-size: 24px;
     text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
-nav a {
+/* Ссылки в меню */
+.sidebar a {
+    display: block;
+    padding: 15px 25px;
+    color: #ffffff;
     text-decoration: none;
-    margin:0 15px;
-    color: #1a237e;
     font-size: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: background 0.3s;
+}
+
+.sidebar a:hover {
+    background: rgba(64, 255, 182, 0.1);
+    color: #40ffb6;
+}
+
+/* Затемнение фона */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Логика открытия */
+.menu-checkbox:checked ~ .sidebar {
+    left: 0;
+}
+
+.menu-checkbox:checked ~ .overlay {
+    opacity: 1;
+    pointer-events: auto;
 }
