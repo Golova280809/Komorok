@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Komorok</title>
 </head>
 <body>
-    <h1 class="center">Komorok </h1>
-    <nav>
-        <a href="#">Главная</a>
-        <a href="China/china.html">Китай</a>
-        <a href="#">О сайте</a>
-        
-    </nav>
+    <!-- Скрытый чекбокс для управления меню -->
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    
+    <!-- Кнопка-гамбургер -->
+    <label for="menu-toggle" class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <!-- Боковое меню -->
+    <div class="sidebar">
+        <div class="sidebar-title">Меню</div>
+        <a href="index.html">Главная</a>
+        <a href="#">Стихи</a>
+        <a href="#">Рассказы</a>
+        <a href="#">Обо мне</a>
+    </div>
+
+    <!-- Затемнение фона -->
+    <label for="menu-toggle" class="overlay"></label>
+
+    <!-- Основной контент -->
+    <div class="content">
+        <h1 class="center">Komorok</h1>
+    </div>
 </body>
 </html>
