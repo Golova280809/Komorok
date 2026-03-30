@@ -190,3 +190,18 @@ main {
     line-height: 1.6;
     margin: 0;
 }
+
+.nav-btn {
+    position: absolute;
+    top: 15px;
+    right: 30px; /* правее кнопки меню */
+    z-index: 1001;
+    background: linear-gradient(135deg, #e94560, #0f3460);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
