@@ -2,9 +2,33 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Китай</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="china.css">
+    <title>Komorok - Китай</title>
 </head>
 <body>
-    
+    <!-- Скрытый чекбокс для управления меню -->
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+
+    <!-- Кнопка-гамбургер -->
+    <label for="menu-toggle" class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <!-- Боковое меню -->
+    <div class="sidebar">
+        <div class="sidebar-title">Меню</div>
+        <a href="../index.html">Главная</a>
+        <a href="#">Стихи</a>
+        <a href="China/china.html">Китай</a>
+        <a href="#">Обо мне</a>
+    </div>
+
+    <!-- Затемнение фона -->
+    <label for="menu-toggle" class="overlay"></label>
+    <div class="content">
+        <h1 class="center">Китай</h1>
+    </div>
 </body>
 </html>
