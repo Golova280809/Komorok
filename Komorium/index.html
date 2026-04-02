@@ -13,30 +13,58 @@
         <p>Моя личная энциклопедия</p>
     </header>
 
-    <main class="articles-list">
-        <a href="articles/earth.html" class="article-card">
-            <span class="icon">🌍</span>
-            <span class="title">Земля</span>
-            <span class="desc">Факты о планете</span>
-        </a>
-        
-        <a href="articles/china.html" class="article-card">
-            <span class="icon">🇨🇳</span>
-            <span class="title">Китай</span>
-            <span class="desc">Всё о стране</span>
-        </a>
-        
-        <a href="articles/space.html" class="article-card">
-            <span class="icon">🚀</span>
-            <span class="title">Космос</span>
-            <span class="desc">Вселенная и звёзды</span>
-        </a>
-        
-        <a href="articles/tech.html" class="article-card">
-            <span class="icon">💻</span>
-            <span class="title">Технологии</span>
-            <span class="desc">IT и программирование</span>
-        </a>
+    <nav class="categories">
+        <a href="#geography" class="cat-btn">🌍 География</a>
+        <a href="#technology" class="cat-btn">💻 Технологии</a>
+    </nav>
+
+    <main>
+        <section id="geography" class="category-section">
+            <h2>🌍 География</h2>
+            <div class="articles-grid">
+                <a href="articles/china.html" class="article-card">
+                    <span class="card-icon">🇨🇳</span>
+                    <div class="card-content">
+                        <span class="card-title">Китай</span>
+                        <span class="card-desc">География, население, экономика</span>
+                    </div>
+                </a>
+                <a href="articles/russia.html" class="article-card">
+                    <span class="card-icon">🇷🇺</span>
+                    <div class="card-content">
+                        <span class="card-title">Россия</span>
+                        <span class="card-desc">Факты о стране, природа, города</span>
+                    </div>
+                </a>
+                <a href="articles/usa.html" class="article-card">
+                    <span class="card-icon">🇺🇸</span>
+                    <div class="card-content">
+                        <span class="card-title">США</span>
+                        <span class="card-desc">Штаты, история, культура</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="technology" class="category-section">
+            <h2>💻 Технологии</h2>
+            <div class="articles-grid">
+                <a href="articles/python.html" class="article-card">
+                    <span class="card-icon">🐍</span>
+                    <div class="card-content">
+                        <span class="card-title">Python</span>
+                        <span class="card-desc">Язык программирования</span>
+                    </div>
+                </a>
+                <a href="articles/web.html" class="article-card">
+                    <span class="card-icon">🌐</span>
+                    <div class="card-content">
+                        <span class="card-title">Web-разработка</span>
+                        <span class="card-desc">HTML, CSS, JavaScript</span>
+                    </div>
+                </a>
+            </div>
+        </section>
     </main>
 </body>
 </html>
