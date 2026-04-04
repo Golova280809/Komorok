@@ -8,10 +8,13 @@
     <title>Komorium — Энциклопедия</title>
 </head>
 <body>
-    <header>
-        <h1>📚 Komorium</h1>
-        <p>Моя личная энциклопедия</p>
-    </header>
+    <!-- Боковое меню (главное, одинаковое на всех страницах) -->
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    <label for="menu-toggle" class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
 
     <nav class="sidebar">
         <div class="sidebar-title">Меню</div>
@@ -20,6 +23,14 @@
         <a href="Komorium/index.html">Komorium</a>
         <a href="developing.html">Обо мне</a>
     </nav>
+
+    <label for="menu-toggle" class="overlay"></label>
+    <header>
+        <h1>📚 Komorium</h1>
+        <p>Моя личная энциклопедия</p>
+    </header>
+
+    
 
     <main>
       <nav class="categories">
