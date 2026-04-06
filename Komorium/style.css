@@ -1,3 +1,10 @@
+
+
+.btn:focus,
+.btn:active {
+    outline: none;
+}
+
 * {
     -webkit-tap-highlight-color: transparent;
     margin: 0;
