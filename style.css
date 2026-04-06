@@ -1,3 +1,13 @@
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn:focus,
+.btn:active {
+    outline: none;
+}
+
 body {
     background: #e8e8e8; /* Светло-серый */
     font-family: Arial, sans-serif;
