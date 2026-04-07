@@ -201,6 +201,39 @@ height: 200px;           /* высота */</code></pre>
         <p>💡 <strong>padding</strong> — отступ внутри элемента</p>
     </div>
 </section>
+
+
+<!-- Секция: Подключение CSS -->
+<section class="content-section" id="connect-css">
+    <h2>Как подключить CSS к HTML?</h2>
+    <p>Есть три способа добавить стили на страницу:</p>
+    
+    <h3>1. Встроенные стили (inline)</h3>
+    <div class="code-block">
+        <pre><code>&lt;p style="color: red; font-size: 18px;"&gt;Красный текст&lt;/p&gt;</code></pre>
+    </div>
+    <p>Не рекомендуется — трудно поддерживать.</p>
+    
+    <h3>2. Внутри тега style</h3>
+    <div class="code-block">
+        <pre><code>&lt;head&gt;
+    &lt;style&gt;
+        p { color: blue; }
+    &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+    </div>
+    
+    <h3>3. Внешний файл (рекомендуется)</h3>
+    <div class="code-block">
+        <pre><code>&lt;head&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</code></pre>
+    </div>
+    
+    <div class="info-box">
+        <p>✅ Внешний файл — самый удобный способ. Один файл style.css можно подключить ко всем страницам сайта.</p>
+    </div>
+</section>
     <footer class="footer">
         <p>© 2026 Komorok</p>
     </footer>
