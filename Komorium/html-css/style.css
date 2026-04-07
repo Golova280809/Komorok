@@ -1,26 +1,15 @@
-/* 1. ПЕРЕМЕННЫЕ И ОСНОВНЫЕ НАСТРОЙКИ */
-:root {
-    --bg: #f5f5f5;
-    --text: #333;
-    --accent: #3498db;          /* Основной синий */
-    --accent-hover: #2c3e50;
-    --sidebar-bg: #1a1a2e;      /* Темный фон меню */
-    --sidebar-accent: #40ffb6;  /* Неоновый зеленый в меню */
-    --code-bg: #1e1e1e;         /* Фон кода VS Code style */
-    --code-text: #d4d4d4;
-    --white: #ffffff;
-}
-
 body {
-    background: var(--bg);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
-    color: var(--text);
+    background: #d3d3d3; /* Светло-серый фон */
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
-/* 2. ЛОГИКА БУРГЕР-МЕНЮ (Checkbox Hack) */
+h1.center {
+    text-align: center;
+    margin-top: 10px;
+}
+
 .menu-checkbox {
     display: none;
 }
@@ -32,7 +21,7 @@ body {
     left: 15px;
     width: 45px;
     height: 45px;
-    background: var(--sidebar-bg);
+    background: #1a1a2e; /* Темный фон для кнопки, чтобы ее было видно */
     border-radius: 8px;
     cursor: pointer;
     z-index: 1001;
@@ -47,7 +36,7 @@ body {
     display: block;
     width: 25px;
     height: 3px;
-    background: #fff;
+    background: #fff; /* Белые полоски */
     border-radius: 2px;
 }
 
@@ -66,13 +55,14 @@ body {
 }
 
 .sidebar-title {
-    color: var(--sidebar-accent);
+    color: #40ffb6;
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
     font-weight: bold;
 }
 
+/* Ссылки в меню */
 .sidebar a {
     display: block;
     padding: 15px 25px;
@@ -85,10 +75,10 @@ body {
 
 .sidebar a:hover {
     background: rgba(64, 255, 182, 0.1);
-    color: var(--sidebar-accent);
+    color: #40ffb6;
 }
 
-/* Затемнение фона при открытом меню */
+/* Затемнение фона */
 .overlay {
     position: fixed;
     top: 0;
@@ -102,6 +92,7 @@ body {
     transition: opacity 0.3s ease;
 }
 
+/* Логика открытия */
 .menu-checkbox:checked ~ .sidebar {
     left: 0;
 }
@@ -111,51 +102,22 @@ body {
     pointer-events: auto;
 }
 
-/* 3. ОСНОВНОЙ КОНТЕНТ (Layout) */
 main {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 70px 20px 40px 20px;
+    padding: 20px;
+    padding-top: 70px;
 }
 
-.page-title {
+.footer {
+    background: #2c3e50;
     text-align: center;
-    margin-bottom: 30px;
+    padding: 20px;
+    color: #aaa;
+    margin-top: 40px;
 }
 
-.page-title h1 {
-    font-size: 36px;
-    color: var(--accent-hover);
-    margin: 0;
-}
-
-/* Секции карточек */
-.content-section {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 30px;
-    margin-bottom: 25px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    border: 1px solid #eee;
-}
-
-h2 {
-    color: var(--accent);
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 10px;
-    margin-top: 0;
-}
-
-h3 {
-    color: #555;
-    margin-top: 25px;
-}
-
-p {
-    text-indent: 0px; /* Было 30px, но в современном дизайне лучше без отступа или оставить по желанию */
-    margin: 15px 0;
-}
-
+/* Верхнее меню — красивые кнопки */
 .top-menu {
     display: flex;
     justify-content: center;
@@ -186,17 +148,53 @@ p {
     box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3);
 }
 
-.top-menu a:hover {
-    background: var(--accent-hover);
-    color: var(--white);
-    border-color: var(--accent-hover);
-    transform: translateY(-2px);
+
+/* Заголовок страницы */
+.page-title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.page-title h1 {
+    font-size: 36px;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.page-title p {
+    color: #666;
+    margin: 5px 0 0 0;
+}
+
+/* Карточки секций */
+.content-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+}
+
+.content-section h2 {
+    color: #2c3e50;
+    font-size: 20px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.content-section p {
+    text-indent: 30px;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
 }
 
 .nav-btn {
     position: absolute;
     top: 15px;
-    right: 20px;
+    right: 30px; /* правее кнопки меню */
     z-index: 1001;
     background: linear-gradient(135deg, #e94560, #0f3460);
     color: white;
@@ -206,48 +204,4 @@ p {
     font-size: 15px;
     cursor: pointer;
     font-weight: bold;
-}
-
-.info-box {
-    background: #e8f4fd;
-    border-left: 4px solid var(--accent);
-    padding: 15px;
-    margin: 20px 0;
-    border-radius: 0 8px 8px 0;
-}
-
-/* Списки и ссылки */
-ul { padding-left: 20px; }
-li { margin: 8px 0; }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-/* 5. БЛОКИ КОДА */
-.code-block {
-    background: var(--code-bg);
-    border: 1px solid #333;
-    border-radius: 8px;
-    margin: 15px 0;
-    padding: 15px;
-    overflow-x: auto;
-}
-
-.code-block pre {
-    margin: 0;
-}
-
-.code-block code {
-    color: var(--code-text);
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-/* Футер */
-.footer {
-    background: var(--accent-hover);
-    text-align: center;
-    padding: 30px;
-    color: #aaa;
-    margin-top: 40px;
 }
