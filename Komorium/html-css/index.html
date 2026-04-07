@@ -234,6 +234,51 @@ height: 200px;           /* высота */</code></pre>
         <p>✅ Внешний файл — самый удобный способ. Один файл style.css можно подключить ко всем страницам сайта.</p>
     </div>
 </section>
+
+
+<!-- Секция: Селекторы CSS -->
+<section class="content-section" id="css-selectors">
+    <h2>Селекторы CSS</h2>
+    <p>Селектор указывает, к каким элементам применить стили. Вот основные виды:</p>
+    
+    <h3>По тегу</h3>
+    <div class="code-block">
+        <pre><code>p { color: black; }     /* все параграфы */
+h1 { font-size: 32px; } /* все заголовки h1 */
+div { margin: 10px; }   /* все div-ы */</code></pre>
+    </div>
+    
+    <h3>По классу (class)</h3>
+    <div class="code-block">
+        <pre><code>/* В HTML: &lt;p class="intro"&gt;...&lt;/p&gt; */
+.intro { 
+    font-size: 18px; 
+    color: gray; 
+}</code></pre>
+    </div>
+    
+    <h3>По ID</h3>
+    <div class="code-block">
+        <pre><code>/* В HTML: &lt;div id="header"&gt;...&lt;/div&gt; */
+#header {
+    background: #333;
+    color: white;
+}</code></pre>
+    </div>
+    
+    <h3>Комбинирование</h3>
+    <div class="code-block">
+        <pre><code>.menu-item { ... }        /* класс */
+a.link { ... }            /* тег a с классом link */
+#header .logo { ... }     /* элемент logo внутри header */</code></pre>
+    </div>
+    
+    <div class="info-box">
+        <p>🔹 <strong>.</strong> — для классов</p>
+        <p>🔹 <strong>#</strong> — для ID</p>
+        <p>🔹 <strong>пробел</strong> — "внутри" (вложенность)</p>
+    </div>
+</section>
     <footer class="footer">
         <p>© 2026 Komorok</p>
     </footer>
