@@ -30,20 +30,31 @@
 
     <main>
         <!-- Верхнее меню (Обновите ссылки, чтобы они вели на новые секции) -->
-        <nav class="top-menu">
-            <a href="#intro">Введение</a>
-            <a href="#global-attrs">Глобальные атрибуты</a>
-            <a href="#doc-structure">Структура док-та</a>
-            <a href="#semantic-layout">Семантика</a>
-            <a href="#text-tags">Текст</a>
-            <a href="#lists">Списки</a>
-            <a href="#links-media">Ссылки & Медиа</a>
-            <a href="#tables">Таблицы</a>
-            <a href="#forms">Формы</a>
-            <a href="#interactive">Интерактив</a>
-            <a href="#misc-tags">Прочее</a>
-            <a href="#deprecated">Устаревшее</a>
-        </nav>
+        <div class="top-menu-wrapper">
+    <!-- Скрытый чекбокс для логики сворачивания -->
+    <input type="checkbox" id="hide-menu-checkbox" class="hide-menu-input">
+
+    <!-- Само меню -->
+    <nav class="top-menu">
+        <a href="#intro">Введение</a>
+        <a href="#global-attrs">Глобальные атрибуты</a>
+        <a href="#doc-structure">Структура док-та</a>
+        <a href="#semantic-layout">Семантика</a>
+        <a href="#text-tags">Текст</a>
+        <a href="#lists">Списки</a>
+        <a href="#links-media">Ссылки & Медиа</a>
+        <a href="#tables">Таблицы</a>
+        <a href="#forms">Формы</a>
+        <a href="#interactive">Интерактив</a>
+        <a href="#misc-tags">Прочее</a>
+        <a href="#deprecated">Устаревшее</a>
+    </nav>
+
+    <!-- Кнопка под меню (Label для чекбокса) -->
+    <label for="hide-menu-checkbox" class="top-menu-toggle-btn">
+        <span class="obtuse-arrow"></span>
+    </label>
+</div>
 
         <header style="text-align: center;">
             <h1>📚 Полный справочник HTML</h1>
