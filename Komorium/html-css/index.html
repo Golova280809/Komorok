@@ -279,6 +279,48 @@ a.link { ... }            /* тег a с классом link */
         <p>🔹 <strong>пробел</strong> — "внутри" (вложенность)</p>
     </div>
 </section>
+
+
+<!-- Секция: Блочная модель -->
+<section class="content-section" id="box-model">
+    <h2>Блочная модель (Box Model)</h2>
+    <p>Каждый элемент на странице — это прямоугольник. Он состоит из нескольких слоёв:</p>
+    
+    <div class="code-block">
+        <pre><code>+---------------------------+
+|         margin            |  ← внешний отступ
++---------------------------+
+|         border            |  ← граница
++---------------------------+
+|         padding           |  ← внутренний отступ
++---------------------------+
+|                           |
+|        content            |  ← содержимое (текст, картинка)
+|                           |
++---------------------------+</code></pre>
+    </div>
+    
+    <h3>Пример</h3>
+    <div class="code-block">
+        <pre><code>.box {
+    margin: 20px;      /* снаружи */
+    border: 2px solid blue;
+    padding: 15px;    /* внутри */
+    width: 200px;     /* ширина контента */
+    height: 100px;    /* высота контента */
+}</code></pre>
+    </div>
+    
+    <h3>box-sizing</h3>
+    <div class="code-block">
+        <pre><code>/* По умолчанию width не включает padding и border */
+* { box-sizing: border-box; }  /* исправляет это */</code></pre>
+    </div>
+    
+    <div class="info-box">
+        <p>📦 Свойство <code>box-sizing: border-box;</code> очень полезно — включи его в начале CSS!</p>
+    </div>
+</section>
     <footer class="footer">
         <p>© 2026 Komorok</p>
     </footer>
