@@ -156,7 +156,6 @@ p {
     margin: 15px 0;
 }
 
-/* 4. КОМПОНЕНТЫ (Кнопки, Инфо-боксы) */
 .top-menu {
     display: flex;
     justify-content: center;
@@ -167,15 +166,24 @@ p {
 
 .top-menu a {
     display: inline-block;
-    padding: 10px 20px;
-    color: var(--text);
+    padding: 12px 24px;
+    color: #333;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
     border-radius: 25px;
-    background: var(--white);
+    background: #fff;
     border: 2px solid #e0e0e0;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.top-menu a:hover {
+    background: #2c3e50;
+    color: #fff;
+    border-color: #2c3e50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3);
 }
 
 .top-menu a:hover {
