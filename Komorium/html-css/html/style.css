@@ -566,3 +566,82 @@ dialog::backdrop {
         padding: 12px 20px;
     }
 }
+
+/* --- ДОПОЛНЕНИЕ ДЛЯ СКРЫВАЕМОГО МЕНЮ --- */
+
+/* 1. Обертка, чтобы кнопка и меню были вместе */
+.top-menu-wrapper {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    text-align: center;
+}
+
+/* 2. Скрываем технический чекбокс */
+.hide-menu-input {
+    display: none;
+}
+
+/* 3. Добавляем плавность и скрытие к твоему существующему .top-menu */
+.top-menu {
+    overflow: hidden; /* Чтобы текст не вылезал при закрытии */
+    max-height: 1000px; /* Достаточно большая высота для открытого состояния */
+    transition: max-height 0.5s ease, opacity 0.3s ease, padding 0.3s ease;
+    opacity: 1;
+}
+
+/* 4. Кнопка-стрелка под меню */
+.top-menu-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* Ширина кнопки */
+    height: 25px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-top: none; /* Чтобы она "прилипла" к меню */
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: -1px; /* Соединяем с границей меню */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.top-menu-toggle-btn:hover {
+    background: #f0f0f0;
+    height: 30px; /* Эффект вытягивания при наведении */
+}
+
+/* 5. РИСУЕМ ТУПОЙ УГОЛ (Стрелка вверх) */
+.obtuse-arrow {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-top: 3px solid #2c3e50; /* Цвет под твой основной стиль */
+    border-left: 3px solid #2c3e50;
+    /* Делаем угол тупым: поворот + растягивание по горизонтали */
+    transform: rotate(45deg) scaleX(1.8) scaleY(0.7);
+    transition: transform 0.5s ease;
+    margin-top: 8px;
+}
+
+/* --- ЛОГИКА ПРИ КЛИКЕ (Когда чекбокс нажат) --- */
+
+/* Сворачиваем меню в ноль */
+.hide-menu-input:checked ~ .top-menu {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+}
+
+/* Разворачиваем стрелку вниз */
+.hide-menu-input:checked ~ .top-menu-toggle-btn .obtuse-arrow {
+    transform: rotate(225deg) scaleX(1.8) scaleY(0.7);
+    margin-top: -5px;
+}
+
+/* КЛАСС ДЛЯ СКРЫТИЯ САМОЙ КНОПКИ (если понадобится скрыть её совсем) */
+.top-menu-toggle-btn.hidden {
+    display: none;
+}
