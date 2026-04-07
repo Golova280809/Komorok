@@ -636,6 +636,91 @@ input[type="checkbox"]:checked + label::before {
 </section>
 
 
+<!-- Секция: Псевдоклассы и псевдоэлементы -->
+<section class="content-section" id="pseudo">
+    <h2>Псевдоклассы и псевдоэлементы</h2>
+    <p>Псевдоклассы — особые состояния элемента. Псевдоэлементы — "виртуальные" части элемента:</p>
+    
+    <h3>Псевдоклассы (состояния)</h3>
+    <div class="code-block">
+        <pre><code>/* При наведении */
+:hover
+
+/* При фокусе */
+:focus
+
+/* Активная ссылка */
+:visited
+
+/* Первый/последний ребёнок */
+:first-child
+:last-child
+:nth-child(2)
+:nth-child(odd)  /* нечётные */
+:nth-child(even) /* чётные */
+
+/* Первый/последний тип */
+:first-of-type
+:last-of-type
+
+/* Пустой элемент */
+:empty
+
+/* Без класса */
+:not(.class)</code></pre>
+    </div>
+    
+    <h3>Псевдоэлементы</h3>
+    <div class="code-block">
+        <pre><code>/* Перед элементом */
+::before
+
+/* После элемента */
+::after
+
+/* Первая буква */
+::first-letter
+
+/* Первая строка */
+::first-line
+
+/* Выделение текста */
+::selection</code></pre>
+    </div>
+    
+    <h3>Пример: иконка перед ссылкой</h3>
+    <div class="code-block">
+        <pre><code>a[href^="http"]::before {
+    content: "🔗 ";
+}
+
+a[href$=".pdf"]::before {
+    content: "📄 ";
+}</code></pre>
+    </div>
+    
+    <h3>Пример: красивая кнопка</h3>
+    <div class="code-block">
+        <pre><code>.btn::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+}
+
+.btn:hover::before {
+    transform: translateX(100%);
+}</code></pre>
+    </div>
+    
+    <div class="info-box">
+        <p>🎯 Псевдоклассы и псевдоэлементы — мощный инструмент для стилизации без изменения HTML.</p>
+    </div>
+</section>
+
     <footer class="footer">
         <p>© 2026 Komorok</p>
     </footer>
