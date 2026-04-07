@@ -205,3 +205,26 @@ main {
     cursor: pointer;
     font-weight: bold;
 }
+
+
+/* Блок с кодом */
+.code-block {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 15px;
+    overflow-x: auto;
+}
+
+.code-block code {
+    color: #d4d4d4;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+}
