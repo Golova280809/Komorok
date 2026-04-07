@@ -321,6 +321,321 @@ a.link { ... }            /* тег a с классом link */
         <p>📦 Свойство <code>box-sizing: border-box;</code> очень полезно — включи его в начале CSS!</p>
     </div>
 </section>
+
+
+<!-- Секция: Flexbox -->
+<section class="content-section" id="flexbox">
+    <h2>Flexbox</h2>
+    <p>Flexbox — мощный инструмент для выравнивания элементов. Применяется к родительскому контейнеру:</p>
+    
+    <h3>Основные свойства</h3>
+    <div class="code-block">
+        <pre><code>.container {
+    display: flex;           /* включить flexbox */
+    justify-content: center; /* по горизонтали */
+    align-items: center;     /* по вертикали */
+    gap: 10px;               /* отступ между элементами */
+    flex-wrap: wrap;         /* перенос на новую строку */
+}</code></pre>
+    </div>
+    
+    <h3>justify-content (горизонталь)</h3>
+    <div class="code-block">
+        <pre><code>flex-start   /* в начале */
+flex-end     /* в конце */
+center       /* по центру */
+space-between /* равномерно (края прижаты) */
+space-around  /* равномерно (края отступлены) */</code></pre>
+    </div>
+    
+    <h3>align-items (вертикаль)</h3>
+    <div class="code-block">
+        <pre><code>flex-start   /* в начале */
+flex-end     /* в конце */
+center       /* по центру */
+stretch      /* растянуть (по умолчанию) */</code></pre>
+    </div>
+    
+    <h3>Для дочерних элементов</h3>
+    <div class="code-block">
+        <pre><code>.item {
+    flex: 1;           /* занимает всё доступное место */
+    flex-basis: 200px; /* базовая ширина */
+    order: 1;          /* порядок (отрицательные — в начале) */
+}</code></pre>
+    </div>
+</section>
+
+
+<!-- Секция: Позиционирование -->
+<section class="content-section" id="positioning">
+    <h2>Позиционирование</h2>
+    <p>Свойство <code>position</code> определяет, как элемент располагается на странице:</p>
+    
+    <h3>Основные значения</h3>
+    <div class="code-block">
+        <pre><code>/* Статическое (по умолчанию) */
+position: static;
+
+/* Относительное — сдвиг относительно исходного места */
+position: relative;
+top: 10px; left: 20px;
+
+/* Абсолютное — относительно ближайшего родителя */
+position: absolute;
+top: 0; right: 0;
+
+/* Фиксированное — относительно окна браузера */
+position: fixed;
+top: 0; left: 0;
+
+/* Липкое — прилипает при скролле */
+position: sticky;
+top: 10px;</code></pre>
+    </div>
+    
+    <h3>Пример: всплывающее окно</h3>
+    <div class="code-block">
+        <pre><code>.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}</code></pre>
+    </div>
+    
+    <div class="info-box">
+        <p>⚠️ <code>absolute</code> и <code>fixed</code> вырывают элемент из потока — другие элементы его не видят.</p>
+    </div>
+</section>
+
+<!-- Секция: Media Queries -->
+<section class="content-section" id="media-queries">
+    <h2>Адаптивный дизайн</h2>
+    <p>Media queries позволяют менять стили в зависимости от размера экрана:</p>
+    
+    <h3>Базовая структура</h3>
+    <div class="code-block">
+        <pre><code>/* Для всех экранов */
+.container { width: 100%; }
+
+/* Для экранов шире 768px */
+@media (min-width: 768px) {
+    .container { width: 750px; }
+}
+
+/* Для экранов шире 1024px */
+@media (min-width: 1024px) {
+    .container { width: 960px; }
+}</code></pre>
+    </div>
+    
+    <h3>Типичные брейкпоинты</h3>
+    <div class="code-block">
+        <pre><code>/* Мобильные (портрет) */
+@media (max-width: 480px) { ... }
+
+/* Мобильные (альбом) / планшеты */
+@media (max-width: 768px) { ... }
+
+/* Ноутбуки */
+@media (max-width: 1024px) { ... }
+
+/* Большие мониторы */
+@media (min-width: 1200px) { ... }</code></pre>
+    </div>
+    
+    <h3>Пример: скрытие меню на мобильных</h3>
+    <div class="code-block">
+        <pre><code>.menu { display: block; }
+
+@media (max-width: 768px) {
+    .menu { display: none; }
+    .hamburger { display: block; }
+}</code></pre>
+    </div>
+    
+    <div class="info-box">
+        <p>📱 Всегда думай о мобильных пользователях — они часто составляют основной трафик!</p>
+    </div>
+</section>
+
+
+<!-- Секция: CSS Grid -->
+<section class="content-section" id="css-grid">
+    <h2>CSS Grid</h2>
+    <p>Grid — это двумерная сетка для сложных макетов. В отличие от Flexbox (строка ИЛИ колонка), Grid управляет строками И колонками одновременно:</p>
+    
+    <h3>Базовая структура</h3>
+    <div class="code-block">
+        <pre><code>.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 колонки */
+    grid-template-rows: auto;            /* автовысота */
+    gap: 20px;                           /* отступ между ячейками */
+}</code></pre>
+    </div>
+    
+    <h3>Единицы измерения</h3>
+    <div class="code-block">
+        <pre><code>grid-template-columns: 200px 200px 200px; /* фикс ширина */
+grid-template-columns: 1fr 2fr 1fr;      /* пропорции (1:2:1) */
+grid-template-columns: repeat(3, 1fr);    /* 3 колонки по 1fr */
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* адаптивно */</code></pre>
+    </div>
+    
+    <h3>Растягивание ячеек</h3>
+    <div class="code-block">
+        <pre><code>.item {
+    grid-column: 1 / 3;  /* занимает колонки 1 и 2 */
+    grid-row: 2 / 4;     /* занимает строки 2 и 3 */
+}</code></pre>
+    </div>
+    
+    <h3>Пример: карточки товаров</h3>
+    <div class="code-block">
+        <pre><code>.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}</code></pre>
+    </div>
+    
+    <div class="info-box">
+        <p>🔲 Grid идеален для карточек, галерей, макетов страниц. Flexbox — для компонентов (кнопки, меню, списки).</p>
+    </div>
+</section>
+
+
+<!-- Секция: Анимации -->
+<section class="content-section" id="animations">
+    <h2>Анимации</h2>
+    <p>CSS позволяет создавать плавные анимации без JavaScript:</p>
+    
+    <h3>transition — плавные переходы</h3>
+    <div class="code-block">
+        <pre><code>.btn {
+    background: blue;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background: darkblue;
+    transform: scale(1.05);
+}</code></pre>
+    </div>
+    
+    <h3>keyframe — сложные анимации</h3>
+    <div class="code-block">
+        <pre><code>@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+.ball {
+    animation: bounce 1s infinite;
+}</code></pre>
+    </div>
+    
+    <h3>Полезные свойства анимации</h3>
+    <div class="code-block">
+        <pre><code>.element {
+    animation-name: bounce;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}</code></pre>
+    </div>
+    
+    <h3>timing functions</h3>
+    <div class="code-block">
+        <pre><code>ease        /* плавно (по умолчанию) */
+linear      /* равномерно */
+ease-in     /* ускорение в начале */
+ease-out    /* замедление в конце */
+ease-in-out /* ускорение + замедление */</code></pre>
+    </div>
+    
+    <div class="info-box">
+        <p>🎬 Анимации делают интерфейс живым, но не переусердствуй — слишком много движения раздражает.</p>
+    </div>
+</section>
+
+<!-- Секция: Формы -->
+<section class="content-section" id="forms">
+    <h2>Формы и inputs</h2>
+    <p>Формы — основа интерактивности. Без стилей выглядят уныло:</p>
+    
+    <h3>Базовая структура формы</h3>
+    <div class="code-block">
+        <pre><code><form action="/submit" method="POST">
+    <label for="name">Имя:</label>
+    <input type="text" id="name" name="name" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+    
+    <label for="pass">Пароль:</label>
+    <input type="password" id="pass" name="pass">
+    
+    <button type="submit">Отправить</button>
+</form></code></pre>
+    </div>
+    
+    <h3>Типы input</h3>
+    <div class="code-block">
+        <pre><code>text, password, email, number, tel
+date, time, color
+checkbox, radio
+file, hidden
+range, search</code></pre>
+    </div>
+    
+    <h3>Стилизация inputs</h3>
+    <div class="code-block">
+        <pre><code>input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+    border-color: blue;
+    box-shadow: 0 0 5px rgba(0,0,255,0.3);
+}</code></pre>
+    </div>
+    
+    <h3>Чекбоксы и радио кнопки</h3>
+    <div class="code-block">
+        <pre><code>/* Скрываем оригинал */
+input[type="checkbox"] { display: none; }
+
+/* Свой стиль */
+input[type="checkbox"] + label::before {
+    content: "☐";
+    font-size: 20px;
+}
+
+input[type="checkbox"]:checked + label::before {
+    content: "☑";
+}</code></pre>
+    </div>
+    
+    <div class="info-box">
+        <p>📝 Всегда используй <code>label</code> с <code>for</code> — это важно для доступности и удобства.</p>
+    </div>
+</section>
+
+
     <footer class="footer">
         <p>© 2026 Komorok</p>
     </footer>
