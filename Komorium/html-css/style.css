@@ -1,15 +1,27 @@
+
+/* 1. ПЕРЕМЕННЫЕ И ОСНОВНЫЕ НАСТРОЙКИ */
+:root {
+    --bg: #d3d3d3;              /* Светло-серый фон */
+    --text: #333;
+    --accent: #2c3e50;          /* Темно-синий для заголовков и акцентов */
+    --accent-gradient: linear-gradient(135deg, #e94560, #0f3460); /* Градиент для кнопок */
+    --sidebar-bg: #1a1a2e;      /* Темный фон меню */
+    --sidebar-accent: #40ffb6;  /* Неоновый зеленый в меню */
+    --white: #ffffff;
+    --light-gray: #f0f0f0;
+    --footer-bg: #2c3e50;
+    --shadow-light: rgba(0,0,0,0.1);
+    --shadow-medium: rgba(0,0,0,0.3);
+}
+
 body {
-    background: #d3d3d3; /* Светло-серый фон */
+    background: var(--bg);
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
-h1.center {
-    text-align: center;
-    margin-top: 10px;
-}
-
+/* 2. ЛОГИКА БУРГЕР-МЕНЮ (Checkbox Hack) */
 .menu-checkbox {
     display: none;
 }
@@ -21,7 +33,7 @@ h1.center {
     left: 15px;
     width: 45px;
     height: 45px;
-    background: #1a1a2e; /* Темный фон для кнопки, чтобы ее было видно */
+    background: var(--sidebar-bg);
     border-radius: 8px;
     cursor: pointer;
     z-index: 1001;
@@ -36,7 +48,7 @@ h1.center {
     display: block;
     width: 25px;
     height: 3px;
-    background: #fff; /* Белые полоски */
+    background: var(--white);
     border-radius: 2px;
 }
 
@@ -47,7 +59,7 @@ h1.center {
     left: -280px;
     width: 280px;
     height: 100%;
-    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    background: linear-gradient(180deg, var(--sidebar-bg) 0%, #16213e 100%);
     padding-top: 60px;
     z-index: 1002;
     transition: left 0.3s ease;
@@ -55,7 +67,7 @@ h1.center {
 }
 
 .sidebar-title {
-    color: #40ffb6;
+    color: var(--sidebar-accent);
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
@@ -66,7 +78,7 @@ h1.center {
 .sidebar a {
     display: block;
     padding: 15px 25px;
-    color: #ffffff;
+    color: var(--white);
     text-decoration: none;
     font-size: 18px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -75,10 +87,10 @@ h1.center {
 
 .sidebar a:hover {
     background: rgba(64, 255, 182, 0.1);
-    color: #40ffb6;
+    color: var(--sidebar-accent);
 }
 
-/* Затемнение фона */
+/* Затемнение фона при открытом меню */
 .overlay {
     position: fixed;
     top: 0;
@@ -102,20 +114,23 @@ h1.center {
     pointer-events: auto;
 }
 
+/* 3. ОСНОВНОЙ КОНТЕНТ (Layout) */
 main {
     max-width: 700px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 70px;
+    padding-top: 70px; /* Место для хедера/меню-гамбургера */
 }
 
 .footer {
-    background: #2c3e50;
+    background: var(--footer-bg);
     text-align: center;
     padding: 20px;
     color: #aaa;
     margin-top: 40px;
 }
+
+/* 4. КОМПОНЕНТЫ (Кнопки, Заголовки, Карточки) */
 
 /* Верхнее меню — красивые кнопки */
 .top-menu {
@@ -134,20 +149,19 @@ main {
     font-size: 14px;
     font-weight: 500;
     border-radius: 25px;
-    background: #fff;
+    background: var(--white);
     border: 2px solid #e0e0e0;
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .top-menu a:hover {
-    background: #2c3e50;
-    color: #fff;
-    border-color: #2c3e50;
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3);
 }
-
 
 /* Заголовок страницы */
 .page-title {
@@ -157,7 +171,7 @@ main {
 
 .page-title h1 {
     font-size: 36px;
-    color: #2c3e50;
+    color: var(--accent);
     margin: 0;
 }
 
@@ -168,20 +182,20 @@ main {
 
 /* Карточки секций */
 .content-section {
-    background: #fff;
+    background: var(--white);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px var(--shadow-light);
     border: 1px solid #eee;
 }
 
 .content-section h2 {
-    color: #2c3e50;
+    color: var(--accent);
     font-size: 20px;
     margin-bottom: 12px;
     padding-bottom: 8px;
-    border-bottom: 2px solid #f0f0f0;
+    border-bottom: 2px solid var(--light-gray);
 }
 
 .content-section p {
@@ -191,17 +205,84 @@ main {
     margin: 0;
 }
 
-.nav-btn {
+/* Кнопка "Войти" (бывшая .nav-btn) */
+.login-btn { /* Переименовал для ясности */
     position: absolute;
     top: 15px;
-    right: 30px; /* правее кнопки меню */
+    right: 30px;
     z-index: 1001;
-    background: linear-gradient(135deg, #e94560, #0f3460);
-    color: white;
+    background: var(--accent-gradient);
+    color: var(--white);
     border: none;
     padding: 10px 20px;
     border-radius: 20px;
     font-size: 15px;
     cursor: pointer;
     font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* 5. КНОПКА "НАВЕРХ" (Scroll to Top) */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1001; /* Убедимся, что она поверх остального */
+    background: var(--accent-gradient);
+    color: var(--white);
+    border: none;
+    border-radius: 50%; /* Круглая кнопка */
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    display: none; /* По умолчанию скрыта */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    opacity: 0; /* Начальная прозрачность для анимации появления */
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-3px) scale(1.1); /* Немного поднять и увеличить */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+/* Класс, который будет добавляться JavaScript, чтобы показать кнопку */
+.scroll-to-top.show {
+    display: flex; /* Используем flex для центрирования стрелки */
+    opacity: 1;
+}
+
+/* Стрелка внутри кнопки "наверх" */
+.scroll-to-top::before {
+    content: '⬆'; /* unicode стрелка вверх */
+}
+
+/* Блок с кодом (оставлен из предыдущего примера) */
+.code-block {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 15px;
+    overflow-x: auto;
+}
+
+.code-block code {
+    color: #d4d4d4;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
 }
