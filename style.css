@@ -172,3 +172,15 @@ main {
     color: #aaa;
     margin-top: 40px;
 }
+
+.logo {
+  position: fixed;  /* фиксированная позиция */
+  top: 20px;        /* отступ сверху */
+  right: 20px;      /* отступ справа */
+  width: 50px;      /* размер — как в Telegram */
+  height: 50px;
+  border-radius: 50%;  /* делает круглым */
+  object-fit: cover;   /* не искажает фото */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);  /* тень */
+  z-index: 1000;       /* поверх всего */
+}
