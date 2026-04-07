@@ -1,0 +1,207 @@
+body {
+    background: #d3d3d3; /* Светло-серый фон */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1.center {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.menu-checkbox {
+    display: none;
+}
+
+/* Кнопка меню (Гамбургер) */
+.menu-toggle {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 45px;
+    height: 45px;
+    background: #1a1a2e; /* Темный фон для кнопки, чтобы ее было видно */
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #fff; /* Белые полоски */
+    border-radius: 2px;
+}
+
+/* Боковая панель */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    padding-top: 60px;
+    z-index: 1002;
+    transition: left 0.3s ease;
+    box-shadow: 5px 0 20px rgba(0,0,0,0.5);
+}
+
+.sidebar-title {
+    color: #40ffb6;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Ссылки в меню */
+.sidebar a {
+    display: block;
+    padding: 15px 25px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: background 0.3s;
+}
+
+.sidebar a:hover {
+    background: rgba(64, 255, 182, 0.1);
+    color: #40ffb6;
+}
+
+/* Затемнение фона */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Логика открытия */
+.menu-checkbox:checked ~ .sidebar {
+    left: 0;
+}
+
+.menu-checkbox:checked ~ .overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+main {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 70px;
+}
+
+.footer {
+    background: #2c3e50;
+    text-align: center;
+    padding: 20px;
+    color: #aaa;
+    margin-top: 40px;
+}
+
+/* Верхнее меню — красивые кнопки */
+.top-menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.top-menu a {
+    display: inline-block;
+    padding: 12px 24px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 25px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.top-menu a:hover {
+    background: #2c3e50;
+    color: #fff;
+    border-color: #2c3e50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3);
+}
+
+
+/* Заголовок страницы */
+.page-title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.page-title h1 {
+    font-size: 36px;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.page-title p {
+    color: #666;
+    margin: 5px 0 0 0;
+}
+
+/* Карточки секций */
+.content-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+}
+
+.content-section h2 {
+    color: #2c3e50;
+    font-size: 20px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.content-section p {
+    text-indent: 30px;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 15px;
+    right: 30px; /* правее кнопки меню */
+    z-index: 1001;
+    background: linear-gradient(135deg, #e94560, #0f3460);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
