@@ -480,9 +480,9 @@ dialog::backdrop {
 
 /* 5. ПОДВАЛ */
 .footer {
-    background: var(--accent-dark);
+    background: #2c3e50;
     text-align: center;
-    padding: 30px;
+    padding: 20px;
     color: #aaa;
     margin-top: 40px;
 }
