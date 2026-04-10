@@ -1,84 +1,127 @@
-body {
-    background: #d3d3d3; /* Светло-серый фон */
-    font-family: Arial, sans-serif;
+:root {
+    --gradient-btn-start: #667eea;
+    --gradient-btn-end: #764ba2;
+}
+
+/* === СБРОС И БАЗА === */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-h1.center {
+
+
+*:active {
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* === HEADER === */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem 1rem;
     text-align: center;
-    margin-top: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    opacity: 0.9;
+}
+
+/* === МЕНЮ === */
 .menu-checkbox {
     display: none;
 }
 
-/* Кнопка меню (Гамбургер) */
 .menu-toggle {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    width: 45px;
-    height: 45px;
-    background: #1a1a2e; /* Темный фон для кнопки, чтобы ее было видно */
-    border-radius: 8px;
-    cursor: pointer;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
     z-index: 1001;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5px;
+    transition: transform 0.3s;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.05);
 }
 
 .menu-toggle span {
     display: block;
-    width: 25px;
+    width: 24px;
     height: 3px;
-    background: #fff; /* Белые полоски */
+    background: #333;
     border-radius: 2px;
+    transition: all 0.3s;
 }
 
-/* Боковая панель */
+/* === SIDEBAR === */
 .sidebar {
     position: fixed;
     top: 0;
     left: -280px;
     width: 280px;
-    height: 100%;
-    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
-    padding-top: 60px;
-    z-index: 1002;
+    height: 100vh;
+    background: white;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    padding: 5rem 1rem 1rem;
     transition: left 0.3s ease;
-    box-shadow: 5px 0 20px rgba(0,0,0,0.5);
+    overflow-y: auto;
+}
+
+.menu-checkbox:checked ~ .sidebar {
+    left: 0;
 }
 
 .sidebar-title {
-    color: #40ffb6;
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 1.2rem;
     font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #667eea;
 }
 
-/* Ссылки в меню */
 .sidebar a {
     display: block;
-    padding: 15px 25px;
-    color: #ffffff;
+    padding: 0.8rem 1rem;
+    color: #333;
     text-decoration: none;
-    font-size: 18px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    transition: background 0.3s;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: background 0.2s, color 0.2s;
 }
 
 .sidebar a:hover {
-    background: rgba(64, 255, 182, 0.1);
-    color: #40ffb6;
+    background: #f0f0f0;
+    color: #667eea;
 }
 
-/* Затемнение фона */
+/* Затемнение */
 .overlay {
     position: fixed;
     top: 0;
@@ -86,35 +129,24 @@ h1.center {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.5);
-    z-index: 1000;
+    z-index: 999;
     opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-/* Логика открытия */
-.menu-checkbox:checked ~ .sidebar {
-    left: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
 }
 
 .menu-checkbox:checked ~ .overlay {
     opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
 }
 
+
+/* === MAIN === */
 main {
-    max-width: 700px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 20px;
-    padding-top: 70px;
-}
-
-.footer {
-    background: #2c3e50;
-    text-align: center;
-    padding: 20px;
-    color: #aaa;
-    margin-top: 40px;
+    padding: 1rem;
+    padding-top: 5rem;
 }
 
 /* Верхнее меню — красивые кнопки */
@@ -148,65 +180,139 @@ main {
     box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3);
 }
 
-
-/* Заголовок страницы */
-.page-title {
-    text-align: center;
-    margin-bottom: 10px;
+/* === КАТЕГОРИИ === */
+.categories {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
-.page-title h1 {
-    font-size: 36px;
-    color: #2c3e50;
-    margin: 0;
-}
-
-.page-title p {
-    color: #666;
-    margin: 5px 0 0 0;
-}
-
-/* Карточки секций */
-.content-section {
-    background: #fff;
+.cat-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 1rem;
+    background: white;
+    border: 2px solid #e0e0e0;
     border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border: 1px solid #eee;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: all 0.2s;
 }
 
-.content-section h2 {
-    color: #2c3e50;
-    font-size: 20px;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #f0f0f0;
+.cat-btn:hover {
+    border-color: #667eea;
+    color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
+
+/* === СЕКЦИИ === */
+.category-section {
+    margin-bottom: 2rem;
+}
+
+.category-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+
 
 .content-section p {
-    text-indent: 30px;
-    color: #555;
-    line-height: 1.6;
-    margin: 0;
+    font-size: 1rem;           /* минимум 16px на мобильном */
+    line-height: 1.7;          /* межстрочный интервал */
+    color: #333;               /* не чисто чёрный — мягче для глаз */
+    margin-bottom: 1.2rem;
+    text-align: justify;      /* выравнивание по ширине */
+    text-indent: 1.5em;
+    margin-bottom: 1rem;
+}
+.content-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #222;
 }
 
-.nav-btn {
-    position: absolute;
-    top: 15px;
-    right: 30px; /* правее кнопки меню */
-    z-index: 1001;
-    background: linear-gradient(135deg, #e94560, #0f3460);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 15px;
-    cursor: pointer;
-    font-weight: bold;
+
+/* === СЕТКА КАРТОЧЕК === */
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
 }
-css
-/* === HERO (приветствие) === */
+
+/* === КАРТОЧКА === */
+.article-card {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.8rem;
+    background: white;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: all 0.2s;
+}
+
+.article-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.card-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.card-desc {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+
+
+/* === АДАПТИВНОСТЬ === */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.5rem;
+        padding-left: 3rem;
+    }
+
+    .menu-toggle {
+        top: 0.8rem;
+        left: 0.8rem;
+    }
+
+    main {
+        padding-top: 4rem;
+    }
+
+    .categories {
+        flex-direction: column;
+    }
+
+    .articles-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* === HERO === */
 .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -218,6 +324,7 @@ css
 }
 
 .hero h1 {
+
     font-size: 2rem;
     margin-bottom: 0.5rem;
 }
@@ -268,6 +375,19 @@ css
     color: #e74c3c;
 }
 
+/* === FOOTER === */
+.footer {
+    background: #2d3436;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+}
+
+.footer p {
+    opacity: 0.8;
+}
+
 /* === КАРТИНКА === */
 main > center {
     margin-bottom: 2rem;
@@ -278,4 +398,44 @@ main > center img {
     height: auto;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--gradient-btn-start), var(--gradient-btn-end));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 24px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    z-index: 1000;
+    border: none;
+    cursor: pointer;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: scale(1.1) translateY(-5px);
 }
