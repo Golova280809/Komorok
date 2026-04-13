@@ -28,7 +28,7 @@
 
 
     <button class="back-to-top" id="backToTop">↑</button>
-    
+
     <!-- Основной контент -->
     <main>
     <!-- Верхнее меню -->
@@ -104,25 +104,8 @@
     <footer class="footer">
         <p>© 2026 Komorok</p>
     </footer>
+    <script src="../../script.js"></script>
 </body>
 
-    <script>
-        const backToTopBtn = document.getElementById("backToTop");
 
-        window.onscroll = function() {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                backToTopBtn.classList.add("show");
-            } else {
-                backToTopBtn.classList.remove("show");
-            }
-        };
-
-        backToTopBtn.onclick = function() {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        };
-    </script>
-    
 </html>
