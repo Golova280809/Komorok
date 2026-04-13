@@ -440,3 +440,17 @@ main > center img {
 .back-to-top:hover {
     transform: scale(1.1) translateY(-5px);
 }
+
+
+
+.table1 {
+  border-collapse: collapse;
+}
+.table1 th, .table1 td {
+  border: 1px solid #333;
+  padding: 8px 16px;
+}
+.table1 th {
+  background: #e0e0e0;
+  text-align: left; /* заголовок слева */
+}
