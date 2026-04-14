@@ -129,6 +129,11 @@ main {
     color: #666;
 }
 
+.motto {
+    font-style: italic;
+    color: #4a4a4a;
+}
+
 /* Описание меню */
 .menu-info {
     background: #fff;
