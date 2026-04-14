@@ -115,9 +115,8 @@ main {
 .hero-image {
     width: 100%;
     height: auto;
-    display: block;
-    margin: 0 auto 20px; /* 20px — отступ снизу */
-    border-radius: 8px; /* закругление углов */
+    max-height: 50vh; /* не выше половины экрана */
+    object-fit: contain;
 }
 
 /* Приветствие */
