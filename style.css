@@ -117,6 +117,8 @@ main {
     height: auto;
     max-height: 50vh; /* не выше половины экрана */
     object-fit: contain;
+    margin: 0 auto 20px; /* 20px — отступ снизу */
+    border-radius: 8px; /* закругление углов */
 }
 
 /* Приветствие */
