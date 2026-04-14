@@ -112,7 +112,7 @@ main {
     padding-top: 70px;
 }
 
-.hero-image {
+.hero img {
     width: 100%;
     height: auto;
     max-height: 50vh; /* не выше половины экрана */
