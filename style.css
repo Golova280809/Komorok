@@ -112,6 +112,14 @@ main {
     padding-top: 70px;
 }
 
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px; /* 20px — отступ снизу */
+    border-radius: 8px; /* закругление углов */
+}
+
 /* Приветствие */
 .hero {
     text-align: center;
