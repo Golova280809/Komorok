@@ -129,7 +129,7 @@ main {
     color: #666;
 }
 
-#motto {
+.hero h3 {
     font-style: italic;
     color: #4a4a4a;
 }
