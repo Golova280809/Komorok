@@ -160,6 +160,7 @@ body {
     color: #4a4a4a;
 }
 
+
 /* Описание меню */
 .menu-info {
     background: #fff;
@@ -239,4 +240,8 @@ body {
 }
 .contact-form button:hover {
   background: #45a049;
+}
+
+h3 em {
+    font-weight: normal;
 }
