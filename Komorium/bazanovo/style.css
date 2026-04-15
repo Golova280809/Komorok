@@ -454,3 +454,50 @@ main > center img {
   background: #e0e0e0;
   text-align: left; /* заголовок слева */
 }
+
+/* === СЕТКА КАРТОЧЕК === */
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+/* === КАРТОЧКА === */
+.article-card {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.8rem;
+    background: white;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: all 0.2s;
+}
+
+.article-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.card-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.card-desc {
+    font-size: 0.85rem;
+    color: #666;
+}
