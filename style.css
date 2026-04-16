@@ -228,33 +228,27 @@ main {
     font-size: 14px;
 }
 
-/* === ТАБЛИЦА С КЛАССОМ .table === */
+
 .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 14px;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
 }
 
-.table th,
-.table td {
-    border: 1px solid #ddd;
-    padding: 8px 12px;
-    text-align: center;
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: center;
 }
 
 .table th {
-    background: #f5f5f5;
-    font-weight: bold;
-    color: #333;
+  background: #f5f5f5;
+  font-weight: bold;
 }
 
 .table tr:hover {
-    background: #f9f9f9;
+  background: #f9f9f9;
 }
 
 /* === СТИЛИ KOMORIUM (ЭНЦИКЛОПЕДИЯ) === */
