@@ -1,0 +1,185 @@
+/* === ПЕРЕМЕННЫЕ === */
+:root {
+    --gradient-btn-start: #667eea;
+    --gradient-btn-end: #764ba2;
+}
+
+/* === БАЗОВЫЙ СБРОС === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+/* === ОБЩИЕ ЭЛЕМЕНТЫ === */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+    padding-top: 5rem;
+}
+
+/* === БОКОВОЕ МЕНЮ (ГАМБУРГЕР) === */
+.menu-checkbox {
+    display: none;
+}
+
+.menu-toggle {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    transition: transform 0.3s;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.05);
+}
+
+.menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
+    background: white;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    padding: 5rem 1rem 1rem;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+}
+
+.menu-checkbox:checked ~ .sidebar {
+    left: 0;
+}
+
+.sidebar-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #667eea;
+}
+
+.sidebar a {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sidebar a:hover {
+    background: #f0f0f0;
+    color: #667eea;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.menu-checkbox:checked ~ .overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* === КНОПКА "НАВЕРХ" === */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--gradient-btn-start), var(--gradient-btn-end));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 24px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    z-index: 1000;
+    border: none;
+    cursor: pointer;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: scale(1.1) translateY(-5px);
+}
+
+/* === АДАПТИВНОСТЬ (общая) === */
+@media (max-width: 600px) {
+    main {
+        padding-top: 4rem;
+    }
+
+    .menu-toggle {
+        top: 0.8rem;
+        left: 0.8rem;
+    }
+
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+    
+    header h1, header p {
+        text-align: center;
+    }
+}
