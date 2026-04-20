@@ -458,9 +458,72 @@ main > h1 {
         height: 45px;
         font-size: 20px;
     }
-
-    /* Убираем лишний отступ слева, который был для header h1 */
-    header h1 {
-        padding-left: 0;
+    header h1, p {
+        text-align: center
     }
 }
+
+.poem-block {
+            background: #fff;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            border: 1px solid #f0f0f0;
+        }
+        .poem-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #1e2a36;
+            letter-spacing: -0.01em;
+        }
+        .poem-text {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            font-style: normal;
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+            text-indent: 0; /* отменяем абзацный отступ */
+        }
+        .poem-date {
+            text-align: right;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px dashed #ddd;
+            padding-top: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .quote-badge {
+            background: #f8f9fa;
+            padding: 1.2rem 1.5rem;
+            border-radius: 30px;
+            border-left: 6px solid #667eea;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .photo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        .photo-placeholder {
+            width: 180px;
+            height: 140px;
+            background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #334155;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            border: 1px solid #e9eef4;
+        }
+        /* отменяем абзацный отступ для секций со стихами, чтобы не портить вид */
+        .content-section .no-indent {
+            text-indent: 0;
+        }
