@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Komorium — Энциклопедия</title>
+    
 </head>
 <body>
-    <!-- Боковое меню (главное, одинаковое на всех страницах) -->
+    <!-- Боковое меню -->
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
     <label for="menu-toggle" class="menu-toggle">
         <span></span>
@@ -30,49 +31,92 @@
     </header>
     <button class="back-to-top" id="backToTop">↑</button>
 
-
     <main>
-      <nav class="categories">
-        <a href="#geography" class="cat-btn">🌍 География</a>
-        <a href="#technology" class="cat-btn">💻 Технологии</a>
-      </nav>
-      <section id="#" class="category-section">
-          <h2>Головачёв Александр</h2>
-          <div class="articles-grid">
-                <a href="../Alexander.html" class="article-card">
+        <!-- Поиск -->
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или описанию..." autocomplete="off">
+            <button id="clearSearch" class="search-clear" aria-label="Очистить">✕</button>
+        </div>
+
+        <!-- Навигация по категориям -->
+        <nav class="categories">
+            <a href="#geography" class="cat-btn">🌍 География</a>
+            <a href="#technology" class="cat-btn">💻 Технологии</a>
+        </nav>
+
+        <!-- Персональная карточка -->
+        <section class="standalone-card" id="standalone-alexander">
+            <h2 style="margin-bottom: 0.75rem;">Головачёв Александр</h2>
+            <div class="articles-grid">
+                <a href="../Alexander.html" class="article-card" data-title="Головачёв Александр" data-desc="Творчество">
                     <img src="📰" alt="📰" class="avatar">
                     <div class="card-content">
                         <span class="card-title">Головачёв Александр</span>
                         <span class="card-desc">Творчество</span>
                     </div>
                 </a>
-      </section>
-      <section id="geography" class="category-section">
-            <h2>🌍 География</h2>
-            <div class="articles-grid">
-                <a href="China/index.html" class="article-card">
-                    <img src="China/china.png" alt="🇨🇳" class="avatar">
-                    <div class="card-content">
-                        <span class="card-title">Китай</span>
-                        <span class="card-desc">География, население, экономика</span>
-                    </div>
-                </a>
-            <a href="bazanovo/index.html" class="article-card">
-                    <img src="Bazanovo.png" alt="Базаново" class="avatar">
-
-                    <div class="card-content">
-                        <span class="card-title">Деревня: Базаново</span>
-                        <span class="card-desc">География, население, экономика</span>
-                    </div>
-                </a>
             </div>
         </section>
 
+        <!-- Раздел ГЕОГРАФИЯ -->
+        <section id="geography" class="category-section">
+            <h2>🌍 География</h2>
+            
+            <!-- Подраздел: Страны -->
+            <div class="subcategory collapsed" id="subcat-countries">
+                <div class="subcategory-header">
+                    <h3>Страны</h3>
+                    <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-countries">
+                        <span class="arrow">▼</span>
+                    </button>
+                </div>
+                <div class="articles-grid">
+                    <a href="China/index.html" class="article-card" data-title="Китай" data-desc="География, население, экономика">
+                        <img src="China/china.png" alt="🇨🇳" class="avatar">
+                        <div class="card-content">
+                            <span class="card-title">Китай</span>
+                            <span class="card-desc">География, население, экономика</span>
+                        </div>
+                    </a>
+                    <!-- Другие страны можно добавить -->
+                </div>
+            </div>
+
+            <!-- Подраздел: Деревни / Населённые пункты -->
+            <div class="subcategory collapsed" id="subcat-villages">
+                <div class="subcategory-header">
+                    <h3>Деревни и сёла</h3>
+                    <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-villages">
+                        <span class="arrow">▼</span>
+                    </button>
+                </div>
+                <div class="articles-grid">
+                    <a href="bazanovo/index.html" class="article-card" data-title="Деревня: Базаново" data-desc="География, население, экономика">
+                        <img src="Bazanovo.png" alt="Базаново" class="avatar">
+                        <div class="card-content">
+                            <span class="card-title">Деревня: Базаново</span>
+                            <span class="card-desc">География, население, экономика</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел ТЕХНОЛОГИИ -->
         <section id="technology" class="category-section">
             <h2>💻 Технологии</h2>
-            <h4 style="color: red;">Отдел недоступен по техническим причинам.</h4>
+            <div style="background: #fff3f3; padding: 1.5rem; border-radius: 16px; border-left: 6px solid #c0392b;">
+                <h4 style="color: #c0392b; margin:0 0 0.5rem 0;">⚠️ Отдел недоступен</h4>
+                <p style="margin:0; color: #555;">По техническим причинам раздел временно закрыт.</p>
+            </div>
         </section>
+
+        <!-- Сообщение "ничего не найдено" -->
+        <div id="noResultsMessage" class="no-results-message">
+            🔎 Ничего не найдено. Попробуйте изменить запрос.
+        </div>
     </main>
-    <script src="../script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
