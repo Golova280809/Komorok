@@ -15,59 +15,57 @@
 
 .hero h1 {
     font-size: 32px;
-    color: #2c3e50;
+    color: var(--text-primary);
     margin-bottom: 8px;
 }
 
 .hero h3 {
     font-style: italic;
-    color: #4a4a4a;
+    color: var(--text-secondary);
     font-weight: normal;
 }
 
 .hero p {
     font-size: 16px;
-    color: #666;
+    color: var(--text-secondary);
 }
 
 .menu-info {
-    background: #fff;
+    background: var(--bg-surface);
     padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px var(--shadow-light);
 }
 
 .menu-info h2 {
-    color: #2c3e50;
+    color: var(--text-primary);
     text-align: center;
     margin-bottom: 20px;
     font-size: 22px;
 }
 
 .menu-item {
-    background: #f5f5f5;
+    background: var(--bg-body);
     padding: 15px;
     margin-bottom: 12px;
     border-radius: 6px;
-    border-left: 3px solid #2c3e50;
+    border-left: 3px solid var(--accent);
 }
 
 .menu-item h3 {
-    color: #333;
+    color: var(--text-primary);
     margin: 0 0 5px 0;
     font-size: 16px;
 }
 
 .menu-item p {
-    color: #666;
+    color: var(--text-secondary);
     margin: 0;
     font-size: 14px;
 }
 
-
-
 .footer {
-    background: #2d3436;
+    background: #2d3436;  /* Оставим тёмным в обеих темах, или можно заменить на переменную */
     color: white;
     text-align: center;
     padding: 1.5rem;
@@ -77,7 +75,6 @@
 .footer p {
     opacity: 0.8;
 }
-
 
 /* Адаптивность для главной */
 @media (max-width: 600px) {
