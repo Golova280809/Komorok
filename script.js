@@ -30,7 +30,7 @@
     const searchInput = document.getElementById('searchInput');
     const clearBtn = document.getElementById('clearSearch');
     const noResultsMsg = document.getElementById('noResultsMessage');
-    
+
     if (searchInput && clearBtn && noResultsMsg) {
         const allCards = Array.from(document.querySelectorAll('.article-card'));
         const subcategories = Array.from(document.querySelectorAll('.subcategory'));
