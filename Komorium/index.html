@@ -2,11 +2,19 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <script>
+  (function() {
+    var theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark-theme');
+    }
+  })();
+</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="komorium.css">
     <title>Komorium — Энциклопедия</title>
-    
+
 </head>
 <body>
     <!-- Боковое меню -->
@@ -20,9 +28,12 @@
     <nav class="sidebar">
         <div class="sidebar-title">Меню</div>
         <a href="../index.html">Главная</a>
-        <a href="../developing.html">Стихи</a>
         <a href="index.html">Komorium</a>
-        <a href="../developing.html">Обо мне</a>
+        <a href="../developing.html">О проекте</a>
+        <button class="theme-toggle-btn" id="themeToggle">
+    <span class="icon">🌙</span>
+    <span>Тёмная тема</span>
+</button>
     </nav>
 
     <label for="menu-toggle" class="overlay"></label>
@@ -46,7 +57,7 @@
         </nav>
 
         <!-- Персональная карточка -->
-        <section class="standalone-card" id="standalone-alexander">
+        <section class="standalone-card">
             <h2 style="margin-bottom: 0.75rem;">Головачёв Александр</h2>
             <div class="articles-grid">
                 <a href="../Alexander.html" class="article-card" data-title="Головачёв Александр" data-desc="Творчество">
@@ -62,7 +73,7 @@
         <!-- Раздел ГЕОГРАФИЯ -->
         <section id="geography" class="category-section">
             <h2>🌍 География</h2>
-            
+
             <!-- Подраздел: Страны -->
             <div class="subcategory collapsed" id="subcat-countries">
                 <div class="subcategory-header">
