@@ -12,7 +12,7 @@
     --shadow-medium: rgba(0, 0, 0, 0.1);
     --menu-overlay: rgba(0, 0, 0, 0.5);
     --menu-hover: #f0f0f0;
-    
+
     /* Градиент для кнопок */
     --gradient-btn-start: #667eea;
     --gradient-btn-end: #764ba2;
@@ -175,7 +175,7 @@ main {
 }
 
 /* === ТЁМНАЯ ТЕМА === */
-body.dark-theme {
+html.dark-theme, body.dark-theme {
     --bg-body: #1a1a2e;
     --bg-surface: #16213e;
     --text-primary: #eaeaea;
@@ -187,7 +187,7 @@ body.dark-theme {
     --shadow-medium: rgba(0, 0, 0, 0.4);
     --menu-overlay: rgba(0, 0, 0, 0.7);
     --menu-hover: #1f3460;
-    
+
     /* Градиент для кнопок в тёмной теме */
     --gradient-btn-start: #7b8cff;
     --gradient-btn-end: #9f7aea;
@@ -237,7 +237,7 @@ body.dark-theme {
         height: 45px;
         font-size: 20px;
     }
-    
+
     header h1, header p {
         text-align: center;
     }
