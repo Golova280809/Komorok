@@ -2,6 +2,14 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <script>
+  (function() {
+    var theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark-theme');
+    }
+  })();
+</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="Komorium/komorium.css">
@@ -21,6 +29,10 @@
         <a href="index.html">Главная</a>
         <a href="Komorium/index.html">Komorium</a>
         <a href="../../developing.html">О проекте</a>
+        <button class="theme-toggle-btn" id="themeToggle">
+    <span class="icon">🌙</span>
+    <span>Тёмная тема</span>
+</button>
     </nav>
 
     <label for="menu-toggle" class="overlay"></label>
@@ -137,9 +149,20 @@
 Но через доли секунды
 Всё резко забыл.
                 </div>
-                <div class="poem-date">~ 2026, из нового цикла</div>
+                <div class="poem-date">2026</div>
             </div>
-            <p style="margin-top: 1.5rem; font-style: italic; color: #5a5a5a; text-indent: 0;">* * * Больше стихов — в разделе <a href="../../developing.html" style="color: #667eea; text-decoration: none;">«Стихи»</a> и в блоге автора.</p>
+            <div class="poem-block">
+                <div class="poem-title">«Давайте встанем»</div>
+                <div class="poem-text">
+Давайте встанем за своих,
+За тех кто нас спиной закрывает.
+Кто не стремится быть героем,
+А кто строит нам дорогу
+Дорогу в жизнь и в мирный мир!
+                </div>
+                <div class="poem-date">20.04.2026</div>
+            </div>
+            
         </section>
 
         <!-- Цитаты из стихов (заполненные) -->
@@ -168,12 +191,14 @@
             <div class="">
                 <h2>Ссылки</h2>
                 <li><a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">Канал в Max</a></li>
+                <li><a href="https://max.ru/join/Hcgp4P6URKHkYSqOWitLfox62HH7nc3-mrchHgIxitI">Чат в Max</a></li>
             </div>
         </section>
     </main>
 
     <!-- Подвал -->
     <footer class="footer">
+        <p>© Skaut9910</p>
         <p>© 2026 Komorok · Стихи и проза Александра Головачёва</p>
     </footer>
 
