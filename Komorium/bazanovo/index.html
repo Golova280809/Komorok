@@ -2,6 +2,14 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <script>
+  (function() {
+    var theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark-theme');
+    }
+  })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../common.css">
     <link rel="stylesheet" href="../komorium.css">
@@ -21,9 +29,12 @@
     <nav class="sidebar">
         <div class="sidebar-title">Меню</div>
         <a href="../../index.html">Главная</a>
-        <a href="../../developing.html">Стихи</a>
         <a href="../index.html">Komorium</a>
-        <a href="../../developing.html">Обо мне</a>
+        <a href="../../about.html">О проекте</a>
+        <button class="theme-toggle-btn" id="themeToggle">
+    <span class="icon">🌙</span>
+    <span>Тёмная тема</span>
+</button>
     </nav>
 
     <label for="menu-toggle" class="overlay"></label>
@@ -44,7 +55,7 @@
     <section id="about" class="content-section">
     <table class="table">
     <tr>
-      <th colspan="2" style="text-align: center; background: #e8f4f8;">Основная информация</th>
+      <th colspan="2" style="text-align: center; background: #495854;">Основная информация</th>
     </tr>
   <tr>
     <th>Страна</th>
@@ -67,7 +78,7 @@
       <td>Ново-Акатуевское</th>
   </tr>
   <tr>
-      <th colspan="2" style="text-align: center; background: #e8f4f8;">История и география</th>
+      <th colspan="2" style="text-align: center; background: #495854;">История и география</th>
   </tr>
   <tr>
       <th>Основан</th>
@@ -78,7 +89,7 @@
       <td> UTC+9:00</td>
   </tr>
   <tr>
-      <th colspan="2" style="text-align: center; background: #e8f4f8;">Население</th>
+      <th colspan="2" style="text-align: center; background: #495854;">Население</th>
   </tr>
   <tr>
       <th>Население</th>
@@ -89,7 +100,7 @@
       <td>Базановцы</td>
   </tr>
   <tr>
-      <th colspan="2" style="text-align: center; background: #e8f4f8;">Цифровые индефикаторы</th>
+      <th colspan="2" style="text-align: center; background: #495854;">Цифровые индефикаторы</th>
   </tr>
   <tr>
       <th>Почтовый индекс</th>
@@ -125,7 +136,7 @@
         <h2>Население</h2>
         <table class="table">
   <tr>
-        <th colspan="5" style="text-align: center; background: #e8f4f8;">Численность населения</th>
+        <th colspan="5" style="text-align: center; background: #495854;">Численность населения</th>
       </tr>
       <tr>
         <th>1989</th>
