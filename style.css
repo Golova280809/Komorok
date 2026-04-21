@@ -64,6 +64,180 @@
     font-size: 14px;
 }
 
+/* === НОВОСТНОЙ БЛОК === */
+.news-block {
+    margin-bottom: 3em;
+    margin-top: 2.5rem;
+    background: var(--bg-surface);
+    border-radius: 20px;
+    padding: 1.8rem 2rem;
+    box-shadow: 0 8px 20px var(--shadow-light);
+    border: 1px solid var(--border-light);
+}
+
+.news-block h2 {
+    font-size: 1.7rem;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.news-content {
+    color: var(--text-primary);
+}
+
+.news-list {
+    margin: 1rem 0 1.2rem 1.5rem;
+    line-height: 1.7;
+}
+
+.news-list li {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.news-list li strong {
+    color: var(--accent);
+}
+
+.news-alert {
+    margin-top: 1.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(102, 126, 234, 0.08);  /* полупрозрачный акцент */
+    border-left: 6px solid var(--accent);
+    border-radius: 16px;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .news-block {
+        padding: 1.5rem 1.2rem;
+    }
+    .news-block h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Дополнительные стили только для страницы "О проекте" */
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-surface);
+            border-radius: 24px;
+            padding: 2.2rem 2.5rem;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            border: 1px solid var(--border-light);
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .about-header h1 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-header .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            border-bottom: 2px dashed var(--border-light);
+            padding-bottom: 1.2rem;
+        }
+
+        .about-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .about-section h2 {
+            font-size: 1.7rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            border-left: 5px solid var(--accent);
+            padding-left: 1.2rem;
+        }
+
+        .about-section p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            background: var(--bg-body);
+            border-radius: 16px;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--border-light);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 1.2rem 0;
+        }
+
+        .tech-tag {
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .contest-note {
+            background: rgba(102, 126, 234, 0.08);
+            border-left: 6px solid var(--accent);
+            border-radius: 18px;
+            padding: 1.5rem 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .contest-note h3 {
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-about {
+            margin-top: 2.5rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border-light);
+            padding-top: 1.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .about-container {
+                padding: 1.5rem;
+            }
+            .about-header h1 {
+                font-size: 2rem;
+            }
+        }
+
 .footer {
     background: #2d3436;  /* Оставим тёмным в обеих темах, или можно заменить на переменную */
     color: white;
