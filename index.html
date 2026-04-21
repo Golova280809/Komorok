@@ -2,10 +2,18 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <script>
+  (function() {
+    var theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark-theme');
+    }
+  })();
+</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" href="bg.png">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="style.css">
     <title>Komorok</title>
 </head>
 <body>
@@ -41,13 +49,27 @@
         </header>
 
         <!-- Описание разделов -->
+        <!-- Новостной блок -->
+<section class="news-block">
+    <h2>📢 Новости сайта</h2>
+    <div class="news-content">
+        <p>Всем привет! У нас хорошие новости:</p>
+        <ul class="news-list">
+            <li>На главной странице <strong>Komorium</strong> появилась строка поиска — можно искать статьи по названию и описанию.</li>
+            <li>Все статьи разделены по разделам и по умолчанию скрыты. Чтобы посмотреть статьи определённого раздела, нажмите на кнопку-стрелку справа от названия.</li>
+            <li>Добавлена <strong>тёмная тема</strong>. Она пока тестируется, поэтому возможны небольшие цветовые недочёты — мы их исправим.</li>
+        </ul>
+        <p>На сайте полностью отсутствует сторонняя реклама, не относящаяся к проекту, его каналам и чатам.</p>
+        <div class="news-alert">
+            <strong>❗ ВНИМАНИЕ ❗</strong><br>
+            СКОРО на нашем сайте пройдёт конкурс. Следите за обновлениями!
+        </div>
+    </div>
+</section>
         <section class="menu-info">
             <h2>Разделы сайта</h2>
 
-            <article class="menu-item">
-                <h3>📝 Стихи</h3>
-                <p><strong>Эта страница временно недоступна. Следите за последними обновлениями.</strong><br>Мои стихотворения.</p>
-            </article>
+            
 
             <article class="menu-item">
                 <h3>Komorium</h3>
