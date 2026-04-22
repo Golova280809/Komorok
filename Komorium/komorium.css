@@ -434,3 +434,70 @@ main > h1 {
         font-size: 13px;
     }
 }
+
+
+pre {
+            background: var(--bg-body);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.2rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-primary);
+        }
+        code {
+            font-family: 'Courier New', monospace;
+            background: transparent;
+            padding: 0;
+        }
+        :not(pre) > code {
+            background: var(--bg-body);
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+            font-size: 0.9em;
+        }
+        .content-section h3 {
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+        }
+        .content-section h4 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .toc {
+            background: var(--bg-surface);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-light);
+        }
+        .toc h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.5rem;
+        }
+        .toc a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            pre {
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
