@@ -84,7 +84,7 @@
                 </div>
                 <div class="articles-grid">
                     <a href="China/index.html" class="article-card" data-title="Китай" data-desc="География, население, экономика">
-                        <img src="China/china.png" alt="🇨🇳" class="avatar">
+                        <img src="../img/china.png" alt="🇨🇳" class="avatar">
                         <div class="card-content">
                             <span class="card-title">Китай</span>
                             <span class="card-desc">География, население, экономика</span>
@@ -97,7 +97,7 @@
             <!-- Подраздел: Деревни / Населённые пункты -->
             <div class="subcategory collapsed" id="subcat-villages">
                 <div class="subcategory-header">
-                    <h3>Деревни и сёла</h3>
+                    <h3>Населенные пункты</h3>
                     <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-villages">
                         <span class="arrow">▼</span>
                     </button>
@@ -115,19 +115,47 @@
         </section>
 
         <!-- Раздел ТЕХНОЛОГИИ -->
-        <section id="technology" class="category-section">
-            <h2>💻 Технологии</h2>
-            <div style="background: #fff3f3; padding: 1.5rem; border-radius: 16px; border-left: 6px solid #c0392b;">
-                <h4 style="color: #c0392b; margin:0 0 0.5rem 0;">⚠️ Отдел недоступен</h4>
-                <p style="margin:0; color: #555;">По техническим причинам раздел временно закрыт.</p>
-            </div>
-        </section>
+<section id="technology" class="category-section">
+    <h2>💻 Технологии</h2>
+    
+    <!-- Подраздел: Языки программирования и разметки -->
+    <div class="subcategory collapsed" id="programming-language">
+        <div class="subcategory-header">
+            <h3>Языки программирования и разметки</h3>
+            <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="programming-language">
+                <span class="arrow">▼</span>
+            </button>
+        </div>
+        <div class="articles-grid">
+            <!-- Карточка HTML -->
+            <a href="Technology/html-course/index.html" class="article-card" data-title="HTML: Основы и структура" data-desc="Полный курс по HTML — от базового скелета до семантики.">
+                <img src="../img/html.png" alt="HTML" class="avatar">
+                <div class="card-content">
+                    <span class="card-title">HTML: Основы и структура</span>
+                    <span class="card-desc">Базовый скелет, теги, семантика, формы</span>
+                </div>
+            </a>
+            <!-- Карточка CSS -->
+            <a href="Technology/css-course/index.html" class="article-card" data-title="CSS: От основ к делу" data-desc="Стилизация, селекторы, Flexbox, Grid, анимации.">
+                <img src="../img/css.png" alt="CSS" class="avatar">
+                <div class="card-content">
+                    <span class="card-title">CSS: От основ к делу</span>
+                    <span class="card-desc">Селекторы, блочная модель, Flexbox, Grid, адаптивность</span>
+                </div>
+            </a>
+            <!-- Карточка JavaScript (можно добавить позже) -->
+        </div>
+    </div>
+</section>
 
         <!-- Сообщение "ничего не найдено" -->
         <div id="noResultsMessage" class="no-results-message">
             🔎 Ничего не найдено. Попробуйте изменить запрос.
         </div>
     </main>
+    <footer class="footer">
+        <p>© 2026 Komorok</p>
+    </footer>
 
     <script src="../script.js"></script>
 </body>
