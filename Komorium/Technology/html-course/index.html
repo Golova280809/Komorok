@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../common.css">
+    <link rel="stylesheet" href="../../komorium.css">
+    <title>Полный курс HTML — Komorium</title>
+    
+</head>
+<body>
+    <!-- Боковое меню -->
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    <label for="menu-toggle" class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav class="sidebar">
+        <div class="sidebar-title">Меню</div>
+        <a href="../../../index.html">Главная</a>
+        <a href="../../index.html">Komorium</a>
+        <a href="../../../about.html">О проекте</a>
+        <button class="theme-toggle-btn" id="themeToggle">
+            <span class="icon">🌙</span>
+            <span>Тёмная тема</span>
+        </button>
+    </nav>
+
+    <label for="menu-toggle" class="overlay"></label>
+    
+    <header>
+        <h1>🌐 Полный курс HTML</h1>
+        <p>От базовой структуры до семантики и форм</p>
+    </header>
+    
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <main>
+        <!-- Верхнее меню навигации по разделам статьи -->
+        <div class="top-menu">
+            <a href="#intro">Введение</a>
+            <a href="#structure">Структура</a>
+            <a href="#text">Текст</a>
+            <a href="#links">Ссылки</a>
+            <a href="#images">Изображения</a>
+            <a href="#lists">Списки</a>
+            <a href="#tables">Таблицы</a>
+            <a href="#forms">Формы</a>
+            <a href="#semantic">Семантика</a>
+            <a href="#media">Медиа</a>
+            <a href="#misc">Разное</a>
+        </div>
+
+        <!-- Оглавление -->
+        <div class="toc">
+            <h3>📑 Содержание курса</h3>
+            <ul>
+                <li><a href="#intro">1. Что такое HTML?</a></li>
+                <li><a href="#structure">2. Базовая структура документа</a></li>
+                <li><a href="#text">3. Работа с текстом</a></li>
+                <li><a href="#links">4. Ссылки и навигация</a></li>
+                <li><a href="#images">5. Изображения</a></li>
+                <li><a href="#lists">6. Списки</a></li>
+                <li><a href="#tables">7. Таблицы</a></li>
+                <li><a href="#forms">8. Формы и ввод данных</a></li>
+                <li><a href="#semantic">9. Семантические теги HTML5</a></li>
+                <li><a href="#media">10. Мультимедиа</a></li>
+                <li><a href="#misc">11. Полезные мелочи</a></li>
+            </ul>
+        </div>
+
+        <!-- Разделы курса -->
+        <section id="intro" class="content-section">
+            <h2>📖 Что такое HTML?</h2>
+            <p>HTML (HyperText Markup Language) — язык разметки гипертекста. Это не язык программирования, а способ описания структуры веб-страницы. Браузер читает HTML-код и отображает заголовки, абзацы, картинки, ссылки и другие элементы.</p>
+            <p>Каждый элемент состоит из тегов. Большинство тегов парные: открывающий <code>&lt;p&gt;</code> и закрывающий <code>&lt;/p&gt;</code>. Некоторые — одиночные: <code>&lt;br&gt;</code>, <code>&lt;img&gt;</code>.</p>
+            <p>Современный стандарт — HTML5. Он поддерживается всеми браузерами и включает множество семантических тегов.</p>
+        </section>
+
+        <section id="structure" class="content-section">
+            <h2>🏗️ Базовая структура HTML-документа</h2>
+            <p>Любая HTML-страница начинается с объявления типа документа и содержит обязательные элементы.</p>
+            <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Заголовок страницы&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Привет, мир!&lt;/h1&gt;
+    &lt;p&gt;Это моя первая веб-страница.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+            <p><code>&lt;!DOCTYPE html&gt;</code> — говорит браузеру, что используется HTML5.<br>
+            <code>&lt;html&gt;</code> — корневой элемент.<br>
+            <code>&lt;head&gt;</code> — служебная информация (кодировка, заголовок вкладки, подключение стилей).<br>
+            <code>&lt;body&gt;</code> — видимое содержимое страницы.</p>
+        </section>
+
+        <section id="text" class="content-section">
+            <h2>📝 Работа с текстом</h2>
+            <h3>Заголовки</h3>
+            <p>Используются теги <code>&lt;h1&gt;</code> … <code>&lt;h6&gt;</code>. <code>&lt;h1&gt;</code> — самый важный заголовок (обычно один на странице).</p>
+            <pre>&lt;h1&gt;Главный заголовок&lt;/h1&gt;
+&lt;h2&gt;Подзаголовок&lt;/h2&gt;
+&lt;h3&gt;Заголовок третьего уровня&lt;/h3&gt;</pre>
+
+            <h3>Абзацы и переносы</h3>
+            <p>Абзац создаётся тегом <code>&lt;p&gt;</code>. Принудительный перенос строки — <code>&lt;br&gt;</code> (одиночный тег).</p>
+            <pre>&lt;p&gt;Это первый абзац.&lt;br&gt;А это уже новая строка внутри того же абзаца.&lt;/p&gt;
+&lt;p&gt;Второй абзац.&lt;/p&gt;</pre>
+
+            <h3>Форматирование текста</h3>
+            <table class="table">
+                <tr><th>Тег</th><th>Назначение</th><th>Пример</th></tr>
+                <tr><td><code>&lt;strong&gt;</code></td><td>Важный текст (жирный)</td><td><strong>важно</strong></td></tr>
+                <tr><td><code>&lt;em&gt;</code></td><td>Акцент (курсив)</td><td><em>выделение</em></td></tr>
+                <tr><td><code>&lt;u&gt;</code></td><td>Подчёркнутый</td><td><u>подчеркнуто</u></td></tr>
+                <tr><td><code>&lt;s&gt;</code></td><td>Зачёркнутый</td><td><s>старая цена</s></td></tr>
+                <tr><td><code>&lt;small&gt;</code></td><td>Мелкий текст</td><td><small>примечание</small></td></tr>
+                <tr><td><code>&lt;mark&gt;</code></td><td>Выделение цветом</td><td><mark>важно</mark></td></tr>
+            </table>
+
+            <h3>Цитаты и код</h3>
+            <pre>&lt;blockquote cite="источник"&gt;
+    &lt;p&gt;Длинная цитата.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;q&gt;Короткая цитата&lt;/q&gt;
+&lt;pre&gt;&lt;code&gt;console.log('Hello');&lt;/code&gt;&lt;/pre&gt;</pre>
+        </section>
+
+        <section id="links" class="content-section">
+            <h2>🔗 Ссылки и навигация</h2>
+            <p>Тег <code>&lt;a&gt;</code> (anchor) создаёт гиперссылку. Атрибут <code>href</code> указывает адрес.</p>
+            <pre>&lt;a href="https://example.com"&gt;Внешняя ссылка&lt;/a&gt;
+&lt;a href="/about.html"&gt;Внутренняя страница&lt;/a&gt;
+&lt;a href="#section"&gt;Якорь на этой странице&lt;/a&gt;
+&lt;a href="mailto:name@domain.com"&gt;Написать письмо&lt;/a&gt;
+&lt;a href="tel:+71234567890"&gt;Позвонить&lt;/a&gt;</pre>
+            <p>Атрибут <code>target="_blank"</code> открывает ссылку в новой вкладке.</p>
+        </section>
+
+        <section id="images" class="content-section">
+            <h2>🖼️ Изображения</h2>
+            <p>Тег <code>&lt;img&gt;</code> — одиночный. Обязателен атрибут <code>src</code> (путь к файлу) и <code>alt</code> (альтернативное описание).</p>
+            <pre>&lt;img src="photo.jpg" alt="Описание картинки" width="300" height="200"&gt;</pre>
+            <p>Можно использовать атрибуты <code>width</code> и <code>height</code> для указания размеров. Рекомендуется всегда задавать <code>alt</code> для доступности.</p>
+            <h3>Фигурные подписи</h3>
+            <pre>&lt;figure&gt;
+    &lt;img src="diagram.png" alt="Диаграмма"&gt;
+    &lt;figcaption&gt;Рис. 1 — Структура HTML&lt;/figcaption&gt;
+&lt;/figure&gt;</pre>
+        </section>
+
+        <section id="lists" class="content-section">
+            <h2>📋 Списки</h2>
+            <h3>Маркированный (ненумерованный)</h3>
+            <pre>&lt;ul&gt;
+    &lt;li&gt;Первый пункт&lt;/li&gt;
+    &lt;li&gt;Второй пункт&lt;/li&gt;
+&lt;/ul&gt;</pre>
+            <h3>Нумерованный</h3>
+            <pre>&lt;ol&gt;
+    &lt;li&gt;Шаг первый&lt;/li&gt;
+    &lt;li&gt;Шаг второй&lt;/li&gt;
+&lt;/ol&gt;</pre>
+            <h3>Список определений</h3>
+            <pre>&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Язык разметки гипертекста&lt;/dd&gt;
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Каскадные таблицы стилей&lt;/dd&gt;
+&lt;/dl&gt;</pre>
+        </section>
+
+        <section id="tables" class="content-section">
+            <h2>📊 Таблицы</h2>
+            <p>Таблица состоит из строк <code>&lt;tr&gt;</code>, ячеек заголовков <code>&lt;th&gt;</code> и обычных ячеек <code>&lt;td&gt;</code>. Всё оборачивается в <code>&lt;table&gt;</code>.</p>
+            <pre>&lt;table&gt;
+    &lt;caption&gt;Название таблицы&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;Город&lt;/th&gt;&lt;th&gt;Население&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;Москва&lt;/td&gt;&lt;td&gt;13 млн&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Чита&lt;/td&gt;&lt;td&gt;350 тыс&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;&lt;td colspan="2"&gt;Данные на 2026 год&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</pre>
+            <p>Атрибуты <code>colspan</code> и <code>rowspan</code> объединяют ячейки.</p>
+        </section>
+
+        <section id="forms" class="content-section">
+            <h2>📬 Формы и ввод данных</h2>
+            <p>Форма создаётся тегом <code>&lt;form&gt;</code>. Внутри размещаются поля ввода.</p>
+            <pre>&lt;form action="/submit" method="post"&gt;
+    &lt;label for="name"&gt;Имя:&lt;/label&gt;
+    &lt;input type="text" id="name" name="username" placeholder="Введите имя" required&gt;
+
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email"&gt;
+
+    &lt;label for="message"&gt;Сообщение:&lt;/label&gt;
+    &lt;textarea id="message" name="message" rows="4"&gt;&lt;/textarea&gt;
+
+    &lt;label for="country"&gt;Страна:&lt;/label&gt;
+    &lt;select id="country" name="country"&gt;
+        &lt;option value="ru"&gt;Россия&lt;/option&gt;
+        &lt;option value="cn"&gt;Китай&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;input type="checkbox" id="agree" name="agree" value="yes"&gt;
+    &lt;label for="agree"&gt;Согласен с условиями&lt;/label&gt;
+
+    &lt;button type="submit"&gt;Отправить&lt;/button&gt;
+&lt;/form&gt;</pre>
+            <p>Типы <code>&lt;input&gt;</code>: <code>text</code>, <code>password</code>, <code>email</code>, <code>number</code>, <code>date</code>, <code>file</code>, <code>radio</code>, <code>checkbox</code> и многие другие.</p>
+        </section>
+
+        <section id="semantic" class="content-section">
+            <h2>🧱 Семантические теги HTML5</h2>
+            <p>Они описывают смысл содержимого, улучшают доступность и SEO.</p>
+            <table class="table">
+                <tr><th>Тег</th><th>Назначение</th></tr>
+                <tr><td><code>&lt;header&gt;</code></td><td>Шапка сайта или раздела</td></tr>
+                <tr><td><code>&lt;nav&gt;</code></td><td>Навигационное меню</td></tr>
+                <tr><td><code>&lt;main&gt;</code></td><td>Основное содержимое страницы</td></tr>
+                <tr><td><code>&lt;section&gt;</code></td><td>Тематический раздел</td></tr>
+                <tr><td><code>&lt;article&gt;</code></td><td>Независимый блок (статья, пост)</td></tr>
+                <tr><td><code>&lt;aside&gt;</code></td><td>Боковая панель (связанная, но не основная)</td></tr>
+                <tr><td><code>&lt;footer&gt;</code></td><td>Подвал сайта или раздела</td></tr>
+                <tr><td><code>&lt;address&gt;</code></td><td>Контактная информация</td></tr>
+            </table>
+            <pre>&lt;body&gt;
+    &lt;header&gt;...&lt;/header&gt;
+    &lt;nav&gt;...&lt;/nav&gt;
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;h2&gt;Заголовок статьи&lt;/h2&gt;
+            &lt;p&gt;Текст...&lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;</pre>
+        </section>
+
+        <section id="media" class="content-section">
+            <h2>🎬 Мультимедиа</h2>
+            <h3>Видео</h3>
+            <pre>&lt;video controls width="600" poster="preview.jpg"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    &lt;source src="video.webm" type="video/webm"&gt;
+    Ваш браузер не поддерживает видео.
+&lt;/video&gt;</pre>
+            <h3>Аудио</h3>
+            <pre>&lt;audio controls&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+    &lt;source src="audio.ogg" type="audio/ogg"&gt;
+&lt;/audio&gt;</pre>
+            <h3>Встраивание (iframe)</h3>
+            <pre>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/..." 
+        title="YouTube video" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</pre>
+        </section>
+
+        <section id="misc" class="content-section">
+            <h2>🧩 Полезные мелочи</h2>
+            <h3>Комментарии</h3>
+            <pre>&lt;!-- Это комментарий, он не отображается на странице --&gt;</pre>
+            <h3>Специальные символы (мнемоники)</h3>
+            <table class="table">
+                <tr><th>Символ</th><th>Код</th></tr>
+                <tr><td>&lt;</td><td><code>&amp;lt;</code></td></tr>
+                <tr><td>&gt;</td><td><code>&amp;gt;</code></td></tr>
+                <tr><td>&amp;</td><td><code>&amp;amp;</code></td></tr>
+                <tr><td>©</td><td><code>&amp;copy;</code></td></tr>
+                <tr><td>—</td><td><code>&amp;mdash;</code></td></tr>
+                <tr><td>неразрывный пробел</td><td><code>&amp;nbsp;</code></td></tr>
+            </table>
+            <h3>Теги <code>&lt;div&gt;</code> и <code>&lt;span&gt;</code></h3>
+            <p><code>&lt;div&gt;</code> — блочный контейнер для группировки. <code>&lt;span&gt;</code> — строчный контейнер. Используются для стилизации или скриптов.</p>
+            <pre>&lt;div class="container"&gt;
+    &lt;p&gt;Текст и &lt;span class="highlight"&gt;выделенное слово&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;</pre>
+        </section>
+
+        <!-- Сообщение "ничего не найдено" (для поиска, не используется здесь) -->
+        <div id="noResultsMessage" class="no-results-message" style="display:none;"></div>
+    </main>
+
+    <script src="../../../script.js"></script>
+    <!-- Подключаем тот же script.js, что и везде -->
+</body>
+</html>
