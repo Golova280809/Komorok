@@ -1,0 +1,26 @@
+name: Обновление счётчика статей
+
+on:
+  push:
+    paths:
+      - 'Komorium/**/index.html'  # запускать при добавлении/изменении статей
+  workflow_dispatch:
+
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Подсчёт статей
+        run: python scripts/count_articles.py
+      - name: Коммит изменений
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Обновлён счётчик статей" && git push)
