@@ -1,32 +1,33 @@
-name: Ежедневное обновление статистики
+name: Ежедневное обновление
 
 on:
   schedule:
-    # Запускать каждый день в 09:00 по UTC (12:00 по Москве)
     - cron: '0 9 * * *'
-  workflow_dispatch:  # Позволяет запускать вручную из интерфейса GitHub
+  workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Разрешаем пушить изменения
-
+      contents: write
     steps:
-      - name: Клонируем репозиторий
-        uses: actions/checkout@v4
-
-      - name: Устанавливаем Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Запускаем скрипт обновления
+      - name: Обновление счётчика дней
         run: python scripts/update_stats.py
 
-      - name: Коммитим и пушим изменения
+      - name: Пауза 5 минут (для спокойствия души)
+        run: sleep 300
+
+      - name: Обновление счётчика статей
+        run: python scripts/count_articles.py
+
+      - name: Коммит
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Автообновление: дней с рождения проекта" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Автообновление счётчиков" && git push)
