@@ -1,37 +1,35 @@
 # update_stats.py
-# Этот скрипт обновляет статистику на главной странице Komorok.
-# GitHub Actions будет запускать его автоматически.
+# Обновляет счётчик дней с момента рождения проекта Komorok (01.01.2026)
 
 import datetime
 import re
-import os
 
-# 1. Вычисляем, сколько дней прошло с начала 2026 года
+# 1. Дата рождения проекта
+birthday = datetime.date(2025, 2, 25)
 today = datetime.date.today()
-start_of_year = datetime.date(2026, 1, 1)
-days_passed = (today - start_of_year).days
+days_since_birth = (today - birthday).days
 
-# 2. Путь к главной странице сайта
+# 2. Путь к главной странице
 html_file = "index.html"
 
-# 3. Читаем текущее содержимое index.html
+# 3. Читаем текущий index.html
 with open(html_file, "r", encoding="utf-8") as f:
     content = f.read()
 
-# 4. Ищем и заменяем строчку со счётчиком дней
-#    Мы будем искать специальный комментарий <!-- days-counter --> и менять число рядом с ним.
-pattern = r"(<!-- days-counter -->\s*<p>С начала года прошло: )\d+( дней</p>)"
-replacement = rf"\g<1>{days_passed}\g<2>"
+# 4. Ищем и заменяем строчку со счётчиком
+#    Комментарий должен быть: <!-- project-age-counter -->
+pattern = r"(<!-- project-age-counter -->\s*<p>С момента рождения проекта прошло: )\d+( дней</p>)"
+replacement = rf"\g<1>{days_since_birth}\g<2>"
 
 new_content = re.sub(pattern, replacement, content)
 
-# 5. Если ничего не изменилось (например, счётчик уже правильный), не делаем коммит
+# 5. Если изменений нет — выходим
 if new_content == content:
-    print("Изменений нет, выходим.")
+    print("Изменений нет.")
     exit(0)
 
-# 6. Записываем обновлённый HTML обратно
+# 6. Сохраняем
 with open(html_file, "w", encoding="utf-8") as f:
     f.write(new_content)
 
-print(f"Обновлено! Дней с начала года: {days_passed}")
+print(f"Обновлено! Проекту уже {days_since_birth} дней.")
