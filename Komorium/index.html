@@ -76,48 +76,74 @@
         </section>
 
         <!-- Раздел ГЕОГРАФИЯ -->
-        <section id="geography" class="category-section">
-            <h2>🌍 География</h2>
+        <!-- Раздел ГЕОГРАФИЯ -->
+<section id="geography" class="category-section">
+    <h2>🌍 География</h2>
 
-            <!-- Подраздел: Страны -->
-            <div class="subcategory collapsed" id="subcat-countries">
-                <div class="subcategory-header">
-                    <h3>Страны</h3>
-                    <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-countries">
-                        <span class="arrow">▼</span>
-                    </button>
+    <!-- Подраздел: Страны -->
+    <div class="subcategory collapsed" id="subcat-countries">
+        <div class="subcategory-header">
+            <h3>Страны</h3>
+            <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-countries">
+                <span class="arrow">▼</span>
+            </button>
+        </div>
+        <div class="articles-grid">
+            <a href="China/index.html" class="article-card" data-title="Китай" data-desc="География, население, экономика">
+                <img src="../img/china.png" alt="🇨🇳" class="avatar">
+                <div class="card-content">
+                    <span class="card-title">Китай</span>
+                    <span class="card-desc">География, население, экономика</span>
                 </div>
-                <div class="articles-grid">
-                    <a href="China/index.html" class="article-card" data-title="Китай" data-desc="География, население, экономика">
-                        <img src="../img/china.png" alt="🇨🇳" class="avatar">
-                        <div class="card-content">
-                            <span class="card-title">Китай</span>
-                            <span class="card-desc">География, население, экономика</span>
-                        </div>
-                    </a>
-                    <!-- Другие страны можно добавить -->
-                </div>
-            </div>
+            </a>
+            <!-- Другие страны можно добавить -->
+        </div>
+    </div>
 
-            <!-- Подраздел: Деревни / Населённые пункты -->
-            <div class="subcategory collapsed" id="subcat-villages">
-                <div class="subcategory-header">
-                    <h3>Населенные пункты</h3>
-                    <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-villages">
-                        <span class="arrow">▼</span>
-                    </button>
+    <!-- Подраздел: Населённые пункты -->
+    <div class="subcategory collapsed" id="subcat-villages">
+        <div class="subcategory-header">
+            <h3>Населенные пункты</h3>
+            <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-villages">
+                <span class="arrow">▼</span>
+            </button>
+        </div>
+        <div class="articles-grid">
+            <a href="bazanovo/index.html" class="article-card" data-title="Деревня: Базаново" data-desc="География, население, экономика">
+                <img src="Bazanovo.png" alt="Базаново" class="avatar">
+                <div class="card-content">
+                    <span class="card-title">Деревня: Базаново</span>
+                    <span class="card-desc">География, население, экономика</span>
                 </div>
-                <div class="articles-grid">
-                    <a href="bazanovo/index.html" class="article-card" data-title="Деревня: Базаново" data-desc="География, население, экономика">
-                        <img src="Bazanovo.png" alt="Базаново" class="avatar">
-                        <div class="card-content">
-                            <span class="card-title">Деревня: Базаново</span>
-                            <span class="card-desc">География, население, экономика</span>
-                        </div>
-                    </a>
-                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Подраздел: Природа -->
+    <div class="subcategory collapsed" id="subcat-nature">
+        <div class="subcategory-header">
+            <h3>Природа</h3>
+            <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-nature">
+                <span class="arrow">▼</span>
+            </button>
+        </div>
+        <div class="articles-grid">
+            <!-- Под-подраздел: Реки (внутри Природы) — можно оформить как отдельную секцию или просто карточку -->
+            <!-- Для простоты сделаем отдельный подраздел Реки внутри Природы -->
+            <div style="grid-column: 1/-1; margin-top: 0.5rem;">
+                <h4 style="margin-bottom: 0.5rem; color: var(--text-secondary);">Реки</h4>
             </div>
-        </section>
+            <a href="bazanovo/Gungunzhda/index.html" class="article-card" data-title="Река Гуньгунжда" data-desc="Приток Акатуя, Забайкальский край">
+                <img src="bazanovo/Gungunzhda/Gungunzhda.png" alt="Гуньгунжда" class="avatar">
+                <div class="card-content">
+                    <span class="card-title">Река Гуньгунжда</span>
+                    <span class="card-desc">География, экология, история</span>
+                </div>
+            </a>
+            <!-- Здесь можно будет добавить другие реки -->
+        </div>
+    </div>
+</section>
 
         <!-- Раздел ТЕХНОЛОГИИ -->
 <section id="technology" class="category-section">
