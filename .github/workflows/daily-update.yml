@@ -19,8 +19,8 @@ jobs:
       - name: Обновление счётчика дней
         run: python scripts/update_stats.py
 
-      - name: Пауза 5 минут (для спокойствия души)
-        run: sleep 300
+      - name: Пауза
+        run: sleep 20
 
       - name: Обновление счётчика статей
         run: python scripts/count_articles.py
