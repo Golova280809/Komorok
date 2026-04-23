@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    
+    <!-- SEO мета-теги -->
+    <meta name="description" content="Основы Python для начинающих: синтаксис, переменные, типы данных, условия, циклы, функции, работа с файлами. Изучи Python с нуля.">
+    <meta name="keywords" content="Python, основы Python, уроки Python, программирование, питон для начинающих">
+    <link rel="canonical" href="https://golova280809.github.io/Komorok/Komorium/Technology/python-course/">
+    
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../common.css">
+    <link rel="stylesheet" href="../../komorium.css">
+    <title>Основы Python — Komorok</title>
+</head>
+<body>
+    <!-- Боковое меню -->
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    <label for="menu-toggle" class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav class="sidebar">
+        <div class="sidebar-title">Меню</div>
+        <a href="../../../index.html">Главная</a>
+        <a href="../../index.html">Komorium</a>
+        <a href="../../../about.html">О проекте</a>
+        <button class="theme-toggle-btn" id="themeToggle">
+            <span class="icon">🌙</span>
+            <span>Тёмная тема</span>
+        </button>
+    </nav>
+
+    <label for="menu-toggle" class="overlay"></label>
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <main>
+        <!-- Верхнее меню навигации по разделам -->
+        <div class="top-menu">
+            <a href="#intro">Введение</a>
+            <a href="#syntax">Синтаксис</a>
+            <a href="#variables">Переменные</a>
+            <a href="#types">Типы данных</a>
+            <a href="#io">Ввод/вывод</a>
+            <a href="#conditions">Условия</a>
+            <a href="#loops">Циклы</a>
+            <a href="#functions">Функции</a>
+            <a href="#files">Работа с файлами</a>
+            <a href="#next">Что дальше?</a>
+        </div>
+
+        <!-- Оглавление -->
+        <div class="toc">
+            <h3>📑 Содержание</h3>
+            <ul>
+                <li><a href="#intro">1. Что такое Python?</a></li>
+                <li><a href="#syntax">2. Базовый синтаксис</a></li>
+                <li><a href="#variables">3. Переменные и комментарии</a></li>
+                <li><a href="#types">4. Основные типы данных</a></li>
+                <li><a href="#io">5. Ввод и вывод данных</a></li>
+                <li><a href="#conditions">6. Условные операторы</a></li>
+                <li><a href="#loops">7. Циклы</a></li>
+                <li><a href="#functions">8. Функции</a></li>
+                <li><a href="#files">9. Чтение и запись файлов</a></li>
+                <li><a href="#next">10. Что изучать дальше?</a></li>
+            </ul>
+        </div>
+
+        <h1 style="text-align: center;">🐍 Основы Python</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">Изучи язык, на котором работают автоматические счётчики Komorok.</p>
+
+        <!-- Введение -->
+        <section id="intro" class="content-section">
+            <h2>📖 Что такое Python?</h2>
+            <p>Python — это высокоуровневый язык программирования общего назначения. Он славится своим простым и понятным синтаксисом, который отлично подходит для начинающих. Python используется в веб-разработке, анализе данных, искусственном интеллекте, автоматизации и даже в космических программах.</p>
+            <p>Именно на Python написаны скрипты, которые ежедневно обновляют счётчики на сайте Komorok. Изучив основы, ты сможешь создавать собственные программы для автоматизации всего, что угодно.</p>
+            <div class="quote-badge">
+                <strong>💡 Знаешь ли ты?</strong> Название языка произошло не от змеи, а от популярного британского комедийного шоу «Летающий цирк Монти Пайтона» (Monty Python's Flying Circus).
+            </div>
+        </section>
+
+        <!-- Синтаксис -->
+        <section id="syntax" class="content-section">
+            <h2>✍️ Базовый синтаксис</h2>
+            <p>Программа на Python состоит из инструкций, которые выполняются последовательно, сверху вниз. В отличие от многих других языков, Python использует отступы (пробелы или табуляцию) для обозначения блоков кода, а не фигурные скобки <code>{ }</code>. Это делает код чистым и единообразным.</p>
+            <p>Каждая инструкция обычно пишется с новой строки. Точка с запятой <code>;</code> в конце строки не обязательна.</p>
+            <pre>print("Привет, мир!")
+x = 5
+y = 10
+print(x + y)</pre>
+        </section>
+
+        <!-- Переменные -->
+        <section id="variables" class="content-section">
+            <h2>📦 Переменные и комментарии</h2>
+            <h3>Переменные</h3>
+            <p>Переменная — это именованная область памяти, где хранятся данные (числа, текст, списки). Чтобы создать переменную, нужно придумать имя и присвоить ей значение с помощью знака <code>=</code>.</p>
+            <pre>name = "Александр"   # строка
+age = 16              # целое число
+pi = 3.1415           # дробное число
+is_admin = True       # логическое значение</pre>
+            <p>Имена переменных могут содержать буквы, цифры и подчёркивания, но не могут начинаться с цифры. Регистр важен: <code>Name</code> и <code>name</code> — разные переменные.</p>
+            <h3>Комментарии</h3>
+            <p>Комментарии помогают объяснить код. Они игнорируются Python. Однострочный комментарий начинается с <code>#</code>.</p>
+            <pre># Это комментарий
+name = "Komorok"  # и это тоже комментарий</pre>
+        </section>
+
+        <!-- Типы данных -->
+        <section id="types" class="content-section">
+            <h2>🔢 Основные типы данных</h2>
+            <table class="table">
+                <tr><th>Тип</th><th>Пример</th><th>Описание</th></tr>
+                <tr><td><code>int</code></td><td><code>42, -7, 0</code></td><td>Целые числа</td></tr>
+                <tr><td><code>float</code></td><td><code>3.14, -0.5, 2.0</code></td><td>Числа с плавающей точкой</td></tr>
+                <tr><td><code>str</code></td><td><code>"Привет", 'Python', "123"</code></td><td>Строки (текст)</td></tr>
+                <tr><td><code>bool</code></td><td><code>True, False</code></td><td>Логические значения</td></tr>
+                <tr><td><code>list</code></td><td><code>[1, 2, 3], ["a", "b"]</code></td><td>Упорядоченная изменяемая коллекция</td></tr>
+                <tr><td><code>dict</code></td><td><code>{"name": "Alex", "age": 16}</code></td><td>Пары «ключ-значение»</td></tr>
+            </table>
+            <p>Узнать тип переменной можно с помощью функции <code>type()</code>.</p>
+            <pre>x = 42
+print(type(x))  # &lt;class 'int'&gt;</pre>
+        </section>
+
+        <!-- Ввод/вывод -->
+        <section id="io" class="content-section">
+            <h2>💬 Ввод и вывод данных</h2>
+            <h3>Вывод — <code>print()</code></h3>
+            <p>Функция <code>print()</code> выводит данные в консоль. Можно передавать несколько аргументов через запятую.</p>
+            <pre>print("Привет,", "мир!")
+age = 16
+print(f"Мне {age} лет")  # f-строка</pre>
+            <h3>Ввод — <code>input()</code></h3>
+            <p>Функция <code>input()</code> ждёт, пока пользователь введёт текст, и возвращает его как строку. Можно передать приглашение.</p>
+            <pre>name = input("Как тебя зовут? ")
+print("Приятно познакомиться,", name)</pre>
+            <div class="quote-badge">
+                <strong>⚠️ Важно:</strong> <code>input()</code> всегда возвращает строку. Если нужно число, используй <code>int()</code> или <code>float()</code> для преобразования.
+            </div>
+        </section>
+
+        <!-- Условия -->
+        <section id="conditions" class="content-section">
+            <h2>🚦 Условные операторы: if / elif / else</h2>
+            <p>Условные операторы позволяют выполнять разные блоки кода в зависимости от условий.</p>
+            <pre>age = int(input("Сколько тебе лет? "))
+
+if age >= 18:
+    print("Ты совершеннолетний.")
+elif age >= 14:
+    print("Ты подросток.")
+else:
+    print("Ты ребёнок.")</pre>
+            <h3>Операторы сравнения</h3>
+            <table class="table">
+                <tr><th>Оператор</th><th>Значение</th></tr>
+                <tr><td><code>==</code></td><td>Равно</td></tr>
+                <tr><td><code>!=</code></td><td>Не равно</td></tr>
+                <tr><td><code>&gt;</code></td><td>Больше</td></tr>
+                <tr><td><code>&lt;</code></td><td>Меньше</td></tr>
+                <tr><td><code>&gt;=</code></td><td>Больше или равно</td></tr>
+                <tr><td><code>&lt;=</code></td><td>Меньше или равно</td></tr>
+            </table>
+            <h3>Логические операторы</h3>
+            <p><code>and</code> (и), <code>or</code> (или), <code>not</code> (не).</p>
+            <pre>if age >= 18 and age &lt;= 65:
+    print("Ты трудоспособный.")</pre>
+        </section>
+
+        <!-- Циклы -->
+        <section id="loops" class="content-section">
+            <h2>🔄 Циклы: for и while</h2>
+            <h3>Цикл <code>for</code></h3>
+            <p>Используется для перебора последовательностей (списков, строк, диапазонов).</p>
+            <pre># Вывести числа от 0 до 4
+for i in range(5):
+    print(i)
+
+# Перебор списка
+fruits = ["яблоко", "банан", "вишня"]
+for fruit in fruits:
+    print(fruit)</pre>
+            <h3>Цикл <code>while</code></h3>
+            <p>Выполняется, пока условие истинно.</p>
+            <pre>count = 0
+while count &lt; 5:
+    print(count)
+    count += 1  # увеличиваем счётчик</pre>
+            <h3>Управление циклом</h3>
+            <ul>
+                <li><code>break</code> — немедленно завершает цикл.</li>
+                <li><code>continue</code> — пропускает оставшуюся часть текущей итерации и переходит к следующей.</li>
+            </ul>
+        </section>
+
+        <!-- Функции -->
+        <section id="functions" class="content-section">
+            <h2>🛠️ Функции</h2>
+            <p>Функции позволяют группировать код в переиспользуемые блоки. Объявляются с помощью ключевого слова <code>def</code>.</p>
+            <pre>def greet(name):
+    """Функция приветствия."""  # это docstring — описание функции
+    print(f"Привет, {name}!")
+
+greet("Александр")</pre>
+            <h3>Возврат значения</h3>
+            <pre>def add(a, b):
+    return a + b
+
+result = add(3, 5)
+print(result)  # 8</pre>
+            <h3>Аргументы по умолчанию</h3>
+            <pre>def greet(name="Гость"):
+    print(f"Привет, {name}!")
+
+greet()         # Привет, Гость!
+greet("Саша")   # Привет, Саша!</pre>
+        </section>
+
+        <!-- Работа с файлами -->
+        <section id="files" class="content-section">
+            <h2>📂 Чтение и запись файлов</h2>
+            <p>Python позволяет легко читать и записывать файлы. Лучше всего использовать конструкцию <code>with open(...) as f</code>, которая автоматически закрывает файл.</p>
+            <h3>Чтение</h3>
+            <pre>with open("example.txt", "r", encoding="utf-8") as f:
+    content = f.read()
+    print(content)</pre>
+            <h3>Запись</h3>
+            <pre>with open("output.txt", "w", encoding="utf-8") as f:
+    f.write("Привет, файл!")</pre>
+            <p><strong>Режимы открытия:</strong></p>
+            <ul>
+                <li><code>"r"</code> — чтение (файл должен существовать).</li>
+                <li><code>"w"</code> — запись (перезаписывает файл, создаёт, если нет).</li>
+                <li><code>"a"</code> — дозапись в конец файла.</li>
+            </ul>
+            <p>Именно так скрипты Komorok читают <code>index.html</code>, меняют в нём данные и сохраняют обратно.</p>
+        </section>
+
+        <!-- Что дальше -->
+        <section id="next" class="content-section">
+            <h2>🚀 Что изучать дальше?</h2>
+            <ul>
+                <li><strong>Модули и библиотеки:</strong> <code>import datetime</code>, <code>os</code>, <code>requests</code>, <code>re</code>.</li>
+                <li><strong>Обработка исключений:</strong> <code>try / except</code>.</li>
+                <li><strong>Работа с JSON и API:</strong> получение данных из интернета.</li>
+                <li><strong>Объектно-ориентированное программирование:</strong> классы и объекты.</li>
+                <li><strong>Создание веб-приложений:</strong> Flask, Django.</li>
+            </ul>
+            <div class="quote-badge">
+                <strong>💪 Ты уже можешь:</strong> писать простые скрипты, автоматизировать рутинные задачи и понимать, как работают счётчики на твоём сайте. Продолжай практиковаться — и ты удивишься, насколько быстро растут твои навыки!
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Komorok — Статья создана специально для Komorium</p>
+    </footer>
+
+    <script src="../../../script.js"></script>
+</body>
+</html>
