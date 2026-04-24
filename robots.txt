@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://golova280809.github.io/Komorok/Sitemap.xml
+Sitemap: https://golova280809.github.io/Komorok/sitemap.xml
