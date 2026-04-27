@@ -1,4 +1,4 @@
-name: Ежемесячная проверка ссылок и создание Issue
+name: Быстрая проверка ссылок
 
 on:
   schedule:
@@ -16,27 +16,62 @@ jobs:
       - name: Клонировать код
         uses: actions/checkout@v4
 
-      - name: Проверить битые ссылки на сайте
+      - name: Скачать sitemap и извлечь URL
+        run: |
+          curl -s https://komorok.ru/sitemap.xml -o sitemap.xml
+          grep -oP '(?<=<loc>)[^<]+' sitemap.xml > urls.txt
+          echo "Найдено $(wc -l < urls.txt) страниц для проверки"
+
+      - name: Проверить битые ссылки (только страницы из sitemap)
         id: linkcheck
         continue-on-error: true
         run: |
-          npx linkinator https://komorok.ru --format markdown > linkinator-report.md 2>&1
-          cat linkinator-report.md
+          npx linkinator --format JSON --concurrency 10 --timeout 5000 --skip '.*\.(png|jpg|css|js|ico).*' $(cat urls.txt) > linkinator-report.json 2>&1
+          cat linkinator-report.json
 
-      - name: Создать Issue с отчётом об ошибках
+      - name: Создать Issue с отчётом
         if: steps.linkcheck.outcome == 'failure'
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
-            const report = fs.readFileSync('./linkinator-report.md', 'utf8');
+            const raw = fs.readFileSync('./linkinator-report.json', 'utf8');
+            let reportData;
+            try {
+              reportData = JSON.parse(raw);
+            } catch (e) {
+              // Если JSON не распарсился, просто вставим сырой вывод
+              const issue = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `🚨 Битые ссылки на Komorok от ${new Date().toLocaleDateString('ru-RU')}`,
+                body: `## 🤖 Автоматический отчёт\n\nНе удалось разобрать JSON. Сырой вывод:\n\`\`\`\n${raw}\n\`\`\``,
+                labels: ['bug', 'automated-report']
+              });
+              return;
+            }
+
+            // Собираем только битые ссылки
+            let brokenLinks = '';
+            for (const page of reportData) {
+              if (page.links) {
+                const broken = page.links.filter(link => link.status >= 400);
+                if (broken.length > 0) {
+                  brokenLinks += `\n🔗 **${page.url}**\n`;
+                  broken.forEach(link => {
+                    brokenLinks += `- ${link.url} → ${link.status}${link.state ? ' (' + link.state + ')' : ''}\n`;
+                  });
+                }
+              }
+            }
+
+            const body = `## 🤖 Автоматический отчёт\n\n**Сайт:** https://komorok.ru\n**Дата:** ${new Date().toLocaleString('ru-RU')}\n**Проверено страниц:** ${reportData.length}\n${brokenLinks || '\n✅ Все ссылки в порядке!'}\n\n---\n*Этот Issue создан автоматически.*`;
 
             const issue = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: `🚨 Битые ссылки на Komorok от ${new Date().toLocaleDateString('ru-RU')}`,
-              body: `## 🤖 Автоматический отчёт о проверке ссылок\n\n**Сайт:** https://komorok.ru\n**Дата проверки:** ${new Date().toLocaleString('ru-RU')}\n\n### 📋 Найденные проблемы:\n${report}\n\n---\n*Этот Issue создан автоматически с помощью GitHub Actions.*`,
+              body: body,
               labels: ['bug', 'automated-report']
             });
-
             console.log(`Issue создан: ${issue.data.html_url}`);
