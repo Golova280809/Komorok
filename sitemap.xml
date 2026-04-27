@@ -9,57 +9,67 @@
 
 <url>
   <loc>https://komorok.ru/</loc>
-  <lastmod>2026-04-25T09:30:04+00:00</lastmod>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://komorok.ru/index.html</loc>
-  <lastmod>2026-04-25T09:30:04+00:00</lastmod>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://komorok.ru/Komorium/index.html</loc>
-  <lastmod>2026-04-25T09:30:04+00:00</lastmod>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://komorok.ru/about.html</loc>
-  <lastmod>2026-04-25T09:30:04+00:00</lastmod>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://komorok.ru/Alexander.html</loc>
-  <lastmod>2026-04-25T09:30:04+00:00</lastmod>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://komorok.ru/Komorium/China/index.html</loc>
-  <lastmod>2026-04-25T09:30:04+00:00</lastmod>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://komorok.ru/Komorium/China/culture/index.html</loc>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://komorok.ru/Komorium/bazanovo/index.html</loc>
-  <lastmod>2026-04-25T09:30:04+00:00</lastmod>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://komorok.ru/Komorium/bazanovo/Gungunzhda/index.html</loc>
-  <lastmod>2026-04-25T09:30:04+00:00</lastmod>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://komorok.ru/Komorium/bazanovo/people/Valentina-Rybkina/index.html</loc>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://komorok.ru/Komorium/Technology/html-course/index.html</loc>
-  <lastmod>2026-04-25T09:30:04+00:00</lastmod>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://komorok.ru/Komorium/Technology/css-course/index.html</loc>
-  <lastmod>2026-04-25T09:30:04+00:00</lastmod>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://komorok.ru/Komorium/Technology/python-course/index.html</loc>
-  <lastmod>2026-04-25T09:30:04+00:00</lastmod>
+  <lastmod>2026-04-27T05:40:26+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
