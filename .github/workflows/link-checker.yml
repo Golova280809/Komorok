@@ -2,48 +2,41 @@ name: Ежемесячная проверка ссылок и создание I
 
 on:
   schedule:
-    # Запускать 1-го числа каждого месяца в 8:00 UTC
     - cron: '0 8 1 * *'
-  workflow_dispatch: # Можно запустить вручную из интерфейса GitHub
+  workflow_dispatch:
 
 jobs:
   check-links:
     runs-on: ubuntu-latest
-    # Даём права на создание Issue
     permissions:
       contents: read
       issues: write
 
     steps:
-      # Шаг 1: Клонируем репозиторий
       - name: Клонировать код
         uses: actions/checkout@v4
 
-      # Шаг 2: Запускаем проверку битых ссылок с помощью готового Action
       - name: Проверить битые ссылки на сайте
         id: linkcheck
-        uses: ruzickap/action-my-broken-link-checker@v2
+        uses: JustinBeckwith/linkinator-action@v1
         with:
-          url: https://komorok.ru
-          cmd_params: "--buffer-size=8192 --max-connections=10 --exclude='mailto:*'"
-        continue-on-error: true # Не останавливаться при обнаружении ошибок
+          paths: https://komorok.ru
+          markdown: true
+          linksToSkip: "mailto:*"
+        continue-on-error: true
 
-      # Шаг 3: Если битые ссылки найдены, создаём Issue
       - name: Создать Issue с отчётом об ошибках
-        if: steps.linkcheck.outcome == 'failure' # Выполнится, только если проверка нашла ошибки
+        if: steps.linkcheck.outcome == 'failure'
         uses: actions/github-script@v7
         with:
           script: |
-            // Читаем файл с результатами проверки
-            const fs = require('fs');
-            const report = fs.readFileSync('./linkchecker/out.md', 'utf8');
-
-            // Создаём Issue с отчётом
+            const report = `Результаты проверки ссылок:\n\n${process.env.LINKINATOR_RESULT || 'Подробности в логах workflow'}`;
+            
             const issue = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: `🚨 Битые ссылки на Komorok от ${new Date().toLocaleDateString('ru-RU')}`,
-              body: `## 🤖 Автоматический отчёт о проверке ссылок\n\n**Сайт:** https://komorok.ru\n**Дата проверки:** ${new Date().toLocaleString('ru-RU')}\n\n### 📋 Результат:\n${report}\n\n---\n*Этот Issue создан автоматически с помощью GitHub Actions.*`,
+              body: `## 🤖 Автоматический отчёт о проверке ссылок\n\n**Сайт:** https://komorok.ru\n**Дата проверки:** ${new Date().toLocaleString('ru-RU')}\n\n${report}\n\n---\n*Этот Issue создан автоматически с помощью GitHub Actions.*`,
               labels: ['bug', 'automated-report']
             });
 
