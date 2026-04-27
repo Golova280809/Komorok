@@ -1,209 +1,177 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="icon" type="image/png" href="logo.png">
-    <meta charset="UTF-8">
-    <script>
-  (function() {
-    var theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark-theme');
-    }
-  })();
-</script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="Komorium/komorium.css">
-    <title>Творчество Александра Головачёва — Komorok</title>
-</head>
-<body>
-    <!-- Боковое меню (гамбургер) -->
-    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-    <label for="menu-toggle" class="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
+    <head>
+        <link rel="apple-touch-icon" href="logo.png" />
+        <link rel="icon" type="image/png" href="logo.png" />
+        <meta charset="UTF-8" />
+        <script>
+            (function () {
+                var theme = localStorage.getItem("theme");
+                if (theme === "dark") {
+                    document.documentElement.classList.add("dark-theme");
+                }
+            })();
+        </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="common.css" />
+        <link rel="stylesheet" href="Komorium/komorium.css" />
+        <title>Творчество Александра Головачёва — Komorok</title>
+    </head>
+    <body>
+        <!-- Боковое меню (гамбургер) -->
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+        <label for="menu-toggle" class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
 
-    <nav class="sidebar">
-        <div class="sidebar-title">Меню</div>
-        <a href="index.html">Главная</a>
-        <a href="Komorium/index.html">Komorium</a>
-        <a href="../../about.html">О проекте</a>
-        <button class="theme-toggle-btn" id="themeToggle">
-    <span class="icon">🌙</span>
-    <span>Тёмная тема</span>
-</button>
-    </nav>
-
-    <label for="menu-toggle" class="overlay"></label>
-
-    <button class="back-to-top" id="backToTop">↑</button>
-
-    <!-- Основной контент -->
-    <main>
-        <!-- Верхнее меню (якоря) -->
-        <nav class="top-menu">
-            <a href="#about">О поэте</a>
-            <a href="#poems">Стихи</a>
-            <a href="#quotes">Цитаты</a>
-            <a href="#links">Ссылки</a>
+        <nav class="sidebar">
+            <div class="sidebar-title">Меню</div>
+            <a href="index.html">Главная</a>
+            <a href="Komorium/index.html">Komorium</a>
+            <a href="../../about.html">О проекте</a>
+            <button class="theme-toggle-btn" id="themeToggle">
+                <span class="icon">🌙</span>
+                <span>Тёмная тема</span>
+            </button>
         </nav>
 
+        <label for="menu-toggle" class="overlay"></label>
+
+        <button class="back-to-top" id="backToTop">↑</button>
+
+        <!-- Основной контент -->
+        <main>
+            <!-- Верхнее меню (якоря) -->
+            <nav class="top-menu">
+                <a href="#about">О поэте</a>
+                <a href="#poems">Стихи</a>
+                <a href="#quotes">Цитаты</a>
+                <a href="#links">Ссылки</a>
+            </nav>
 
             <h1>📜 Александр Головачёв</h1>
 
-        <p style="color: #666; margin-bottom: 30px; text-align: center;">Индивидуальный вкус.</p>
+            <p style="color: #666; margin-bottom: 30px; text-align: center">Индивидуальный вкус.</p>
 
-        <!-- О поэте -->
-        <section id="about" class="content-section">
-            <h2>О поэте</h2>
-            <p>
-                Александр Головачёв (творческий псевдоним <strong>Skaut9910</strong>) — поэт, родившийся в Забайкальском крае, городе Чита.
-            </p>
+            <!-- О поэте -->
+            <section id="about" class="content-section">
+                <h2>О поэте</h2>
+                <p>
+                    Александр Головачёв (творческий псевдоним <strong>Skaut9910</strong>) — поэт, родившийся в
+                    Забайкальском крае, городе Чита.
+                </p>
 
-            <p>
-                Свои произведения публикую в социальных сетях (преимущественно на платформе <a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">Max</a>).
-            </p>
-        </section>
+                <p>
+                    Свои произведения публикую в социальных сетях (преимущественно на платформе
+                    <a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">Max</a>).
+                </p>
+            </section>
 
-        <!-- Стихи (основной раздел) -->
-        <section id="poems" class="content-section">
-            <h2>Избранные стихи</h2>
+            <!-- Стихи (основной раздел) -->
+            <section id="poems" class="content-section">
+                <h2>Избранные стихи</h2>
 
-            <!-- Стих 1 -->
-            <div class="poem-block">
-                <div class="poem-title">«Война»</div>
-                <div class="poem-text">
-Когда не было хлеба, 
-Когда была война. 
-Это было мученье, 
-Это была война. 
-
-А война это слезы, 
-А война это смерти. 
-Будем помнить мы вечно, 
-Всех погибших ребят. 
-
-Ведь эта память Слава, 
-Ведь эта память Вера. 
-Эта Вера в победу, 
-Сильнее любого из вас.
+                <!-- Стих 1 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Война»</div>
+                    <div class="poem-text">
+                        Когда не было хлеба, Когда была война. Это было мученье, Это была война. А война это слезы, А
+                        война это смерти. Будем помнить мы вечно, Всех погибших ребят. Ведь эта память Слава, Ведь эта
+                        память Вера. Эта Вера в победу, Сильнее любого из вас.
+                    </div>
+                    <div class="poem-date">февраль 2024</div>
                 </div>
-                <div class="poem-date">февраль 2024</div>
-            </div>
 
-            <!-- Стих 2 -->
-            <div class="poem-block">
-                <div class="poem-title">«Подвиг»</div>
-                <div class="poem-text">
-Идет бой, 
-Прилетает граната
-И в душе сразу боль и страх
-И казалось бы, молодые ребята, 
-У которых ещё впереди
-Сейчас погибнут, 
-Сейчас их не станет. 
-Но откуда не возьмись 
-Появляется дед с автоматом, 
-И кричит: "Разбежались, сынки"
-А сам не боясь что взорвется
-В руки гранату берёт
-И кидает, со всей своей силы
-Обратно к врагу своему!
+                <!-- Стих 2 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Подвиг»</div>
+                    <div class="poem-text">
+                        Идет бой, Прилетает граната И в душе сразу боль и страх И казалось бы, молодые ребята, У которых
+                        ещё впереди Сейчас погибнут, Сейчас их не станет. Но откуда не возьмись Появляется дед с
+                        автоматом, И кричит: "Разбежались, сынки" А сам не боясь что взорвется В руки гранату берёт И
+                        кидает, со всей своей силы Обратно к врагу своему!
+                    </div>
+                    <div class="poem-date">2 октября 2025</div>
                 </div>
-                <div class="poem-date">2 октября 2025</div>
-            </div>
 
-            <!-- Стих 3 (теперь с названием) -->
-            <div class="poem-block">
-                <div class="poem-title">«Маме»</div>
-                <div class="poem-text">
-Я буду рядом мам
-Всегда с тобой
-И постараюсь 
-Счастье подарить
-И пусть года летят
-Как стаи птиц
-Мою любовь ничто
-Не сможет сбить.
+                <!-- Стих 3 (теперь с названием) -->
+                <div class="poem-block">
+                    <div class="poem-title">«Маме»</div>
+                    <div class="poem-text">
+                        Я буду рядом мам Всегда с тобой И постараюсь Счастье подарить И пусть года летят Как стаи птиц
+                        Мою любовь ничто Не сможет сбить.
+                    </div>
+                    <div class="poem-date">5 октября 2025</div>
                 </div>
-                <div class="poem-date">5 октября 2025</div>
-            </div>
 
-            <!-- Стих 4 -->
-            <div class="poem-block">
-                <div class="poem-title">«Вчера, сегодня, завтра»</div>
-                <div class="poem-text">
-Вчера я не тот,
-Кем буду я завтра.
-А завтра не тем,
-Кем являюсь сейчас.
-Сегодня я мир,
-В котором всё идеально.
-А завтра мир,
-В котором хаос и мрак.
-Вчера я как будто бы переродился,
-Как будто бы всё повторилось опять.
-В моменте ты понял
-Суть всей своей жизни,
-Но через доли секунды
-Всё резко забыл.
+                <!-- Стих 4 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Вчера, сегодня, завтра»</div>
+                    <div class="poem-text">
+                        Вчера я не тот, Кем буду я завтра. А завтра не тем, Кем являюсь сейчас. Сегодня я мир, В котором
+                        всё идеально. А завтра мир, В котором хаос и мрак. Вчера я как будто бы переродился, Как будто
+                        бы всё повторилось опять. В моменте ты понял Суть всей своей жизни, Но через доли секунды Всё
+                        резко забыл.
+                    </div>
+                    <div class="poem-date">2026</div>
                 </div>
-                <div class="poem-date">2026</div>
-            </div>
-            <div class="poem-block">
-                <div class="poem-title">«Давайте встанем»</div>
-                <div class="poem-text">
-Давайте встанем за своих,
-За тех кто нас спиной закрывает.
-Кто не стремится быть героем,
-А кто строит нам дорогу
-Дорогу в жизнь и в мирный мир!
+                <div class="poem-block">
+                    <div class="poem-title">«Давайте встанем»</div>
+                    <div class="poem-text">
+                        Давайте встанем за своих, За тех кто нас спиной закрывает. Кто не стремится быть героем, А кто
+                        строит нам дорогу Дорогу в жизнь и в мирный мир!
+                    </div>
+                    <div class="poem-date">20.04.2026</div>
                 </div>
-                <div class="poem-date">20.04.2026</div>
-            </div>
-            
-        </section>
+            </section>
 
-        <!-- Цитаты из стихов (заполненные) -->
-        <section id="quotes" class="content-section">
-            <h2>Короткие цитаты</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
-                <div class="quote-badge" style="flex: 1 1 200px;">
-                    <p style="font-size: 1.1em; margin: 0 0 8px; text-indent: 0;">«Ведь эта память Слава, ведь эта память Вера. Эта Вера в победу, сильнее любого из вас»</p>
-                    <p style="color: #777; margin: 0; text-indent: 0;">— «Война»</p>
+            <!-- Цитаты из стихов (заполненные) -->
+            <section id="quotes" class="content-section">
+                <h2>Короткие цитаты</h2>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px">
+                    <div class="quote-badge" style="flex: 1 1 200px">
+                        <p style="font-size: 1.1em; margin: 0 0 8px; text-indent: 0">
+                            «Ведь эта память Слава, ведь эта память Вера. Эта Вера в победу, сильнее любого из вас»
+                        </p>
+                        <p style="color: #777; margin: 0; text-indent: 0">— «Война»</p>
+                    </div>
+                    <div class="quote-badge" style="flex: 1 1 200px; border-left-color: #e67e22">
+                        <p style="font-size: 1.1em; margin: 0 0 8px; text-indent: 0">
+                            «Но откуда не возьмись появляется дед с автоматом, и кричит: "Разбежались, сынки"»
+                        </p>
+                        <p style="color: #777; margin: 0; text-indent: 0">— «Подвиг»</p>
+                    </div>
+                    <div class="quote-badge" style="flex: 1 1 200px; border-left-color: #3498db">
+                        <p style="font-size: 1.1em; margin: 0 0 8px; text-indent: 0">
+                            «Я буду рядом мам, всегда с тобой. И постараюсь счастье подарить»
+                        </p>
+                        <p style="color: #777; margin: 0; text-indent: 0">— «Маме»</p>
+                    </div>
+                    <div class="quote-badge" style="flex: 1 1 200px; border-left-color: #2ecc71">
+                        <p style="font-size: 1.1em; margin: 0 0 8px; text-indent: 0">
+                            «Вчера я не тот, кем буду я завтра. А завтра не тем, кем являюсь сейчас»
+                        </p>
+                        <p style="color: #777; margin: 0; text-indent: 0">— «Вчера, сегодня, завтра»</p>
+                    </div>
                 </div>
-                <div class="quote-badge" style="flex: 1 1 200px; border-left-color: #e67e22;">
-                    <p style="font-size: 1.1em; margin: 0 0 8px; text-indent: 0;">«Но откуда не возьмись появляется дед с автоматом, и кричит: "Разбежались, сынки"»</p>
-                    <p style="color: #777; margin: 0; text-indent: 0;">— «Подвиг»</p>
+            </section>
+            <section id="links" class="content-section">
+                <div class="">
+                    <h2>Ссылки</h2>
+                    <li><a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">Канал в Max</a></li>
+                    <li><a href="https://max.ru/join/Hcgp4P6URKHkYSqOWitLfox62HH7nc3-mrchHgIxitI">Чат в Max</a></li>
                 </div>
-                <div class="quote-badge" style="flex: 1 1 200px; border-left-color: #3498db;">
-                    <p style="font-size: 1.1em; margin: 0 0 8px; text-indent: 0;">«Я буду рядом мам, всегда с тобой. И постараюсь счастье подарить»</p>
-                    <p style="color: #777; margin: 0; text-indent: 0;">— «Маме»</p>
-                </div>
-                <div class="quote-badge" style="flex: 1 1 200px; border-left-color: #2ecc71;">
-                    <p style="font-size: 1.1em; margin: 0 0 8px; text-indent: 0;">«Вчера я не тот, кем буду я завтра. А завтра не тем, кем являюсь сейчас»</p>
-                    <p style="color: #777; margin: 0; text-indent: 0;">— «Вчера, сегодня, завтра»</p>
-                </div>
-            </div>
-        </section>
-        <section id="links" class="content-section">
-            <div class="">
-                <h2>Ссылки</h2>
-                <li><a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">Канал в Max</a></li>
-                <li><a href="https://max.ru/join/Hcgp4P6URKHkYSqOWitLfox62HH7nc3-mrchHgIxitI">Чат в Max</a></li>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
 
-    <!-- Подвал -->
-    <footer class="footer">
-        <p>© Skaut9910</p>
-        <p>© 2026 Komorok · Стихи и проза Александра Головачёва</p>
-    </footer>
+        <!-- Подвал -->
+        <footer class="footer">
+            <p>© Skaut9910</p>
+            <p>© 2026 Komorok · Стихи и проза Александра Головачёва</p>
+        </footer>
 
-    <script src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>

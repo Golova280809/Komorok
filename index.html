@@ -1,103 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    
-    <!-- SEO мета-теги -->
-    <meta name="description" content="Komorok — личный сайт Александра Головачёва. Энциклопедия Komorium, статьи о географии, технологиях и родном Забайкалье. Locus ubi mundus incipit.">
-    <meta name="keywords" content="Komorok, Komorium, энциклопедия, Забайкалье, Базаново, HTML, CSS, Александр Головачёв">
-    <link rel="canonical" href="https://komorok.ru/">
-    
-    <script>
-  (function() {
-    var theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark-theme');
-    }
-  })();
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Komorok — личная энциклопедия и творчество</title>
-</head>
-<body>
-    <!-- Боковое меню (главное, одинаковое на всех страницах) -->
-    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-    <label for="menu-toggle" class="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
+    <head>
+        <meta charset="UTF-8" />
 
-    <nav class="sidebar">
-        <div class="sidebar-title">Меню</div>
-        <a href="index.html">Главная</a>
-        <a href="Komorium/index.html">Komorium</a>
-        <a href="about.html">О проекте</a>
-        <button class="theme-toggle-btn" id="themeToggle">
-    <span class="icon">🌙</span>
-    <span>Тёмная тема</span>
-</button>
-    </nav>
+        <!-- SEO мета-теги -->
+        <meta
+            name="description"
+            content="Komorok — личный сайт Александра Головачёва. Энциклопедия Komorium, статьи о географии, технологиях и родном Забайкалье. Locus ubi mundus incipit."
+        />
+        <meta
+            name="keywords"
+            content="Komorok, Komorium, энциклопедия, Забайкалье, Базаново, HTML, CSS, Александр Головачёв"
+        />
+        <link rel="canonical" href="https://komorok.ru/" />
 
-    <label for="menu-toggle" class="overlay"></label>
-    <button class="back-to-top" id="backToTop">↑</button>
-    <!-- Основной контент -->
-    <main>
-        <!-- Приветствие -->
-        <header class="hero">
-            <img src="logo.png" alt="KOMORIUM">
-            <h1>Добро пожаловать</h1>
-            <h3>Девиз нашего сайта:<br><em>Locus ubi mundus incipit</em></h3>
-            
-            <p>Это мой личный сайт открытый для всех.</p>
-            <!-- project-age-counter -->
-<p>С момента рождения проекта прошло: 426 дней</p>
-            <!-- articles-count -->
-            <p>В энциклопедии уже 8 статей</p>
-        </header>
+        <script>
+            (function () {
+                var theme = localStorage.getItem("theme");
+                if (theme === "dark") {
+                    document.documentElement.classList.add("dark-theme");
+                }
+            })();
+        </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="apple-touch-icon" href="logo.png" />
+        <link rel="stylesheet" href="common.css" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Komorok — личная энциклопедия и творчество</title>
+    </head>
+    <body>
+        <!-- Боковое меню (главное, одинаковое на всех страницах) -->
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+        <label for="menu-toggle" class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
 
-        <!-- Описание разделов -->
-        <!-- Новостной блок -->
-<section class="news-block">
-    <h2>📢 Новости сайта</h2>
-    <div class="news-content">
-        <p>Всем привет! У нас хорошие новости:</p>
-        <ul class="news-list">
-            <li>На главной странице <strong>Komorium</strong> появилась строка поиска — можно искать статьи по названию и описанию.</li>
-            <li>Все статьи разделены по разделам и по умолчанию скрыты. Чтобы посмотреть статьи определённого раздела, нажмите на кнопку-стрелку справа от названия.</li>
-            <li>Добавлена <strong>тёмная тема</strong>. Она пока тестируется, поэтому возможны небольшие цветовые недочёты — мы их исправим.</li>
-        </ul>
-        <p>На сайте полностью отсутствует сторонняя реклама, не относящаяся к проекту, его каналам и чатам.</p>
-        <div class="news-alert">
-            <strong>❗ ВНИМАНИЕ ❗</strong><br>
-            На нашем сайте 28 апреля начнётся конкурс! Победитель будет озвучены на сайте и канале сайта.<br>    Цель конкурса: Найти все ключи-смайлы: 🔑, посчитать их количество и отправить в группу в <a href="https://max.ru/join/Hcgp4P6URKHkYSqOWitLfox62HH7nc3-mrchHgIxitI">MAX</a>. В случае отсутствия Max, отправляйте в наш официальный <a href="" >telegram-канал</a>. 
-        </div>
-    </div>
-</section>
-        <section class="menu-info">
-            <h2>Разделы сайта</h2>
+        <nav class="sidebar">
+            <div class="sidebar-title">Меню</div>
+            <a href="index.html">Главная</a>
+            <a href="Komorium/index.html">Komorium</a>
+            <a href="about.html">О проекте</a>
+            <button class="theme-toggle-btn" id="themeToggle">
+                <span class="icon">🌙</span>
+                <span>Тёмная тема</span>
+            </button>
+        </nav>
 
+        <label for="menu-toggle" class="overlay"></label>
+        <button class="back-to-top" id="backToTop">↑</button>
+        <!-- Основной контент -->
+        <main>
+            <!-- Приветствие -->
+            <header class="hero">
+                <img src="logo.png" alt="KOMORIUM" />
+                <h1>Добро пожаловать</h1>
+                <h3>Девиз нашего сайта:<br /><em>Locus ubi mundus incipit</em></h3>
 
+                <p>Это мой личный сайт открытый для всех.</p>
+                <!-- project-age-counter -->
+                <p>С момента рождения проекта прошло: 426 дней</p>
+                <!-- articles-count -->
+                <p>В энциклопедии уже 8 статей</p>
+            </header>
 
-            <article class="menu-item">
-                <h3>Komorium</h3>
-                <p>Моя личная энциклопедия-блог.<br>Хотя больше энциклопедия. А блог это учеба, интересы и т.д.</p>
-            </article>
+            <!-- Описание разделов -->
+            <!-- Новостной блок -->
+            <section class="news-block">
+                <h2>📢 Новости сайта</h2>
+                <div class="news-content">
+                    <p>Всем привет! У нас хорошие новости:</p>
+                    <ul class="news-list">
+                        <li>
+                            На главной странице <strong>Komorium</strong> появилась строка поиска — можно искать статьи
+                            по названию и описанию.
+                        </li>
+                        <li>
+                            Все статьи разделены по разделам и по умолчанию скрыты. Чтобы посмотреть статьи
+                            определённого раздела, нажмите на кнопку-стрелку справа от названия.
+                        </li>
+                        <li>
+                            Добавлена <strong>тёмная тема</strong>. Она пока тестируется, поэтому возможны небольшие
+                            цветовые недочёты — мы их исправим.
+                        </li>
+                    </ul>
+                    <p>
+                        На сайте полностью отсутствует сторонняя реклама, не относящаяся к проекту, его каналам и чатам.
+                    </p>
+                    <div class="news-alert">
+                        <strong>❗ ВНИМАНИЕ ❗</strong><br />
+                        На нашем сайте 28 апреля начнётся конкурс! Победитель будет озвучены на сайте и канале сайта.<br />
+                        Цель конкурса: Найти все ключи-смайлы: 🔑, посчитать их количество и отправить в группу в
+                        <a href="https://max.ru/join/Hcgp4P6URKHkYSqOWitLfox62HH7nc3-mrchHgIxitI">MAX</a>. В случае
+                        отсутствия Max, отправляйте в наш официальный <a href="">telegram-канал</a>.
+                    </div>
+                </div>
+            </section>
+            <section class="menu-info">
+                <h2>Разделы сайта</h2>
 
-            <article class="menu-item">
-                <h3>👤 О проекте</h3>
-                <p>Об этом сайте.</p>
-            </article>
-        </section>
-    </main>
+                <article class="menu-item">
+                    <h3>Komorium</h3>
+                    <p>
+                        Моя личная энциклопедия-блог.<br />Хотя больше энциклопедия. А блог это учеба, интересы и т.д.
+                    </p>
+                </article>
 
-    <!-- Подвал -->
-    <footer class="footer">
-        <p>© 2026 Komorok🔑</p>
-    </footer>
-    <script src="script.js"></script>
-</body>
+                <article class="menu-item">
+                    <h3>👤 О проекте</h3>
+                    <p>Об этом сайте.</p>
+                </article>
+            </section>
+        </main>
+
+        <!-- Подвал -->
+        <footer class="footer">
+            <p>© 2026 Komorok🔑</p>
+        </footer>
+        <script src="script.js"></script>
+    </body>
 </html>

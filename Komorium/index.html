@@ -1,234 +1,294 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <link rel="apple-touch-icon" href="../logo.png">
-    <link rel="icon" type="image/png" href="../logo.png">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="apple-touch-icon" href="../logo.png" />
+        <link rel="icon" type="image/png" href="../logo.png" />
 
-    <!-- SEO мета-теги -->
-<meta name="description" content="Komorium — личная энциклопедия Александра Головачёва. Статьи по географии (Китай, Базаново) и курсы по HTML, CSS.">
-<meta name="keywords" content="Komorium, энциклопедия, география, Китай, Базаново, HTML, CSS, технологии">
-<link rel="canonical" href="https://komorok.ru/Komorium/">
+        <!-- SEO мета-теги -->
+        <meta
+            name="description"
+            content="Komorium — личная энциклопедия Александра Головачёва. Статьи по географии (Китай, Базаново) и курсы по HTML, CSS."
+        />
+        <meta name="keywords" content="Komorium, энциклопедия, география, Китай, Базаново, HTML, CSS, технологии" />
+        <link rel="canonical" href="https://komorok.ru/Komorium/" />
 
-<!-- Open Graph (для Telegram, VK, Facebook, WhatsApp) -->
-<meta property="og:title" content="📚 Komorium — Моя личная энциклопедия | Komorok">
-<meta property="og:description" content="Статьи о Китае, Базаново, реке Гуньгунжда и курсы по HTML, CSS, Python. Живая энциклопедия Забайкалья и не только.">
-<meta property="og:url" content="https://komorok.ru/Komorium/">
-<meta property="og:image" content="https://komorok.ru/logo.png">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Komorok">
+        <!-- Open Graph (для Telegram, VK, Facebook, WhatsApp) -->
+        <meta property="og:title" content="📚 Komorium — Моя личная энциклопедия | Komorok" />
+        <meta
+            property="og:description"
+            content="Статьи о Китае, Базаново, реке Гуньгунжда и курсы по HTML, CSS, Python. Живая энциклопедия Забайкалья и не только."
+        />
+        <meta property="og:url" content="https://komorok.ru/Komorium/" />
+        <meta property="og:image" content="https://komorok.ru/logo.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Komorok" />
 
-    <script>
-  (function() {
-    var theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark-theme');
-    }
-  })();
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../common.css">
-    <link rel="stylesheet" href="komorium.css">
-    <title>Komorium — Моя личная энциклопедия</title>
-</head>
-<body>
-    <!-- Боковое меню -->
-    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-    <label for="menu-toggle" class="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
+        <script>
+            (function () {
+                var theme = localStorage.getItem("theme");
+                if (theme === "dark") {
+                    document.documentElement.classList.add("dark-theme");
+                }
+            })();
+        </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../common.css" />
+        <link rel="stylesheet" href="komorium.css" />
+        <title>Komorium — Моя личная энциклопедия</title>
+    </head>
+    <body>
+        <!-- Боковое меню -->
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+        <label for="menu-toggle" class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
 
-    <nav class="sidebar">
-        <div class="sidebar-title">Меню</div>
-        <a href="../index.html">Главная</a>
-        <a href="index.html">Komorium</a>
-        <a href="../about.html">О проекте</a>
-        <button class="theme-toggle-btn" id="themeToggle">
-    <span class="icon">🌙</span>
-    <span>Тёмная тема</span>
-</button>
-    </nav>
-
-    <label for="menu-toggle" class="overlay"></label>
-    <header>
-        <h1>📚 Komorium</h1>
-        <p>Моя личная энциклопедия</p>
-    </header>
-    <button class="back-to-top" id="backToTop">↑</button>
-
-    <main>
-        <!-- Поиск -->
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или описанию..." autocomplete="off">
-            <button id="clearSearch" class="search-clear" aria-label="Очистить">✕</button>
-        </div>
-
-        <!-- Навигация по категориям -->
-        <nav class="categories">
-            <a href="#geography" class="cat-btn">🌍 География</a>
-            <a href="#technology" class="cat-btn">💻 Технологии</a>
+        <nav class="sidebar">
+            <div class="sidebar-title">Меню</div>
+            <a href="../index.html">Главная</a>
+            <a href="index.html">Komorium</a>
+            <a href="../about.html">О проекте</a>
+            <button class="theme-toggle-btn" id="themeToggle">
+                <span class="icon">🌙</span>
+                <span>Тёмная тема</span>
+            </button>
         </nav>
 
-        <!-- Персональная карточка -->
-        <section class="standalone-card">
-            <h2 style="margin-bottom: 0.75rem;">Головачёв Александр</h2>
-            <div class="articles-grid">
-                <a href="../Alexander.html" class="article-card" data-title="Головачёв Александр" data-desc="Творчество">
-                    <img src="../img/about.png" alt="📰" class="avatar">
-                    <div class="card-content">
-                        <span class="card-title">Головачёв Александр</span>
-                        <span class="card-desc">Творчество</span>
+        <label for="menu-toggle" class="overlay"></label>
+        <header>
+            <h1>📚 Komorium</h1>
+            <p>Моя личная энциклопедия</p>
+        </header>
+        <button class="back-to-top" id="backToTop">↑</button>
+
+        <main>
+            <!-- Поиск -->
+            <div class="search-container">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="🔍 Поиск по названию или описанию..."
+                    autocomplete="off"
+                />
+                <button id="clearSearch" class="search-clear" aria-label="Очистить">✕</button>
+            </div>
+
+            <!-- Навигация по категориям -->
+            <nav class="categories">
+                <a href="#geography" class="cat-btn">🌍 География</a>
+                <a href="#technology" class="cat-btn">💻 Технологии</a>
+            </nav>
+
+            <!-- Персональная карточка -->
+            <section class="standalone-card">
+                <h2 style="margin-bottom: 0.75rem">Головачёв Александр</h2>
+                <div class="articles-grid">
+                    <a
+                        href="../Alexander.html"
+                        class="article-card"
+                        data-title="Головачёв Александр"
+                        data-desc="Творчество"
+                    >
+                        <img src="../img/about.png" alt="📰" class="avatar" />
+                        <div class="card-content">
+                            <span class="card-title">Головачёв Александр</span>
+                            <span class="card-desc">Творчество</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Раздел ГЕОГРАФИЯ -->
+            <section id="geography" class="category-section">
+                <h2>🌍 География</h2>
+
+                <!-- Подраздел: Страны -->
+                <div class="subcategory collapsed" id="subcat-countries">
+                    <div class="subcategory-header">
+                        <h3>Страны</h3>
+                        <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-countries">
+                            <span class="arrow">▼</span>
+                        </button>
                     </div>
-                </a>
+                    <div class="articles-grid">
+                        <a
+                            href="China/index.html"
+                            class="article-card"
+                            data-title="Китай"
+                            data-desc="География, население, экономика"
+                        >
+                            <img src="../img/china.png" alt="🇨🇳" class="avatar" />
+                            <div class="card-content">
+                                <span class="card-title">Китай</span>
+                                <span class="card-desc">География, население, экономика</span>
+                            </div>
+                        </a>
+                        <a
+                            href="China/culture/index.html"
+                            class="article-card"
+                            data-title="Культура Китая"
+                            data-desc="Традиции, философия, кухня, чай, кунг-фу"
+                        >
+                            <img src="../img/china-culture.png" alt="🎎" class="avatar" />
+                            <div class="card-content">
+                                <span class="card-title">Культура Китая</span>
+                                <span class="card-desc">Праздники, искусство, чайная церемония</span>
+                            </div>
+                        </a>
+                        <!-- Другие страны можно добавить -->
+                    </div>
+                </div>
+
+                <!-- Подраздел: Населённые пункты -->
+                <div class="subcategory collapsed" id="subcat-villages">
+                    <div class="subcategory-header">
+                        <h3>Населенные пункты</h3>
+                        <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-villages">
+                            <span class="arrow">▼</span>
+                        </button>
+                    </div>
+                    <div class="articles-grid">
+                        <a
+                            href="bazanovo/index.html"
+                            class="article-card"
+                            data-title="Деревня: Базаново"
+                            data-desc="География, население, экономика"
+                        >
+                            <img src="../img/no-img.png" alt="Базаново" class="avatar" />
+                            <div class="card-content">
+                                <span class="card-title">Деревня: Базаново🔑</span>
+                                <span class="card-desc">География, население, экономика</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Подраздел: Природа -->
+                <div class="subcategory collapsed" id="subcat-nature">
+                    <div class="subcategory-header">
+                        <h3>Природа</h3>
+                        <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-nature">
+                            <span class="arrow">▼</span>
+                        </button>
+                    </div>
+                    <div class="articles-grid">
+                        <div style="grid-column: 1/-1; margin-top: 0.5rem">
+                            <h4 style="margin-bottom: 0.5rem; color: var(--text-secondary)">Реки</h4>
+                        </div>
+                        <a
+                            href="bazanovo/Gungunzhda/index.html"
+                            class="article-card"
+                            data-title="Река Гуньгунжда"
+                            data-desc="Приток Акатуя, Забайкальский край"
+                        >
+                            <img src="../img/no-img.png" alt="Гуньгунжда" class="avatar" />
+                            <div class="card-content">
+                                <span class="card-title">Река Гуньгунжда</span>
+                                <span class="card-desc">География, экология, история</span>
+                            </div>
+                        </a>
+                        <!-- Здесь можно будет добавить другие реки -->
+                    </div>
+                </div>
+
+                <!-- Подраздел: Голоса Базаново -->
+                <div class="subcategory collapsed" id="subcat-voices">
+                    <div class="subcategory-header">
+                        <h3>Голоса Базаново</h3>
+                        <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-voices">
+                            <span class="arrow">▼</span>
+                        </button>
+                    </div>
+                    <div class="articles-grid">
+                        <a
+                            href="bazanovo/people/Valentina-Rybkina/index.html"
+                            class="article-card"
+                            data-title="Валентина Рыбкина"
+                            data-desc="Бывшая жительница Базаново"
+                        >
+                            <img src="../img/no-img.png" alt="👤" class="avatar" />
+                            <div class="card-content">
+                                <span class="card-title">Валентина Рыбкина</span>
+                                <span class="card-desc">Воспоминания о жизни в Базаново</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Раздел ТЕХНОЛОГИИ -->
+            <section id="technology" class="category-section">
+                <h2>💻 Технологии</h2>
+
+                <!-- Подраздел: Языки программирования и разметки -->
+                <div class="subcategory collapsed" id="programming-language">
+                    <div class="subcategory-header">
+                        <h3>Языки программирования и разметки</h3>
+                        <button
+                            class="toggle-subcat"
+                            aria-label="Развернуть/свернуть"
+                            data-target="programming-language"
+                        >
+                            <span class="arrow">▼</span>
+                        </button>
+                    </div>
+                    <div class="articles-grid">
+                        <!-- Карточка HTML -->
+                        <a
+                            href="Technology/html-course/index.html"
+                            class="article-card"
+                            data-title="HTML: Основы и структура"
+                            data-desc="Полный курс по HTML — от базового скелета до семантики."
+                        >
+                            <img src="../img/html.png" alt="HTML" class="avatar" />
+                            <div class="card-content">
+                                <span class="card-title">HTML: Основы и структура</span>
+                                <span class="card-desc">Базовый скелет, теги, семантика, формы</span>
+                            </div>
+                        </a>
+                        <!-- Карточка CSS -->
+                        <a
+                            href="Technology/css-course/index.html"
+                            class="article-card"
+                            data-title="CSS: От основ к делу"
+                            data-desc="Стилизация, селекторы, Flexbox, Grid, анимации."
+                        >
+                            <img src="../img/css.png" alt="CSS" class="avatar" />
+                            <div class="card-content">
+                                <span class="card-title">CSS: От основ к делу</span>
+                                <span class="card-desc">Селекторы, блочная модель, Flexbox, Grid, адаптивность</span>
+                            </div>
+                        </a>
+                        <!-- Карточка Python -->
+                        <a
+                            href="Technology/python-course/index.html"
+                            class="article-card"
+                            data-title="Python: Основы"
+                            data-desc="Синтаксис, переменные, условия, циклы, функции."
+                        >
+                            <img src="../img/python.png" alt="Python" class="avatar" />
+                            <div class="card-content">
+                                <span class="card-title">Python: Основы</span>
+                                <span class="card-desc">🔑Базовый синтаксис, типы данных, работа с файлами</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Сообщение "ничего не найдено" -->
+            <div id="noResultsMessage" class="no-results-message">
+                🔎 Ничего не найдено. Попробуйте изменить запрос.
             </div>
-        </section>
+        </main>
+        <footer class="footer">
+            <p>© 2026 Komorok</p>
+        </footer>
 
-        <!-- Раздел ГЕОГРАФИЯ -->
-<section id="geography" class="category-section">
-    <h2>🌍 География</h2>
-
-    <!-- Подраздел: Страны -->
-    <div class="subcategory collapsed" id="subcat-countries">
-        <div class="subcategory-header">
-            <h3>Страны</h3>
-            <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-countries">
-                <span class="arrow">▼</span>
-            </button>
-        </div>
-        <div class="articles-grid">
-            <a href="China/index.html" class="article-card" data-title="Китай" data-desc="География, население, экономика">
-                <img src="../img/china.png" alt="🇨🇳" class="avatar">
-                <div class="card-content">
-                    <span class="card-title">Китай</span>
-                    <span class="card-desc">География, население, экономика</span>
-                </div>
-            </a>
-            <a href="China/culture/index.html" class="article-card" data-title="Культура Китая" data-desc="Традиции, философия, кухня, чай, кунг-фу">
-    <img src="../img/china-culture.png" alt="🎎" class="avatar">
-    <div class="card-content">
-        <span class="card-title">Культура Китая</span>
-        <span class="card-desc">Праздники, искусство, чайная церемония</span>
-    </div>
-</a>
-            <!-- Другие страны можно добавить -->
-        </div>
-    </div>
-
-    <!-- Подраздел: Населённые пункты -->
-    <div class="subcategory collapsed" id="subcat-villages">
-        <div class="subcategory-header">
-            <h3>Населенные пункты</h3>
-            <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-villages">
-                <span class="arrow">▼</span>
-            </button>
-        </div>
-        <div class="articles-grid">
-            <a href="bazanovo/index.html" class="article-card" data-title="Деревня: Базаново" data-desc="География, население, экономика">
-                <img src="../img/no-img.png" alt="Базаново" class="avatar">
-                <div class="card-content">
-                    <span class="card-title">Деревня: Базаново🔑</span>
-                    <span class="card-desc">География, население, экономика</span>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <!-- Подраздел: Природа -->
-    <div class="subcategory collapsed" id="subcat-nature">
-        <div class="subcategory-header">
-            <h3>Природа</h3>
-            <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-nature">
-                <span class="arrow">▼</span>
-            </button>
-        </div>
-        <div class="articles-grid">
-            <div style="grid-column: 1/-1; margin-top: 0.5rem;">
-                <h4 style="margin-bottom: 0.5rem; color: var(--text-secondary);">Реки</h4>
-            </div>
-            <a href="bazanovo/Gungunzhda/index.html" class="article-card" data-title="Река Гуньгунжда" data-desc="Приток Акатуя, Забайкальский край">
-                <img src="../img/no-img.png" alt="Гуньгунжда" class="avatar">
-                <div class="card-content">
-                    <span class="card-title">Река Гуньгунжда</span>
-                    <span class="card-desc">География, экология, история</span>
-                </div>
-            </a>
-            <!-- Здесь можно будет добавить другие реки -->
-        </div>
-    </div>
-
-    <!-- Подраздел: Голоса Базаново -->
-    <div class="subcategory collapsed" id="subcat-voices">
-        <div class="subcategory-header">
-            <h3>Голоса Базаново</h3>
-            <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="subcat-voices">
-                <span class="arrow">▼</span>
-            </button>
-        </div>
-        <div class="articles-grid">
-            <a href="bazanovo/people/Valentina-Rybkina/index.html" class="article-card" data-title="Валентина Рыбкина" data-desc="Бывшая жительница Базаново">
-                <img src="../img/no-img.png" alt="👤" class="avatar">
-                <div class="card-content">
-                    <span class="card-title">Валентина Рыбкина</span>
-                    <span class="card-desc">Воспоминания о жизни в Базаново</span>
-                </div>
-            </a>
-        </div>
-    </div>
-
-</section>
-
-        <!-- Раздел ТЕХНОЛОГИИ -->
-<section id="technology" class="category-section">
-    <h2>💻 Технологии</h2>
-
-    <!-- Подраздел: Языки программирования и разметки -->
-    <div class="subcategory collapsed" id="programming-language">
-        <div class="subcategory-header">
-            <h3>Языки программирования и разметки</h3>
-            <button class="toggle-subcat" aria-label="Развернуть/свернуть" data-target="programming-language">
-                <span class="arrow">▼</span>
-            </button>
-        </div>
-        <div class="articles-grid">
-            <!-- Карточка HTML -->
-            <a href="Technology/html-course/index.html" class="article-card" data-title="HTML: Основы и структура" data-desc="Полный курс по HTML — от базового скелета до семантики.">
-                <img src="../img/html.png" alt="HTML" class="avatar">
-                <div class="card-content">
-                    <span class="card-title">HTML: Основы и структура</span>
-                    <span class="card-desc">Базовый скелет, теги, семантика, формы</span>
-                </div>
-            </a>
-            <!-- Карточка CSS -->
-            <a href="Technology/css-course/index.html" class="article-card" data-title="CSS: От основ к делу" data-desc="Стилизация, селекторы, Flexbox, Grid, анимации.">
-                <img src="../img/css.png" alt="CSS" class="avatar">
-                <div class="card-content">
-                    <span class="card-title">CSS: От основ к делу</span>
-                    <span class="card-desc">Селекторы, блочная модель, Flexbox, Grid, адаптивность</span>
-                </div>
-            </a>
-            <!-- Карточка Python -->
-            <a href="Technology/python-course/index.html" class="article-card" data-title="Python: Основы" data-desc="Синтаксис, переменные, условия, циклы, функции.">
-               <img src="../img/python.png" alt="Python" class="avatar">
-               <div class="card-content">
-                   <span class="card-title">Python: Основы</span>
-                   <span class="card-desc">🔑Базовый синтаксис, типы данных, работа с файлами</span>
-              </div>
-          </a>
-        </div>
-    </div>
-</section>
-
-        <!-- Сообщение "ничего не найдено" -->
-        <div id="noResultsMessage" class="no-results-message">
-            🔎 Ничего не найдено. Попробуйте изменить запрос.
-        </div>
-    </main>
-    <footer class="footer">
-        <p>© 2026 Komorok</p>
-    </footer>
-
-    <script src="../script.js"></script>
-</body>
+        <script src="../script.js"></script>
+    </body>
 </html>
