@@ -18,25 +18,24 @@ jobs:
 
       - name: Проверить битые ссылки на сайте
         id: linkcheck
-        uses: JustinBeckwith/linkinator-action@v1
-        with:
-          paths: https://komorok.ru
-          markdown: true
-          linksToSkip: "mailto:*"
         continue-on-error: true
+        run: |
+          npx linkinator https://komorok.ru --format markdown > linkinator-report.md 2>&1
+          cat linkinator-report.md
 
       - name: Создать Issue с отчётом об ошибках
         if: steps.linkcheck.outcome == 'failure'
         uses: actions/github-script@v7
         with:
           script: |
-            const report = `Результаты проверки ссылок:\n\n${process.env.LINKINATOR_RESULT || 'Подробности в логах workflow'}`;
-            
+            const fs = require('fs');
+            const report = fs.readFileSync('./linkinator-report.md', 'utf8');
+
             const issue = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: `🚨 Битые ссылки на Komorok от ${new Date().toLocaleDateString('ru-RU')}`,
-              body: `## 🤖 Автоматический отчёт о проверке ссылок\n\n**Сайт:** https://komorok.ru\n**Дата проверки:** ${new Date().toLocaleString('ru-RU')}\n\n${report}\n\n---\n*Этот Issue создан автоматически с помощью GitHub Actions.*`,
+              body: `## 🤖 Автоматический отчёт о проверке ссылок\n\n**Сайт:** https://komorok.ru\n**Дата проверки:** ${new Date().toLocaleString('ru-RU')}\n\n### 📋 Найденные проблемы:\n${report}\n\n---\n*Этот Issue создан автоматически с помощью GitHub Actions.*`,
               labels: ['bug', 'automated-report']
             });
 
