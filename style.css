@@ -220,6 +220,42 @@
     margin-bottom: 0.5rem;
 }
 
+/* Кнопка "Случайная статья" */
+.random-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--gradient-btn-start), var(--gradient-btn-end));
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.random-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Элемент списка последних обновлений */
+.latest-article-item {
+    margin-bottom: 0.5rem;
+    list-style-type: none;
+}
+
+.latest-article-item a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.latest-article-item a:hover {
+    text-decoration: underline;
+    color: var(--accent-dark);
+}
+
 .footer-about {
     margin-top: 2.5rem;
     text-align: center;
