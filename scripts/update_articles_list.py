@@ -5,7 +5,6 @@ from datetime import datetime
 
 ROOT = 'Komorium'
 
-# Категории (подразделы) по путям
 CATEGORY_MAP = {
     'China': 'countries',
     'bazanovo': 'villages',
@@ -32,14 +31,17 @@ def get_category(rel_path):
 
 def get_title_and_date(html_file):
     title = os.path.basename(os.path.dirname(html_file))
-    date = datetime.now().strftime('%Y-%m-%d')
+    try:
+        mtime = os.path.getmtime(html_file)
+        date = datetime.fromtimestamp(mtime).strftime('%Y-%m-%d')
+    except:
+        date = datetime.now().strftime('%Y-%m-%d')
     try:
         with open(html_file, 'r', encoding='utf-8') as f:
             content = f.read()
         match = re.search(r'<h1[^>]*>(.*?)</h1>', content, re.IGNORECASE)
         if match:
             title = re.sub(r'<[^>]+>', '', match.group(1)).strip()
-        # Пытаемся найти дату последнего коммита (GitHub Actions не пробрасывает git, поэтому оставим текущую)
     except:
         pass
     return title, date
@@ -51,11 +53,14 @@ def find_articles():
             rel_path = os.path.relpath(dirpath, ROOT)
             title, date = get_title_and_date(os.path.join(dirpath, 'index.html'))
             category = get_category(rel_path)
+            avatar_path = os.path.join(dirpath, 'avatar.png')
+            image_url = f"{rel_path}/avatar.png" if os.path.exists(avatar_path) else ""
             articles.append({
                 'title': title,
                 'url': f"{rel_path}/",
                 'category': category,
-                'date': date
+                'date': date,
+                'image': image_url
             })
     return articles
 
