@@ -106,3 +106,41 @@
         });
     }
 })();
+
+// Пагинация карточек: показывать первые 5, остальные по кнопке
+(function() {
+    const GRID_SELECTOR = '.articles-grid';
+    const CARD_SELECTOR = '.article-card';
+    const VISIBLE_COUNT = 5;
+
+    function setupPagination(grid) {
+        const cards = grid.querySelectorAll(CARD_SELECTOR);
+        if (cards.length <= VISIBLE_COUNT) return;
+
+        // Скрываем лишние карточки
+        for (let i = VISIBLE_COUNT; i < cards.length; i++) {
+            cards[i].classList.add('card-hidden');
+        }
+
+        // Создаём кнопку
+        const btn = document.createElement('button');
+        btn.textContent = 'Показать ещё';
+        btn.className = 'show-more-btn';
+        btn.style.cssText = 'display:block; margin:1rem auto; padding:0.6rem 2rem; background:var(--accent); color:white; border:none; border-radius:25px; cursor:pointer; font-weight:600; transition: all 0.2s;';
+        btn.addEventListener('mouseenter', () => btn.style.transform = 'scale(1.03)');
+        btn.addEventListener('mouseleave', () => btn.style.transform = 'none');
+
+        btn.addEventListener('click', () => {
+            // Показываем все скрытые карточки
+            const hidden = grid.querySelectorAll(CARD_SELECTOR + '.card-hidden');
+            hidden.forEach(card => card.classList.remove('card-hidden'));
+            // Удаляем кнопку
+            btn.remove();
+        });
+
+        grid.appendChild(btn);
+    }
+
+    // Инициализация на всех сетках
+    document.querySelectorAll(GRID_SELECTOR).forEach(grid => setupPagination(grid));
+})();
