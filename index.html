@@ -65,7 +65,6 @@
                 <p>В энциклопедии уже 8 статей</p>
             </header>
 
-            <!-- Описание разделов -->
             <!-- Новостной блок -->
             <section class="news-block">
                 <h2>📢 Новости сайта</h2>
@@ -84,19 +83,41 @@
                             Добавлена <strong>тёмная тема</strong>. Она пока тестируется, поэтому возможны небольшие
                             цветовые недочёты — мы их исправим.
                         </li>
+                        <li>
+                            <strong>28 апреля</strong> — стартовала серия статей «Termux: школа выживания» (6 частей).
+                        </li>
+                        <li>
+                            <strong>27 апреля</strong> — добавлена статья «<a href="Komorium/China/culture/">Культура Китая</a>».
+                        </li>
+                        <li>
+                            <strong>Проверка ссылок</strong> — теперь сайт автоматически проверяет битые ссылки и создаёт Issue на GitHub.
+                        </li>
                     </ul>
                     <p>
                         На сайте полностью отсутствует сторонняя реклама, не относящаяся к проекту, его каналам и чатам.
                     </p>
                     <div class="news-alert">
-                        <strong>❗ ВНИМАНИЕ ❗</strong><br />
-                        На нашем сайте 28 апреля начнётся конкурс! Победитель будет озвучены на сайте и канале сайта.<br />
-                        Цель конкурса: Найти все ключи-смайлы: 🔑, посчитать их количество и отправить в группу в
-                        <a href="https://max.ru/join/Hcgp4P6URKHkYSqOWitLfox62HH7nc3-mrchHgIxitI">MAX</a>. В случае
-                        отсутствия Max, отправляйте в наш официальный <a href="">telegram-канал</a>.
+                        <strong>🔑 КОНКУРС ПРОДЛЁН ДО 1 МАЯ! 🔑</strong><br />
+                        Найдите все ключи-смайлы 🔑 на страницах сайта, посчитайте их количество и отправьте ответ в
+                        <a href="https://max.ru/join/Hcgp4P6URKHkYSqOWitLfox62HH7nc3-mrchHgIxitI">MAX</a> или в
+                        <a href="https://t.me/KomorokBot">Telegram-канал</a>. Победитель будет объявлен на сайте и в канале!
                     </div>
                 </div>
             </section>
+
+            <!-- Последние обновления (автоматически из sitemap) -->
+            <section class="news-block" style="margin-top: 2rem;">
+                <h2>🆕 Последние обновления сайта</h2>
+                <div class="news-content" id="latest-updates">
+                    <p>Загрузка...</p>
+                </div>
+            </section>
+
+            <!-- Случайная статья -->
+            <div style="text-align: center; margin: 2rem 0;">
+                <a href="#" id="randomArticleBtn" class="random-btn">🎲 Случайная статья</a>
+            </div>
+
             <section class="menu-info">
                 <h2>Разделы сайта</h2>
 
@@ -119,5 +140,56 @@
             <p>© 2026 Komorok🔑</p>
         </footer>
         <script src="script.js"></script>
+
+        <!-- Скрипт для случайной статьи и последних обновлений из sitemap -->
+        <script>
+            (function() {
+                const sitemapUrl = 'https://komorok.ru/sitemap.xml';
+                const latestContainer = document.getElementById('latest-updates');
+                const randomBtn = document.getElementById('randomArticleBtn');
+
+                // Загружаем sitemap и парсим URL
+                fetch(sitemapUrl)
+                    .then(response => response.text())
+                    .then(xmlText => {
+                        const parser = new DOMParser();
+                        const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
+                        const locElements = xmlDoc.querySelectorAll('url loc');
+                        const urls = Array.from(locElements).map(el => el.textContent.trim());
+
+                        // Исключаем технические страницы
+                        const exclude = ['https://komorok.ru/', 'https://komorok.ru/index.html', 'https://komorok.ru/about.html', 'https://komorok.ru/Alexander.html'];
+                        const articleUrls = urls.filter(url => !exclude.includes(url));
+
+                        // Заполняем блок последних обновлений
+                        if (latestContainer) {
+                            if (articleUrls.length === 0) {
+                                latestContainer.innerHTML = '<p>Пока обновлений нет.</p>';
+                            } else {
+                                let html = '<ul class="news-list">';
+                                articleUrls.slice(0, 5).forEach(url => {
+                                    const shortUrl = url.replace('https://komorok.ru/', '');
+                                    html += `<li class="latest-article-item"><a href="${shortUrl}">${shortUrl}</a></li>`;
+                                });
+                                html += '</ul>';
+                                latestContainer.innerHTML = html;
+                            }
+                        }
+
+                        // Настройка кнопки «Случайная статья»
+                        if (randomBtn && articleUrls.length > 0) {
+                            randomBtn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const randomUrl = articleUrls[Math.floor(Math.random() * articleUrls.length)];
+                                window.location.href = randomUrl.replace('https://komorok.ru/', '');
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        if (latestContainer) latestContainer.innerHTML = '<p>Не удалось загрузить обновления.</p>';
+                        console.error('Ошибка загрузки sitemap:', err);
+                    });
+            })();
+        </script>
     </body>
 </html>
