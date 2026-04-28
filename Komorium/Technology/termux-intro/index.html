@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" href="../../../logo.png">
+    <link rel="icon" type="image/png" href="../../../logo.png">
+
+    <meta name="description" content="Termux — мощный эмулятор терминала для Android. Установка, первые шаги, обновление пакетов и доступ к памяти.">
+    <meta name="keywords" content="Termux, Android, терминал, Linux, эмулятор, установка, pkg, apt">
+    <link rel="canonical" href="https://komorok.ru/Komorium/Technology/termux-intro/">
+
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../common.css">
+    <link rel="stylesheet" href="../../komorium.css">
+    <title>Termux: введение и установка — Komorok</title>
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    <label for="menu-toggle" class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav class="sidebar">
+        <div class="sidebar-title">Меню</div>
+        <a href="../../../index.html">Главная</a>
+        <a href="../../index.html">Komorium</a>
+        <a href="../../../about.html">О проекте</a>
+        <button class="theme-toggle-btn" id="themeToggle">
+            <span class="icon">🌙</span>
+            <span>Тёмная тема</span>
+        </button>
+    </nav>
+
+    <label for="menu-toggle" class="overlay"></label>
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <main>
+        <div class="top-menu">
+            <a href="#what-is">Что это</a>
+            <a href="#install">Установка</a>
+            <a href="#first-run">Первый запуск</a>
+            <a href="#storage">Доступ к памяти</a>
+            <a href="#next">Дальше</a>
+        </div>
+
+        <h1 style="text-align: center;">📱 Termux: введение и установка</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">Часть 1. Превращаем телефон в инструмент разработчика</p>
+
+        <section id="what-is" class="content-section">
+            <h2>🤔 Что такое Termux?</h2>
+            <p>Termux — это бесплатный эмулятор терминала для Android, который устанавливает полноценную Linux-среду прямо на телефоне. Он не требует root-прав и работает как обычное приложение. С его помощью можно запускать Python, Git, Node.js, редактировать файлы и даже поднимать веб-сервер.</p>
+
+            <div class="quote-badge">
+                <strong>💡 Простыми словами:</strong> Termux превращает ваш смартфон в портативный компьютер с командной строкой, как у профессиональных разработчиков.
+            </div>
+        </section>
+
+        <section id="install" class="content-section">
+            <h2>📥 Установка</h2>
+            <p>Есть два источника для скачивания. Рекомендую F-Droid, потому что там всегда свежая версия.</p>
+            <ol>
+                <li><strong>F-Droid (рекомендуется):</strong><br>Откройте <a href="https://f-droid.org/packages/com.termux/" target="_blank">f-droid.org/packages/com.termux/</a> и скачайте APK-файл. Установите его (возможно, потребуется разрешить установку из неизвестных источников).</li>
+                <li><strong>Google Play (устаревшая версия):</strong><br>Версия в Play Store больше не обновляется, но для первого знакомства подойдёт.</li>
+            </ol>
+        </section>
+
+        <section id="first-run" class="content-section">
+            <h2>🚀 Первый запуск и базовая настройка</h2>
+            <ol>
+                <li>Откройте Termux. Вы увидите чёрный экран с мигающим курсором — это командная строка.</li>
+                <li><strong>Обновите список пакетов:</strong>
+                    <pre>pkg update</pre>
+                    На вопрос «Do you want to continue?» отвечайте <code>y</code> и Enter.
+                </li>
+                <li><strong>Обновите установленные пакеты:</strong>
+                    <pre>pkg upgrade</pre>
+                    Это установит последние версии всего, что уже есть в системе.
+                </li>
+                <li><strong>Проверьте, что всё работает:</strong>
+                    <pre>echo "Привет, Termux!"</pre>
+                    Команда должна вывести «Привет, Termux!».
+                </li>
+            </ol>
+        </section>
+
+        <section id="storage" class="content-section">
+            <h2>💾 Доступ к памяти телефона</h2>
+            <p>Чтобы Termux мог читать и записывать файлы за пределами своей «песочницы», нужно дать ему разрешение.</p>
+            <ol>
+                <li>Выполните команду:
+                    <pre>termux-setup-storage</pre>
+                </li>
+                <li>Android покажет окно с запросом доступа к файлам — нажмите «Разрешить».</li>
+                <li>После этого в домашней папке Termux появится папка <code>storage</code>, внутри которой будут:
+                    <ul>
+                        <li><code>shared</code> — внутренняя память телефона</li>
+                        <li><code>downloads</code> — папка Downloads</li>
+                        <li>возможно, <code>external-1</code> — внешняя SD-карта</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section id="next" class="content-section">
+            <h2>📚 Что дальше?</h2>
+            <p>В следующих статьях этой серии:</p>
+            <ul>
+                <li><strong>Часть 2:</strong> Установка Python и написание первого скрипта.</li>
+                <li><strong>Часть 3:</strong> Установка Git и работа с GitHub прямо с телефона.</li>
+                <li><strong>Часть 4:</strong> Проверка битых ссылок на сайте Komorok одной командой.</li>
+                <li><strong>Часть 5:</strong> Превращаем телефон в веб-сервер для тестирования сайта.</li>
+            </ul>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>© 2026 Komorok — Komorium</p>
+    </footer>
+    <script src="../../../script.js"></script>
+</body>
+</html>
