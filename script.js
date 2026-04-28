@@ -144,3 +144,68 @@
     // Инициализация на всех сетках
     document.querySelectorAll(GRID_SELECTOR).forEach(grid => setupPagination(grid));
 })();
+
+
+(function() {
+    const BATCH_SIZE = 5;
+    const state = {};
+
+    // Ручная карточка "Об авторе"
+    const aboutContainer = document.getElementById('cards-about');
+    if (aboutContainer) {
+        aboutContainer.innerHTML = `
+            <a href="../Alexander.html" class="article-card" data-title="Головачёв Александр" data-desc="Творчество">
+                <img src="../img/about.png" alt="📰" class="avatar" />
+                <div class="card-content">
+                    <span class="card-title">Головачёв Александр</span>
+                    <span class="card-desc">Творчество</span>
+                </div>
+            </a>`;
+    }
+
+    fetch('articles.json')
+        .then(res => res.json())
+        .then(articles => {
+            const groups = {};
+            articles.forEach(a => {
+                if (!groups[a.category]) groups[a.category] = [];
+                groups[a.category].push(a);
+            });
+
+            Object.entries(groups).forEach(([cat, items]) => {
+                const container = document.getElementById(`cards-${cat}`);
+                const btn = document.querySelector(`.show-more-btn[data-category="${cat}"]`);
+                if (!container) return;
+                state[cat] = 0;
+                renderBatch(items, container, btn, cat);
+            });
+        })
+        .catch(err => console.error('Ошибка загрузки articles.json', err));
+
+    function renderBatch(items, container, btn, cat) {
+        const start = state[cat];
+        const batch = items.slice(start, start + BATCH_SIZE);
+        batch.forEach(item => {
+            const imgSrc = item.image && item.image.trim() !== '' ? item.image : '../img/no-img.png';
+            const a = document.createElement('a');
+            a.href = item.url;
+            a.className = 'article-card';
+            a.setAttribute('data-title', item.title);
+            a.setAttribute('data-desc', '');
+            a.innerHTML = `
+                <img src="${imgSrc}" alt="" class="avatar">
+                <div class="card-content">
+                    <span class="card-title">${item.title}</span>
+                    <span class="card-desc"></span>
+                </div>`;
+            container.appendChild(a);
+        });
+        state[cat] += batch.length;
+        if (btn && state[cat] < items.length) {
+            btn.style.display = 'block';
+            btn.onclick = () => renderBatch(items, container, btn, cat);
+        } else if (btn) {
+            btn.style.display = 'none';
+        }
+    }
+})();
