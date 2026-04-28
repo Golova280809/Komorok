@@ -75,19 +75,18 @@ npm install -g linkinator</pre>
         </section>
 
         <section id="alias" class="content-section">
-            <h2>⚡ Создаём алиас komorok1</h2>
-            <p>Чтобы не набирать длинную команду каждый раз, добавим алиас в <code>~/.bashrc</code>:</p>
-            <pre>
-echo "alias komorok1='curl -s https://komorok.ru/sitemap.xml | grep -oP \"(?<=<loc>)[^<]+\" | xargs linkinator --verbosity error'" >> ~/.bashrc
+    <h2>⚡ Создаём алиас komorok1</h2>
+    <p>Чтобы не набирать длинную команду каждый раз, добавим алиас в <code>~/.bashrc</code>:</p>
+    <pre>echo "alias komorok1='curl -s https://komorok.ru/sitemap.xml | grep -oP \"(?<=<loc>)[^<]+\" | xargs linkinator --verbosity error'" >> ~/.bashrc
 source ~/.bashrc</pre>
-            <p><strong>Что делает эта команда?</strong></p>
-            <ol>
-                <li><code>curl -s https://komorok.ru/sitemap.xml</code> — загружает карту сайта.</li>
-                <li><code>grep -oP "(?<=<loc>)[^<]+"</code> — извлекает все URL‑адреса из sitemap.</li>
-                <li><code>xargs linkinator --verbosity error</code> — передаёт каждый URL в linkinator, который проверяет работоспособность ссылок и выводит только ошибки (404, 503, …).</li>
-            </ol>
-            <p>Теперь достаточно ввести <code>komorok1</code>, чтобы проверить весь сайт.</p>
-        </section>
+    <p><strong>Что делает эта команда?</strong></p>
+    <ol>
+        <li><code>curl -s https://komorok.ru/sitemap.xml</code> — загружает карту сайта.</li>
+        <li><code>grep -oP "(?<=<loc>)[^<]+"</code> — извлекает все URL‑адреса из sitemap.</li>
+        <li><code>xargs linkinator --verbosity error</code> — передаёт каждый URL в linkinator, который проверяет работоспособность ссылок и выводит только ошибки (404, 503, …).</li>
+    </ol>
+    <p>Теперь достаточно ввести <code>komorok1</code>, чтобы проверить весь сайт.</p>
+</section>
 
         <section id="run" class="content-section">
             <h2>▶️ Запуск</h2>
