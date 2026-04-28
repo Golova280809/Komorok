@@ -425,6 +425,11 @@ img {
     height: auto;
 }
 
+/* Скрытие карточек для пагинации */
+.article-card.card-hidden {
+    display: none !important;
+}
+
 /* Адаптивность для энциклопедии */
 @media (max-width: 600px) {
     .categories {
