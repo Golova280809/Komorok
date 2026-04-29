@@ -176,29 +176,27 @@
 
 // === ПАГИНАЦИЯ ПОДРАЗДЕЛОВ (кнопка "Показать ещё подразделы") ===
 (function() {
-    const SECTIONS_SELECTOR = '.category-section'; // секции "География", "Технологии"
+    const SECTIONS_SELECTOR = '.category-section';
     const SUBCAT_SELECTOR = '.subcategory';
     const VISIBLE_SUBCATS = 5;
+    const HIDDEN_CLASS = 'subcat-hidden'; // отдельный класс для скрытых подразделов
 
     document.querySelectorAll(SECTIONS_SELECTOR).forEach(section => {
         const subcats = section.querySelectorAll(SUBCAT_SELECTOR);
         if (subcats.length <= VISIBLE_SUBCATS) return;
 
-        // Скрываем все подразделы, начиная с VISIBLE_SUBCATS
+        // Скрываем лишние подразделы
         for (let i = VISIBLE_SUBCATS; i < subcats.length; i++) {
-            subcats[i].classList.add('hidden-subcat');
+            subcats[i].classList.add(HIDDEN_CLASS);
         }
 
-        // Создаём кнопку
         const btn = document.createElement('button');
         btn.textContent = 'Показать ещё подразделы';
         btn.className = 'show-more-btn';
-        // Вставляем кнопку после последнего подраздела (перед закрытием секции)
-        const lastSubcat = subcats[subcats.length - 1];
-        lastSubcat.insertAdjacentElement('afterend', btn);
+        subcats[subcats.length - 1].insertAdjacentElement('afterend', btn);
 
         btn.addEventListener('click', () => {
-            subcats.forEach(subcat => subcat.classList.remove('hidden-subcat'));
+            subcats.forEach(subcat => subcat.classList.remove(HIDDEN_CLASS));
             btn.remove();
         });
     });
