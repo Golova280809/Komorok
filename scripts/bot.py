@@ -11,7 +11,7 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
 # Токен бота из секретов GitHub Actions
-TOKEN = os.environ.get("BOT_TOKEN")
+TOKEN = os.environ.get("8426894475:AAGqDRFvlzJJih1g7ld3x7lfe7gzmHyVkPU")
 if not TOKEN:
     print("❌ Не указан BOT_TOKEN. Проверьте secrets в GitHub Actions.")
     sys.exit(1)
