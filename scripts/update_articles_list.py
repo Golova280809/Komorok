@@ -52,13 +52,13 @@ def get_title_and_date(html_file):
     return title, date
 
 def find_image(rel_path, existing_image):
-    # Если уже задано вручную и файл существует – сохраняем
-    if existing_image and os.path.isfile(existing_image):
+    # Проверяем существование ранее сохранённого изображения
+    if existing_image and os.path.isfile(os.path.join(ROOT, existing_image)):
         return existing_image
 
     basename = os.path.basename(rel_path)          # например "html-course"
 
-    # 1. avatar.png в папке самой статьи -> относительный путь от Komorium/
+    # 1. avatar.png в папке самой статьи
     avatar_path = os.path.join(ROOT, rel_path, 'avatar.png')
     if os.path.isfile(avatar_path):
         return f"{rel_path}/avatar.png"
