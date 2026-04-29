@@ -3,8 +3,12 @@ import os
 import re
 from datetime import datetime
 
-ROOT = 'Komorium'
-IMAGES_DIR = 'img'          # общая папка с изображениями в корне проекта
+# Определяем корень репозитория: на уровень выше папки scripts/
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+
+ROOT = os.path.join(REPO_ROOT, 'Komorium')         # папка статей
+IMAGES_DIR = os.path.join(REPO_ROOT, 'img')        # папка с общими изображениями
 
 CATEGORY_MAP = {
     'China': 'countries',
@@ -54,15 +58,15 @@ def find_image(rel_path, existing_image):
 
     basename = os.path.basename(rel_path)          # например "html-course"
 
-    # 1. avatar.png в папке самой статьи
+    # 1. avatar.png в папке самой статьи -> относительный путь от Komorium/
     avatar_path = os.path.join(ROOT, rel_path, 'avatar.png')
     if os.path.isfile(avatar_path):
         return f"{rel_path}/avatar.png"
 
-    # 2. Точное совпадение в img/ (например, img/html-course.png)
+    # 2. Точное совпадение в img/ -> путь ../img/файл.png
     exact_match = os.path.join(IMAGES_DIR, f"{basename}.png")
     if os.path.isfile(exact_match):
-        return f"{IMAGES_DIR}/{basename}.png"
+        return f"../img/{basename}.png"
 
     # 3. Частичное совпадение (без учёта регистра)
     if os.path.isdir(IMAGES_DIR):
@@ -71,14 +75,15 @@ def find_image(rel_path, existing_image):
                 continue
             stem = fname[:-4].lower()          # имя файла без расширения
             if stem in basename.lower() or basename.lower() in stem:
-                return f"{IMAGES_DIR}/{fname}"
+                return f"../img/{fname}"
 
     return ""
 
 def load_existing_articles():
-    if not os.path.isfile('Komorium/articles.json'):
+    articles_path = os.path.join(REPO_ROOT, 'Komorium', 'articles.json')
+    if not os.path.isfile(articles_path):
         return {}
-    with open('Komorium/articles.json', 'r', encoding='utf-8') as f:
+    with open(articles_path, 'r', encoding='utf-8') as f:
         return {a['url']: a for a in json.load(f)}
 
 def find_articles():
@@ -103,6 +108,7 @@ def find_articles():
 
 if __name__ == '__main__':
     articles = find_articles()
-    with open('Komorium/articles.json', 'w', encoding='utf-8') as f:
+    out_path = os.path.join(REPO_ROOT, 'Komorium', 'articles.json')
+    with open(out_path, 'w', encoding='utf-8') as f:
         json.dump(articles, f, ensure_ascii=False, indent=2)
     print(f"Обновлено статей: {len(articles)}")
