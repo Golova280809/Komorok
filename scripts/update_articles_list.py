@@ -4,6 +4,7 @@ import re
 from datetime import datetime
 
 ROOT = 'Komorium'
+IMAGES_DIR = 'img'  # общая папка с изображениями в корне проекта
 
 CATEGORY_MAP = {
     'China': 'countries',
@@ -46,21 +47,58 @@ def get_title_and_date(html_file):
         pass
     return title, date
 
+def find_image(rel_path, existing_image):
+    """
+    Ищет изображение для статьи.
+    1. Если existing_image не пусто и файл существует, возвращаем его без изменений.
+    2. Иначе ищем avatar.png в папке статьи.
+    3. Если нет – ищем в общей папке img/ файл, имя которого соответствует последней части rel_path.
+       Например, для 'Technology/termux-intro' будет искать 'img/termux-intro.png'.
+    4. Если ничего не найдено, возвращаем пустую строку.
+    """
+    # Если уже задано вручную и файл существует – сохраняем
+    if existing_image and os.path.isfile(existing_image):
+        return existing_image
+
+    # 1. avatar.png в папке статьи
+    avatar_path = os.path.join(ROOT, rel_path, 'avatar.png')
+    if os.path.isfile(avatar_path):
+        return f"{rel_path}/avatar.png"
+
+    # 2. Поиск в общей папке img/ по имени подпапки статьи
+    folder_name = os.path.basename(rel_path)  # например, 'termux-intro'
+    candidate = os.path.join(IMAGES_DIR, f"{folder_name}.png")
+    if os.path.isfile(candidate):
+        return f"{IMAGES_DIR}/{folder_name}.png"
+
+    # 3. Альтернативные расширения можно добавить позже
+    return ""
+
+def load_existing_articles():
+    """Загружает существующий articles.json, чтобы сохранить вручную установленные изображения."""
+    if not os.path.isfile('Komorium/articles.json'):
+        return {}
+    with open('Komorium/articles.json', 'r', encoding='utf-8') as f:
+        return {a['url']: a for a in json.load(f)}
+
 def find_articles():
+    existing = load_existing_articles()
     articles = []
     for dirpath, dirnames, filenames in os.walk(ROOT):
         if 'index.html' in filenames and dirpath != ROOT:
             rel_path = os.path.relpath(dirpath, ROOT)
             title, date = get_title_and_date(os.path.join(dirpath, 'index.html'))
             category = get_category(rel_path)
-            avatar_path = os.path.join(dirpath, 'avatar.png')
-            image_url = f"{rel_path}/avatar.png" if os.path.exists(avatar_path) else ""
+            url = f"{rel_path}/"
+            # Сохраняем предыдущее изображение, если оно было задано вручную
+            prev_image = existing.get(url, {}).get('image', '')
+            image = find_image(rel_path, prev_image)
             articles.append({
                 'title': title,
-                'url': f"{rel_path}/",
+                'url': url,
                 'category': category,
                 'date': date,
-                'image': image_url
+                'image': image
             })
     return articles
 
