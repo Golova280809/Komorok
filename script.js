@@ -173,3 +173,33 @@
         }
     }
 })();
+
+// === ПАГИНАЦИЯ ПОДРАЗДЕЛОВ (кнопка "Показать ещё подразделы") ===
+(function() {
+    const SECTIONS_SELECTOR = '.category-section'; // секции "География", "Технологии"
+    const SUBCAT_SELECTOR = '.subcategory';
+    const VISIBLE_SUBCATS = 5;
+
+    document.querySelectorAll(SECTIONS_SELECTOR).forEach(section => {
+        const subcats = section.querySelectorAll(SUBCAT_SELECTOR);
+        if (subcats.length <= VISIBLE_SUBCATS) return;
+
+        // Скрываем все подразделы, начиная с VISIBLE_SUBCATS
+        for (let i = VISIBLE_SUBCATS; i < subcats.length; i++) {
+            subcats[i].classList.add('hidden-subcat');
+        }
+
+        // Создаём кнопку
+        const btn = document.createElement('button');
+        btn.textContent = 'Показать ещё подразделы';
+        btn.className = 'show-more-btn';
+        // Вставляем кнопку после последнего подраздела (перед закрытием секции)
+        const lastSubcat = subcats[subcats.length - 1];
+        lastSubcat.insertAdjacentElement('afterend', btn);
+
+        btn.addEventListener('click', () => {
+            subcats.forEach(subcat => subcat.classList.remove('hidden-subcat'));
+            btn.remove();
+        });
+    });
+})();
