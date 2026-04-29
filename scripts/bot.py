@@ -33,7 +33,7 @@ FEEDBACK_FILE = "feedbacks.txt"
 # Если хочешь поменять пароль, замени этот хеш на хеш нового пароля.
 # Вычислить новый хеш можно командой:
 #   echo -n "новый_пароль" | sha256sum
-ADMIN_PASSWORD_HASH = hashlib.sha256("коморок2026".encode()).hexdigest()
+ADMIN_PASSWORD_HASH = hashlib.sha256("882efdb91283affb94dcaa1d89a712cab1acc0c29a4ca92c7d84d20a691dfa3c".encode()).hexdigest()
 
 # --- git helper ---
 def git_commit_and_push(files):
