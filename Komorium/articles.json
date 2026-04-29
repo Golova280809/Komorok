@@ -3,98 +3,98 @@
     "title": "📱 Termux: введение и установка",
     "url": "Technology/termux-intro/",
     "category": "termux",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "🔍 Termux: Проверка битых ссылок",
     "url": "Technology/termux-linkcheck/",
     "category": "termux",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "🌐 Termux: Веб-сервер на телефоне",
     "url": "Technology/termux-server/",
     "category": "termux",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "🐍 Termux: Python и первый скрипт",
     "url": "Technology/termux-python/",
     "category": "termux",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "🔀 Termux: Git и работа с репозиторием",
     "url": "Technology/termux-git/",
     "category": "termux",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "🐍 Основы Python",
     "url": "Technology/python-course/",
     "category": "languages",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "📖 Termux: азбука командной строки",
     "url": "Technology/termux-abc/",
     "category": "termux",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "🌐 Полный курс HTML",
     "url": "Technology/html-course/",
     "category": "languages",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "🎨 Полный курс CSS",
     "url": "Technology/css-course/",
     "category": "languages",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "🇨🇳 Китай",
     "url": "China/",
     "category": "countries",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "🎎 Культура Китая",
     "url": "China/culture/",
     "category": "countries",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "Базаново",
     "url": "bazanovo/",
     "category": "villages",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "🗣️ Валентина Рыбкина",
     "url": "bazanovo/people/Valentina-Rybkina/",
     "category": "voices",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   },
   {
     "title": "Гуньгунжда",
     "url": "bazanovo/Gungunzhda/",
     "category": "nature",
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "image": ""
   }
 ]
