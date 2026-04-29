@@ -429,6 +429,9 @@ img {
 .article-card.card-hidden {
     display: none !important;
 }
+.subcat-hidden {
+    display: none !important;
+}
 
 /* Кнопка "Показать ещё" */
 .show-more-btn {
