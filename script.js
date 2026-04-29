@@ -26,27 +26,23 @@
         });
     }
 
-    // === ПОИСК (только если элементы есть) ===
+    // === ПОИСК ===
     const searchInput = document.getElementById("searchInput");
     const clearBtn = document.getElementById("clearSearch");
     const noResultsMsg = document.getElementById("noResultsMessage");
-
     if (searchInput && clearBtn && noResultsMsg) {
         const allCards = Array.from(document.querySelectorAll(".article-card"));
         const subcategories = Array.from(document.querySelectorAll(".subcategory"));
         const standaloneSection = document.querySelector(".standalone-card");
-
         function filterCards() {
             const query = searchInput.value.trim().toLowerCase();
             clearBtn.classList.toggle("visible", query.length > 0);
-
             allCards.forEach((card) => {
                 const title = (card.getAttribute("data-title") || "").toLowerCase();
                 const desc = (card.getAttribute("data-desc") || "").toLowerCase();
                 const matches = query === "" || title.includes(query) || desc.includes(query);
                 card.classList.toggle("hidden-by-search", !matches);
             });
-
             subcategories.forEach((subcat) => {
                 const visibleCards = subcat.querySelectorAll(".article-card:not(.hidden-by-search)").length;
                 subcat.classList.toggle("hidden-subcat", visibleCards === 0);
@@ -54,17 +50,12 @@
                     subcat.classList.remove("collapsed");
                 }
             });
-
             if (standaloneSection) {
-                const visibleStandalone = standaloneSection.querySelectorAll(
-                    ".article-card:not(.hidden-by-search)",
-                ).length;
+                const visibleStandalone = standaloneSection.querySelectorAll(".article-card:not(.hidden-by-search)").length;
                 standaloneSection.style.display = visibleStandalone === 0 ? "none" : "";
             }
-
             const totalVisible = allCards.filter((c) => !c.classList.contains("hidden-by-search")).length;
             noResultsMsg.classList.toggle("show", query !== "" && totalVisible === 0);
-
             if (query === "") {
                 subcategories.forEach((subcat) => {
                     subcat.classList.add("collapsed");
@@ -73,7 +64,6 @@
                 if (standaloneSection) standaloneSection.style.display = "";
             }
         }
-
         searchInput.addEventListener("input", filterCards);
         clearBtn.addEventListener("click", () => {
             searchInput.value = "";
@@ -89,14 +79,12 @@
         const body = document.body;
         const iconSpan = themeToggle.querySelector(".icon");
         const textSpan = themeToggle.querySelector("span:last-child");
-
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme === "dark") {
             body.classList.add("dark-theme");
             if (iconSpan) iconSpan.textContent = "☀️";
             if (textSpan) textSpan.textContent = "Светлая тема";
         }
-
         themeToggle.addEventListener("click", () => {
             body.classList.toggle("dark-theme");
             const isDark = body.classList.contains("dark-theme");
@@ -112,7 +100,6 @@
     const BATCH_SIZE = 5;
     const state = {};
 
-    // Ручная карточка "Об авторе"
     const aboutContainer = document.getElementById('cards-about');
     if (aboutContainer) {
         aboutContainer.innerHTML = `
@@ -133,18 +120,16 @@
                 if (!groups[a.category]) groups[a.category] = [];
                 groups[a.category].push(a);
             });
-
             Object.entries(groups).forEach(([cat, items]) => {
                 const container = document.getElementById(`cards-${cat}`);
-                const btn = document.querySelector(`.show-more-btn[data-category="${cat}"]`);
                 if (!container) return;
                 state[cat] = 0;
-                renderBatch(items, container, btn, cat);
+                renderBatch(items, container, cat);
             });
         })
         .catch(err => console.error('Ошибка загрузки articles.json', err));
 
-    function renderBatch(items, container, btn, cat) {
+    function renderBatch(items, container, cat) {
         const start = state[cat];
         const batch = items.slice(start, start + BATCH_SIZE);
         batch.forEach(item => {
@@ -163,13 +148,18 @@
             container.appendChild(a);
         });
         state[cat] += batch.length;
-        if (btn) {
-            if (state[cat] < items.length) {
-                btn.style.display = 'block';
-                btn.onclick = () => renderBatch(items, container, btn, cat);
-            } else {
-                btn.style.display = 'none';
-            }
+
+        // Удаляем старую кнопку внутри этого контейнера, если она была
+        const oldBtn = container.querySelector('.show-more-btn');
+        if (oldBtn) oldBtn.remove();
+
+        // Если есть ещё неотображённые статьи, создаём новую кнопку внутри контейнера
+        if (state[cat] < items.length) {
+            const btn = document.createElement('button');
+            btn.textContent = 'Показать ещё';
+            btn.className = 'show-more-btn';
+            btn.addEventListener('click', () => renderBatch(items, container, cat));
+            container.appendChild(btn);
         }
     }
 })();
@@ -179,13 +169,12 @@
     const SECTIONS_SELECTOR = '.category-section';
     const SUBCAT_SELECTOR = '.subcategory';
     const VISIBLE_SUBCATS = 5;
-    const HIDDEN_CLASS = 'subcat-hidden'; // отдельный класс для скрытых подразделов
+    const HIDDEN_CLASS = 'subcat-hidden';
 
     document.querySelectorAll(SECTIONS_SELECTOR).forEach(section => {
         const subcats = section.querySelectorAll(SUBCAT_SELECTOR);
         if (subcats.length <= VISIBLE_SUBCATS) return;
 
-        // Скрываем лишние подразделы
         for (let i = VISIBLE_SUBCATS; i < subcats.length; i++) {
             subcats[i].classList.add(HIDDEN_CLASS);
         }
