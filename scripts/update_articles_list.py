@@ -4,7 +4,7 @@ import re
 from datetime import datetime
 
 ROOT = 'Komorium'
-IMAGES_DIR = 'img'  # общая папка с изображениями в корне проекта
+IMAGES_DIR = 'img'          # общая папка с изображениями в корне проекта
 
 CATEGORY_MAP = {
     'China': 'countries',
@@ -48,34 +48,34 @@ def get_title_and_date(html_file):
     return title, date
 
 def find_image(rel_path, existing_image):
-    """
-    Ищет изображение для статьи.
-    1. Если existing_image не пусто и файл существует, возвращаем его без изменений.
-    2. Иначе ищем avatar.png в папке статьи.
-    3. Если нет – ищем в общей папке img/ файл, имя которого соответствует последней части rel_path.
-       Например, для 'Technology/termux-intro' будет искать 'img/termux-intro.png'.
-    4. Если ничего не найдено, возвращаем пустую строку.
-    """
     # Если уже задано вручную и файл существует – сохраняем
     if existing_image and os.path.isfile(existing_image):
         return existing_image
 
-    # 1. avatar.png в папке статьи
+    basename = os.path.basename(rel_path)          # например "html-course"
+
+    # 1. avatar.png в папке самой статьи
     avatar_path = os.path.join(ROOT, rel_path, 'avatar.png')
     if os.path.isfile(avatar_path):
         return f"{rel_path}/avatar.png"
 
-    # 2. Поиск в общей папке img/ по имени подпапки статьи
-    folder_name = os.path.basename(rel_path)  # например, 'termux-intro'
-    candidate = os.path.join(IMAGES_DIR, f"{folder_name}.png")
-    if os.path.isfile(candidate):
-        return f"{IMAGES_DIR}/{folder_name}.png"
+    # 2. Точное совпадение в img/ (например, img/html-course.png)
+    exact_match = os.path.join(IMAGES_DIR, f"{basename}.png")
+    if os.path.isfile(exact_match):
+        return f"{IMAGES_DIR}/{basename}.png"
 
-    # 3. Альтернативные расширения можно добавить позже
+    # 3. Частичное совпадение (без учёта регистра)
+    if os.path.isdir(IMAGES_DIR):
+        for fname in os.listdir(IMAGES_DIR):
+            if not fname.lower().endswith('.png'):
+                continue
+            stem = fname[:-4].lower()          # имя файла без расширения
+            if stem in basename.lower() or basename.lower() in stem:
+                return f"{IMAGES_DIR}/{fname}"
+
     return ""
 
 def load_existing_articles():
-    """Загружает существующий articles.json, чтобы сохранить вручную установленные изображения."""
     if not os.path.isfile('Komorium/articles.json'):
         return {}
     with open('Komorium/articles.json', 'r', encoding='utf-8') as f:
@@ -90,7 +90,6 @@ def find_articles():
             title, date = get_title_and_date(os.path.join(dirpath, 'index.html'))
             category = get_category(rel_path)
             url = f"{rel_path}/"
-            # Сохраняем предыдущее изображение, если оно было задано вручную
             prev_image = existing.get(url, {}).get('image', '')
             image = find_image(rel_path, prev_image)
             articles.append({
