@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""Telegram-бот Komorok с пошаговым вводом ответа на конкурс."""
-import os, sys, requests, json, base64, subprocess
+import os, sys, requests, json, base64, subprocess, hashlib
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application,
@@ -12,8 +11,10 @@ from telegram.ext import (
     ContextTypes,
 )
 
-# Состояния диалога
+# Состояния диалога (конкурс)
 ASK_NAME, ASK_SURNAME, ASK_ANSWER = range(3)
+# Состояние для /admin (запрос пароля)
+ADMIN_PASSWORD = 100
 
 # --- настройки ---
 TOKEN = os.environ.get("BOT_TOKEN")
@@ -26,6 +27,13 @@ TIMEOUT = 5
 POLLING_TIMEOUT = 45
 CONTEST_FILE = "contest.json"
 FEEDBACK_FILE = "feedbacks.txt"
+
+# --- ХЕШ пароля для /admin ---
+# Это хеш от строки "коморок2026"
+# Если хочешь поменять пароль, замени этот хеш на хеш нового пароля.
+# Вычислить новый хеш можно командой:
+#   echo -n "новый_пароль" | sha256sum
+ADMIN_PASSWORD_HASH = hashlib.sha256("коморок2026".encode()).hexdigest()
 
 # --- git helper ---
 def git_commit_and_push(files):
@@ -51,6 +59,13 @@ def encrypt_data(name, surname, answer):
     raw = f"{name}|{surname}|{answer}"
     return base64.b64encode(raw.encode("utf-8")).decode("utf-8")
 
+def decrypt_data(encoded):
+    raw = base64.b64decode(encoded.encode("utf-8")).decode("utf-8")
+    parts = raw.split("|")
+    if len(parts) == 3:
+        return parts[0], parts[1], parts[2]
+    return None, None, None
+
 def load_contest():
     if not os.path.isfile(CONTEST_FILE):
         return {}
@@ -69,7 +84,7 @@ def check_site(url):
     except:
         return False
 
-# --- обработчики меню ---
+# --- меню ---
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [InlineKeyboardButton("🟢 Проверить сайт", callback_data="check")],
@@ -141,6 +156,32 @@ async def ask_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("✅ Ваш ответ принят! Спасибо за участие в конкурсе.")
     return ConversationHandler.END
 
+# --- команда /admin (защищена хешем) ---
+async def admin_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("🔒 Введите пароль администратора:")
+    return ADMIN_PASSWORD
+
+async def admin_check_password(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    entered = update.message.text.strip()
+    entered_hash = hashlib.sha256(entered.encode()).hexdigest()
+
+    if entered_hash != ADMIN_PASSWORD_HASH:
+        await update.message.reply_text("❌ Неверный пароль.")
+        return ConversationHandler.END
+
+    # Пароль верный – расшифровываем и показываем ответы
+    data = load_contest()
+    if not data:
+        await update.message.reply_text("Пока нет ответов.")
+        return ConversationHandler.END
+
+    lines = ["📋 Ответы участников:\n"]
+    for uid, enc in data.items():
+        name, surname, answer = decrypt_data(enc)
+        lines.append(f"• {name} {surname}: {answer} ключей")
+    await update.message.reply_text("\n".join(lines))
+    return ConversationHandler.END
+
 # --- отзывы (всё остальное) ---
 async def handle_feedback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
@@ -155,7 +196,7 @@ def main():
     app = Application.builder().token(TOKEN).build()
 
     # ConversationHandler для конкурса
-    conv_handler = ConversationHandler(
+    contest_conv = ConversationHandler(
         entry_points=[CallbackQueryHandler(button_handler, pattern="^contest$")],
         states={
             ASK_NAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, ask_name)],
@@ -165,12 +206,22 @@ def main():
         fallbacks=[],
     )
 
+    # ConversationHandler для /admin
+    admin_conv = ConversationHandler(
+        entry_points=[CommandHandler("admin", admin_start)],
+        states={
+            ADMIN_PASSWORD: [MessageHandler(filters.TEXT & ~filters.COMMAND, admin_check_password)],
+        },
+        fallbacks=[],
+    )
+
     app.add_handler(CommandHandler("start", start))
-    app.add_handler(conv_handler)
+    app.add_handler(contest_conv)
+    app.add_handler(admin_conv)
     app.add_handler(CallbackQueryHandler(button_handler, pattern="^(check|feedback)$"))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_feedback))
 
-    print("🤖 Бот Komorok с диалогом активирован. Жду сообщений…")
+    print("🤖 Бот Komorok (с /admin) активирован. Жду сообщений…")
     app.run_polling(timeout=POLLING_TIMEOUT)
     print("⏹️ Сеанс завершён.")
 
