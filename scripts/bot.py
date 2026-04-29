@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Telegram-бот Komorok с /admin, защищённым двойным SHA-256."""
 import os, sys, requests, json, base64, subprocess, hashlib
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
@@ -11,9 +12,8 @@ from telegram.ext import (
     ContextTypes,
 )
 
-# Состояния диалога (конкурс)
+# Состояния
 ASK_NAME, ASK_SURNAME, ASK_ANSWER = range(3)
-# Состояние для /admin (запрос пароля)
 ADMIN_PASSWORD = 100
 
 # --- настройки ---
@@ -28,12 +28,9 @@ POLLING_TIMEOUT = 45
 CONTEST_FILE = "contest.json"
 FEEDBACK_FILE = "feedbacks.txt"
 
-# --- ХЕШ пароля для /admin ---
-# Это хеш от строки "коморок2026"
-# Если хочешь поменять пароль, замени этот хеш на хеш нового пароля.
-# Вычислить новый хеш можно командой:
-#   echo -n "новый_пароль" | sha256sum
-ADMIN_PASSWORD_HASH = hashlib.sha256("bccc3def74f0e9499ee0fbe50014f8503c1539c74fb69d623f976dd3fef6c5ff".encode()).hexdigest()
+# --- ДВОЙНОЙ ХЕШ пароля ---
+# Вставь сюда свой двойной хеш, полученный командой из Termux
+ADMIN_DOUBLE_HASH = "0ef9b73656836c039d59bc254ed6227f4bf4ea8e8fd10977bf361a304d46e9b5"
 
 # --- git helper ---
 def git_commit_and_push(files):
@@ -156,20 +153,21 @@ async def ask_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("✅ Ваш ответ принят! Спасибо за участие в конкурсе.")
     return ConversationHandler.END
 
-# --- команда /admin (защищена хешем) ---
+# --- команда /admin (двойной хеш) ---
 async def admin_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🔒 Введите пароль администратора:")
     return ADMIN_PASSWORD
 
 async def admin_check_password(update: Update, context: ContextTypes.DEFAULT_TYPE):
     entered = update.message.text.strip()
-    entered_hash = hashlib.sha256(entered.encode()).hexdigest()
+    # двойное хеширование
+    first_hash = hashlib.sha256(entered.encode()).hexdigest()
+    second_hash = hashlib.sha256(first_hash.encode()).hexdigest()
 
-    if entered_hash != ADMIN_PASSWORD_HASH:
+    if second_hash != ADMIN_DOUBLE_HASH:
         await update.message.reply_text("❌ Неверный пароль.")
         return ConversationHandler.END
 
-    # Пароль верный – расшифровываем и показываем ответы
     data = load_contest()
     if not data:
         await update.message.reply_text("Пока нет ответов.")
@@ -182,7 +180,7 @@ async def admin_check_password(update: Update, context: ContextTypes.DEFAULT_TYP
     await update.message.reply_text("\n".join(lines))
     return ConversationHandler.END
 
-# --- отзывы (всё остальное) ---
+# --- отзывы ---
 async def handle_feedback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     text = update.message.text.strip()
@@ -195,7 +193,6 @@ async def handle_feedback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def main():
     app = Application.builder().token(TOKEN).build()
 
-    # ConversationHandler для конкурса
     contest_conv = ConversationHandler(
         entry_points=[CallbackQueryHandler(button_handler, pattern="^contest$")],
         states={
@@ -206,7 +203,6 @@ def main():
         fallbacks=[],
     )
 
-    # ConversationHandler для /admin
     admin_conv = ConversationHandler(
         entry_points=[CommandHandler("admin", admin_start)],
         states={
@@ -221,7 +217,7 @@ def main():
     app.add_handler(CallbackQueryHandler(button_handler, pattern="^(check|feedback)$"))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_feedback))
 
-    print("🤖 Бот Komorok (с /admin) активирован. Жду сообщений…")
+    print("🤖 Бот Komorok (двойной хеш) активирован. Жду сообщений…")
     app.run_polling(timeout=POLLING_TIMEOUT)
     print("⏹️ Сеанс завершён.")
 
