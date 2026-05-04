@@ -3,98 +3,105 @@
     "title": "📱 Termux: введение и установка",
     "url": "Technology/termux-intro/",
     "category": "termux",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": "../img/termux.png"
   },
   {
     "title": "🔍 Termux: Проверка битых ссылок",
     "url": "Technology/termux-linkcheck/",
     "category": "termux",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": "../img/termux.png"
   },
   {
     "title": "🌐 Termux: Веб-сервер на телефоне",
     "url": "Technology/termux-server/",
     "category": "termux",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": "../img/termux.png"
   },
   {
     "title": "🐍 Termux: Python и первый скрипт",
     "url": "Technology/termux-python/",
     "category": "termux",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": "../img/termux.png"
   },
   {
     "title": "🔀 Termux: Git и работа с репозиторием",
     "url": "Technology/termux-git/",
     "category": "termux",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": "../img/termux.png"
   },
   {
     "title": "🐍 Основы Python",
     "url": "Technology/python-course/",
     "category": "languages",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": "../img/python.png"
   },
   {
     "title": "📖 Termux: азбука командной строки",
     "url": "Technology/termux-abc/",
     "category": "termux",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": "../img/termux.png"
   },
   {
     "title": "🌐 Полный курс HTML",
     "url": "Technology/html-course/",
     "category": "languages",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": "../img/html.png"
   },
   {
     "title": "🎨 Полный курс CSS",
     "url": "Technology/css-course/",
     "category": "languages",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": "../img/css.png"
   },
   {
     "title": "🇨🇳 Китай",
     "url": "China/",
     "category": "countries",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": "../img/china.png"
   },
   {
     "title": "🎎 Культура Китая",
     "url": "China/culture/",
     "category": "countries",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": "../img/china-culture-1.png"
+  },
+  {
+    "title": "👑 Цинь Шихуанди: первый император",
+    "url": "China/history/qin-shi-huang/",
+    "category": "countries",
+    "date": "2026-05-04",
+    "image": ""
   },
   {
     "title": "Базаново",
     "url": "bazanovo/",
     "category": "villages",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": ""
   },
   {
     "title": "🗣️ Валентина Рыбкина",
     "url": "bazanovo/people/Valentina-Rybkina/",
     "category": "voices",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": ""
   },
   {
     "title": "Гуньгунжда",
     "url": "bazanovo/Gungunzhda/",
     "category": "nature",
-    "date": "2026-05-03",
+    "date": "2026-05-04",
     "image": ""
   }
 ]
