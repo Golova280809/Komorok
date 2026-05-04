@@ -1,0 +1,29 @@
+name: Конвертация изображений в WebP
+
+on:
+  push:
+    paths:
+      - 'img/*.png'
+      - 'img/*.jpg'
+      - 'img/*.jpeg'
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Установить Pillow
+        run: pip install Pillow
+      - name: Конвертировать PNG/JPG в WebP
+        run: python scripts/convert_to_webp.py
+      - name: Удалить старые PNG/JPG (опционально)
+        run: rm -f img/*.png img/*.jpg img/*.jpeg
+      - name: Коммит и пуш
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add img/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Автоконвертация в WebP" && git push)
