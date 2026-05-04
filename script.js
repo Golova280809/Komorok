@@ -30,19 +30,25 @@
     const searchInput = document.getElementById("searchInput");
     const clearBtn = document.getElementById("clearSearch");
     const noResultsMsg = document.getElementById("noResultsMessage");
+
     if (searchInput && clearBtn && noResultsMsg) {
-        const allCards = Array.from(document.querySelectorAll(".article-card"));
         const subcategories = Array.from(document.querySelectorAll(".subcategory"));
         const standaloneSection = document.querySelector(".standalone-card");
+
         function filterCards() {
             const query = searchInput.value.trim().toLowerCase();
             clearBtn.classList.toggle("visible", query.length > 0);
+
+            // каждый раз собираем актуальный список карточек (включая динамические)
+            const allCards = Array.from(document.querySelectorAll(".article-card"));
+
             allCards.forEach((card) => {
                 const title = (card.getAttribute("data-title") || "").toLowerCase();
                 const desc = (card.getAttribute("data-desc") || "").toLowerCase();
                 const matches = query === "" || title.includes(query) || desc.includes(query);
                 card.classList.toggle("hidden-by-search", !matches);
             });
+
             subcategories.forEach((subcat) => {
                 const visibleCards = subcat.querySelectorAll(".article-card:not(.hidden-by-search)").length;
                 subcat.classList.toggle("hidden-subcat", visibleCards === 0);
@@ -50,12 +56,15 @@
                     subcat.classList.remove("collapsed");
                 }
             });
+
             if (standaloneSection) {
                 const visibleStandalone = standaloneSection.querySelectorAll(".article-card:not(.hidden-by-search)").length;
                 standaloneSection.style.display = visibleStandalone === 0 ? "none" : "";
             }
+
             const totalVisible = allCards.filter((c) => !c.classList.contains("hidden-by-search")).length;
             noResultsMsg.classList.toggle("show", query !== "" && totalVisible === 0);
+
             if (query === "") {
                 subcategories.forEach((subcat) => {
                     subcat.classList.add("collapsed");
@@ -64,6 +73,7 @@
                 if (standaloneSection) standaloneSection.style.display = "";
             }
         }
+
         searchInput.addEventListener("input", filterCards);
         clearBtn.addEventListener("click", () => {
             searchInput.value = "";
