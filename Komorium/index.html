@@ -82,104 +82,34 @@
         <section id="geography" class="category-section">
             <h2>🌍 География</h2>
 
-            <!-- Подраздел: Страны -->
+            <!-- Подраздел: Страны (общая карточка Китая) -->
             <div class="subcategory collapsed" id="subcat-countries">
                 <div class="subcategory-header">
                     <h3>Страны</h3>
                     <button class="toggle-subcat" data-target="subcat-countries"><span class="arrow">▼</span></button>
                 </div>
-                <div class="articles-grid">
-                    <a href="China/index.html" class="article-card" data-title="Китай" data-desc="География, население, экономика">
-                        <img src="../img/china.png" alt="🇨🇳" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Китай</span>
-                            <span class="card-desc">География, население, экономика</span>
-                        </div>
-                    </a>
-                </div>
+                <div class="articles-grid" id="cards-countries"></div>
+                <button class="show-more-btn" data-category="countries" style="display:none;">Показать ещё</button>
+            </div>
 
-                <!-- Под-подраздел: Культура Китая -->
-                <div class="subcategory collapsed" id="subcat-china-culture">
-                    <div class="subcategory-header">
-                        <h3 style="font-size: 1rem; margin-left: 1rem;">🎎 Культура Китая</h3>
-                        <button class="toggle-subcat" data-target="subcat-china-culture"><span class="arrow">▼</span></button>
-                    </div>
-                    <div class="articles-grid">
-                        <a href="China/culture/index.html" class="article-card" data-title="Культура Китая" data-desc="Традиции, философия, кухня, чай, кунг-фу">
-                            <img src="../img/china-culture.png" alt="🎎" class="avatar" />
-                            <div class="card-content">
-                                <span class="card-title">Культура Китая</span>
-                                <span class="card-desc">Праздники, искусство, чайная церемония</span>
-                            </div>
-                        </a>
-                    </div>
+            <!-- Подраздел: Культура Китая -->
+            <div class="subcategory collapsed" id="subcat-china-culture">
+                <div class="subcategory-header">
+                    <h3>🎎 Культура Китая</h3>
+                    <button class="toggle-subcat" data-target="subcat-china-culture"><span class="arrow">▼</span></button>
                 </div>
+                <div class="articles-grid" id="cards-china-culture"></div>
+                <button class="show-more-btn" data-category="china-culture" style="display:none;">Показать ещё</button>
+            </div>
 
-                <!-- Под-подраздел: История Китая -->
-                <div class="subcategory collapsed" id="subcat-china-history">
-                    <div class="subcategory-header">
-                        <h3 style="font-size: 1rem; margin-left: 1rem;">📜 История Китая</h3>
-                        <button class="toggle-subcat" data-target="subcat-china-history"><span class="arrow">▼</span></button>
-                    </div>
-                    <div class="articles-grid">
-                        <a href="China/history/qin-shi-huang/" class="article-card" data-title="Цинь Шихуанди: первый император" data-desc="Терракотовая армия, Великая стена">
-                            <img src="../img/china.png" alt="👑" class="avatar" />
-                            <div class="card-content">
-                                <span class="card-title">Цинь Шихуанди: первый император</span>
-                                <span class="card-desc">Терракотовая армия, Великая стена, легенды</span>
-                            </div>
-                        </a>
-                        <a href="China/history/silk-road/" class="article-card" data-title="Великий шёлковый путь" data-desc="Караваны, коконы, легенды">
-                            <img src="../img/china.png" alt="🐪" class="avatar" />
-                            <div class="card-content">
-                                <span class="card-title">Великий шёлковый путь</span>
-                                <span class="card-desc">Караваны, коконы, легенды</span>
-                            </div>
-                        </a>
-                        <a href="China/history/han-dynasty/" class="article-card" data-title="Династия Хань: золотой век" data-desc="Бумага, сейсмограф, экзамены">
-                            <img src="../img/china.png" alt="🏛️" class="avatar" />
-                            <div class="card-content">
-                                <span class="card-title">Династия Хань: золотой век</span>
-                                <span class="card-desc">Бумага, сейсмограф, экзамены</span>
-                            </div>
-                        </a>
-                        <a href="China/history/three-kingdoms/" class="article-card" data-title="Эпоха Троецарствия" data-desc="Герои, ставшие легендами">
-                            <img src="../img/china.png" alt="⚔️" class="avatar" />
-                            <div class="card-content">
-                                <span class="card-title">Эпоха Троецарствия</span>
-                                <span class="card-desc">Герои, ставшие легендами</span>
-                            </div>
-                        </a>
-                        <a href="China/history/tang-dynasty/" class="article-card" data-title="Династия Тан" data-desc="Поэзия, космополитизм">
-                            <img src="../img/china.png" alt="🎭" class="avatar" />
-                            <div class="card-content">
-                                <span class="card-title">Династия Тан</span>
-                                <span class="card-desc">Поэзия, космополитизм</span>
-                            </div>
-                        </a>
-                        <a href="China/history/mongol-conquest/" class="article-card" data-title="Монгольское завоевание" data-desc="Хубилай-хан, Марко Поло">
-                            <img src="../img/china.png" alt="🐎" class="avatar" />
-                            <div class="card-content">
-                                <span class="card-title">Монгольское завоевание</span>
-                                <span class="card-desc">Хубилай-хан, Марко Поло</span>
-                            </div>
-                        </a>
-                        <a href="China/history/ming-dynasty/" class="article-card" data-title="Династия Мин" data-desc="Флот, Запретный город">
-                            <img src="../img/china.png" alt="⛵" class="avatar" />
-                            <div class="card-content">
-                                <span class="card-title">Династия Мин</span>
-                                <span class="card-desc">Флот, Запретный город</span>
-                            </div>
-                        </a>
-                        <a href="China/history/qing-dynasty/" class="article-card" data-title="Династия Цин: последняя империя" data-desc="Маньчжуры, опиумные войны">
-                            <img src="../img/china.png" alt="🏁" class="avatar" />
-                            <div class="card-content">
-                                <span class="card-title">Династия Цин</span>
-                                <span class="card-desc">Последняя империя, опиумные войны</span>
-                            </div>
-                        </a>
-                    </div>
+            <!-- Подраздел: История Китая -->
+            <div class="subcategory collapsed" id="subcat-china-history">
+                <div class="subcategory-header">
+                    <h3>📜 История Китая</h3>
+                    <button class="toggle-subcat" data-target="subcat-china-history"><span class="arrow">▼</span></button>
                 </div>
+                <div class="articles-grid" id="cards-china-history"></div>
+                <button class="show-more-btn" data-category="china-history" style="display:none;">Показать ещё</button>
             </div>
 
             <!-- Подраздел: Населённые пункты -->
@@ -188,15 +118,8 @@
                     <h3>Населенные пункты</h3>
                     <button class="toggle-subcat" data-target="subcat-villages"><span class="arrow">▼</span></button>
                 </div>
-                <div class="articles-grid">
-                    <a href="bazanovo/index.html" class="article-card" data-title="Деревня: Базаново" data-desc="География, население, экономика">
-                        <img src="../img/no-img.png" alt="Базаново" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Деревня: Базаново🔑</span>
-                            <span class="card-desc">География, население, экономика</span>
-                        </div>
-                    </a>
-                </div>
+                <div class="articles-grid" id="cards-villages"></div>
+                <button class="show-more-btn" data-category="villages" style="display:none;">Показать ещё</button>
             </div>
 
             <!-- Подраздел: Природа -->
@@ -205,18 +128,8 @@
                     <h3>Природа</h3>
                     <button class="toggle-subcat" data-target="subcat-nature"><span class="arrow">▼</span></button>
                 </div>
-                <div class="articles-grid">
-                    <div style="grid-column: 1/-1; margin-top: 0.5rem">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--text-secondary)">Реки</h4>
-                    </div>
-                    <a href="bazanovo/Gungunzhda/index.html" class="article-card" data-title="Река Гуньгунжда" data-desc="Приток Акатуя, Забайкальский край">
-                        <img src="../img/no-img.png" alt="Гуньгунжда" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Река Гуньгунжда</span>
-                            <span class="card-desc">География, экология, история</span>
-                        </div>
-                    </a>
-                </div>
+                <div class="articles-grid" id="cards-nature"></div>
+                <button class="show-more-btn" data-category="nature" style="display:none;">Показать ещё</button>
             </div>
 
             <!-- Подраздел: Голоса Базаново -->
@@ -225,15 +138,8 @@
                     <h3>Голоса Базаново</h3>
                     <button class="toggle-subcat" data-target="subcat-voices"><span class="arrow">▼</span></button>
                 </div>
-                <div class="articles-grid">
-                    <a href="bazanovo/people/Valentina-Rybkina/index.html" class="article-card" data-title="Валентина Рыбкина" data-desc="Бывшая жительница Базаново">
-                        <img src="../img/no-img.png" alt="👤" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Валентина Рыбкина</span>
-                            <span class="card-desc">Воспоминания о жизни в Базаново</span>
-                        </div>
-                    </a>
-                </div>
+                <div class="articles-grid" id="cards-voices"></div>
+                <button class="show-more-btn" data-category="voices" style="display:none;">Показать ещё</button>
             </div>
         </section>
 
@@ -246,29 +152,8 @@
                     <h3>Языки программирования и разметки</h3>
                     <button class="toggle-subcat" data-target="subcat-languages"><span class="arrow">▼</span></button>
                 </div>
-                <div class="articles-grid">
-                    <a href="Technology/html-course/index.html" class="article-card" data-title="HTML: Основы и структура" data-desc="Полный курс по HTML">
-                        <img src="../img/html.png" alt="HTML" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">HTML: Основы и структура</span>
-                            <span class="card-desc">Базовый скелет, теги, семантика, формы</span>
-                        </div>
-                    </a>
-                    <a href="Technology/css-course/index.html" class="article-card" data-title="CSS: От основ к делу" data-desc="Стилизация, селекторы, Flexbox, Grid">
-                        <img src="../img/css.png" alt="CSS" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">CSS: От основ к делу</span>
-                            <span class="card-desc">Селекторы, блочная модель, Flexbox, Grid, адаптивность</span>
-                        </div>
-                    </a>
-                    <a href="Technology/python-course/index.html" class="article-card" data-title="Python: Основы" data-desc="Синтаксис, переменные, условия, циклы">
-                        <img src="../img/python.png" alt="Python" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Python: Основы</span>
-                            <span class="card-desc">🔑Базовый синтаксис, типы данных, работа с файлами</span>
-                        </div>
-                    </a>
-                </div>
+                <div class="articles-grid" id="cards-languages"></div>
+                <button class="show-more-btn" data-category="languages" style="display:none;">Показать ещё</button>
             </div>
 
             <div class="subcategory collapsed" id="subcat-termux">
@@ -276,50 +161,8 @@
                     <h3>Termux: школа выживания</h3>
                     <button class="toggle-subcat" data-target="subcat-termux"><span class="arrow">▼</span></button>
                 </div>
-                <div class="articles-grid">
-                    <a href="Technology/termux-intro/index.html" class="article-card" data-title="Termux: Введение и установка" data-desc="Знакомство, установка">
-                        <img src="../img/no-img.png" alt="Termux" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Termux: Введение и установка</span>
-                            <span class="card-desc">Знакомство, установка, доступ к памяти</span>
-                        </div>
-                    </a>
-                    <a href="Technology/termux-python/index.html" class="article-card" data-title="Termux: Python и первый скрипт" data-desc="Установка Python, hello world">
-                        <img src="../img/no-img.png" alt="Termux" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Termux: Python и первый скрипт</span>
-                            <span class="card-desc">Установка Python, hello world, скрипты</span>
-                        </div>
-                    </a>
-                    <a href="Technology/termux-git/index.html" class="article-card" data-title="Termux: Git и работа с репозиторием" data-desc="Клонируем Komorok с телефона">
-                        <img src="../img/no-img.png" alt="Termux" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Termux: Git и репозиторий</span>
-                            <span class="card-desc">Клонирование, pull, push, алиасы</span>
-                        </div>
-                    </a>
-                    <a href="Technology/termux-linkcheck/index.html" class="article-card" data-title="Termux: Проверка битых ссылок" data-desc="Одной командой проверяем весь сайт">
-                        <img src="../img/no-img.png" alt="Termux" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Termux: Проверка ссылок</span>
-                            <span class="card-desc">Linkinator, алиас komorok1, разбор ошибок</span>
-                        </div>
-                    </a>
-                    <a href="Technology/termux-server/index.html" class="article-card" data-title="Termux: Веб-сервер на телефоне" data-desc="Запускаем Komorok локально">
-                        <img src="../img/no-img.png" alt="Termux" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Termux: Веб-сервер</span>
-                            <span class="card-desc">Python http.server, localhost, алиас</span>
-                        </div>
-                    </a>
-                    <a href="Technology/termux-abc/index.html" class="article-card" data-title="Termux: Азбука командной строки" data-desc="Объяснение терминала">
-                        <img src="../img/no-img.png" alt="Termux" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Termux: Азбука командной строки</span>
-                            <span class="card-desc">Терминал, bash, команды, алиасы</span>
-                        </div>
-                    </a>
-                </div>
+                <div class="articles-grid" id="cards-termux"></div>
+                <button class="show-more-btn" data-category="termux" style="display:none;">Показать ещё</button>
             </div>
         </section>
 
@@ -329,5 +172,66 @@
         <p>© 2026 Komorok</p>
     </footer>
     <script src="../script.js"></script>
+
+    <!-- Динамическая загрузка карточек (пагинация) -->
+    <script>
+        (function () {
+            const BATCH_SIZE = 5;
+            const state = {};
+
+            fetch('articles.json')
+                .then(res => res.json())
+                .then(articles => {
+                    const groups = {};
+                    articles.forEach(a => {
+                        if (!groups[a.category]) groups[a.category] = [];
+                        groups[a.category].push(a);
+                    });
+
+                    Object.entries(groups).forEach(([cat, items]) => {
+                        const container = document.getElementById(`cards-${cat}`);
+                        const btn = document.querySelector(`.show-more-btn[data-category="${cat}"]`);
+                        if (!container) return;
+                        state[cat] = 0;
+                        renderBatch(items, container, btn, cat);
+                    });
+                })
+                .catch(err => console.error('Ошибка загрузки articles.json', err));
+
+            function renderBatch(items, container, btn, cat) {
+                const start = state[cat];
+                const batch = items.slice(start, start + BATCH_SIZE);
+                batch.forEach(item => {
+                    const imgSrc = item.image && item.image.trim() !== '' ? item.image : '../img/no-img.png';
+                    const a = document.createElement('a');
+                    a.href = item.url;
+                    a.className = 'article-card';
+                    a.setAttribute('data-title', item.title);
+                    a.setAttribute('data-desc', '');
+                    a.innerHTML = `
+                        <img src="${imgSrc}" alt="" class="avatar">
+                        <div class="card-content">
+                            <span class="card-title">${item.title}</span>
+                            <span class="card-desc"></span>
+                        </div>`;
+                    container.appendChild(a);
+                });
+                state[cat] += batch.length;
+
+                // Удаляем старую кнопку, если она была
+                const oldBtn = container.querySelector('.show-more-btn');
+                if (oldBtn) oldBtn.remove();
+
+                // Если есть ещё неотображённые статьи, создаём новую кнопку внутри контейнера
+                if (state[cat] < items.length) {
+                    const btnNew = document.createElement('button');
+                    btnNew.textContent = 'Показать ещё';
+                    btnNew.className = 'show-more-btn';
+                    btnNew.addEventListener('click', () => renderBatch(items, container, btnNew, cat));
+                    container.appendChild(btnNew);
+                }
+            }
+        })();
+    </script>
 </body>
 </html>
