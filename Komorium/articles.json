@@ -4,133 +4,133 @@
     "url": "Technology/termux-intro/",
     "category": "termux",
     "date": "2026-05-04",
-    "image": "../img/termux.png"
+    "image": "../img/termux.webp"
   },
   {
     "title": "🔍 Termux: Проверка битых ссылок",
     "url": "Technology/termux-linkcheck/",
     "category": "termux",
     "date": "2026-05-04",
-    "image": "../img/termux.png"
+    "image": "../img/termux.webp"
   },
   {
     "title": "🌐 Termux: Веб-сервер на телефоне",
     "url": "Technology/termux-server/",
     "category": "termux",
     "date": "2026-05-04",
-    "image": "../img/termux.png"
+    "image": "../img/termux.webp"
   },
   {
     "title": "🐍 Termux: Python и первый скрипт",
     "url": "Technology/termux-python/",
     "category": "termux",
     "date": "2026-05-04",
-    "image": "../img/python.png"
+    "image": "../img/termux.webp"
   },
   {
     "title": "🔀 Termux: Git и работа с репозиторием",
     "url": "Technology/termux-git/",
     "category": "termux",
     "date": "2026-05-04",
-    "image": "../img/termux.png"
+    "image": "../img/termux.webp"
   },
   {
     "title": "🐍 Основы Python",
     "url": "Technology/python-course/",
     "category": "languages",
     "date": "2026-05-04",
-    "image": "../img/python.png"
+    "image": "../img/python.webp"
   },
   {
     "title": "📖 Termux: азбука командной строки",
     "url": "Technology/termux-abc/",
     "category": "termux",
     "date": "2026-05-04",
-    "image": "../img/termux.png"
+    "image": "../img/termux.webp"
   },
   {
     "title": "🌐 Полный курс HTML",
     "url": "Technology/html-course/",
     "category": "languages",
     "date": "2026-05-04",
-    "image": "../img/html.png"
+    "image": "../img/html.webp"
   },
   {
     "title": "🎨 Полный курс CSS",
     "url": "Technology/css-course/",
     "category": "languages",
     "date": "2026-05-04",
-    "image": "../img/css.png"
+    "image": "../img/css.webp"
   },
   {
     "title": "🇨🇳 Китай",
     "url": "China/",
     "category": "countries",
     "date": "2026-05-04",
-    "image": "../img/china.png"
+    "image": "../img/china.webp"
   },
   {
     "title": "🎎 Культура Китая",
     "url": "China/culture/",
     "category": "china-culture",
     "date": "2026-05-04",
-    "image": "../img/china-culture-1.png"
+    "image": "../img/china-culture-1.webp"
   },
   {
     "title": "⚔️ Эпоха Троецарствия",
     "url": "China/history/three-kingdoms/",
     "category": "china-history",
     "date": "2026-05-04",
-    "image": "../img/three-kingdoms.png"
+    "image": "../img/three-kingdoms.webp"
   },
   {
     "title": "🐎 Монгольское завоевание: Хубилай-хан",
     "url": "China/history/mongol-conquest/",
     "category": "china-history",
     "date": "2026-05-04",
-    "image": "../img/mongol-conquest.png"
+    "image": "../img/mongol-conquest.webp"
   },
   {
     "title": "🏛️ Династия Хань: золотой век",
     "url": "China/history/han-dynasty/",
     "category": "china-history",
     "date": "2026-05-04",
-    "image": "../img/han-dynasty.png"
+    "image": "../img/han-dynasty.webp"
   },
   {
     "title": "🐪 Великий шёлковый путь",
     "url": "China/history/silk-road/",
     "category": "china-history",
     "date": "2026-05-04",
-    "image": "../img/silk-road.png"
+    "image": "../img/silk-road.webp"
   },
   {
     "title": "⛵ Династия Мин: флот и изоляция",
     "url": "China/history/ming-dynasty/",
     "category": "china-history",
     "date": "2026-05-04",
-    "image": "../img/ming-dynasty.png"
+    "image": "../img/ming-dynasty.webp"
   },
   {
     "title": "👑 Цинь Шихуанди: первый император",
     "url": "China/history/qin-shi-huang/",
     "category": "china-history",
     "date": "2026-05-04",
-    "image": "../img/qin-shi-huang.png"
+    "image": "../img/qin-shi-huang.webp"
   },
   {
     "title": "🎭 Династия Тан: поэзия и космополитизм",
     "url": "China/history/tang-dynasty/",
     "category": "china-history",
     "date": "2026-05-04",
-    "image": "../img/tang-dynasty.png"
+    "image": "../img/tang-dynasty.webp"
   },
   {
     "title": "🏁 Династия Цин: последняя империя",
     "url": "China/history/qing-dynasty/",
     "category": "china-history",
     "date": "2026-05-04",
-    "image": "../img/qing-dynasty.png"
+    "image": "../img/qing-dynasty.webp"
   },
   {
     "title": "Базаново",
@@ -158,13 +158,13 @@
     "url": "bazanovo/civil-war/ataman-semenov/",
     "category": "villages",
     "date": "2026-05-04",
-    "image": "../img/semenov-portrait.png"
+    "image": "../img/semenov-portrait.webp"
   },
   {
     "title": "👤 Атаман Григорий Семёнов: биография",
     "url": "bazanovo/civil-war/semenov-biography/",
     "category": "villages",
     "date": "2026-05-04",
-    "image": "../img/semenov-portrait.png"
+    "image": "../img/semenov-portrait.webp"
   }
 ]
