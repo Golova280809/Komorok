@@ -11,7 +11,9 @@ ROOT = os.path.join(REPO_ROOT, 'Komorium')
 IMAGES_DIR = os.path.join(REPO_ROOT, 'img')
 
 CATEGORY_MAP = {
-    'China': 'countries',
+    'China': 'countries',                 # общая статья о Китае
+    'China/culture': 'china-culture',     # подраздел «Культура Китая»
+    'China/history': 'china-history',     # подраздел «История Китая»
     'bazanovo': 'villages',
     'bazanovo/Gungunzhda': 'nature',
     'bazanovo/people': 'voices',
@@ -25,7 +27,6 @@ CATEGORY_MAP = {
     'Technology/termux-server': 'termux',
     'Technology/termux-abc': 'termux',
 }
-
 def get_category(rel_path):
     best = None
     for path, cat in CATEGORY_MAP.items():
