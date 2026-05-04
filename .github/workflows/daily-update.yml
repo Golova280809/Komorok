@@ -1,4 +1,4 @@
-name: Обновление счётчиков и карты сайта
+name: Ежедневное обновление счётчиков, списка статей и карты сайта
 
 on:
   push:
@@ -21,18 +21,26 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Обновление счётчика статей на главной
-        run: python scripts/count_articles.py
-
+      # Обновляем счётчик дней
       - name: Обновление счётчика дней
         run: python scripts/update_stats.py
 
-      - name: Генерация sitemap.xml
-        run: python scripts/generate_sitemap.py   # если у тебя есть такой скрипт
+      # Обновляем счётчик статей
+      - name: Обновление счётчика статей
+        run: python scripts/count_articles.py
 
+      # Генерируем список статей для динамической загрузки
+      - name: Обновление списка статей (articles.json)
+        run: python scripts/update_articles_list.py
+
+      # Генерируем карту сайта
+      - name: Генерация sitemap.xml
+        run: python scripts/generate_sitemap.py
+
+      # Сохраняем все изменения
       - name: Коммит и пуш изменений
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html sitemap.xml
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Автообновление счётчиков и карты сайта" && git push)
+          git add index.html Komorium/articles.json sitemap.xml
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Автообновление счётчиков, статей и sitemap" && git push)
