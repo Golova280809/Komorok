@@ -65,14 +65,14 @@
   {
     "title": "✍️ Ги де Мопассан",
     "url": "literature/gi-de-maupassant/",
-    "category": "other",
+    "category": "authors",
     "date": "2026-05-05",
     "image": "../img/Maupassant.webp"
   },
   {
     "title": "📖 Пышка",
     "url": "literature/gi-de-maupassant/pyshka/",
-    "category": "other",
+    "category": "works",
     "date": "2026-05-05",
     "image": "../img/Maupassant.webp"
   },
@@ -170,7 +170,7 @@
   {
     "title": "⚔️ Семёнов в Забайкалье",
     "url": "bazanovo/civil-war/ataman-semenov/",
-    "category": "villages",
+    "category": "civil-war",
     "date": "2026-05-05",
     "image": "../img/semenov-portrait.webp"
   },
