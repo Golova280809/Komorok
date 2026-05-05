@@ -5,14 +5,14 @@
     <link rel="apple-touch-icon" href="../../logo.png" />
     <link rel="icon" type="image/png" href="../../logo.png" />
 
-    <meta name="description" content="Китай — статьи о культуре и истории Поднебесной в энциклопедии Komorium." />
-    <meta name="keywords" content="Китай, культура Китая, история Китая, Komorium, энциклопедия" />
-    <link rel="canonical" href="https://komorok.ru/Komorium/China/" />
+    <meta name="description" content="Курсы по HTML, CSS и Python в энциклопедии Komorium." />
+    <meta name="keywords" content="HTML, CSS, Python, курсы, Komorok" />
+    <link rel="canonical" href="https://komorok.ru/Komorium/Technology/languages.html" />
 
-    <meta property="og:title" content="Китай — Komorium" />
-    <meta property="og:description" content="Культура и история Китая: от первого императора до последней династии." />
-    <meta property="og:url" content="https://komorok.ru/Komorium/China/" />
-    <meta property="og:image" content="https://komorok.ru/img/china.png" />
+    <meta property="og:title" content="Языки программирования | Komorok" />
+    <meta property="og:description" content="Основы HTML, CSS и Python — доступные курсы." />
+    <meta property="og:url" content="https://komorok.ru/Komorium/Technology/languages.html" />
+    <meta property="og:image" content="https://komorok.ru/img/no-img.png" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Komorok" />
 
@@ -27,7 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../common.css" />
     <link rel="stylesheet" href="../komorium.css" />
-    <title>Китай — Komorium</title>
+    <title>Языки программирования — Komorok</title>
 </head>
 <body>
     <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
@@ -48,8 +48,8 @@
 
     <label for="menu-toggle" class="overlay"></label>
     <header>
-        <h1>🇨🇳 Китай</h1>
-        <p>Культура и история Поднебесной</p>
+        <h1>💻 Языки программирования</h1>
+        <p>Курсы по основам веб-разработки</p>
     </header>
     <button class="back-to-top" id="backToTop">↑</button>
 
@@ -60,15 +60,9 @@
         </div>
 
         <section class="category-section">
-            <h2>🎎 Культура Китая</h2>
-            <div class="articles-grid" id="cards-china-culture"></div>
-            <button class="show-more-btn" data-category="china-culture" style="display:none;">Показать ещё</button>
-        </section>
-
-        <section class="category-section">
-            <h2>📜 История Китая</h2>
-            <div class="articles-grid" id="cards-china-history"></div>
-            <button class="show-more-btn" data-category="china-history" style="display:none;">Показать ещё</button>
+            <h2>Доступные курсы</h2>
+            <div class="articles-grid" id="cards-languages"></div>
+            <button class="show-more-btn" data-category="languages" style="display:none;">Показать ещё</button>
         </section>
 
         <div id="noResultsMessage" class="no-results-message">🔎 Ничего не найдено. Попробуйте изменить запрос.</div>
@@ -78,7 +72,7 @@
     </footer>
     <script src="../../script.js"></script>
 
-    <!-- Динамическая загрузка карточек -->
+    <!-- Динамическая загрузка -->
     <script>
         (function () {
             const BATCH_SIZE = 5;
@@ -87,21 +81,12 @@
             fetch('../articles.json')
                 .then(res => res.json())
                 .then(articles => {
-                    const groups = {};
-                    articles.forEach(a => {
-                        if (a.category === 'china-culture' || a.category === 'china-history') {
-                            if (!groups[a.category]) groups[a.category] = [];
-                            groups[a.category].push(a);
-                        }
-                    });
-
-                    Object.entries(groups).forEach(([cat, items]) => {
-                        const container = document.getElementById(`cards-${cat}`);
-                        const btn = document.querySelector(`.show-more-btn[data-category="${cat}"]`);
-                        if (!container) return;
-                        state[cat] = 0;
-                        renderBatch(items, container, btn, cat);
-                    });
+                    const items = articles.filter(a => a.category === 'languages');
+                    const container = document.getElementById('cards-languages');
+                    const btn = document.querySelector('.show-more-btn[data-category="languages"]');
+                    if (!container) return;
+                    state['languages'] = 0;
+                    renderBatch(items, container, btn, 'languages');
                 })
                 .catch(err => console.error('Ошибка загрузки articles.json', err));
 

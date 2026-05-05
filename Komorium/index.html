@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru"> 
+<html lang="ru">
 <head>
     <meta charset="UTF-8" />
     <link rel="apple-touch-icon" href="../logo.png" />
@@ -82,64 +82,38 @@
         <section id="geography" class="category-section">
             <h2>🌍 География</h2>
 
-            <!-- Подраздел: Страны (общая карточка Китая) -->
+            <!-- Подраздел: Страны -->
             <div class="subcategory collapsed" id="subcat-countries">
                 <div class="subcategory-header">
                     <h3>Страны</h3>
                     <button class="toggle-subcat" data-target="subcat-countries"><span class="arrow">▼</span></button>
                 </div>
-                <div class="articles-grid" id="cards-countries"></div>
-                <button class="show-more-btn" data-category="countries" style="display:none;">Показать ещё</button>
-            </div>
-
-            <!-- Подраздел: Культура Китая -->
-            <div class="subcategory collapsed" id="subcat-china-culture">
-                <div class="subcategory-header">
-                    <h3>🎎 Культура Китая</h3>
-                    <button class="toggle-subcat" data-target="subcat-china-culture"><span class="arrow">▼</span></button>
+                <div class="articles-grid">
+                    <a href="China/index.html" class="article-card" data-title="Китай" data-desc="Культура и история Поднебесной">
+                        <img src="../img/china.png" alt="🇨🇳" class="avatar" />
+                        <div class="card-content">
+                            <span class="card-title">Китай</span>
+                            <span class="card-desc">Культура и история Поднебесной</span>
+                        </div>
+                    </a>
                 </div>
-                <div class="articles-grid" id="cards-china-culture"></div>
-                <button class="show-more-btn" data-category="china-culture" style="display:none;">Показать ещё</button>
-            </div>
-
-            <!-- Подраздел: История Китая -->
-            <div class="subcategory collapsed" id="subcat-china-history">
-                <div class="subcategory-header">
-                    <h3>📜 История Китая</h3>
-                    <button class="toggle-subcat" data-target="subcat-china-history"><span class="arrow">▼</span></button>
-                </div>
-                <div class="articles-grid" id="cards-china-history"></div>
-                <button class="show-more-btn" data-category="china-history" style="display:none;">Показать ещё</button>
             </div>
 
             <!-- Подраздел: Населённые пункты -->
             <div class="subcategory collapsed" id="subcat-villages">
                 <div class="subcategory-header">
-                    <h3>Населенные пункты</h3>
+                    <h3>Населённые пункты</h3>
                     <button class="toggle-subcat" data-target="subcat-villages"><span class="arrow">▼</span></button>
                 </div>
-                <div class="articles-grid" id="cards-villages"></div>
-                <button class="show-more-btn" data-category="villages" style="display:none;">Показать ещё</button>
-            </div>
-
-            <!-- Подраздел: Природа -->
-            <div class="subcategory collapsed" id="subcat-nature">
-                <div class="subcategory-header">
-                    <h3>Природа</h3>
-                    <button class="toggle-subcat" data-target="subcat-nature"><span class="arrow">▼</span></button>
+                <div class="articles-grid">
+                    <a href="bazanovo/bazanovo.html" class="article-card" data-title="Деревня: Базаново" data-desc="География, население, история, статьи по теме">
+                        <img src="../img/no-img.png" alt="Базаново" class="avatar" />
+                        <div class="card-content">
+                            <span class="card-title">Деревня: Базаново</span>
+                            <span class="card-desc">География, население, экономика и другие статьи</span>
+                        </div>
+                    </a>
                 </div>
-                <div class="articles-grid" id="cards-nature"></div>
-                <button class="show-more-btn" data-category="nature" style="display:none;">Показать ещё</button>
-            </div>
-
-            <!-- Подраздел: Голоса Базаново -->
-            <div class="subcategory collapsed" id="subcat-voices">
-                <div class="subcategory-header">
-                    <h3>Голоса Базаново</h3>
-                    <button class="toggle-subcat" data-target="subcat-voices"><span class="arrow">▼</span></button>
-                </div>
-                <div class="articles-grid" id="cards-voices"></div>
-                <button class="show-more-btn" data-category="voices" style="display:none;">Показать ещё</button>
             </div>
         </section>
 
@@ -147,22 +121,38 @@
         <section id="technology" class="category-section">
             <h2>💻 Технологии</h2>
 
+            <!-- Подраздел: Языки программирования -->
             <div class="subcategory collapsed" id="subcat-languages">
                 <div class="subcategory-header">
                     <h3>Языки программирования и разметки</h3>
                     <button class="toggle-subcat" data-target="subcat-languages"><span class="arrow">▼</span></button>
                 </div>
-                <div class="articles-grid" id="cards-languages"></div>
-                <button class="show-more-btn" data-category="languages" style="display:none;">Показать ещё</button>
+                <div class="articles-grid">
+                    <a href="Technology/languages.html" class="article-card" data-title="HTML, CSS, Python" data-desc="Курсы по основам веб-разработки">
+                        <img src="../img/no-img.png" alt="Языки" class="avatar" />
+                        <div class="card-content">
+                            <span class="card-title">Языки программирования</span>
+                            <span class="card-desc">HTML, CSS, Python — курсы</span>
+                        </div>
+                    </a>
+                </div>
             </div>
 
+            <!-- Подраздел: Termux -->
             <div class="subcategory collapsed" id="subcat-termux">
                 <div class="subcategory-header">
                     <h3>Termux: школа выживания</h3>
                     <button class="toggle-subcat" data-target="subcat-termux"><span class="arrow">▼</span></button>
                 </div>
-                <div class="articles-grid" id="cards-termux"></div>
-                <button class="show-more-btn" data-category="termux" style="display:none;">Показать ещё</button>
+                <div class="articles-grid">
+                    <a href="Technology/termux.html" class="article-card" data-title="Termux" data-desc="Мобильная разработка и автоматизация">
+                        <img src="../img/no-img.png" alt="Termux" class="avatar" />
+                        <div class="card-content">
+                            <span class="card-title">Termux: школа выживания</span>
+                            <span class="card-desc">Введение, Python, Git, проверка ссылок и другое</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -172,66 +162,5 @@
         <p>© 2026 Komorok</p>
     </footer>
     <script src="../script.js"></script>
-
-    <!-- Динамическая загрузка карточек (пагинация) -->
-    <script>
-        (function () {
-            const BATCH_SIZE = 5;
-            const state = {};
-
-            fetch('articles.json')
-                .then(res => res.json())
-                .then(articles => {
-                    const groups = {};
-                    articles.forEach(a => {
-                        if (!groups[a.category]) groups[a.category] = [];
-                        groups[a.category].push(a);
-                    });
-
-                    Object.entries(groups).forEach(([cat, items]) => {
-                        const container = document.getElementById(`cards-${cat}`);
-                        const btn = document.querySelector(`.show-more-btn[data-category="${cat}"]`);
-                        if (!container) return;
-                        state[cat] = 0;
-                        renderBatch(items, container, btn, cat);
-                    });
-                })
-                .catch(err => console.error('Ошибка загрузки articles.json', err));
-
-            function renderBatch(items, container, btn, cat) {
-                const start = state[cat];
-                const batch = items.slice(start, start + BATCH_SIZE);
-                batch.forEach(item => {
-                    const imgSrc = item.image && item.image.trim() !== '' ? item.image : '../img/no-img.png';
-                    const a = document.createElement('a');
-                    a.href = item.url;
-                    a.className = 'article-card';
-                    a.setAttribute('data-title', item.title);
-                    a.setAttribute('data-desc', '');
-                    a.innerHTML = `
-                        <img src="${imgSrc}" alt="" class="avatar">
-                        <div class="card-content">
-                            <span class="card-title">${item.title}</span>
-                            <span class="card-desc"></span>
-                        </div>`;
-                    container.appendChild(a);
-                });
-                state[cat] += batch.length;
-
-                // Удаляем старую кнопку, если она была
-                const oldBtn = container.querySelector('.show-more-btn');
-                if (oldBtn) oldBtn.remove();
-
-                // Если есть ещё неотображённые статьи, создаём новую кнопку внутри контейнера
-                if (state[cat] < items.length) {
-                    const btnNew = document.createElement('button');
-                    btnNew.textContent = 'Показать ещё';
-                    btnNew.className = 'show-more-btn';
-                    btnNew.addEventListener('click', () => renderBatch(items, container, btnNew, cat));
-                    container.appendChild(btnNew);
-                }
-            }
-        })();
-    </script>
 </body>
 </html>
