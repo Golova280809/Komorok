@@ -27,10 +27,12 @@
 }
 
 html {
+    --font-size-multiplier: 1;
     scroll-behavior: smooth;
 }
 
 body {
+    font-size: calc(1rem * var(--font-size-multiplier));
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: var(--bg-body);
     color: var(--text-primary);
