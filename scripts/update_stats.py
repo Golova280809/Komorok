@@ -5,7 +5,7 @@ import datetime
 import re
 
 # 1. Дата рождения проекта
-birthday = datetime.date(2025, 2, 25)
+birthday = datetime.date(2026, 3, 29)   # первый коммит — 29 марта 2026
 today = datetime.date.today()
 days_since_birth = (today - birthday).days
 
