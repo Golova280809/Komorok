@@ -90,73 +90,33 @@
         <p>© 2026 Komorok</p>
     </footer>
     <script src="../../script.js"></script>
-
-    <!-- Динамическая загрузка -->
-    <script>
-        (function () {
-            const BATCH_SIZE = 5;
-            const state = {};
-
-            fetch('../articles.json')
-                .then(res => res.json())
-                .then(articles => {
-                    // Основная статья Базаново (категория villages)
-                    const mainArticle = articles.find(a => a.url === 'bazanovo/');
-                    if (mainArticle) {
-                        const container = document.getElementById('cards-main');
-                        const imgSrc = mainArticle.image || '../../img/no-img.png';
-                        container.innerHTML = `
-                            <a href="index.html" class="article-card">
-                                <img src="${imgSrc}" alt="" class="avatar">
-                                <div class="card-content">
-                                    <span class="card-title">Деревня: Базаново</span>
-                                    <span class="card-desc">География, население, история</span>
-                                </div>
-                            </a>`;
-                    }
-
-                    // Остальные категории
-                    const categories = ['nature', 'voices', 'civil-war'];
-                    categories.forEach(cat => {
-                        const items = articles.filter(a => a.category === cat);
-                        if (items.length === 0) return;
-                        const container = document.getElementById(`cards-${cat}`);
-                        if (!container) return;
-                        state[cat] = 0;
-                        renderBatch(items, container, document.querySelector(`[data-category="${cat}"]`), cat);
-                    });
-                })
-                .catch(err => console.error('Ошибка загрузки articles.json', err));
-
-            function renderBatch(items, container, btn, cat) {
-                const start = state[cat];
-                const batch = items.slice(start, start + BATCH_SIZE);
-                batch.forEach(item => {
-                    const imgSrc = item.image || '../../img/no-img.png';
-                    const a = document.createElement('a');
-                    a.href = item.url;
-                    a.className = 'article-card';
-                    a.setAttribute('data-title', item.title);
-                    a.setAttribute('data-desc', '');
-                    a.innerHTML = `
-                        <img src="${imgSrc}" alt="" class="avatar">
-                        <div class="card-content">
-                            <span class="card-title">${item.title}</span>
-                            <span class="card-desc"></span>
-                        </div>`;
-                    container.appendChild(a);
-                });
-                state[cat] += batch.length;
-                if (btn) {
-                    if (state[cat] < items.length) {
-                        btn.style.display = 'block';
-                        btn.onclick = () => renderBatch(items, container, btn, cat);
-                    } else {
-                        btn.style.display = 'none';
-                    }
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Основная статья Базаново (категория villages)
+        fetch('../articles.json')
+            .then(res => res.json())
+            .then(articles => {
+                const mainArticle = articles.find(a => a.url === 'bazanovo/');
+                if (mainArticle) {
+                    const container = document.getElementById('cards-main');
+                    const imgSrc = mainArticle.image || '../../img/no-img.webp';
+                    container.innerHTML = `
+                        <a href="index.html" class="article-card">
+                            <img src="${imgSrc}" alt="" class="avatar">
+                            <div class="card-content">
+                                <span class="card-title">Деревня: Базаново</span>
+                                <span class="card-desc">География, население, история</span>
+                            </div>
+                        </a>`;
                 }
-            }
-        })();
-    </script>
+            })
+            .catch(err => console.error('Ошибка загрузки articles.json', err));
+
+        // Остальные категории через renderHab
+        renderHab('nature', 'cards-nature', 5, '../articles.json');
+        renderHab('voices', 'cards-voices', 5, '../articles.json');
+        renderHab('civil-war', 'cards-civil-war', 5, '../articles.json');
+    });
+</script>
 </body>
 </html>

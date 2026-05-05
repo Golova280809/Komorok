@@ -71,61 +71,10 @@
         <p>© 2026 Komorok</p>
     </footer>
     <script src="../../script.js"></script>
-
-    <!-- Динамическая загрузка -->
-    <script>
-        (function () {
-            const BATCH_SIZE = 5;
-            const state = {};
-
-            fetch('../articles.json')
-                .then(res => res.json())
-                .then(articles => {
-                    const items = articles.filter(a => a.category === 'termux');
-                    const container = document.getElementById('cards-termux');
-                    const btn = document.querySelector('.show-more-btn[data-category="termux"]');
-                    if (!container) return;
-                    state['termux'] = 0;
-                    renderBatch(items, container, btn, 'termux');
-                })
-                .catch(err => console.error('Ошибка загрузки articles.json', err));
-
-            function renderBatch(items, container, btn, cat) {
-                const start = state[cat];
-                const batch = items.slice(start, start + BATCH_SIZE);
-                batch.forEach(item => {
-                    // Получаем исходный путь или заглушку
-                    let rawImg = item.image && item.image.trim() !== '' ? item.image : '../../img/no-img.png';
-                    // Если путь начинается с ../img/, заменяем на ../../img/ для страниц второго уровня вложенности
-                    const imgSrc = rawImg.startsWith('../img/') ? rawImg.replace('../img/', '../../img/') : rawImg;
-
-                    const a = document.createElement('a');
-                    a.href = item.url;
-                    a.className = 'article-card';
-                    a.setAttribute('data-title', item.title);
-                    a.setAttribute('data-desc', '');
-                    a.innerHTML = `
-                        <img src="${imgSrc}" alt="" class="avatar">
-                        <div class="card-content">
-                            <span class="card-title">${item.title}</span>
-                            <span class="card-desc"></span>
-                        </div>`;
-                    container.appendChild(a);
-                });
-                state[cat] += batch.length;
-
-                const oldBtn = container.querySelector('.show-more-btn');
-                if (oldBtn) oldBtn.remove();
-
-                if (state[cat] < items.length) {
-                    const btnNew = document.createElement('button');
-                    btnNew.textContent = 'Показать ещё';
-                    btnNew.className = 'show-more-btn';
-                    btnNew.addEventListener('click', () => renderBatch(items, container, btnNew, cat));
-                    container.appendChild(btnNew);
-                }
-            }
-        })();
-    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        renderHab('termux', 'cards-termux', 5, '../articles.json');
+    });
+</script>
 </body>
 </html>
