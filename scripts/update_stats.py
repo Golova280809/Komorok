@@ -18,7 +18,7 @@ with open(html_file, "r", encoding="utf-8") as f:
 
 # 4. Ищем и заменяем строчку со счётчиком
 #    Комментарий должен быть: <!-- project-age-counter -->
-pattern = r"(<!-- project-age-counter -->\s*<p>С момента рождения проекта прошло: )\d+( дней</p>)"
+pattern = r"(<!-- project-age-counter -->\s*<p>С момента запуска сайта прошло: )\d+( дней</p>)"
 replacement = rf"\g<1>{days_since_birth}\g<2>"
 
 new_content = re.sub(pattern, replacement, content)
