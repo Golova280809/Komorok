@@ -3,7 +3,6 @@ import os
 import re
 from datetime import datetime
 
-# Определяем корень репозитория: на уровень выше папки scripts/
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(SCRIPT_DIR)
 
@@ -11,12 +10,14 @@ ROOT = os.path.join(REPO_ROOT, 'Komorium')
 IMAGES_DIR = os.path.join(REPO_ROOT, 'img')
 
 CATEGORY_MAP = {
-    'China': 'countries',                 # общая статья о Китае
-    'China/culture': 'china-culture',     # подраздел «Культура Китая»
-    'China/history': 'china-history',     # подраздел «История Китая»
+    'China': 'countries',
+    'China/culture': 'china-culture',
+    'China/history': 'china-history',
     'bazanovo': 'villages',
     'bazanovo/Gungunzhda': 'nature',
     'bazanovo/people': 'voices',
+    'bazanovo/civil-war/ataman-semenov': 'civil-war',
+    'bazanovo/civil-war/semenov-biography': 'villages',
     'Technology/html-course': 'languages',
     'Technology/css-course': 'languages',
     'Technology/python-course': 'languages',
@@ -26,7 +27,10 @@ CATEGORY_MAP = {
     'Technology/termux-linkcheck': 'termux',
     'Technology/termux-server': 'termux',
     'Technology/termux-abc': 'termux',
+    'literature/gi-de-maupassant': 'authors',
+    'literature/gi-de-maupassant/pyshka': 'works',
 }
+
 def get_category(rel_path):
     best = None
     for path, cat in CATEGORY_MAP.items():
@@ -57,19 +61,19 @@ def find_image(rel_path, existing_image):
         return existing_image
 
     basename = os.path.basename(rel_path)
-    avatar_path = os.path.join(ROOT, rel_path, 'avatar.png')
-    if os.path.isfile(avatar_path):
-        return f"{rel_path}/avatar.png"
-
-    exact_match = os.path.join(IMAGES_DIR, f"{basename}.png")
-    if os.path.isfile(exact_match):
-        return f"../img/{basename}.png"
-
+    for ext in ['.webp', '.png']:
+        avatar_path = os.path.join(ROOT, rel_path, f'avatar{ext}')
+        if os.path.isfile(avatar_path):
+            return f"{rel_path}/avatar{ext}"
+    for ext in ['.webp', '.png']:
+        exact_match = os.path.join(IMAGES_DIR, f"{basename}{ext}")
+        if os.path.isfile(exact_match):
+            return f"../img/{basename}{ext}"
     if os.path.isdir(IMAGES_DIR):
         for fname in os.listdir(IMAGES_DIR):
-            if not fname.lower().endswith('.png'):
+            if not fname.lower().endswith(('.webp', '.png')):
                 continue
-            stem = fname[:-4].lower()
+            stem = fname.rsplit('.', 1)[0].lower()
             if stem in basename.lower() or basename.lower() in stem:
                 return f"../img/{fname}"
     return ""
@@ -102,31 +106,21 @@ def find_articles():
     return articles
 
 def generate_sitemap(articles):
-    """Создаёт sitemap.xml в корне репозитория на основе списка статей."""
     base_url = "https://komorok.ru"
     lines = ['<?xml version="1.0" encoding="UTF-8"?>']
     lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
-    
-    # Главная страница
     lines.append(f"  <url><loc>{base_url}/</loc><priority>1.0</priority></url>")
-    
-    # Статические страницы
     static_pages = [
-        ('/', '1.0'),
         ('/about.html', '0.8'),
         ('/Alexander.html', '0.6'),
         ('/Komorium/', '0.9'),
     ]
     for path, priority in static_pages:
         lines.append(f"  <url><loc>{base_url}{path}</loc><priority>{priority}</priority></url>")
-    
-    # Все статьи из articles.json
     for article in articles:
         loc = f"{base_url}/Komorium/{article['url']}"
         lines.append(f"  <url><loc>{loc}</loc><lastmod>{article['date']}</lastmod><priority>0.7</priority></url>")
-    
     lines.append('</urlset>')
-    
     sitemap_path = os.path.join(REPO_ROOT, 'sitemap.xml')
     with open(sitemap_path, 'w', encoding='utf-8') as f:
         f.write('\n'.join(lines))
@@ -138,5 +132,4 @@ if __name__ == '__main__':
     with open(out_path, 'w', encoding='utf-8') as f:
         json.dump(articles, f, ensure_ascii=False, indent=2)
     print(f"Обновлено статей: {len(articles)}")
-    
     generate_sitemap(articles)
