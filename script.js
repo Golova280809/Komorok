@@ -1,3 +1,11 @@
+(function() {
+    var savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) {
+        var multiplier = parseInt(savedFontSize) / 100;
+        document.documentElement.style.setProperty('--font-size-multiplier', multiplier.toString());
+    }
+})();
+
 (function () {
     // === КНОПКА "НАВЕРХ" ===
     const backToTop = document.getElementById("backToTop");
@@ -172,10 +180,3 @@ function renderHab(category, containerId, batchSize = 5, articlesPath = 'article
         .catch(err => console.error('Ошибка загрузки articles.json', err));
 }
 
-(function() {
-    var savedFontSize = localStorage.getItem('fontSize');
-    if (savedFontSize) {
-        var multiplier = 1 + (parseInt(savedFontSize) - 100) / 100;
-        document.documentElement.style.setProperty('--font-size-multiplier', multiplier.toString());
-    }
-})();
