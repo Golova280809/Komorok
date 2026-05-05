@@ -62,18 +62,18 @@
     <main>
         <div class="settings-container">
             <h2 style="text-align: center;">⚙️ Настройки</h2>
-            
+
             <h3>🔤 Размер шрифта</h3>
             <p>Выберите комфортный размер текста (применяется ко всем страницам)</p>
-            
+
             <input type="range" id="fontSizeSlider" class="font-size-slider" min="80" max="150" step="10" value="100">
             <span class="font-size-value" id="fontSizeLabel">100%</span>
-            
+
             <div class="preview-text" id="previewText">
                 <p>Это пример текста. Здесь показано, как будет выглядеть контент с выбранным размером шрифта.</p>
                 <p>Вы можете изменить настройки в любое время.</p>
             </div>
-            
+
             <button id="resetSettings" style="display:block; margin:1.5rem auto 0; padding:0.7rem 1.5rem; border:none; border-radius:25px; background:var(--accent); color:white; cursor:pointer; font-weight:600;">Сбросить настройки</button>
         </div>
     </main>
@@ -91,23 +91,22 @@
             const initial = saved ? parseInt(saved) : 100;
             slider.value = initial;
             label.textContent = initial + '%';
-            preview.style.fontSize = (1 + (initial - 100) / 100) + 'rem';
+            preview.style.fontSize = (initial / 100) + 'rem';
 
-            // Применять при изменении слайдера
+            // Применять при изменении слайдера (превью)
             slider.addEventListener('input', function() {
                 const val = parseInt(this.value);
                 label.textContent = val + '%';
-                preview.style.fontSize = (1 + (val - 100) / 100) + 'rem';
+                preview.style.fontSize = (val / 100) + 'rem';
             });
 
             // Сохранить и применить ко всему сайту при отпускании слайдера
             slider.addEventListener('change', function() {
                 const val = parseInt(this.value);
                 localStorage.setItem('fontSize', val);
-                // Обновить CSS-переменную на всех страницах (текущая страница тоже обновится)
-                document.documentElement.style.setProperty('--font-size-multiplier', (1 + (val - 100) / 100).toString());
-                // Применить ко всем элементам (переопределить rem или использовать другой подход)
-                // Здесь мы просто перезагрузим страницу, чтобы применились стили из common.css
+                // Установить глобальную CSS-переменную
+                document.documentElement.style.setProperty('--font-size-multiplier', (val / 100).toString());
+                // Перезагрузить страницу для применения ко всем элементам
                 location.reload();
             });
 
