@@ -21,30 +21,31 @@ jobs:
         with:
           python-version: '3.12'
 
-      # Обновляем счётчик дней
       - name: Обновление счётчика дней
         run: python scripts/update_stats.py
 
-      # Обновляем счётчик статей
       - name: Обновление счётчика статей
         run: python scripts/count_articles.py
 
-      # Генерируем список статей для динамической загрузки
       - name: Обновление списка статей (articles.json)
         run: python scripts/update_articles_list.py
 
-      # Генерируем карту сайта
       - name: Генерация sitemap.xml
         run: python scripts/generate_sitemap.py
 
-      # Сохраняем все изменения
+      # *** НОВЫЙ ШАГ ***
+      - name: Подставить API-ключ DeepSeek в ai.html
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          sed -i "s/{{DEEPSEEK_API_KEY}}/$DEEPSEEK_API_KEY/g" ai.html
+
       - name: Коммит и пуш изменений
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html Komorium/articles.json sitemap.xml
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Автообновление счётчиков, статей и sitemap" && git push)
+          git add index.html Komorium/articles.json sitemap.xml ai.html
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Автообновление счётчиков, статей, sitemap и AI-ключа" && git push)
 
-      # Уведомляем Google о свежем sitemap (бесплатный пинг)
       - name: Пинг Google о новом sitemap
         run: curl -s -o /dev/null "https://www.google.com/ping?sitemap=https://komorok.ru/sitemap.xml"

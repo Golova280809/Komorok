@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="KomorokAI.css">
+    <title>Komorok AI — консультант</title>
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    <label for="menu-toggle" class="menu-toggle">
+        <span></span><span></span><span></span>
+    </label>
+
+    <nav class="sidebar">
+        <div class="sidebar-title">Меню</div>
+        <a href="index.html">Главная</a>
+        <a href="Komorium/index.html">Komorium</a>
+        <a href="ai.html">🤖 Komorok AI</a>
+        <a href="about.html">О проекте</a>
+        <button class="theme-toggle-btn" id="themeToggle">
+            <span class="icon">🌙</span>
+            <span>Тёмная тема</span>
+        </button>
+    </nav>
+
+    <label for="menu-toggle" class="overlay"></label>
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <main>
+        <div class="ai-container">
+            <h1 style="text-align: center;">🤖 Komorok AI</h1>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Задайте вопрос о проекте, и AI ответит, используя статьи сайта.
+            </p>
+
+            <div id="chat-box">
+                <div class="ai-msg">
+                    Привет! Я AI-консультант Komorok. Спроси меня о Базаново, Китае, Termux или о самом проекте.
+                </div>
+            </div>
+
+            <div class="input-row">
+                <input type="text" id="user-input" placeholder="Введите ваш вопрос..." autofocus>
+                <button id="send-btn">Отправить</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        (function() {
+            const chatBox = document.getElementById('chat-box');
+            const userInput = document.getElementById('user-input');
+            const sendBtn = document.getElementById('send-btn');
+
+            // Ключ API DeepSeek — лучше вынести в переменные окружения на сервере,
+            // но для статического сайта пока оставим здесь.
+            // ПОМНИ: не публикуй этот ключ в открытом репозитории!
+            const API_KEY = '{{DEEPSEEK_API_KEY}}';
+            const API_URL = 'https://api.deepseek.com/chat/completions';
+
+            // Системный промпт (что AI знает о проекте)
+            const SYSTEM_PROMPT = `Ты — AI-консультант сайта Komorok (komorok.ru). 
+Твоя задача — отвечать на вопросы посетителей, используя знания о проекте.
+Проект включает:
+- Энциклопедию Komorium (статьи о Китае, деревне Базаново, реке Гуньгунжда, технологиях).
+- Серию статей "История Китая в эпизодах" (8 частей).
+- Курсы HTML, CSS, Python, серию о Termux.
+- Интервью с жителями Базаново (Валентина Рыбкина).
+- Литературный раздел (Ги де Мопассан, Пышка, Ожерелье).
+- Интерактивную карту окрестностей Базаново.
+- Автоматизацию через GitHub Actions и Python-скрипты.
+- Управление с телефона через Termux.
+Отвечай кратко, дружелюбно и по делу. Если не знаешь ответа — честно скажи об этом.`;
+
+            // Добавляем сообщение в чат
+            function addMessage(text, type) {
+                const msg = document.createElement('div');
+                msg.className = type === 'user' ? 'user-msg' : 'ai-msg';
+                msg.textContent = text;
+                chatBox.appendChild(msg);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            // Показываем индикатор печати
+            function showTyping() {
+                const typing = document.createElement('div');
+                typing.className = 'ai-msg typing-indicator';
+                typing.id = 'typing-indicator';
+                typing.textContent = '⏳ Думаю...';
+                chatBox.appendChild(typing);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            // Убираем индикатор печати
+            function hideTyping() {
+                const typing = document.getElementById('typing-indicator');
+                if (typing) typing.remove();
+            }
+
+            // Отправка запроса к DeepSeek
+            async function sendMessage() {
+                const question = userInput.value.trim();
+                if (!question) return;
+
+                // Выводим вопрос пользователя
+                addMessage(question, 'user');
+                userInput.value = '';
+                sendBtn.disabled = true;
+                userInput.disabled = true;
+                showTyping();
+
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${API_KEY}`
+                        },
+                        body: JSON.stringify({
+                            model: 'deepseek-chat',
+                            messages: [
+                                { role: 'system', content: SYSTEM_PROMPT },
+                                { role: 'user', content: question }
+                            ],
+                            temperature: 0.3,
+                            max_tokens: 800
+                        })
+                    });
+
+                    const data = await response.json();
+                    hideTyping();
+
+                    if (data.choices && data.choices.length > 0) {
+                        addMessage(data.choices[0].message.content, 'ai');
+                    } else {
+                        addMessage('❌ Не удалось получить ответ. Попробуйте позже.', 'ai');
+                    }
+                } catch (error) {
+                    hideTyping();
+                    addMessage('❌ Ошибка соединения. Проверьте интернет.', 'ai');
+                    console.error('AI Error:', error);
+                }
+
+                sendBtn.disabled = false;
+                userInput.disabled = false;
+                userInput.focus();
+            }
+
+            // Обработчики событий
+            sendBtn.addEventListener('click', sendMessage);
+            userInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') sendMessage();
+            });
+        })();
+    </script>
+</body>
+</html>
