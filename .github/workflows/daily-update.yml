@@ -33,14 +33,7 @@ jobs:
       - name: Генерация sitemap.xml
         run: python scripts/generate_sitemap.py
 
-      # *** НОВЫЙ ШАГ ***
-      - name: Подставить ключи GigaChat в ai.html
-  env:
-    GIGACHAT_CLIENT_ID: ${{ secrets.giga }}
-    GIGACHAT_CLIENT_SECRET: ${{ secrets.gigac }}
-  run: |
-    sed -i "s/{{GIGACHAT_CLIENT_ID}}/$GIGACHAT_CLIENT_ID/g" ai.html
-    sed -i "s/{{GIGACHAT_CLIENT_SECRET}}/$GIGACHAT_CLIENT_SECRET/g" ai.html
+      
       - name: Коммит и пуш изменений
         run: |
           git config user.name "github-actions[bot]"
