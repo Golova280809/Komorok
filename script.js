@@ -149,7 +149,7 @@ function renderHab(category, containerId, batchSize = 5, articlesPath = 'article
                     }
 
                     const a = document.createElement('a');
-                    a.href = item.url;
+                    a.href = '/Komorium/' + item.url;
                     a.className = 'article-card';
                     a.setAttribute('data-title', item.title);
                     a.setAttribute('data-desc', '');
