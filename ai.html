@@ -58,11 +58,15 @@
             const userInput = document.getElementById('user-input');
             const sendBtn = document.getElementById('send-btn');
 
-            // API-ключ DeepSeek (будет заменён через GitHub Actions)
-            const API_KEY = '{{DeepSeek}}';
-            const API_URL = 'https://api.deepseek.com/chat/completions';
+            // Данные GigaChat (замени на свои или используй GitHub Secrets)
+            const CLIENT_ID = '{{giga}}';
+            const CLIENT_SECRET = '{{gigac}}';
+            const AUTH_URL = 'https://ngw.devices.sberbank.ru:7443/api/v2/oauth';
+            const API_URL = 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions';
 
-            // Системный промпт (что AI знает о проекте)
+            let accessToken = null;
+
+            // Системный промпт
             const SYSTEM_PROMPT = `Ты — AI-консультант сайта Komorok (komorok.ru). 
 Твоя задача — отвечать на вопросы посетителей, используя знания о проекте.
 Проект включает:
@@ -76,7 +80,20 @@
 - Управление с телефона через Termux.
 Отвечай кратко, дружелюбно и по делу. Если не знаешь ответа — честно скажи об этом.`;
 
-            // Добавляем сообщение в чат
+            async function getAccessToken() {
+                const response = await fetch(AUTH_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Authorization': 'Basic ' + btoa(`${CLIENT_ID}:${CLIENT_SECRET}`),
+                        'RqUID': crypto.randomUUID()
+                    },
+                    body: 'scope=GIGACHAT_API_PERS'
+                });
+                const data = await response.json();
+                accessToken = data.access_token;
+            }
+
             function addMessage(text, type) {
                 const msg = document.createElement('div');
                 msg.className = type === 'user' ? 'user-msg' : 'ai-msg';
@@ -85,7 +102,6 @@
                 chatBox.scrollTop = chatBox.scrollHeight;
             }
 
-            // Показываем индикатор печати
             function showTyping() {
                 const typing = document.createElement('div');
                 typing.className = 'ai-msg typing-indicator';
@@ -95,18 +111,15 @@
                 chatBox.scrollTop = chatBox.scrollHeight;
             }
 
-            // Убираем индикатор печати
             function hideTyping() {
                 const typing = document.getElementById('typing-indicator');
                 if (typing) typing.remove();
             }
 
-            // Отправка запроса к DeepSeek
             async function sendMessage() {
                 const question = userInput.value.trim();
                 if (!question) return;
 
-                // Выводим вопрос пользователя
                 addMessage(question, 'user');
                 userInput.value = '';
                 sendBtn.disabled = true;
@@ -114,14 +127,16 @@
                 showTyping();
 
                 try {
+                    if (!accessToken) await getAccessToken();
+
                     const response = await fetch(API_URL, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${API_KEY}`
+                            'Authorization': `Bearer ${accessToken}`
                         },
                         body: JSON.stringify({
-                            model: 'deepseek-chat',
+                            model: 'GigaChat',
                             messages: [
                                 { role: 'system', content: SYSTEM_PROMPT },
                                 { role: 'user', content: question }
@@ -150,7 +165,6 @@
                 userInput.focus();
             }
 
-            // Обработчики событий
             sendBtn.addEventListener('click', sendMessage);
             userInput.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') sendMessage();
