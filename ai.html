@@ -136,13 +136,13 @@
                             'Authorization': `Bearer ${accessToken}`
                         },
                         body: JSON.stringify({
-                            model: 'GigaChat',
+                            model: 'GigaChat-Lite',
                             messages: [
                                 { role: 'system', content: SYSTEM_PROMPT },
                                 { role: 'user', content: question }
                             ],
                             temperature: 0.3,
-                            max_tokens: 800
+                            max_tokens: 400
                         })
                     });
 
