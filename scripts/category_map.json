@@ -1,0 +1,22 @@
+{
+    "China": "countries",
+    "China/culture": "china-culture",
+    "China/history": "china-history",
+    "bazanovo": "villages",
+    "bazanovo/Gungunzhda": "nature",
+    "bazanovo/people": "voices",
+    "bazanovo/civil-war/ataman-semenov": "civil-war",
+    "bazanovo/civil-war/semenov-biography": "villages",
+    "Technology/html-course": "languages",
+    "Technology/css-course": "languages",
+    "Technology/python-course": "languages",
+    "Technology/termux-intro": "termux",
+    "Technology/termux-python": "termux",
+    "Technology/termux-git": "termux",
+    "Technology/termux-linkcheck": "termux",
+    "Technology/termux-server": "termux",
+    "Technology/termux-abc": "termux",
+    "literature/gi-de-maupassant": "authors",
+    "literature/gi-de-maupassant/pyshka": "works",
+    "literature/gi-de-maupassant/ozherele": "works"
+}

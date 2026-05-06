@@ -9,28 +9,15 @@ REPO_ROOT = os.path.dirname(SCRIPT_DIR)
 ROOT = os.path.join(REPO_ROOT, 'Komorium')
 IMAGES_DIR = os.path.join(REPO_ROOT, 'img')
 
-CATEGORY_MAP = {
-    'China': 'countries',
-    'China/culture': 'china-culture',
-    'China/history': 'china-history',
-    'bazanovo': 'villages',
-    'bazanovo/Gungunzhda': 'nature',
-    'bazanovo/people': 'voices',
-    'bazanovo/civil-war/ataman-semenov': 'civil-war',
-    'bazanovo/civil-war/semenov-biography': 'villages',
-    'Technology/html-course': 'languages',
-    'Technology/css-course': 'languages',
-    'Technology/python-course': 'languages',
-    'Technology/termux-intro': 'termux',
-    'Technology/termux-python': 'termux',
-    'Technology/termux-git': 'termux',
-    'Technology/termux-linkcheck': 'termux',
-    'Technology/termux-server': 'termux',
-    'Technology/termux-abc': 'termux',
-    'literature/gi-de-maupassant': 'authors',
-    'literature/gi-de-maupassant/pyshka': 'works',
-    'literature/gi-de-maupassant/ozherele': 'works',
-}
+def load_category_map():
+    """Загружает словарь категорий из внешнего JSON‑файла."""
+    map_path = os.path.join(SCRIPT_DIR, 'category_map.json')
+    if os.path.isfile(map_path):
+        with open(map_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {}
+
+CATEGORY_MAP = load_category_map()
 
 def get_category(rel_path):
     best = None
@@ -58,7 +45,6 @@ def get_title_and_date(html_file):
     return title, date
 
 def find_image(rel_path, existing_image):
-    # Если уже задано вручную и файл существует (проверяем от корня Komorium) – сохраняем
     if existing_image:
         full_path = os.path.join(ROOT, existing_image)
         if os.path.isfile(full_path):
@@ -68,17 +54,14 @@ def find_image(rel_path, existing_image):
             return existing_image
 
     basename = os.path.basename(rel_path)
-    # 1. ищем avatar.webp / avatar.png в папке статьи
     for ext in ['.webp', '.png']:
         avatar_path = os.path.join(ROOT, rel_path, f'avatar{ext}')
         if os.path.isfile(avatar_path):
             return f"{rel_path}/avatar{ext}"
-    # 2. точное совпадение в img/ (webp, потом png)
     for ext in ['.webp', '.png']:
         exact_match = os.path.join(IMAGES_DIR, f"{basename}{ext}")
         if os.path.isfile(exact_match):
             return f"../img/{basename}{ext}"
-    # 3. частичное совпадение (любое из расширений)
     if os.path.isdir(IMAGES_DIR):
         for fname in os.listdir(IMAGES_DIR):
             if not fname.lower().endswith(('.webp', '.png')):
@@ -104,9 +87,8 @@ def find_articles():
             title, date = get_title_and_date(os.path.join(dirpath, 'index.html'))
             category = get_category(rel_path)
             url = f"{rel_path}/"
-            
+
             existing_entry = existing.get(url)
-            # Изображение стараемся сохранить, если оно уже было задано вручную
             if existing_entry:
                 existing_image = existing_entry.get('image', '')
                 if existing_image and os.path.isfile(os.path.join(ROOT, existing_image)):
@@ -115,7 +97,7 @@ def find_articles():
                     image = find_image(rel_path, existing_image)
             else:
                 image = find_image(rel_path, '')
-            
+
             articles.append({
                 'title': title,
                 'url': url,
@@ -124,6 +106,36 @@ def find_articles():
                 'image': image
             })
     return articles
+
+def fix_broken_urls():
+    """Однократное исправление дублирующихся папок в articles.json"""
+    articles_path = os.path.join(REPO_ROOT, 'Komorium', 'articles.json')
+    if not os.path.isfile(articles_path):
+        return
+    with open(articles_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    changed = False
+    for article in data:
+        url = article.get('url', '')
+        parts = url.split('/')
+        new_parts = []
+        for p in parts:
+            if p and new_parts and p == new_parts[-1]:
+                continue
+            new_parts.append(p)
+        new_url = '/'.join(new_parts)
+        if new_url != url:
+            article['url'] = new_url
+            changed = True
+            print(f'Исправлен URL: {url} → {new_url}')
+
+    if changed:
+        with open(articles_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        print('✅ Неправильные ссылки исправлены в articles.json')
+    else:
+        print('✅ Все ссылки уже корректны')
 
 def generate_sitemap(articles):
     base_url = "https://komorok.ru"
@@ -147,6 +159,7 @@ def generate_sitemap(articles):
     print(f"✅ sitemap.xml сгенерирован (статей: {len(articles)})")
 
 if __name__ == '__main__':
+    fix_broken_urls()
     articles = find_articles()
     out_path = os.path.join(REPO_ROOT, 'Komorium', 'articles.json')
     with open(out_path, 'w', encoding='utf-8') as f:
