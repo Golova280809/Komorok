@@ -3,7 +3,6 @@ import os
 import re
 from datetime import datetime
 
-# Определяем корень репозитория: на уровень выше папки scripts/
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(SCRIPT_DIR)
 
@@ -30,7 +29,7 @@ CATEGORY_MAP = {
     'Technology/termux-abc': 'termux',
     'literature/gi-de-maupassant': 'authors',
     'literature/gi-de-maupassant/pyshka': 'works',
-    'literature/gi-de-maupassant/ozherele': 'works',  # <-- новая запись
+    'literature/gi-de-maupassant/ozherele': 'works',
 }
 
 def get_category(rel_path):
@@ -61,11 +60,9 @@ def get_title_and_date(html_file):
 def find_image(rel_path, existing_image):
     # Если уже задано вручную и файл существует (проверяем от корня Komorium) – сохраняем
     if existing_image:
-        # Пробуем полный путь от корня Komorium
         full_path = os.path.join(ROOT, existing_image)
         if os.path.isfile(full_path):
             return existing_image
-        # Если не получилось, возможно existing_image содержит ../img/..., который должен проверяться относительно REPO_ROOT
         alt_path = os.path.join(REPO_ROOT, existing_image)
         if os.path.isfile(alt_path):
             return existing_image
@@ -106,19 +103,16 @@ def find_articles():
             rel_path = os.path.relpath(dirpath, ROOT)
             title, date = get_title_and_date(os.path.join(dirpath, 'index.html'))
             category = get_category(rel_path)
-            
-            # Формируем URL как относительный путь от папки Komorium
             url = f"{rel_path}/"
             
-            # Если статья уже была в JSON (по ключу url), берём сохранённые данные, чтобы не перезатереть ручные правки
             existing_entry = existing.get(url)
+            # Изображение стараемся сохранить, если оно уже было задано вручную
             if existing_entry:
-                # Используем существующий URL, если он не пуст (мог быть исправлен вручную)
-                url = existing_entry.get('url', url)
-                image = existing_entry.get('image', '')
-                # Проверяем, что изображение существует, иначе пытаемся найти заново
-                if not image or not os.path.isfile(os.path.join(ROOT, image)):
-                    image = find_image(rel_path, image)
+                existing_image = existing_entry.get('image', '')
+                if existing_image and os.path.isfile(os.path.join(ROOT, existing_image)):
+                    image = existing_image
+                else:
+                    image = find_image(rel_path, existing_image)
             else:
                 image = find_image(rel_path, '')
             
@@ -144,7 +138,6 @@ def generate_sitemap(articles):
     for path, priority in static_pages:
         lines.append(f"  <url><loc>{base_url}{path}</loc><priority>{priority}</priority></url>")
     for article in articles:
-        # url уже содержит относительный путь от Komorium, например "China/"
         loc = f"{base_url}/Komorium/{article['url']}"
         lines.append(f"  <url><loc>{loc}</loc><lastmod>{article['date']}</lastmod><priority>0.7</priority></url>")
     lines.append('</urlset>')
