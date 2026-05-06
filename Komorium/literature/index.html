@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" href="../../logo.png">
+    <link rel="icon" type="image/png" href="../../logo.png">
+
+    <meta name="description" content="Литературный раздел Komorok — биографии и произведения русских и зарубежных авторов.">
+    <meta name="keywords" content="литература, авторы, Мопассан, Тэффи, рассказы, Komorok">
+    <link rel="canonical" href="https://komorok.ru/Komorium/literature/">
+
+    <meta property="og:title" content="Литература | Komorok">
+    <meta property="og:description" content="Биографии и произведения любимых авторов.">
+    <meta property="og:url" content="https://komorok.ru/Komorium/literature/">
+    <meta property="og:image" content="https://komorok.ru/img/no-img.webp">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Komorok">
+
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../common.css">
+    <link rel="stylesheet" href="../komorium.css">
+    <title>Литература | Komorok</title>
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    <label for="menu-toggle" class="menu-toggle">
+        <span></span><span></span><span></span>
+    </label>
+
+    <nav class="sidebar">
+        <div class="sidebar-title">Меню</div>
+        <a href="../../index.html">Главная</a>
+        <a href="../index.html">Komorium</a>
+        <a href="../../about.html">О проекте</a>
+        <button class="theme-toggle-btn" id="themeToggle">
+            <span class="icon">🌙</span>
+            <span>Тёмная тема</span>
+        </button>
+    </nav>
+
+    <label for="menu-toggle" class="overlay"></label>
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <main>
+        <h1 style="text-align: center;">📚 Литература</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">Биографии и произведения писателей</p>
+
+        <section class="content-section">
+            <h2>Авторы</h2>
+            <div class="articles-grid">
+                <!-- Ги де Мопассан -->
+                <a href="gi-de-maupassant/" class="article-card">
+                    <img src="../../img/Maupassant.webp" alt="Ги де Мопассан" class="avatar">
+                    <div class="card-content">
+                        <span class="card-title">Ги де Мопассан</span>
+                        <span class="card-desc">Французский новеллист</span>
+                    </div>
+                </a>
+
+                <!-- Надежда Тэффи -->
+                <a href="nadezhda-teffi/" class="article-card">
+                    <img src="../../img/no-img.webp" alt="Надежда Тэффи" class="avatar">
+                    <div class="card-content">
+                        <span class="card-title">Надежда Тэффи</span>
+                        <span class="card-desc">Королева русского юмора</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Komorok</p>
+    </footer>
+    <script src="../../script.js"></script>
+</body>
+</html>

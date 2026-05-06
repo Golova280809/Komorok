@@ -1,45 +1,55 @@
 #!/usr/bin/env python3
 """
-Скрипт для автоматического добавления новеллы (или любой статьи) на сайт Komorok.
-Скачивает текст с указанного URL, создает HTML-страницу, обновляет articles.json и sitemap.xml.
-
-Использование:
-  python scripts/add_novel.py "https://example.com/text" "nazvanie-papki"
+Универсальный скрипт для создания HTML-страницы рассказа с nukadeti.ru.
+Автоматически определяет автора и создаёт правильную структуру папок.
+Ссылка уже в коде — просто запусти.
 """
 
-import sys
 import os
+import re
 import requests
 from bs4 import BeautifulSoup
-from pathlib import Path
-import json
 
-# Корень проекта (на уровень выше папки scripts)
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+# ⚠️ ВСТАВЬ НУЖНУЮ ССЫЛКУ СЮДА
+URL = "https://nukadeti.ru/rasskazy/zhizn-i-vorotnik"
 
-# Базовая папка для литературного раздела
-LITERATURE_DIR = os.path.join(REPO_ROOT, 'Komorium', 'literature', 'gi-de-maupassant')
+# Корень литературы
+LITERATURE_DIR = os.path.join('Komorium', 'literature')
 
-# Шаблон HTML-страницы
-HTML_TEMPLATE = """<!DOCTYPE html>
+# Таблица транслитерации (только для имени автора, папка рассказа берётся из URL)
+RUS_TO_LAT = {
+    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+    'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+    'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+    'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
+    'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya',
+    ' ': '-', '_': '-', ',': '', '.': '', '!': '', '?': '', ':': '',
+    '«': '', '»': '', "'": '', '"': '', '–': '-', '—': '-'
+}
+
+def transliterate(text):
+    """Транслитерация русского текста в латиницу."""
+    slug = ''
+    for ch in text.lower():
+        slug += RUS_TO_LAT.get(ch, ch)
+    slug = re.sub(r'-{2,}', '-', slug)
+    return slug.strip('-')
+
+HTML_TEMPLATE = '''<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <link rel="apple-touch-icon" href="../../../../logo.png">
     <link rel="icon" type="image/png" href="../../../../logo.png">
-
-    <meta name="description" content="{title} — Ги де Мопассан. Полный текст новеллы.">
-    <meta name="keywords" content="{title}, Мопассан, новелла, французская литература">
-    <link rel="canonical" href="https://komorok.ru/Komorium/literature/gi-de-maupassant/{folder}/">
-
-    <meta property="og:title" content="{title} — Ги де Мопассан | Komorok">
-    <meta property="og:description" content="Полный текст новеллы «{title}» Ги де Мопассана.">
-    <meta property="og:url" content="https://komorok.ru/Komorium/literature/gi-de-maupassant/{folder}/">
+    <meta name="description" content="{title} — {author}. Полный текст рассказа.">
+    <meta name="keywords" content="{title}, {author}, рассказ, литература">
+    <link rel="canonical" href="https://komorok.ru/Komorium/literature/{author_folder}/{folder}/">
+    <meta property="og:title" content="{title} — {author} | Komorok">
+    <meta property="og:description" content="Полный текст рассказа «{title}» ({author}).">
+    <meta property="og:url" content="https://komorok.ru/Komorium/literature/{author_folder}/{folder}/">
     <meta property="og:image" content="https://komorok.ru/img/no-img.webp">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Komorok">
-
     <script>
         (function() {{
             var theme = localStorage.getItem('theme');
@@ -51,185 +61,174 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../../common.css">
     <link rel="stylesheet" href="../../../komorium.css">
-    <title>{title} — Ги де Мопассан | Komorok</title>
+    <title>{title} — {author} | Komorok</title>
 </head>
 <body>
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-    <label for="menu-toggle" class="menu-toggle">
-        <span></span><span></span><span></span>
-    </label>
-
+    <label for="menu-toggle" class="menu-toggle"><span></span><span></span><span></span></label>
     <nav class="sidebar">
         <div class="sidebar-title">Меню</div>
         <a href="../../../../index.html">Главная</a>
         <a href="../../../index.html">Komorium</a>
         <a href="../../../../about.html">О проекте</a>
         <button class="theme-toggle-btn" id="themeToggle">
-            <span class="icon">🌙</span>
-            <span>Тёмная тема</span>
+            <span class="icon">🌙</span><span>Тёмная тема</span>
         </button>
     </nav>
-
     <label for="menu-toggle" class="overlay"></label>
     <button class="back-to-top" id="backToTop">↑</button>
-
     <main>
         <div class="top-menu">
-            <a href="#about">О новелле</a>
+            <a href="#about">О рассказе</a>
             <a href="#text">Текст</a>
             <a href="#other">Другие произведения</a>
         </div>
-
         <h1 style="text-align: center;">📖 {title}</h1>
-        <p style="text-align: center; margin-bottom: 2rem;">Ги де Мопассан</p>
-
+        <p style="text-align: center; margin-bottom: 2rem;">{author}</p>
         <section id="about" class="content-section">
-            <h2>📜 О новелле</h2>
+            <h2>📜 О рассказе</h2>
             <p>{description}</p>
         </section>
-
         <section id="text" class="content-section">
-            <h2>📄 Текст новеллы</h2>
+            <h2>📄 Текст рассказа</h2>
             {body}
         </section>
-
         <section id="other" class="content-section">
             <h2>📚 Другие произведения</h2>
             <div class="articles-grid">
                 <a href="../index.html" class="article-card">
-                    <img src="../../../../img/no-img.webp" alt="Мопассан" class="avatar">
+                    <img src="../../../../img/no-img.webp" alt="{author}" class="avatar">
                     <div class="card-content">
-                        <span class="card-title">Ги де Мопассан: биография</span>
-                        <span class="card-desc">Полная биография автора</span>
-                    </div>
-                </a>
-                <a href="../pyshka/index.html" class="article-card">
-                    <img src="../../../../img/no-img.webp" alt="Пышка" class="avatar">
-                    <div class="card-content">
-                        <span class="card-title">Пышка</span>
-                        <span class="card-desc">Новелла (1880)</span>
+                        <span class="card-title">{author}: биография</span>
+                        <span class="card-desc">Страница автора</span>
                     </div>
                 </a>
             </div>
         </section>
     </main>
-    <footer class="footer">
-        <p>© 2026 Komorok — Литературный раздел</p>
-    </footer>
+    <footer class="footer"><p>© 2026 Komorok — Литературный раздел</p></footer>
     <script src="../../../../script.js"></script>
 </body>
-</html>
-"""
+</html>'''
 
-def fetch_text(url):
-    """Скачивает текст новеллы, автоматически определяя кодировку."""
-    response = requests.get(url)
-    # Автоматически определяем правильную кодировку
-    response.encoding = response.apparent_encoding
-    soup = BeautifulSoup(response.text, 'html.parser')
+# ------------------- ПОЕХАЛИ -------------------
+folder_name = URL.rstrip('/').split('/')[-1]
+print(f"📥 Загружаю: {URL}")
 
-    # Ищем основной текст (для разных сайтов структура может отличаться)
-    content = soup.find('div', class_='text') or soup.find('div', class_='content') or soup.find('div')
-    if not content:
-        print("❌ Не удалось найти текст на странице.")
-        return "Без названия", ""
+resp = requests.get(URL, timeout=15)
+resp.encoding = resp.apparent_encoding
+soup = BeautifulSoup(resp.text, 'html.parser')
 
-    # Извлекаем абзацы
-    paragraphs = content.find_all('p')
-    if not paragraphs:
-        text = content.get_text()
+# Заголовок
+title_tag = soup.find('h1')
+title = title_tag.get_text().strip() if title_tag else "Без названия"
+
+# Автор: ищем в a.aut, span.aut, или берём из <title>
+author_tag = (
+    soup.find('a', class_='aut') or   # ← новый формат (Тэффи)
+    soup.find('span', class_='aut')   # ← старый формат (Мопассан)
+)
+if author_tag:
+    author = author_tag.get_text().strip()
+else:
+    # Запасной вариант: парсим <title>
+    title_text = soup.find('title')
+    if title_text:
+        title_str = title_text.get_text()
+        # "Жизнь и воротник - рассказ Н. Тэффи, читать онлайн"
+        if ' - ' in title_str:
+            parts = title_str.split(' - ')
+            if len(parts) >= 2:
+                second = parts[1].strip()
+                # "рассказ Н. Тэффи, читать онлайн" → "Н. Тэффи"
+                author = second.replace('рассказ ', '').replace(', читать онлайн', '').strip()
+            else:
+                author = "Неизвестный автор"
+        else:
+            author = "Неизвестный автор"
     else:
-        text = '\n'.join(p.get_text() for p in paragraphs)
+        author = "Неизвестный автор"
 
-    # Название обычно в теге <h1>
-    title_tag = soup.find('h1')
-    title = title_tag.get_text().strip() if title_tag else "Без названия"
+print(f"🖋️ Автор: {author}")
 
-    return title, text
+# Транслитерируем папку автора
+author_folder = transliterate(author)
+print(f"📁 Папка автора: {author_folder}")
 
-def format_body(text):
-    """Преобразует текст в HTML-абзацы."""
-    paragraphs = text.split('\n')
-    return '\n'.join(f'<p>{para.strip()}</p>' for para in paragraphs if para.strip())
+# Поиск текста
+text_block = (
+    soup.find('div', class_='tale-text') or
+    soup.find('div', class_='story-text') or
+    soup.find('div', class_='text') or
+    soup.find('div', class_='content') or
+    soup.find('article') or
+    soup.find('div', class_='entry-content') or
+    soup.find('main')
+)
 
-def update_articles_json(title, folder):
-    """Добавляет запись в articles.json."""
-    json_path = os.path.join(REPO_ROOT, 'Komorium', 'articles.json')
-    if not os.path.exists(json_path):
-        print(f"❌ Файл {json_path} не найден.")
-        return
+if not text_block:
+    print("❌ Не удалось найти блок с текстом на странице.")
+    exit(1)
 
-    with open(json_path, 'r', encoding='utf-8') as f:
-        articles = json.load(f)
+paragraphs = text_block.find_all('p')
+text = '\n'.join(p.get_text().strip() for p in paragraphs if p.get_text().strip())
 
-    url = f"literature/gi-de-maupassant/{folder}/"
-    for art in articles:
-        if art.get('url') == url:
-            print(f"⚠️ Статья уже существует: {url}")
-            return
+if not text:
+    print("❌ Текст пуст.")
+    exit(1)
 
-    articles.append({
-        "title": title,
-        "url": url,
-        "category": "works",
-        "date": "2026-05-06",
-        "image": ""
-    })
+print(f"📖 Название: {title}")
+print(f"📁 Папка рассказа: {folder_name}")
+print(f"📏 Длина текста: {len(text)} символов")
 
-    with open(json_path, 'w', encoding='utf-8') as f:
-        json.dump(articles, f, ensure_ascii=False, indent=2)
-    print(f"✅ Добавлено в articles.json: {title}")
+# Форматируем
+body_html = '\n'.join(f'<p>{p}</p>' for p in text.split('\n') if p)
+description = f"Рассказ «{title}» ({author}). Здесь представлен полный текст."
 
-def update_sitemap():
-    """Вызывает генерацию sitemap.xml."""
-    sys.path.insert(0, SCRIPT_DIR)
-    try:
-        from update_articles_list import find_articles, generate_sitemap
-        articles = find_articles()
-        generate_sitemap(articles)
-    except ImportError:
-        print("❌ Не удалось импортировать функции из update_articles_list.py.")
+# Создаём папки
+author_dir = os.path.join(LITERATURE_DIR, author_folder)
+novel_dir = os.path.join(author_dir, folder_name)
+os.makedirs(novel_dir, exist_ok=True)
 
-def main():
-    if len(sys.argv) < 3:
-        print("Использование: python add_novel.py <URL> <название_папки>")
-        sys.exit(1)
-    
-    url = sys.argv[1]
-    folder_name = sys.argv[2]
-    
-    print(f"Скачиваю текст с {url}...")
-    title, text = fetch_text(url)
-    
-    if not text:
-        print("❌ Не удалось извлечь текст. Проверьте URL или структуру страницы.")
-        sys.exit(1)
-        
-    print(f"Название: {title}")
-    print(f"Длина текста: {len(text)} символов")
-    
-    novel_dir = os.path.join(LITERATURE_DIR, folder_name)
-    os.makedirs(novel_dir, exist_ok=True)
-    
-    description = f"Новелла «{title}» — одно из известных произведений Ги де Мопассана. Здесь представлен полный текст."
-    body_html = format_body(text)
-    html_content = HTML_TEMPLATE.format(
-        title=title,
-        folder=folder_name,
-        description=description,
-        body=body_html
-    )
-    
-    index_path = os.path.join(novel_dir, 'index.html')
-    with open(index_path, 'w', encoding='utf-8') as f:
-        f.write(html_content)
-    print(f"✅ Создана страница: {index_path}")
-    
-    update_articles_json(title, folder_name)
-    update_sitemap()
-    print("✅ sitemap.xml обновлён")
-    
-    print("\n🎉 Готово! Осталось сделать git add, commit и push.")
+html = HTML_TEMPLATE.format(
+    title=title,
+    author=author,
+    author_folder=author_folder,
+    folder=folder_name,
+    description=description,
+    body=body_html
+)
 
-if __name__ == '__main__':
-    main()
+index_path = os.path.join(novel_dir, 'index.html')
+with open(index_path, 'w', encoding='utf-8') as f:
+    f.write(html)
+
+print(f"✅ Страница создана: {index_path}")
+
+# Попытаемся добавить карточку в биографию автора, если она существует
+author_page = os.path.join(author_dir, 'index.html')
+if os.path.exists(author_page):
+    print("📝 Найдена страница автора, добавляю карточку...")
+    with open(author_page, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    card = f'''                <a href="{folder_name}/" class="article-card">
+                    <img src="../../img/no-img.webp" alt="{title}" class="avatar">
+                    <div class="card-content">
+                        <span class="card-title">{title}</span>
+                        <span class="card-desc">Рассказ</span>
+                    </div>
+                </a>'''
+
+    pattern = r'(<div class="articles-grid">.*?)(</div>)'
+    new_content = re.sub(pattern, r'\1' + card + r'\n\2', content, count=1, flags=re.DOTALL)
+    if new_content != content:
+        with open(author_page, 'w', encoding='utf-8') as f:
+            f.write(new_content)
+        print("✅ Карточка добавлена в биографию автора.")
+    else:
+        print("⚠️ Не удалось вставить карточку в биографию.")
+else:
+    print("ℹ️ Страница автора ещё не создана. При желании создайте её вручную.")
+
+print("🎉 Готово!")
