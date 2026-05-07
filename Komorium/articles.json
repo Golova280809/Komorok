@@ -215,5 +215,26 @@
     "category": "villages",
     "date": "2026-05-07",
     "image": "../img/semenov-portrait.webp"
+  },
+  {
+    "title": "🧬 Биология",
+    "url": "biology/",
+    "category": "other",
+    "date": "2026-05-07",
+    "image": ""
+  },
+  {
+    "title": "🧬 Что такое биология?",
+    "url": "biology/what-is-biology/",
+    "category": "other",
+    "date": "2026-05-07",
+    "image": ""
+  },
+  {
+    "title": "🌿 Что такое ботаника?",
+    "url": "biology/botany/",
+    "category": "other",
+    "date": "2026-05-07",
+    "image": ""
   }
 ]
