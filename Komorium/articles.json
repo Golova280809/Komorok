@@ -221,27 +221,27 @@
     "url": "biology/",
     "category": "other",
     "date": "2026-05-07",
-    "image": ""
+    "image": "../img/biology.webp"
   },
   {
     "title": "🧬 Что такое биология?",
     "url": "biology/what-is-biology/",
     "category": "other",
     "date": "2026-05-07",
-    "image": ""
+    "image": "../img/biology.webp"
   },
   {
     "title": "🦁 Введение в зоологию",
     "url": "biology/zoology/",
     "category": "other",
     "date": "2026-05-07",
-    "image": ""
+    "image": "../img/koala.webp"
   },
   {
     "title": "🌿 Что такое ботаника?",
     "url": "biology/botany/",
     "category": "other",
     "date": "2026-05-07",
-    "image": ""
+    "image": "../img/lily.webp"
   }
 ]
