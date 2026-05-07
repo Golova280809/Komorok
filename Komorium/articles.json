@@ -81,7 +81,7 @@
     "url": "literature/nadezhda-teffi/zhizn-i-vorotnik/",
     "category": "other",
     "date": "2026-05-07",
-    "image": ""
+    "image": "../img/teffi.webp"
   },
   {
     "title": "✍️ Ги де Мопассан",
@@ -95,21 +95,21 @@
     "url": "literature/gi-de-maupassant/ozherele/",
     "category": "works",
     "date": "2026-05-07",
-    "image": ""
+    "image": "../img/Maupassant.webp"
   },
   {
     "title": "📖 Пышка",
     "url": "literature/gi-de-maupassant/pyshka/",
     "category": "works",
     "date": "2026-05-07",
-    "image": ""
+    "image": "../img/Maupassant.webp"
   },
   {
     "title": "📖 Рождественская сказка",
     "url": "literature/gi-de-maupassant/mopassan-rozhdestvenskaya-skazka/",
     "category": "authors",
     "date": "2026-05-07",
-    "image": ""
+    "image": "../img/Maupassant.webp"
   },
   {
     "title": "🇨🇳 Китай",
@@ -207,13 +207,13 @@
     "url": "bazanovo/civil-war/ataman-semenov/",
     "category": "civil-war",
     "date": "2026-05-07",
-    "image": ""
+    "image": "../img/semenov-portrait.webp"
   },
   {
     "title": "👤 Атаман Григорий Семёнов: биография",
     "url": "bazanovo/civil-war/semenov-biography/",
     "category": "villages",
     "date": "2026-05-07",
-    "image": ""
+    "image": "../img/semenov-portrait.webp"
   }
 ]
