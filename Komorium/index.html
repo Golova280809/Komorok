@@ -5,12 +5,12 @@
     <link rel="apple-touch-icon" href="../logo.png" />
     <link rel="icon" type="image/png" href="../logo.png" />
 
-    <meta name="description" content="Komorium — личная энциклопедия Александра Головачёва. Статьи по географии, технологиям, литературе и краеведению." />
-    <meta name="keywords" content="Komorium, энциклопедия, география, Китай, Базаново, HTML, CSS, технологии, литература" />
+    <meta name="description" content="Komorium — личная энциклопедия Александра Головачёва. Статьи по географии, биологии, технологиям, литературе и краеведению." />
+    <meta name="keywords" content="Komorium, энциклопедия, география, биология, Китай, Базаново, HTML, CSS, технологии, литература" />
     <link rel="canonical" href="https://komorok.ru/Komorium/" />
 
     <meta property="og:title" content="📚 Komorium — Моя личная энциклопедия | Komorok" />
-    <meta property="og:description" content="Статьи о Китае, Базаново, реке Гуньгунжда, литературе и курсы по HTML, CSS, Python и Termux." />
+    <meta property="og:description" content="Статьи о Китае, Базаново, биологии, литературе и курсы по HTML, CSS, Python и Termux." />
     <meta property="og:url" content="https://komorok.ru/Komorium/" />
     <meta property="og:image" content="https://komorok.ru/logo.png" />
     <meta property="og:type" content="website" />
@@ -62,6 +62,7 @@
 
         <nav class="categories">
             <a href="#geography" class="cat-btn">🌍 География</a>
+            <a href="#biology" class="cat-btn">🧬 Биология</a>
             <a href="#technology" class="cat-btn">💻 Технологии</a>
             <a href="#literature" class="cat-btn">📚 Литература</a>
         </nav>
@@ -119,6 +120,27 @@
             </div>
         </section>
 
+        <!-- Раздел БИОЛОГИЯ -->
+        <section id="biology" class="category-section">
+            <h2>🧬 Биология</h2>
+
+            <div class="subcategory collapsed" id="subcat-biology">
+                <div class="subcategory-header">
+                    <h3>Наука о жизни</h3>
+                    <button class="toggle-subcat" data-target="subcat-biology"><span class="arrow">▼</span></button>
+                </div>
+                <div class="articles-grid">
+                    <a href="biology/" class="article-card" data-title="Биология" data-desc="Наука о жизни — обзорная статья">
+                        <img src="../img/no-img.webp" alt="Биология" class="avatar">
+                        <div class="card-content">
+                            <span class="card-title">Биология</span>
+                            <span class="card-desc">Наука о жизни во всех её проявлениях</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Раздел ТЕХНОЛОГИИ -->
         <section id="technology" class="category-section">
             <h2>💻 Технологии</h2>
@@ -159,25 +181,25 @@
         </section>
 
         <!-- Раздел ЛИТЕРАТУРА -->
-<section id="literature" class="category-section">
-    <h2>📚 Литература</h2>
+        <section id="literature" class="category-section">
+            <h2>📚 Литература</h2>
 
-    <div class="subcategory collapsed" id="subcat-literature">
-        <div class="subcategory-header">
-            <h3>Авторы и произведения</h3>
-            <button class="toggle-subcat" data-target="subcat-literature"><span class="arrow">▼</span></button>
-        </div>
-        <div class="articles-grid">
-            <a href="literature/" class="article-card" data-title="Все авторы" data-desc="Биографии и произведения писателей">
-                <img src="../img/no-img.webp" alt="Литература" class="avatar">
-                <div class="card-content">
-                    <span class="card-title">Все авторы</span>
-                    <span class="card-desc">Биографии и произведения писателей</span>
+            <div class="subcategory collapsed" id="subcat-literature">
+                <div class="subcategory-header">
+                    <h3>Авторы и произведения</h3>
+                    <button class="toggle-subcat" data-target="subcat-literature"><span class="arrow">▼</span></button>
                 </div>
-            </a>
-        </div>
-    </div>
-</section>
+                <div class="articles-grid">
+                    <a href="literature/" class="article-card" data-title="Все авторы" data-desc="Биографии и произведения писателей">
+                        <img src="../img/no-img.webp" alt="Литература" class="avatar">
+                        <div class="card-content">
+                            <span class="card-title">Все авторы</span>
+                            <span class="card-desc">Биографии и произведения писателей</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
 
         <div id="noResultsMessage" class="no-results-message">🔎 Ничего не найдено. Попробуйте изменить запрос.</div>
     </main>
