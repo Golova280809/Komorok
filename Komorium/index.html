@@ -158,15 +158,17 @@
             </div>
         </section>
 
-        <!-- Раздел ЛИТЕРАТУРА (сворачиваемый) -->
-<section id="literature" class="content-section collapsible-section">
-    <div class="section-header" onclick="toggleCollapse(this)">
-        <h2>📚 Литература</h2>
-        <span class="collapse-arrow">▼</span>
-    </div>
-    <div class="collapsible-content" style="display: block;">
+        <!-- Раздел ЛИТЕРАТУРА -->
+<section id="literature" class="category-section">
+    <h2>📚 Литература</h2>
+
+    <div class="subcategory collapsed" id="subcat-literature">
+        <div class="subcategory-header">
+            <h3>Авторы и произведения</h3>
+            <button class="toggle-subcat" data-target="subcat-literature"><span class="arrow">▼</span></button>
+        </div>
         <div class="articles-grid">
-            <a href="literature/" class="article-card">
+            <a href="literature/" class="article-card" data-title="Все авторы" data-desc="Биографии и произведения писателей">
                 <img src="../img/no-img.webp" alt="Литература" class="avatar">
                 <div class="card-content">
                     <span class="card-title">Все авторы</span>
