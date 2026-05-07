@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 """
+<<<<<<< HEAD
 Универсальный скрипт для создания HTML-страницы рассказа с nukadeti.ru.
 Автоматически определяет автора и создаёт правильную структуру папок.
 Ссылка уже в коде — просто запусти.
+=======
+Скрипт для создания HTML-страницы новеллы с nukadeti.ru.
+Ссылка уже вшита в код — просто запусти.
+>>>>>>> 6c95c15bb132be6697465a7304463e30c18352e5
 """
 
 import os
@@ -10,6 +15,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+<<<<<<< HEAD
 # ⚠️ ВСТАВЬ НУЖНУЮ ССЫЛКУ СЮДА
 URL = "https://nukadeti.ru/rasskazy/zhizn-i-vorotnik"
 
@@ -35,18 +41,36 @@ def transliterate(text):
     slug = re.sub(r'-{2,}', '-', slug)
     return slug.strip('-')
 
+=======
+# === ВСТАВЬ ССЫЛКУ СЮДА ===
+URL = "https://nukadeti.ru/rasskazy/mopassan-rozhdestvenskaya-skazka"
+# ===========================
+
+# Папка, куда сохранять
+LITERATURE_DIR = os.path.join('Komorium', 'literature', 'gi-de-maupassant')
+
+>>>>>>> 6c95c15bb132be6697465a7304463e30c18352e5
 HTML_TEMPLATE = '''<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <link rel="apple-touch-icon" href="../../../../logo.png">
     <link rel="icon" type="image/png" href="../../../../logo.png">
+<<<<<<< HEAD
     <meta name="description" content="{title} — {author}. Полный текст рассказа.">
     <meta name="keywords" content="{title}, {author}, рассказ, литература">
     <link rel="canonical" href="https://komorok.ru/Komorium/literature/{author_folder}/{folder}/">
     <meta property="og:title" content="{title} — {author} | Komorok">
     <meta property="og:description" content="Полный текст рассказа «{title}» ({author}).">
     <meta property="og:url" content="https://komorok.ru/Komorium/literature/{author_folder}/{folder}/">
+=======
+    <meta name="description" content="{title} — Ги де Мопассан. Полный текст новеллы.">
+    <meta name="keywords" content="{title}, Мопассан, новелла, французская литература">
+    <link rel="canonical" href="https://komorok.ru/Komorium/literature/gi-de-maupassant/{folder}/">
+    <meta property="og:title" content="{title} — Ги де Мопассан | Komorok">
+    <meta property="og:description" content="Полный текст новеллы «{title}» Ги де Мопассана.">
+    <meta property="og:url" content="https://komorok.ru/Komorium/literature/gi-de-maupassant/{folder}/">
+>>>>>>> 6c95c15bb132be6697465a7304463e30c18352e5
     <meta property="og:image" content="https://komorok.ru/img/no-img.webp">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Komorok">
@@ -84,7 +108,11 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             <a href="#other">Другие произведения</a>
         </div>
         <h1 style="text-align: center;">📖 {title}</h1>
+<<<<<<< HEAD
         <p style="text-align: center; margin-bottom: 2rem;">{author}</p>
+=======
+        <p style="text-align: center; margin-bottom: 2rem;">Ги де Мопассан</p>
+>>>>>>> 6c95c15bb132be6697465a7304463e30c18352e5
         <section id="about" class="content-section">
             <h2>📜 О рассказе</h2>
             <p>{description}</p>
@@ -111,7 +139,11 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
 </body>
 </html>'''
 
+<<<<<<< HEAD
 # ------------------- ПОЕХАЛИ -------------------
+=======
+# === ПОЕХАЛИ ===
+>>>>>>> 6c95c15bb132be6697465a7304463e30c18352e5
 folder_name = URL.rstrip('/').split('/')[-1]
 print(f"📥 Загружаю: {URL}")
 
@@ -122,6 +154,7 @@ soup = BeautifulSoup(resp.text, 'html.parser')
 # Заголовок
 title_tag = soup.find('h1')
 title = title_tag.get_text().strip() if title_tag else "Без названия"
+<<<<<<< HEAD
 
 # Автор: ищем в a.aut, span.aut, или берём из <title>
 author_tag = (
@@ -232,3 +265,31 @@ else:
     print("ℹ️ Страница автора ещё не создана. При желании создайте её вручную.")
 
 print("🎉 Готово!")
+=======
+
+# Текст
+text_block = soup.find('div', class_='story-text')
+paragraphs = text_block.find_all('p')
+text = '\n'.join(p.get_text().strip() for p in paragraphs if p.get_text().strip())
+
+print(f"📖 Название: {title}")
+print(f"📁 Папка: {folder_name}")
+print(f"📏 Длина текста: {len(text)} символов")
+
+# Форматируем
+body_html = '\n'.join(f'<p>{p}</p>' for p in text.split('\n') if p)
+description = f"Новелла «{title}» — одно из известных произведений Ги де Мопассана. Здесь представлен полный текст."
+
+# Создаём
+novel_dir = os.path.join(LITERATURE_DIR, folder_name)
+os.makedirs(novel_dir, exist_ok=True)
+
+html = HTML_TEMPLATE.format(title=title, folder=folder_name, description=description, body=body_html)
+
+index_path = os.path.join(novel_dir, 'index.html')
+with open(index_path, 'w', encoding='utf-8') as f:
+    f.write(html)
+
+print(f"✅ Страница создана: {index_path}")
+print(f"🎉 Готово!")
+>>>>>>> 6c95c15bb132be6697465a7304463e30c18352e5
