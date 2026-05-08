@@ -67,24 +67,84 @@
             <a href="#literature" class="cat-btn">📚 Литература</a>
         </nav>
         
-        <!-- Раздел ПОБЕДА -->
-<section id="vov" class="category-section">
-    <h2>🎖️ 81 год Победы</h2>
-    <div class="subcategory collapsed" id="subcat-vov">
-        <div class="subcategory-header">
-            <h3>Великая Отечественная война</h3>
-            <button class="toggle-subcat" data-target="subcat-vov"><span class="arrow">▼</span></button>
-        </div>
-        <div class="articles-grid">
-            <a href="vov/" class="article-card" data-title="81 год Великой Победы" data-desc="Поздравление и история">
-                <img src="../img/vov-1.webp" alt="Победа" class="avatar">
-                <div class="card-content">
-                    <span class="card-title">81 год Великой Победы</span>
-                    <span class="card-desc">Поздравление и история войны</span>
-                </div>
-            </a>
-        </div>
+        <!-- Поздравление с Днём Победы -->
+<section class="victory-banner" style="
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border: 2px solid #e63946;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    margin: 2rem auto;
+    max-width: 700px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(230, 57, 70, 0.3);
+">
+    <p style="font-size: 3rem; margin: 0 0 0.5rem 0;">🎖️</p>
+    <h2 style="
+        font-size: 1.8rem;
+        margin: 0 0 0.75rem 0;
+        color: #f1faee;
+        letter-spacing: 1px;
+    ">С Днём Великой Победы!</h2>
+    <p style="
+        font-size: 1.1rem;
+        color: #a8dadc;
+        margin: 0 0 1rem 0;
+        line-height: 1.6;
+    ">9 мая 1945 – 9 мая 2026<br>81 год со дня Великой Победы</p>
+    <p style="
+        font-size: 1rem;
+        color: #f1faee;
+        margin: 0 0 1.5rem 0;
+        line-height: 1.7;
+    ">Вечная память героям, подарившим нам мирное небо.<br>Низкий поклон ветеранам и труженикам тыла.</p>
+    <a href="Komorium/vov/" style="
+        display: inline-block;
+        background: #e63946;
+        color: #fff;
+        padding: 0.6rem 1.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: background 0.3s;
+        margin-bottom: 1rem;
+    ">🕯️ Подробнее</a>
+
+    <!-- Аудиоплеер -->
+    <div style="margin-top: 0.5rem;">
+        <audio id="victoryAudio" src="audio/vov.mp3" preload="auto" style="display: none;"></audio>
+        <button id="playMusicBtn" onclick="
+            var audio = document.getElementById('victoryAudio');
+            var btn = document.getElementById('playMusicBtn');
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = '⏸️ Пауза';
+            } else {
+                audio.pause();
+                btn.innerHTML = '▶️ Включить музыку';
+            }
+        " style="
+            display: inline-block;
+            background: transparent;
+            color: #a8dadc;
+            padding: 0.5rem 1.2rem;
+            border: 1px solid #a8dadc;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        " onmouseover="this.style.background='rgba(168, 218, 220, 0.1)'" onmouseout="this.style.background='transparent'">
+            ▶️ Включить музыку
+        </button>
     </div>
+
+    <script>
+        document.getElementById('victoryAudio').addEventListener('ended', function() {
+            document.getElementById('playMusicBtn').innerHTML = '▶️ Включить музыку';
+        });
+    </script>
 </section>
         <!-- Персональная карточка -->
         <section class="standalone-card">
