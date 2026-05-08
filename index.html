@@ -53,6 +53,7 @@
         <button class="back-to-top" id="backToTop">↑</button>
         <!-- Основной контент -->
         <main>
+            
             <!-- Приветствие -->
             <header class="hero">
                 <img src="logo.png" alt="KOMORIUM" />
@@ -61,11 +62,10 @@
 
                 <p>Это мой личный сайт открытый для всех.</p>
                 <!-- project-age-counter -->
-                <p>С момента запуска сайта прошло: 40 дней</p>
+                <p>С момента запуска сайта прошло: 39 дней</p>
                 <!-- articles-count -->
-                <p>В энциклопедии уже 36 статей</p>
-            </header>
-            <!-- Поздравление с Днём Победы -->
+                <p>В энциклопедии уже 35 статей</p>
+                <!-- Поздравление с Днём Победы -->
 <section class="victory-banner" style="
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     border: 2px solid #e63946;
@@ -105,8 +105,68 @@
         font-weight: bold;
         font-size: 1rem;
         transition: background 0.3s;
+        margin-bottom: 1rem;
     ">🕯️ Подробнее</a>
+
+    <!-- Аудиоплеер -->
+<div style="margin-top: 0.5rem;">
+    <button id="playMusicBtn" style="
+        display: inline-block;
+        background: transparent;
+        color: #a8dadc;
+        padding: 0.5rem 1.2rem;
+        border: 1px solid #a8dadc;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s;
+    " onmouseover="this.style.background='rgba(168, 218, 220, 0.1)'" onmouseout="this.style.background='transparent'">
+        ▶️ Включить музыку
+    </button>
+</div>
+
+<script>
+(function() {
+    var btn = document.getElementById('playMusicBtn');
+    var audio = null;
+
+    btn.onclick = function() {
+        if (audio && !audio.paused) {
+            audio.pause();
+            btn.innerHTML = '▶️ Включить музыку';
+            return;
+        }
+
+        if (!audio) {
+            audio = new Audio('/vov.mp3');
+            // если mp3 не сработает, браузер сам попробует другие источники
+            audio.onended = function() {
+                btn.innerHTML = '▶️ Включить музыку';
+            };
+        }
+
+        audio.play().then(function() {
+            btn.innerHTML = '⏸️ Пауза';
+        }).catch(function(e) {
+            // Если mp3 не пошёл, пробуем ogg
+            audio = new Audio('/vov.ogg');
+            audio.onended = function() {
+                btn.innerHTML = '▶️ Включить музыку';
+            };
+            audio.play().then(function() {
+                btn.innerHTML = '⏸️ Пауза';
+            }).catch(function(e2) {
+                alert('Не удалось загрузить музыку. Попробуйте обновить страницу.');
+            });
+        });
+    };
+})();
+</script>
 </section>
+            </header>
+            
             <!-- Новостной блок -->
 <section class="news-block">
     <h2>📢 Новости сайта</h2>

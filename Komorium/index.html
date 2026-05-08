@@ -55,18 +55,6 @@
     <button class="back-to-top" id="backToTop">↑</button>
 
     <main>
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или описанию..." autocomplete="off" />
-            <button id="clearSearch" class="search-clear" aria-label="Очистить">✕</button>
-        </div>
-
-        <nav class="categories">
-            <a href="#geography" class="cat-btn">🌍 География</a>
-            <a href="#biology" class="cat-btn">🧬 Биология</a>
-            <a href="#technology" class="cat-btn">💻 Технологии</a>
-            <a href="#literature" class="cat-btn">📚 Литература</a>
-        </nav>
-        
         <!-- Поздравление с Днём Победы -->
 <section class="victory-banner" style="
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
@@ -97,7 +85,7 @@
         margin: 0 0 1.5rem 0;
         line-height: 1.7;
     ">Вечная память героям, подарившим нам мирное небо.<br>Низкий поклон ветеранам и труженикам тыла.</p>
-    <a href="Komorium/vov/" style="
+    <a href="vov/" style="
         display: inline-block;
         background: #e63946;
         color: #fff;
@@ -111,41 +99,75 @@
     ">🕯️ Подробнее</a>
 
     <!-- Аудиоплеер -->
-    <div style="margin-top: 0.5rem;">
-        <audio id="victoryAudio" src="audio/vov.mp3" preload="auto"></audio>
-        <button id="playMusicBtn" style="
-            display: inline-block;
-            background: transparent;
-            color: #a8dadc;
-            padding: 0.5rem 1.2rem;
-            border: 1px solid #a8dadc;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        " onmouseover="this.style.background='rgba(168, 218, 220, 0.1)'" onmouseout="this.style.background='transparent'">
-            ▶️ Включить музыку
-        </button>
-    </div>
+<div style="margin-top: 0.5rem;">
+    <button id="playMusicBtn" style="
+        display: inline-block;
+        background: transparent;
+        color: #a8dadc;
+        padding: 0.5rem 1.2rem;
+        border: 1px solid #a8dadc;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s;
+    " onmouseover="this.style.background='rgba(168, 218, 220, 0.1)'" onmouseout="this.style.background='transparent'">
+        ▶️ Включить музыку
+    </button>
+</div>
 
-    <script>
-        document.getElementById('playMusicBtn').onclick = function() {
-            var audio = document.getElementById('victoryAudio');
-            if (audio.paused) {
-                audio.play();
-                this.innerHTML = '⏸️ Пауза';
-            } else {
-                audio.pause();
-                this.innerHTML = '▶️ Включить музыку';
-            }
-        };
-        document.getElementById('victoryAudio').onended = function() {
-            document.getElementById('playMusicBtn').innerHTML = '▶️ Включить музыку';
-        };
-    </script>
+<script>
+(function() {
+    var btn = document.getElementById('playMusicBtn');
+    var audio = null;
+
+    btn.onclick = function() {
+        if (audio && !audio.paused) {
+            audio.pause();
+            btn.innerHTML = '▶️ Включить музыку';
+            return;
+        }
+
+        if (!audio) {
+            audio = new Audio('/vov.mp3');
+            // если mp3 не сработает, браузер сам попробует другие источники
+            audio.onended = function() {
+                btn.innerHTML = '▶️ Включить музыку';
+            };
+        }
+
+        audio.play().then(function() {
+            btn.innerHTML = '⏸️ Пауза';
+        }).catch(function(e) {
+            // Если mp3 не пошёл, пробуем ogg
+            audio = new Audio('/vov.ogg');
+            audio.onended = function() {
+                btn.innerHTML = '▶️ Включить музыку';
+            };
+            audio.play().then(function() {
+                btn.innerHTML = '⏸️ Пауза';
+            }).catch(function(e2) {
+                alert('Не удалось загрузить музыку. Попробуйте обновить страницу.');
+            });
+        });
+    };
+})();
+</script>
 </section>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или описанию..." autocomplete="off" />
+            <button id="clearSearch" class="search-clear" aria-label="Очистить">✕</button>
+        </div>
+
+        <nav class="categories">
+            <a href="#geography" class="cat-btn">🌍 География</a>
+            <a href="#biology" class="cat-btn">🧬 Биология</a>
+            <a href="#technology" class="cat-btn">💻 Технологии</a>
+            <a href="#literature" class="cat-btn">📚 Литература</a>
+        </nav>
+        
+        
         <!-- Персональная карточка -->
         <section class="standalone-card">
             <h2 style="margin-bottom: 0.75rem;">Головачёв Александр</h2>
