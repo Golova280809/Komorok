@@ -112,18 +112,8 @@
 
     <!-- Аудиоплеер -->
     <div style="margin-top: 0.5rem;">
-        <audio id="victoryAudio" src="audio/vov.mp3" preload="auto" style="display: none;"></audio>
-        <button id="playMusicBtn" onclick="
-            var audio = document.getElementById('victoryAudio');
-            var btn = document.getElementById('playMusicBtn');
-            if (audio.paused) {
-                audio.play();
-                btn.innerHTML = '⏸️ Пауза';
-            } else {
-                audio.pause();
-                btn.innerHTML = '▶️ Включить музыку';
-            }
-        " style="
+        <audio id="victoryAudio" src="audio/vov.mp3" preload="auto"></audio>
+        <button id="playMusicBtn" style="
             display: inline-block;
             background: transparent;
             color: #a8dadc;
@@ -141,9 +131,19 @@
     </div>
 
     <script>
-        document.getElementById('victoryAudio').addEventListener('ended', function() {
+        document.getElementById('playMusicBtn').onclick = function() {
+            var audio = document.getElementById('victoryAudio');
+            if (audio.paused) {
+                audio.play();
+                this.innerHTML = '⏸️ Пауза';
+            } else {
+                audio.pause();
+                this.innerHTML = '▶️ Включить музыку';
+            }
+        };
+        document.getElementById('victoryAudio').onended = function() {
             document.getElementById('playMusicBtn').innerHTML = '▶️ Включить музыку';
-        });
+        };
     </script>
 </section>
         <!-- Персональная карточка -->
