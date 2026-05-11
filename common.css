@@ -238,6 +238,7 @@ body.dark-theme {
 
 }
 
+
 /* === АДАПТИВНОСТЬ (общая) === */
 @media (max-width: 600px) {
     main {
@@ -261,4 +262,10 @@ body.dark-theme {
     header p {
         text-align: center;
     }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
 }

@@ -180,3 +180,92 @@ function renderHab(category, containerId, batchSize = 5, articlesPath = 'article
         .catch(err => console.error('Ошибка загрузки articles.json', err));
 }
 
+
+// Автоматическая кнопка "Поделиться" для страниц статей
+(function() {
+    // Проверяем, что мы на странице статьи (есть навигация .top-menu или характерный заголовок)
+    var isArticle = document.querySelector('.top-menu') ||
+                    document.querySelector('h1') && document.querySelector('.content-section');
+
+    if (!isArticle) return;
+
+    // Проверяем, не добавлена ли уже кнопка
+    if (document.getElementById('shareBtnContainer')) return;
+
+    // Создаём контейнер
+    var container = document.createElement('div');
+    container.id = 'shareBtnContainer';
+    container.style.cssText = 'text-align:center; margin:2rem 0;';
+
+    // Кнопка
+    var btn = document.createElement('button');
+    btn.id = 'shareBtn';
+    btn.textContent = '📤 Поделиться';
+    btn.style.cssText = `
+        display: inline-block;
+        background: #4a6fa5;
+        color: white;
+        border: none;
+        padding: 0.7rem 1.5rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    `;
+    btn.onmouseover = function() { this.style.background = '#5f8bc9'; };
+    btn.onmouseout = function() { this.style.background = '#4a6fa5'; };
+
+    btn.addEventListener('click', function() {
+        var url = window.location.href;
+        var title = document.title;
+
+        if (navigator.share) {
+            navigator.share({
+                title: title,
+                url: url
+            }).catch(function(err) {
+                console.log('Ошибка шаринга: ', err);
+            });
+        } else {
+            // Копирование ссылки для десктопа
+            navigator.clipboard.writeText(url).then(function() {
+                // Показываем всплывающую подсказку
+                var tooltip = document.createElement('span');
+                tooltip.textContent = '✅ Ссылка скопирована!';
+                tooltip.style.cssText = `
+                    display: inline-block;
+                    margin-left: 10px;
+                    background: #333;
+                    color: #fff;
+                    padding: 0.3rem 0.8rem;
+                    border-radius: 4px;
+                    font-size: 0.9rem;
+                    animation: fadeOut 2s forwards;
+                `;
+                btn.parentNode.appendChild(tooltip);
+                setTimeout(function() {
+                    tooltip.remove();
+                }, 2000);
+            }).catch(function() {
+                alert('Не удалось скопировать ссылку');
+            });
+        }
+    });
+
+    container.appendChild(btn);
+
+    // Вставляем в конец <main> или после последней секции
+    var main = document.querySelector('main');
+    if (main) {
+        main.appendChild(container);
+    } else {
+        // Запасной вариант: после последней .content-section
+        var sections = document.querySelectorAll('.content-section');
+        if (sections.length > 0) {
+            var last = sections[sections.length - 1];
+            last.parentNode.insertBefore(container, last.nextSibling);
+        }
+    }
+})();
