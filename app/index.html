@@ -1,1 +1,110 @@
- 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" href="../logo.png">
+    <link rel="icon" type="image/png" href="../logo.png">
+
+    <meta name="description" content="Скачать приложение Komorok для Android. Энциклопедия Komorium в твоём телефоне.">
+    <meta name="keywords" content="Komorok, приложение, Android, скачать, APK, энциклопедия">
+    <link rel="canonical" href="https://komorok.ru/app/">
+
+    <meta property="og:title" content="Скачать приложение Komorok">
+    <meta property="og:description" content="Официальное приложение Komorok для Android. Вся энциклопедия в одном клике.">
+    <meta property="og:url" content="https://komorok.ru/app/">
+    <meta property="og:image" content="https://komorok.ru/logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Komorok">
+
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common.css">
+    <link rel="stylesheet" href="../style.css">
+    <title>Скачать Komorok — приложение для Android</title>
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    <label for="menu-toggle" class="menu-toggle">
+        <span></span><span></span><span></span>
+    </label>
+
+    <nav class="sidebar">
+        <div class="sidebar-title">Меню</div>
+        <a href="../index.html">Главная</a>
+        <a href="../Komorium/index.html">Komorium</a>
+        <a href="../about.html">О проекте</a>
+        <button class="theme-toggle-btn" id="themeToggle">
+            <span class="icon">🌙</span>
+            <span>Тёмная тема</span>
+        </button>
+    </nav>
+
+    <label for="menu-toggle" class="overlay"></label>
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <main>
+        <h1 style="text-align: center;">📱 Скачать Komorok</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">Официальное приложение для Android</p>
+
+        <section class="content-section" style="text-align: center;">
+            <img src="../logo.png" alt="Komorok" style="width: 120px; height: 120px; margin-bottom: 1.5rem;">
+
+            <h2>Komorok v1.0.1</h2>
+            <p style="color: #a8dadc; margin-bottom: 2rem;">
+                Вся энциклопедия Komorium в твоём телефоне.<br>
+                Запускай сайт, читай статьи, получай новости — всё в одном приложении.
+            </p>
+
+            <a href="app-release.apk" style="
+                display: inline-block;
+                background: #e63946;
+                color: #fff;
+                padding: 0.8rem 2rem;
+                border-radius: 12px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+                transition: background 0.3s;
+            " onmouseover="this.style.background='#c62828'" onmouseout="this.style.background='#e63946'">
+                ⬇️ Скачать APK
+            </a>
+
+            <p style="font-size: 0.85rem; color: #888; margin-bottom: 2rem;">
+                Версия 1.0.1 • Размер ~3 МБ<br>
+                Требуется Android 6.0 или новее
+            </p>
+
+            <div style="
+                background: #0f3460;
+                border: 1px solid #a8dadc;
+                border-radius: 8px;
+                padding: 1rem;
+                max-width: 400px;
+                margin: 0 auto;
+                text-align: left;
+                font-size: 0.9rem;
+                color: #a8dadc;
+            ">
+                <strong>📌 Как установить:</strong><br>
+                1. Нажмите «Скачать APK».<br>
+                2. После скачивания откройте файл.<br>
+                3. Разрешите установку из неизвестных источников (если потребуется).<br>
+                4. Готово! Приложение появится на рабочем столе.
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Komorok</p>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>
