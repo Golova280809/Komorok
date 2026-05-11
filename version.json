@@ -1,7 +1,7 @@
 {
-  "app_version": "1.0.1",
-  "app_version_code": 2,
-  "app_url": "https://komorok.ru/app/app-release.apk",
+  "app_version": "1.1.0",
+  "app_version_code": 3,
+  "app_url": "https://komorok.ru/app/komorok-v1.1.0.apk",
   "site_updated": "2026-05-11",
-  "site_news": "Новый раздел Биология, стихи Толстого и видео о ВОВ"
+  "site_news": "Новый дизайн приложения, проверка обновлений, запуск сайта через WebView!"
 }
