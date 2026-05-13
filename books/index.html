@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" href="../logo.png">
+    <link rel="icon" type="image/png" href="../logo.png">
+
+    <meta name="description" content="Kompanion — библиотека школьных учебников на Komorok. Учебники по классам и предметам.">
+    <meta name="keywords" content="учебники, школьные учебники, PDF, библиотека, Komorok">
+    <link rel="canonical" href="https://komorok.ru/books/">
+
+    <meta property="og:title" content="Kompanion — библиотека учебников | Komorok">
+    <meta property="og:description" content="Школьные учебники по классам и предметам. Читай онлайн на Komorok.">
+    <meta property="og:url" content="https://komorok.ru/books/">
+    <meta property="og:image" content="https://komorok.ru/logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Komorok">
+
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../common.css">
+    <link rel="stylesheet" href="../style.css">
+    <title>Kompanion — библиотека учебников | Komorok</title>
+    <style>
+        .class-list { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 24px; }
+        .class-btn { background: #0f3460; color: #f1faee; border: 1px solid #a8dadc; border-radius: 10px; padding: 12px 20px; cursor: pointer; font-size: 15px; transition: background 0.3s; }
+        .class-btn:hover, .class-btn.active { background: #e63946; }
+        .subject-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
+        .subject-btn { background: #1a1a2e; color: #a8dadc; border: 1px solid #a8dadc; border-radius: 8px; padding: 8px 16px; cursor: pointer; font-size: 14px; }
+        .subject-btn:hover, .subject-btn.active { background: #e63946; color: #fff; }
+        .book-card { background: #0f3460; border-radius: 12px; overflow: hidden; margin-bottom: 16px; max-width: 400px; margin-left: auto; margin-right: auto; }
+        .book-cover { width: 100%; height: 250px; object-fit: cover; }
+        .book-info { padding: 16px; }
+        .book-title { color: #f1faee; font-size: 16px; font-weight: bold; margin-bottom: 6px; }
+        .book-author { color: #a8dadc; font-size: 14px; margin-bottom: 4px; }
+        .book-year { color: #888; font-size: 13px; margin-bottom: 12px; }
+        .book-btn { background: #e63946; color: #fff; border: none; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-size: 14px; width: 100%; }
+        .book-btn:hover { background: #c62828; }
+        .empty-msg { text-align: center; color: #a8dadc; font-size: 16px; margin-top: 32px; }
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    <label for="menu-toggle" class="menu-toggle">
+        <span></span><span></span><span></span>
+    </label>
+
+    <nav class="sidebar">
+        <div class="sidebar-title">Меню</div>
+        <a href="../index.html">Главная</a>
+        <a href="../Komorium/index.html">Komorium</a>
+        <a href="index.html">📚 Kompanion</a>
+        <a href="../about.html">О проекте</a>
+        <button class="theme-toggle-btn" id="themeToggle">
+            <span class="icon">🌙</span>
+            <span>Тёмная тема</span>
+        </button>
+    </nav>
+
+    <label for="menu-toggle" class="overlay"></label>
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <main>
+        <h1 style="text-align: center;">📚 Kompanion</h1>
+        <p style="text-align: center; color: #a8dadc; margin-bottom: 24px;">Библиотека школьных учебников</p>
+
+        <div class="class-list" id="classList"></div>
+        <div class="subject-list" id="subjectList" style="display: none;"></div>
+        <div id="booksContainer"></div>
+        <div class="empty-msg" id="emptyMsg" style="display: none;">📭 Пока ничего не найдено</div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Komorok</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        const booksData = {
+            "5 класс": {
+                "Биология": [
+                    {
+                        "title": "Биология. 5 класс",
+                        "author": "В. В. Пасечник",
+                        "year": 2023,
+                        "publisher": "Просвещение",
+                        "url": "https://drive.google.com/uc?export=download&id=1jJEU2bGhi9XLd8b5qjMbxTQ35hgOiTqM",
+                        "cover": "https://komorok.ru/img/covers/icon.png",
+                        "size_mb": 45
+                    }
+                ]
+            }
+        };
+
+        const classes = Object.keys(booksData).sort((a, b) => {
+            const numA = parseInt(a) || 0;
+            const numB = parseInt(b) || 0;
+            return numA - numB;
+        });
+
+        let selectedClass = null;
+        let selectedSubject = null;
+
+        function renderClasses() {
+            const container = document.getElementById('classList');
+            container.innerHTML = classes.map(cls => 
+                `<button class="class-btn" data-class="${cls}" onclick="selectClass('${cls}')">${cls}</button>`
+            ).join('');
+        }
+
+        function selectClass(cls) {
+            selectedClass = cls;
+            selectedSubject = null;
+            document.getElementById('booksContainer').innerHTML = '';
+            document.getElementById('emptyMsg').style.display = 'none';
+
+            document.querySelectorAll('.class-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.class-btn[data-class="${cls}"]`).classList.add('active');
+
+            const subjects = Object.keys(booksData[cls]);
+            const container = document.getElementById('subjectList');
+            container.style.display = 'flex';
+            container.innerHTML = subjects.map(sub => 
+                `<button class="subject-btn" data-subject="${sub}" onclick="selectSubject('${sub}')">${sub}</button>`
+            ).join('');
+        }
+
+        function selectSubject(sub) {
+            selectedSubject = sub;
+            document.querySelectorAll('.subject-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.subject-btn[data-subject="${sub}"]`).classList.add('active');
+            renderBooks();
+        }
+
+        function renderBooks() {
+            const container = document.getElementById('booksContainer');
+            const emptyMsg = document.getElementById('emptyMsg');
+            const books = booksData[selectedClass]?.[selectedSubject] || [];
+
+            if (books.length === 0) {
+                container.innerHTML = '';
+                emptyMsg.style.display = 'block';
+                return;
+            }
+
+            emptyMsg.style.display = 'none';
+            container.innerHTML = books.map(book => `
+                <div class="book-card">
+                    ${book.cover ? `<img class="book-cover" src="${book.cover}" alt="${book.title}" onerror="this.src='../logo.png'">` : ''}
+                    <div class="book-info">
+                        <div class="book-title">${book.title}</div>
+                        <div class="book-author">Автор: ${book.author}</div>
+                        <div class="book-year">Год: ${book.year} • Издательство: ${book.publisher}</div>
+                        <a href="${book.url}" target="_blank"><button class="book-btn">📖 Открыть учебник</button></a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        renderClasses();
+    </script>
+</body>
+</html>
