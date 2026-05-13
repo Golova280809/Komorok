@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="../style.css">
     <title>Kompanion — библиотека учебников | Komorok</title>
     <style>
-        /* Контейнер классов */
         .class-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -62,7 +61,6 @@
             margin-bottom: 8px;
         }
 
-        /* Контейнер предметов */
         .subject-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -92,7 +90,6 @@
             margin-bottom: 4px;
         }
 
-        /* Хлебные крошки */
         .breadcrumbs {
             text-align: center;
             margin-bottom: 20px;
@@ -109,7 +106,6 @@
             text-decoration: underline;
         }
 
-        /* Карточка учебника */
         .books-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -189,7 +185,6 @@
             grid-column: 1 / -1;
         }
 
-        /* Адаптив */
         @media (max-width: 600px) {
             .class-grid { grid-template-columns: repeat(3, 1fr); }
             .subject-grid { grid-template-columns: repeat(2, 1fr); }
@@ -223,21 +218,13 @@
         <h1 style="text-align: center;">📚 Kompanion</h1>
         <p style="text-align: center; color: #a8dadc; margin-bottom: 8px;">Библиотека школьных учебников</p>
 
-        <!-- Хлебные крошки -->
         <div class="breadcrumbs" id="breadcrumbs">
             <a onclick="showAllClasses()">🏠 Все классы</a>
         </div>
 
-        <!-- Сетка классов -->
         <div class="class-grid" id="classGrid"></div>
-
-        <!-- Сетка предметов -->
         <div class="subject-grid" id="subjectGrid" style="display: none;"></div>
-
-        <!-- Сетка учебников -->
         <div class="books-grid" id="booksGrid" style="display: none;"></div>
-
-        <!-- Сообщение "Ничего не найдено" -->
         <div class="empty-msg" id="emptyMsg" style="display: none;">📭 Пока ничего не найдено</div>
     </main>
 
@@ -247,46 +234,6 @@
 
     <script src="../script.js"></script>
     <script>
-        // ==================== ДАННЫЕ ====================
-        const booksData = {
-            "5 класс": {
-                "Биология": [
-                    {
-                        "title": "Биология. 5 класс",
-                        "author": "В. В. Пасечник",
-                        "year": 2023,
-                        "publisher": "Просвещение",
-                        "url": "https://drive.google.com/uc?export=download&id=1jJEU2bGhi9XLd8b5qjMbxTQ35hgOiTqM",
-                        "cover": "https://komorok.ru/img/covers/icon.png",
-                        "desc": "Базовый уровень. Учебник линии «Линия жизни»."
-                    }
-                ],
-                "Математика": [
-                    {
-                        "title": "Математика. 5 класс",
-                        "author": "Н.Я. Виленкин",
-                        "year": 2023,
-                        "publisher": "Просвещение",
-                        "url": "#",
-                        "cover": "https://komorok.ru/img/covers/icon.png",
-                        "desc": "Классический учебник по математике."
-                    }
-                ],
-                "Русский язык": [
-                    {
-                        "title": "Русский язык. 5 класс",
-                        "author": "Т.А. Ладыженская",
-                        "year": 2023,
-                        "publisher": "Просвещение",
-                        "url": "#",
-                        "cover": "https://komorok.ru/img/covers/icon.png",
-                        "desc": "Учебник в двух частях."
-                    }
-                ]
-            }
-        };
-
-        // Предметы с иконками
         const subjectIcons = {
             "Биология": "🧬", "Математика": "📐", "Русский язык": "📝",
             "Литература": "📖", "История": "🏛️", "География": "🌍",
@@ -294,13 +241,25 @@
             "Химия": "🧪", "Обществознание": "👥", "Информатика": "💻"
         };
 
-        const classes = Object.keys(booksData).sort((a, b) => parseInt(a) - parseInt(b));
-
-        // ==================== СОСТОЯНИЕ ====================
+        let booksData = {};
+        let classes = [];
         let currentClass = null;
         let currentSubject = null;
 
-        // ==================== ФУНКЦИИ ====================
+        // Загружаем данные из JSON-файла
+        fetch('books.json')
+            .then(response => response.json())
+            .then(data => {
+                booksData = data;
+                classes = Object.keys(booksData).sort((a, b) => parseInt(a) - parseInt(b));
+                renderClasses();
+            })
+            .catch(err => {
+                console.error('Ошибка загрузки books.json:', err);
+                document.getElementById('emptyMsg').style.display = 'block';
+                document.getElementById('emptyMsg').textContent = '❌ Не удалось загрузить каталог учебников';
+            });
+
         function showAllClasses() {
             currentClass = null;
             currentSubject = null;
@@ -309,7 +268,6 @@
             document.getElementById('booksGrid').style.display = 'none';
             document.getElementById('emptyMsg').style.display = 'none';
             document.getElementById('breadcrumbs').innerHTML = '<a onclick="showAllClasses()">🏠 Все классы</a>';
-            document.querySelectorAll('.class-card').forEach(c => c.classList.remove('active'));
         }
 
         function selectClass(cls) {
@@ -370,7 +328,6 @@
             `).join('');
         }
 
-        // ==================== ЗАПУСК ====================
         function renderClasses() {
             const grid = document.getElementById('classGrid');
             grid.innerHTML = classes.map(cls => `
@@ -380,8 +337,6 @@
                 </div>
             `).join('');
         }
-
-        renderClasses();
     </script>
 </body>
 </html>
