@@ -1,22 +1,16 @@
 #!/usr/bin/env python3
-"""Telegram-бот Komorok с /admin, защищённым двойным SHA-256."""
-import os, sys, requests, json, base64, subprocess, hashlib
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import (
-    Application,
-    CommandHandler,
-    MessageHandler,
-    CallbackQueryHandler,
-    ConversationHandler,
-    filters,
-    ContextTypes,
-)
+"""
+Telegram-бот Komorok для GitHub Actions.
+Функции: /start, проверка сайта, отзывы, /admin.
+"""
 
-# Состояния
-ASK_NAME, ASK_SURNAME, ASK_ANSWER = range(3)
-ADMIN_PASSWORD = 100
+import os
+import sys
+import requests
+import json
+import hashlib
+import subprocess
 
-# --- настройки ---
 TOKEN = os.environ.get("BOT_TOKEN")
 if not TOKEN:
     print("❌ BOT_TOKEN не найден")
@@ -24,202 +18,151 @@ if not TOKEN:
 
 SITE_URL = "https://komorok.ru"
 TIMEOUT = 5
-POLLING_TIMEOUT = 45
-CONTEST_FILE = "contest.json"
+UPDATE_FILE = "last_update_id.txt"
 FEEDBACK_FILE = "feedbacks.txt"
+ADMIN_DOUBLE_HASH = os.environ.get("ADMIN_DOUBLE_HASH", "")
 
-# --- ДВОЙНОЙ ХЕШ пароля ---
-# Вставь сюда свой двойной хеш, полученный командой из Termux
-ADMIN_DOUBLE_HASH = "0ef9b73656836c039d59bc254ed6227f4bf4ea8e8fd10977bf361a304d46e9b5"
 
-# --- git helper ---
 def git_commit_and_push(files):
+    """Сохраняет изменения в GitHub."""
     try:
         result = subprocess.run(
             ["git", "status", "--porcelain"] + files,
             capture_output=True, text=True, timeout=10
         )
         if not result.stdout.strip():
-            print("Нет изменений для коммита")
             return
         subprocess.run(["git", "config", "user.name", os.environ.get("GIT_USER_NAME", "KomorokBot")], check=True)
         subprocess.run(["git", "config", "user.email", os.environ.get("GIT_USER_EMAIL", "bot@komorok.ru")], check=True)
         subprocess.run(["git", "add"] + files, check=True)
-        subprocess.run(["git", "commit", "-m", "Обновлены ответы конкурса и отзывы"], check=True)
+        subprocess.run(["git", "commit", "-m", "Обновлены данные бота"], check=True)
         subprocess.run(["git", "push"], check=True)
-        print("✅ Изменения запушены в репозиторий")
+        print("✅ Изменения запушены")
     except Exception as e:
-        print(f"❌ Ошибка при git push: {e}")
+        print(f"❌ Git error: {e}")
 
-# --- шифрование ---
-def encrypt_data(name, surname, answer):
-    raw = f"{name}|{surname}|{answer}"
-    return base64.b64encode(raw.encode("utf-8")).decode("utf-8")
 
-def decrypt_data(encoded):
-    raw = base64.b64decode(encoded.encode("utf-8")).decode("utf-8")
-    parts = raw.split("|")
-    if len(parts) == 3:
-        return parts[0], parts[1], parts[2]
-    return None, None, None
-
-def load_contest():
-    if not os.path.isfile(CONTEST_FILE):
-        return {}
-    with open(CONTEST_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-def save_contest(data):
-    with open(CONTEST_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-
-# --- проверка сайта ---
-def check_site(url):
+def get_updates(offset):
+    """Получает новые сообщения от Telegram."""
+    url = f"https://api.telegram.org/bot{TOKEN}/getUpdates?offset={offset}&timeout=30"
     try:
-        resp = requests.get(url, timeout=TIMEOUT, headers={"User-Agent": "KomorokBot/1.0"})
+        resp = requests.get(url, timeout=45)
+        data = resp.json()
+        return data.get("result", [])
+    except:
+        return []
+
+
+def send_message(chat_id, text, reply_markup=None):
+    """Отправляет сообщение в Telegram."""
+    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    data = {"chat_id": chat_id, "text": text}
+    if reply_markup:
+        data["reply_markup"] = json.dumps(reply_markup)
+    try:
+        requests.post(url, data=data, timeout=10)
+    except:
+        pass
+
+
+def check_site():
+    """Проверяет, работает ли сайт."""
+    try:
+        resp = requests.get(SITE_URL, timeout=TIMEOUT, headers={"User-Agent": "KomorokBot/1.0"})
         return resp.status_code == 200
     except:
         return False
 
-# --- меню ---
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard = [
-        [InlineKeyboardButton("🟢 Проверить сайт", callback_data="check")],
-        [InlineKeyboardButton("🔑 Конкурс", callback_data="contest")],
-        [InlineKeyboardButton("📝 Оставить отзыв", callback_data="feedback")],
-    ]
-    await update.message.reply_text(
-        "👋 Привет! Я бот Komorok. Выберите действие:",
-        reply_markup=InlineKeyboardMarkup(keyboard),
-    )
 
-async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    query = update.callback_query
-    await query.answer()
-    data = query.data
+def handle_start(chat_id):
+    """Обрабатывает команду /start."""
+    keyboard = {
+        "inline_keyboard": [
+            [{"text": "🟢 Проверить сайт", "callback_data": "check"}],
+            [{"text": "📝 Оставить отзыв", "callback_data": "feedback"}],
+        ]
+    }
+    send_message(chat_id, "👋 Привет! Я бот Komorok. Выберите действие:", keyboard)
 
-    if data == "check":
-        ok = check_site(SITE_URL)
-        await query.edit_message_text(
-            f"{'✅' if ok else '❌'} Сайт Komorok {'работает' if ok else 'не работает'}!"
-        )
 
-    elif data == "contest":
-        await query.edit_message_text(
-            "🔑 Давайте запишем ваш ответ на конкурс.\n\n"
-            "Шаг 1/3: Введите ваше имя (например, Иван)."
-        )
-        return ASK_NAME
+def handle_admin(chat_id, password=""):
+    """Обрабатывает команду /admin."""
+    if not password:
+        send_message(chat_id, "🔒 Используйте: /admin <пароль>")
+        return
+    if not ADMIN_DOUBLE_HASH:
+        send_message(chat_id, "❌ Хеш администратора не настроен")
+        return
 
-    elif data == "feedback":
-        await query.edit_message_text("📝 Напишите ваш отзыв о сайте (можно со смайликами).")
+    first = hashlib.sha256(password.encode()).hexdigest()
+    second = hashlib.sha256(first.encode()).hexdigest()
 
-# --- шаги диалога (конкурс) ---
-async def ask_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    context.user_data["name"] = update.message.text.strip()
-    await update.message.reply_text(
-        "Шаг 2/3: Введите вашу фамилию.\n"
-        "Если не хотите указывать, отправьте прочерк `-`."
-    )
-    return ASK_SURNAME
+    if second != ADMIN_DOUBLE_HASH:
+        send_message(chat_id, "❌ Неверный пароль!")
+        return
 
-async def ask_surname(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    surname = update.message.text.strip()
-    if surname == "-":
-        surname = "не указана"
-    context.user_data["surname"] = surname
-    await update.message.reply_text(
-        "Шаг 3/3: Введите количество найденных ключей на сайте Komorok (только число)."
-    )
-    return ASK_ANSWER
+    try:
+        with open(FEEDBACK_FILE, "r", encoding="utf-8") as f:
+            text = f.read()
+        send_message(chat_id, f"📋 Отзывы:\n\n{text}" if text else "Нет отзывов")
+    except:
+        send_message(chat_id, "Нет отзывов")
 
-async def ask_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = update.message.text.strip()
-    if not text.isdigit():
-        await update.message.reply_text("Пожалуйста, введите только число (например, 7).")
-        return ASK_ANSWER
 
-    user = update.effective_user
-    user_id = str(user.id)
-    name = context.user_data.get("name")
-    surname = context.user_data.get("surname")
-    answer = text
-
-    data = load_contest()
-    data[user_id] = encrypt_data(name, surname, answer)
-    save_contest(data)
-    git_commit_and_push([CONTEST_FILE])
-
-    await update.message.reply_text("✅ Ваш ответ принят! Спасибо за участие в конкурсе.")
-    return ConversationHandler.END
-
-# --- команда /admin (двойной хеш) ---
-async def admin_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🔒 Введите пароль администратора:")
-    return ADMIN_PASSWORD
-
-async def admin_check_password(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    entered = update.message.text.strip()
-    # двойное хеширование
-    first_hash = hashlib.sha256(entered.encode()).hexdigest()
-    second_hash = hashlib.sha256(first_hash.encode()).hexdigest()
-
-    if second_hash != ADMIN_DOUBLE_HASH:
-        await update.message.reply_text("❌ Неверный пароль.")
-        return ConversationHandler.END
-
-    data = load_contest()
-    if not data:
-        await update.message.reply_text("Пока нет ответов.")
-        return ConversationHandler.END
-
-    lines = ["📋 Ответы участников:\n"]
-    for uid, enc in data.items():
-        name, surname, answer = decrypt_data(enc)
-        lines.append(f"• {name} {surname}: {answer} ключей")
-    await update.message.reply_text("\n".join(lines))
-    return ConversationHandler.END
-
-# --- отзывы ---
-async def handle_feedback(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user = update.effective_user
-    text = update.message.text.strip()
-    with open(FEEDBACK_FILE, "a", encoding="utf-8") as f:
-        f.write(f"{user.full_name} (@{user.username}): {text}\n")
-    git_commit_and_push([FEEDBACK_FILE])
-    await update.message.reply_text("💬 Спасибо за отзыв! Он сохранён.")
-
-# --- запуск ---
 def main():
-    app = Application.builder().token(TOKEN).build()
+    """Главный цикл бота."""
+    # Читаем последний update_id
+    try:
+        with open(UPDATE_FILE, "r") as f:
+            offset = int(f.read().strip()) + 1
+    except:
+        offset = 0
 
-    contest_conv = ConversationHandler(
-        entry_points=[CallbackQueryHandler(button_handler, pattern="^contest$")],
-        states={
-            ASK_NAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, ask_name)],
-            ASK_SURNAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, ask_surname)],
-            ASK_ANSWER: [MessageHandler(filters.TEXT & ~filters.COMMAND, ask_answer)],
-        },
-        fallbacks=[],
-    )
+    updates = get_updates(offset)
 
-    admin_conv = ConversationHandler(
-        entry_points=[CommandHandler("admin", admin_start)],
-        states={
-            ADMIN_PASSWORD: [MessageHandler(filters.TEXT & ~filters.COMMAND, admin_check_password)],
-        },
-        fallbacks=[],
-    )
+    for update in updates:
+        update_id = update["update_id"]
+        offset = update_id
 
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(contest_conv)
-    app.add_handler(admin_conv)
-    app.add_handler(CallbackQueryHandler(button_handler, pattern="^(check|feedback)$"))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_feedback))
+        # Обработка сообщений
+        if "message" in update:
+            msg = update["message"]
+            chat_id = msg["chat"]["id"]
+            text = msg.get("text", "").strip()
 
-    print("🤖 Бот Komorok (двойной хеш) активирован. Жду сообщений…")
-    app.run_polling(timeout=POLLING_TIMEOUT)
-    print("⏹️ Сеанс завершён.")
+            if text == "/start":
+                handle_start(chat_id)
+            elif text.startswith("/admin"):
+                password = text.removeprefix("/admin").strip()
+                handle_admin(chat_id, password)
+            elif text.startswith("/"):
+                send_message(chat_id, "Неизвестная команда. Используйте /start")
+            else:
+                # Сохраняем как отзыв
+                user = msg.get("from", {})
+                name = user.get("first_name", "Аноним")
+                username = user.get("username", "")
+                with open(FEEDBACK_FILE, "a", encoding="utf-8") as f:
+                    f.write(f"{name} (@{username}): {text}\n")
+                send_message(chat_id, "💬 Спасибо за отзыв! Он сохранён.")
+                git_commit_and_push([FEEDBACK_FILE])
+
+        # Обработка нажатий на кнопки
+        if "callback_query" in update:
+            query = update["callback_query"]
+            chat_id = query["message"]["chat"]["id"]
+            data = query["data"]
+
+            if data == "check":
+                ok = check_site()
+                send_message(chat_id, f"{'✅' if ok else '❌'} Сайт Komorok {'работает' if ok else 'не отвечает'}!")
+            elif data == "feedback":
+                send_message(chat_id, "📝 Напишите ваш отзыв о сайте (одним сообщением).")
+
+    # Сохраняем offset
+    with open(UPDATE_FILE, "w") as f:
+        f.write(str(offset))
+
 
 if __name__ == "__main__":
     main()
