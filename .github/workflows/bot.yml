@@ -16,15 +16,26 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Install Kotlin
+      - name: Download kotlin-compiler
         run: |
-          curl -s "https://get.sdkman.io" | bash
-          source "$HOME/.sdkman/bin/sdkman-init.sh"
-          sdk install kotlin
+          curl -L https://github.com/JetBrains/kotlin/releases/download/v1.9.24/kotlin-compiler-1.9.24.zip -o kotlin.zip
+          unzip -q kotlin.zip
+      - name: Download JSON library
+        run: |
+          curl -L https://repo1.maven.org/maven2/org/json/json/20231013/json-20231013.jar -o json.jar
+      - name: Compile bot
+        run: |
+          ./kotlinc/bin/kotlinc scripts/Bot.kt -cp json.jar -include-runtime -d bot.jar
       - name: Run bot
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           ADMIN_DOUBLE_HASH: ${{ secrets.ADMIN_DOUBLE_HASH }}
           GIT_USER_NAME: github-actions[bot]
           GIT_USER_EMAIL: github-actions[bot]@users.noreply.github.com
-        run: kotlin scripts/bot.kts
+        run: java -cp bot.jar:json.jar BotKt
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "Обновлены данные бота" && git push
