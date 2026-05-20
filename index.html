@@ -39,9 +39,8 @@
 
         <nav class="sidebar">
             <div class="sidebar-title">Меню</div>
-            <a href="index.html">Главная</a>
-            <a href="Komorium/index.html">Komorium</a>
-            <a href="app/">📱 Приложение</a>
+            <a href="#">Главная</a>
+            <a href="Komorium/">Komorium</a>
             <a href="books/">Kompanion</a>
             <a href="about.html">О проекте</a>
             <a href="settings.html">⚙️ Настройки</a>
@@ -67,106 +66,7 @@
                 <p>С момента запуска сайта прошло: 51 дней</p>
                 <!-- articles-count -->
                 <p>В энциклопедии уже 40 статей</p>
-                <!-- Поздравление с Днём Победы -->
-<section class="victory-banner" style="
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    border: 2px solid #e63946;
-    border-radius: 12px;
-    padding: 2rem 1.5rem;
-    margin: 2rem auto;
-    max-width: 700px;
-    text-align: center;
-    box-shadow: 0 0 30px rgba(230, 57, 70, 0.3);
-">
-    <p style="font-size: 3rem; margin: 0 0 0.5rem 0;">🎖️</p>
-    <h2 style="
-        font-size: 1.8rem;
-        margin: 0 0 0.75rem 0;
-        color: #f1faee;
-        letter-spacing: 1px;
-    ">С Днём Великой Победы!</h2>
-    <p style="
-        font-size: 1.1rem;
-        color: #a8dadc;
-        margin: 0 0 1rem 0;
-        line-height: 1.6;
-    ">9 мая 1945 – 9 мая 2026<br>81 год со дня Великой Победы</p>
-    <p style="
-        font-size: 1rem;
-        color: #f1faee;
-        margin: 0 0 1.5rem 0;
-        line-height: 1.7;
-    ">Вечная память героям, подарившим нам мирное небо.<br>Низкий поклон ветеранам и труженикам тыла.</p>
-    <a href="Komorium/vov/" style="
-        display: inline-block;
-        background: #e63946;
-        color: #fff;
-        padding: 0.6rem 1.5rem;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: background 0.3s;
-        margin-bottom: 1rem;
-    ">🕯️ Подробнее</a>
-
-    <!-- Аудиоплеер -->
-<div style="margin-top: 0.5rem;">
-    <button id="playMusicBtn" style="
-        display: inline-block;
-        background: transparent;
-        color: #a8dadc;
-        padding: 0.5rem 1.2rem;
-        border: 1px solid #a8dadc;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: all 0.3s;
-    " onmouseover="this.style.background='rgba(168, 218, 220, 0.1)'" onmouseout="this.style.background='transparent'">
-        ▶️ Включить музыку
-    </button>
-</div>
-
-<script>
-(function() {
-    var btn = document.getElementById('playMusicBtn');
-    var audio = null;
-
-    btn.onclick = function() {
-        if (audio && !audio.paused) {
-            audio.pause();
-            btn.innerHTML = '▶️ Включить музыку';
-            return;
-        }
-
-        if (!audio) {
-            audio = new Audio('/vov.mp3');
-            // если mp3 не сработает, браузер сам попробует другие источники
-            audio.onended = function() {
-                btn.innerHTML = '▶️ Включить музыку';
-            };
-        }
-
-        audio.play().then(function() {
-            btn.innerHTML = '⏸️ Пауза';
-        }).catch(function(e) {
-            // Если mp3 не пошёл, пробуем ogg
-            audio = new Audio('/vov.ogg');
-            audio.onended = function() {
-                btn.innerHTML = '▶️ Включить музыку';
-            };
-            audio.play().then(function() {
-                btn.innerHTML = '⏸️ Пауза';
-            }).catch(function(e2) {
-                alert('Не удалось загрузить музыку. Попробуйте обновить страницу.');
-            });
-        });
-    };
-})();
-</script>
-</section>
+                
             </header>
             
             <!-- Новостной блок -->
@@ -175,9 +75,9 @@
     <div class="news-content">
         <p>Свежие обновления на Komorok:</p>
         <ul class="news-list">
-            <li>📱 <strong>Официальное приложение Komorok!</strong> Теперь Komorok — это не только сайт, но и приложение для Android. Запускайте сайт без браузера, получайте новости и обновления. Скачать можно на странице <a href="app/">Приложение</a>.</li>
+            
             <li>✍️ <strong>Новый автор — Алексей Константинович Толстой!</strong> Биография и три стихотворения уже в разделе «Литература». Читайте «Ой, стоги, стоги…», «Берестовую будочку» и «Медицинские стихотворения».</li>
-            <li>🎖️ <strong>Раздел «Великая Отечественная война»</strong> — к 9 мая на сайте появился исторический раздел с поздравлением, историей войны и видеоархивом.</li>
+            
             <li>📤 <strong>Кнопка «Поделиться»</strong> — теперь на всех страницах статей. Делитесь интересными материалами в один клик прямо с телефона.</li>
             <li>💬 <strong>Нашли ошибку?</strong> Напишите нам в чат Max (ссылка в описании канала) — обязательно исправим.</li>
         </ul>
