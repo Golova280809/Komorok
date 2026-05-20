@@ -3,280 +3,280 @@
     "title": "🎨 Полный курс CSS",
     "url": "Technology/css-course/",
     "category": "languages",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/css.webp"
   },
   {
     "title": "🔍 Termux: Проверка битых ссылок",
     "url": "Technology/termux-linkcheck/",
     "category": "termux",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/termux.webp"
   },
   {
     "title": "🔀 Termux: Git и работа с репозиторием",
     "url": "Technology/termux-git/",
     "category": "termux",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/termux.webp"
   },
   {
     "title": "🐍 Termux: Python и первый скрипт",
     "url": "Technology/termux-python/",
     "category": "termux",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/python.webp"
   },
   {
     "title": "🌐 Termux: Веб-сервер на телефоне",
     "url": "Technology/termux-server/",
     "category": "termux",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/termux.webp"
   },
   {
     "title": "📖 Termux: азбука командной строки",
     "url": "Technology/termux-abc/",
     "category": "termux",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/termux.webp"
   },
   {
     "title": "📱 Termux: введение и установка",
     "url": "Technology/termux-intro/",
     "category": "termux",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/termux.webp"
   },
   {
     "title": "🐍 Основы Python",
     "url": "Technology/python-course/",
     "category": "languages",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/python.webp"
   },
   {
     "title": "🌐 Полный курс HTML",
     "url": "Technology/html-course/",
     "category": "languages",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/html.webp"
   },
   {
     "title": "Базаново",
     "url": "bazanovo/",
     "category": "villages",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": ""
   },
   {
     "title": "Гуньгунжда",
     "url": "bazanovo/Gungunzhda/",
     "category": "nature",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": ""
   },
   {
     "title": "🗣️ Валентина Рыбкина",
     "url": "bazanovo/people/Valentina-Rybkina/",
     "category": "voices",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": ""
   },
   {
     "title": "⚔️ Семёнов в Забайкалье",
     "url": "bazanovo/civil-war/ataman-semenov/",
     "category": "civil-war",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/semenov-portrait.webp"
   },
   {
     "title": "👤 Атаман Григорий Семёнов: биография",
     "url": "bazanovo/civil-war/semenov-biography/",
     "category": "villages",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/semenov-portrait.webp"
   },
   {
     "title": "📚 Литература",
     "url": "literature/",
     "category": "other",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/author.webp"
   },
   {
     "title": "✍️ Надежда Тэффи",
     "url": "literature/nadezhda-teffi/",
     "category": "other",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/teffi.webp"
   },
   {
     "title": "📖 Жизнь и воротник",
     "url": "literature/nadezhda-teffi/zhizn-i-vorotnik/",
     "category": "other",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/teffi.webp"
   },
   {
     "title": "✍️ Ги де Мопассан",
     "url": "literature/gi-de-maupassant/",
     "category": "authors",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/Maupassant.webp"
   },
   {
     "title": "📖 Рождественская сказка",
     "url": "literature/gi-de-maupassant/mopassan-rozhdestvenskaya-skazka/",
     "category": "authors",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/Maupassant.webp"
   },
   {
     "title": "💎 Ожерелье",
     "url": "literature/gi-de-maupassant/ozherele/",
     "category": "works",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/Maupassant.webp"
   },
   {
     "title": "📖 Пышка",
     "url": "literature/gi-de-maupassant/pyshka/",
     "category": "works",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/Maupassant.webp"
   },
   {
     "title": "✍️ Алексей Константинович Толстой",
     "url": "literature/aleksey-tolstoy/",
     "category": "other",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/A.K.Tolstoy.webp"
   },
   {
     "title": "🛖 Берестовая будочка",
     "url": "literature/aleksey-tolstoy/berestovaya-budochka/",
     "category": "other",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": ""
   },
   {
     "title": "🐞 Медицинские стихотворения",
     "url": "literature/aleksey-tolstoy/bozhya-korovka/",
     "category": "other",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": ""
   },
   {
     "title": "🌾 Ой, стоги, стоги…",
     "url": "literature/aleksey-tolstoy/stogi/",
     "category": "other",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/stogi.webp"
   },
   {
     "title": "🇨🇳 Китай",
     "url": "China/",
     "category": "countries",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/china.webp"
   },
   {
     "title": "🎎 Культура Китая",
     "url": "China/culture/",
     "category": "china-culture",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/china-culture.webp"
   },
   {
     "title": "👑 Цинь Шихуанди: первый император",
     "url": "China/history/qin-shi-huang/",
     "category": "china-history",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/qin-shi-huang.webp"
   },
   {
     "title": "🎭 Династия Тан: поэзия и космополитизм",
     "url": "China/history/tang-dynasty/",
     "category": "china-history",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/tang-dynasty.webp"
   },
   {
     "title": "🐪 Великий шёлковый путь",
     "url": "China/history/silk-road/",
     "category": "china-history",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/silk-road.webp"
   },
   {
     "title": "⛵ Династия Мин: флот и изоляция",
     "url": "China/history/ming-dynasty/",
     "category": "china-history",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/ming-dynasty.webp"
   },
   {
     "title": "🏛️ Династия Хань: золотой век",
     "url": "China/history/han-dynasty/",
     "category": "china-history",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/han-dynasty.webp"
   },
   {
     "title": "⚔️ Эпоха Троецарствия",
     "url": "China/history/three-kingdoms/",
     "category": "china-history",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/three-kingdoms.webp"
   },
   {
     "title": "🐎 Монгольское завоевание: Хубилай-хан",
     "url": "China/history/mongol-conquest/",
     "category": "china-history",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/mongol-conquest.webp"
   },
   {
     "title": "🏁 Династия Цин: последняя империя",
     "url": "China/history/qing-dynasty/",
     "category": "china-history",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/qing-dynasty.webp"
   },
   {
     "title": "🧬 Биология",
     "url": "biology/",
     "category": "other",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/biology.webp"
   },
   {
     "title": "🧬 Что такое биология?",
     "url": "biology/what-is-biology/",
     "category": "other",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/biology.webp"
   },
   {
     "title": "🦁 Введение в зоологию",
     "url": "biology/zoology/",
     "category": "other",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/koala.webp"
   },
   {
     "title": "🌿 Что такое ботаника?",
     "url": "biology/botany/",
     "category": "other",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/lily.webp"
   },
   {
     "title": "🎖️ 81 год Великой Победы",
     "url": "vov/",
     "category": "other",
-    "date": "2026-05-19",
+    "date": "2026-05-20",
     "image": "../img/vov-1.webp"
   }
 ]
