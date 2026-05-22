@@ -5,12 +5,12 @@
     <link rel="apple-touch-icon" href="../logo.png" />
     <link rel="icon" type="image/png" href="../logo.png" />
 
-    <meta name="description" content="Komorium — личная энциклопедия Александра Головачёва. Статьи по географии, биологии, технологиям, литературе и краеведению." />
-    <meta name="keywords" content="Komorium, энциклопедия, география, биология, Китай, Базаново, HTML, CSS, технологии, литература" />
+    <meta name="description" content="Komorium на реставрации. Библиотека краеведения временно недоступна — полная пересборка структуры." />
+    <meta name="keywords" content="Komorium, реставрация, краеведение, Базаново, библиотека" />
     <link rel="canonical" href="https://komorok.ru/Komorium/" />
 
-    <meta property="og:title" content="📚 Komorium — Моя личная энциклопедия | Komorok" />
-    <meta property="og:description" content="Статьи о Китае, Базаново, биологии, литературе и курсы по HTML, CSS, Python и Termux." />
+    <meta property="og:title" content="🏛️ Komorium — Реставрация | Komorok" />
+    <meta property="og:description" content="Библиотека временно закрыта на пересборку. Никакой свалки, никакой Википедии — только избранное." />
     <meta property="og:url" content="https://komorok.ru/Komorium/" />
     <meta property="og:image" content="https://komorok.ru/logo.png" />
     <meta property="og:type" content="website" />
@@ -27,7 +27,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../common.css" />
     <link rel="stylesheet" href="komorium.css" />
-    <title>Komorium — Моя личная энциклопедия</title>
+    <title>Komorium — Реставрация</title>
+
+    <style>
+        /* Дополнительные стили для страницы-заглушки */
+        .restoration-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 60vh;
+            padding: 3rem 1.5rem;
+        }
+
+        .restoration-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .restoration-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.02em;
+        }
+
+        .restoration-subtitle {
+            font-size: 1.35rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            opacity: 0.85;
+        }
+
+        .restoration-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--accent, #5a7d7c);
+            border: none;
+            border-radius: 2px;
+            margin: 0 auto 2rem;
+        }
+
+        .restoration-message {
+            max-width: 560px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            opacity: 0.8;
+        }
+
+        .restoration-message strong {
+            font-weight: 600;
+            opacity: 1;
+        }
+
+        .restoration-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            opacity: 0.7;
+            margin-top: 1rem;
+        }
+
+        .restoration-home-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--accent, #5a7d7c);
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: var(--accent, #5a7d7c);
+        }
+
+        .restoration-home-link:hover {
+            background: var(--accent, #5a7d7c);
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
@@ -48,166 +132,37 @@
     </nav>
 
     <label for="menu-toggle" class="overlay"></label>
+
     <header>
-        <h1>📚 Komorium</h1>
-        <p>Моя личная энциклопедия</p>
+        <h1>🏛️ Komorium</h1>
+        <p>Библиотека краеведения</p>
     </header>
+
     <button class="back-to-top" id="backToTop">↑</button>
 
     <main>
-        
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или описанию..." autocomplete="off" />
-            <button id="clearSearch" class="search-clear" aria-label="Очистить">✕</button>
+        <div class="restoration-container">
+            <div class="restoration-icon">🏗️</div>
+            <h2 class="restoration-title">Реставрация</h2>
+            <p class="restoration-subtitle">Страница временно недоступна</p>
+            <hr class="restoration-divider" />
+
+            <div class="restoration-message">
+                <p>Я полностью <strong>пересобираю структуру</strong> библиотеки.</p>
+                <p><strong>Никакой свалки. Никакой Википедии.</strong><br />Только избранное. Только живое краеведение.</p>
+                <p>Совсем скоро Komorium вернётся обновлённым.</p>
+            </div>
+
+            <p class="restoration-quote">А пока — море рядом 🌊</p>
+
+            <a href="../index.html" class="restoration-home-link">← На главную</a>
         </div>
-
-        <nav class="categories">
-            <a href="#geography" class="cat-btn">🌍 География</a>
-            <a href="#biology" class="cat-btn">🧬 Биология</a>
-            <a href="#technology" class="cat-btn">💻 Технологии</a>
-            <a href="#literature" class="cat-btn">📚 Литература</a>
-        </nav>
-        
-        
-        <!-- Персональная карточка -->
-        <section class="standalone-card">
-            <h2 style="margin-bottom: 0.75rem;">Головачёв Александр</h2>
-            <div class="articles-grid">
-                <a href="../Alexander.html" class="article-card" data-title="Головачёв Александр" data-desc="Творчество">
-                    <img src="../img/about.webp" alt="📰" class="avatar" />
-                    <div class="card-content">
-                        <span class="card-title">Головачёв Александр</span>
-                        <span class="card-desc">Творчество</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- Раздел ГЕОГРАФИЯ -->
-        <section id="geography" class="category-section">
-            <h2>🌍 География</h2>
-
-            <!-- Подраздел: Страны -->
-            <div class="subcategory collapsed" id="subcat-countries">
-                <div class="subcategory-header">
-                    <h3>Страны</h3>
-                    <button class="toggle-subcat" data-target="subcat-countries"><span class="arrow">▼</span></button>
-                </div>
-                <div class="articles-grid">
-                    <a href="China/index.html" class="article-card" data-title="Китай" data-desc="Культура и история Поднебесной">
-                        <img src="../img/china.webp" alt="🇨🇳" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Китай</span>
-                            <span class="card-desc">Культура и история Поднебесной</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Подраздел: Населённые пункты -->
-            <div class="subcategory collapsed" id="subcat-villages">
-                <div class="subcategory-header">
-                    <h3>Населённые пункты</h3>
-                    <button class="toggle-subcat" data-target="subcat-villages"><span class="arrow">▼</span></button>
-                </div>
-                <div class="articles-grid">
-                    <a href="bazanovo/bazanovo.html" class="article-card" data-title="Деревня: Базаново" data-desc="География, население, история, статьи по теме">
-                        <img src="../img/no-img.webp" alt="Базаново" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Деревня: Базаново</span>
-                            <span class="card-desc">География, население, экономика и другие статьи</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Раздел БИОЛОГИЯ -->
-        <section id="biology" class="category-section">
-            <h2>🧬 Биология</h2>
-
-            <div class="subcategory collapsed" id="subcat-biology">
-                <div class="subcategory-header">
-                    <h3>Наука о жизни</h3>
-                    <button class="toggle-subcat" data-target="subcat-biology"><span class="arrow">▼</span></button>
-                </div>
-                <div class="articles-grid">
-                    <a href="biology/" class="article-card" data-title="Биология" data-desc="Наука о жизни — обзорная статья">
-                        <img src="../img/biology.webp" alt="Биология" class="avatar">
-                        <div class="card-content">
-                            <span class="card-title">Биология</span>
-                            <span class="card-desc">Наука о жизни во всех её проявлениях</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Раздел ТЕХНОЛОГИИ -->
-        <section id="technology" class="category-section">
-            <h2>💻 Технологии</h2>
-
-            <!-- Подраздел: Языки программирования -->
-            <div class="subcategory collapsed" id="subcat-languages">
-                <div class="subcategory-header">
-                    <h3>Языки программирования и разметки</h3>
-                    <button class="toggle-subcat" data-target="subcat-languages"><span class="arrow">▼</span></button>
-                </div>
-                <div class="articles-grid">
-                    <a href="Technology/languages.html" class="article-card" data-title="HTML, CSS, Python" data-desc="Курсы по основам веб-разработки">
-                        <img src="../img/python.webp" alt="Языки" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Языки программирования</span>
-                            <span class="card-desc">HTML, CSS, Python — курсы</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Подраздел: Termux -->
-            <div class="subcategory collapsed" id="subcat-termux">
-                <div class="subcategory-header">
-                    <h3>Termux: школа выживания</h3>
-                    <button class="toggle-subcat" data-target="subcat-termux"><span class="arrow">▼</span></button>
-                </div>
-                <div class="articles-grid">
-                    <a href="Technology/termux.html" class="article-card" data-title="Termux" data-desc="Мобильная разработка и автоматизация">
-                        <img src="../img/termux.webp" alt="Termux" class="avatar" />
-                        <div class="card-content">
-                            <span class="card-title">Termux: школа выживания</span>
-                            <span class="card-desc">Введение, Python, Git, проверка ссылок и другое</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Раздел ЛИТЕРАТУРА -->
-        <section id="literature" class="category-section">
-            <h2>📚 Литература</h2>
-
-            <div class="subcategory collapsed" id="subcat-literature">
-                <div class="subcategory-header">
-                    <h3>Авторы и произведения</h3>
-                    <button class="toggle-subcat" data-target="subcat-literature"><span class="arrow">▼</span></button>
-                </div>
-                <div class="articles-grid">
-                    <a href="literature/" class="article-card" data-title="Все авторы" data-desc="Биографии и произведения писателей">
-                        <img src="../img/author.webp" alt="Литература" class="avatar">
-                        <div class="card-content">
-                            <span class="card-title">Все авторы</span>
-                            <span class="card-desc">Биографии и произведения писателей</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <div id="noResultsMessage" class="no-results-message">🔎 Ничего не найдено. Попробуйте изменить запрос.</div>
     </main>
+
     <footer class="footer">
         <p>© 2026 Komorok</p>
     </footer>
+
     <script src="../script.js"></script>
 </body>
 </html>
