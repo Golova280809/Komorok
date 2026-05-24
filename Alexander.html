@@ -16,6 +16,55 @@
         <link rel="stylesheet" href="common.css" />
         <link rel="stylesheet" href="Komorium/komorium.css" />
         <title>Творчество Александра Головачёва — Komorok</title>
+
+        <!-- Стили для поиска -->
+        <style>
+            .search-wrapper {
+                position: relative;
+                max-width: 400px;
+                margin: 20px 0 20px 0;
+            }
+            #searchInput {
+                width: 100%;
+                padding: 10px 40px 10px 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 1rem;
+                box-sizing: border-box;
+            }
+            .dark-theme #searchInput {
+                background: #2a2a2a;
+                color: #eee;
+                border-color: #555;
+            }
+            #clearSearch {
+                position: absolute;
+                right: 8px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: none;
+                border: none;
+                font-size: 1.2rem;
+                cursor: pointer;
+                color: #888;
+                display: none;
+            }
+            #clearSearch.visible {
+                display: block;
+            }
+            #noResultsMessage {
+                display: none;
+                color: #999;
+                font-style: italic;
+                margin: 15px 0;
+            }
+            #noResultsMessage.show {
+                display: block;
+            }
+            .poem-block.hidden-by-search {
+                display: none;
+            }
+        </style>
     </head>
     <body>
         <!-- Боковое меню (гамбургер) -->
@@ -63,7 +112,6 @@
                     Александр Головачёв (творческий псевдоним <strong>Skaut9910</strong>) — поэт, родившийся в
                     Забайкальском крае, городе Чита.
                 </p>
-
                 <p>
                     Свои произведения публикую в социальных сетях (преимущественно на платформе
                     <a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">Max</a>).
@@ -74,61 +122,383 @@
             <section id="poems" class="content-section">
                 <h2>Избранные стихи</h2>
 
+                <!-- Поиск -->
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" placeholder="Поиск по названию или тексту..." autocomplete="off" />
+                    <button id="clearSearch" title="Очистить">✕</button>
+                </div>
+                <div id="noResultsMessage">Ничего не найдено.</div>
+
                 <!-- Стих 1 -->
                 <div class="poem-block">
                     <div class="poem-title">«Война»</div>
                     <div class="poem-text">
-                        Когда не было хлеба, Когда была война. Это было мученье, Это была война. А война это слезы, А
-                        война это смерти. Будем помнить мы вечно, Всех погибших ребят. Ведь эта память Слава, Ведь эта
-                        память Вера. Эта Вера в победу, Сильнее любого из вас.
+                        Когда не было хлеба,<br>
+                        Когда была война.<br>
+                        Это было мученье,<br>
+                        Это была война.<br><br>
+                        А война это слезы,<br>
+                        А война это смерти.<br>
+                        Будем помнить мы вечно,<br>
+                        Всех погибших ребят.<br><br>
+                        Ведь эта память Слава,<br>
+                        Ведь эта память Вера.<br>
+                        Эта Вера в победу,<br>
+                        Сильнее любого из вас.
                     </div>
                     <div class="poem-date">февраль 2024</div>
                 </div>
 
                 <!-- Стих 2 -->
                 <div class="poem-block">
-                    <div class="poem-title">«Подвиг»</div>
+                    <div class="poem-title">«Гимназия»</div>
                     <div class="poem-text">
-                        Идет бой, Прилетает граната И в душе сразу боль и страх И казалось бы, молодые ребята, У которых
-                        ещё впереди Сейчас погибнут, Сейчас их не станет. Но откуда не возьмись Появляется дед с
-                        автоматом, И кричит: "Разбежались, сынки" А сам не боясь что взорвется В руки гранату берёт И
-                        кидает, со всей своей силы Обратно к врагу своему!
+                        В Краснокаменске средь серых скал,<br>
+                        Гимназия стоит как идеал.<br>
+                        Гранит науки грызть спешит народ,<br>
+                        И знаний жажда каждого ведёт.<br><br>
+                        Здесь физика и химия живут,<br>
+                        Истории странички оживут,<br>
+                        Литература дарит вдохновенье,<br>
+                        А математика – точное решенье.<br><br>
+                        Растут здесь будущие доктора<br>
+                        И инженеры, педагоги, мастера,<br>
+                        Стремятся к новым звездам и высотам,<br>
+                        Покинув эти стены точным взлётом.<br><br>
+                        Девятая гимназия – наш дом,<br>
+                        Где детство тает с каждым днем.<br>
+                        И память о годах, что здесь прошли,<br>
+                        Останется навеки в нас внутри.
                     </div>
-                    <div class="poem-date">2 октября 2025</div>
+                    <div class="poem-date">18.10.2024 – 09.02.2025</div>
                 </div>
 
-                <!-- Стих 3 (теперь с названием) -->
+                <!-- Стих 3 -->
                 <div class="poem-block">
-                    <div class="poem-title">«Маме»</div>
+                    <div class="poem-title">«Оленёнок»</div>
                     <div class="poem-text">
-                        Я буду рядом мам Всегда с тобой И постараюсь Счастье подарить И пусть года летят Как стаи птиц
-                        Мою любовь ничто Не сможет сбить.
+                        В Забайкалье, где сопки стоят,<br>
+                        Оленёнок родился, малый на взгляд.<br>
+                        Много бегал, узнавал,<br>
+                        Где-то днями пропадал.<br>
+                        А потом придет домой<br>
+                        И рассказ начнет он свой:<br>
+                        Где он был, где он гулял,<br>
+                        Что он нового узнал.<br><br>
+                        Мечтал объехать он все склоны,<br>
+                        Увидеть рассветы, закаты, все тропы.<br>
+                        Отправиться хотел он в путешествие<br>
+                        И у родителей спросил он разрешение.
                     </div>
-                    <div class="poem-date">5 октября 2025</div>
+                    <div class="poem-date">19.02.2025</div>
                 </div>
 
                 <!-- Стих 4 -->
                 <div class="poem-block">
+                    <div class="poem-title">«Русский язык»</div>
+                    <div class="poem-text">
+                        На русском я мечтаю и пою,<br>
+                        Смеюсь, грущу<br>
+                        И думаю о важном.<br>
+                        Язык родной — как мир,<br>
+                        Что я люблю.<br>
+                        В нём каждый звук<br>
+                        По-своему отважный.<br><br>
+                        Здесь слов так много —<br>
+                        Красок не найти,<br>
+                        Чтоб описать рассвет,<br>
+                        Закат и поле.<br>
+                        И можно чувства разные сплести,<br>
+                        Как будто вяжешь шарф<br>
+                        От зимней боли.
+                    </div>
+                    <div class="poem-date">2025</div>
+                </div>
+
+                <!-- Стих 5 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Сон Обломова»</div>
+                    <div class="poem-text">
+                        Лежит Илья, спит сладко.<br>
+                        Приснилось — всё в порядке:<br>
+                        Деревня, тишь, уют,<br>
+                        Где все его любят и ждут.<br><br>
+                        Но вдруг — стук,<br>
+                        Дверь открылась,<br>
+                        Мир мечтаний разбился:<br>
+                        Штольц тут как тут стоит:<br>
+                        «Вставай, работа ждёт!»<br><br>
+                        Обломов загрустил:<br>
+                        «Зачем ты меня разбудил?»
+                    </div>
+                    <div class="poem-date">2025</div>
+                </div>
+
+                <!-- Стих 6 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Космическое путешествие»</div>
+                    <div class="poem-text">
+                        Звёзды сверкают,<br>
+                        Как бусинки на небе,<br>
+                        Далеко-далеко<br>
+                        В чёрной ночи.<br><br>
+                        Ракета летит,<br>
+                        Как серебряный слепень,<br>
+                        И мы хотим туда —<br>
+                        До самых лучей.<br><br>
+                        Луна — такой сыр,<br>
+                        Смешной и большой.<br>
+                        А солнце — горячий,<br>
+                        Огромный фонарь.<br>
+                        Планеты кружатся<br>
+                        Одна за другой,<br>
+                        И Марс такой красный,<br>
+                        Как будто бы царь!
+                    </div>
+                    <div class="poem-date">2025</div>
+                </div>
+
+                <!-- Стих 7 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Подвиг»</div>
+                    <div class="poem-text">
+                        Идет бой,<br>
+                        Прилетает граната<br>
+                        И в душе сразу боль и страх<br>
+                        И казалось бы, молодые ребята,<br>
+                        У которых ещё впереди<br>
+                        Сейчас погибнут,<br>
+                        Сейчас их не станет.<br>
+                        Но откуда не возьмись<br>
+                        Появляется дед с автоматом,<br>
+                        И кричит: «Разбежались, сынки»<br>
+                        А сам не боясь что взорвется<br>
+                        В руки гранату берёт<br>
+                        И кидает, со всей своей силы<br>
+                        Обратно к врагу своему!
+                    </div>
+                    <div class="poem-date">2 октября 2025</div>
+                </div>
+
+                <!-- Стих 8 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Маме»</div>
+                    <div class="poem-text">
+                        Я буду рядом мам<br>
+                        Всегда с тобой<br>
+                        И постараюсь<br>
+                        Счастье подарить<br>
+                        И пусть года летят<br>
+                        Как стаи птиц<br>
+                        Мою любовь ничто<br>
+                        Не сможет сбить.
+                    </div>
+                    <div class="poem-date">5 октября 2025</div>
+                </div>
+
+                <!-- Стих 9 -->
+                <div class="poem-block">
                     <div class="poem-title">«Вчера, сегодня, завтра»</div>
                     <div class="poem-text">
-                        Вчера я не тот, Кем буду я завтра. А завтра не тем, Кем являюсь сейчас. Сегодня я мир, В котором
-                        всё идеально. А завтра мир, В котором хаос и мрак. Вчера я как будто бы переродился, Как будто
-                        бы всё повторилось опять. В моменте ты понял Суть всей своей жизни, Но через доли секунды Всё
-                        резко забыл.
+                        Вчера я не тот,<br>
+                        Кем буду я завтра.<br>
+                        А завтра не тем,<br>
+                        Кем являюсь сейчас.<br>
+                        Сегодня я мир,<br>
+                        В котором всё идеально.<br>
+                        А завтра мир,<br>
+                        В котором хаос и мрак.<br>
+                        Вчера я как будто бы переродился,<br>
+                        Как будто бы всё повторилось опять.<br>
+                        В моменте ты понял<br>
+                        Суть всей своей жизни,<br>
+                        Но через доли секунды<br>
+                        Всё резко забыл.
                     </div>
-                    <div class="poem-date">2026</div>
+                    <div class="poem-date">2025–2026</div>
                 </div>
+
+                <!-- Стих 10 -->
                 <div class="poem-block">
                     <div class="poem-title">«Давайте встанем»</div>
                     <div class="poem-text">
-                        Давайте встанем за своих, За тех кто нас спиной закрывает. Кто не стремится быть героем, А кто
-                        строит нам дорогу Дорогу в жизнь и в мирный мир!
+                        Давайте встанем за своих,<br>
+                        За тех кто нас спиной закрывает.<br>
+                        Кто не стремится быть героем,<br>
+                        А кто строит нам дорогу<br>
+                        Дорогу в жизнь и в мирный мир!
                     </div>
                     <div class="poem-date">20.04.2026</div>
                 </div>
+
+                <!-- Стих 11 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Минута искры»</div>
+                    <div class="poem-text">
+                        Стрелка... И минуты тают.<br>
+                        У каждого из нас всё меньше дней.<br>
+                        А мысли разбегаются, сбивают,<br>
+                        И играют с мыслями теней.<br><br>
+                        У нас у каждого горит искра в душе,<br>
+                        Но кто-то разжечь ее не может.<br>
+                        И знает: что лишь сам он все сумеет,<br>
+                        Разжечь — если захочет.<br><br>
+                        Но тот кто смело дует в угли,<br>
+                        Не ждёт что кто-то там подбросит дров.<br>
+                        И однажды утром ты проснешься в свете,<br>
+                        Который сам ты себе раздул!
+                    </div>
+                    <div class="poem-date">22.04.2026</div>
+                </div>
+
+                <!-- Стих 12 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Белиберда»</div>
+                    <div class="poem-text">
+                        Я сочиню Белиберду.<br><br>
+                        Тут её перепишу.<br>
+                        Есть много разных вариантов<br>
+                        Без повода я надарю подарков.<br>
+                        Язык сам это говорит:<br><br>
+                        Лиловый цвет один из них.
+                    </div>
+                    <div class="poem-date">22.04.2026</div>
+                </div>
+
+                <!-- Стих 13 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Сказки»</div>
+                    <div class="poem-text">
+                        Когда-то мы за сказками ходили<br>
+                        И слышали лишь то, что мы должны.<br>
+                        Нам не давали слышать, что хотим мы, —<br>
+                        Мы слушали лишь то, что надо им.
+                    </div>
+                    <div class="poem-date">02.05.2026</div>
+                </div>
+
+                <!-- Стих 14 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Птица мира»</div>
+                    <div class="poem-text">
+                        Мир сейчас меняется неумолимо.<br>
+                        Птица мира крыльями забьёт —<br>
+                        И сразу все вокруг передерутся.<br>
+                        За что? За власть, за землю, что родная всем.<br><br>
+                        Не верится, во что мы превратились<br>
+                        И предали Природу-Мать.<br><br>
+                        А птица та не понимает, что творится,<br>
+                        И всё сильнее бьёт по матушке земле<br>
+                        Неведомо за что.<br>
+                        Поймёт она лишь только, когда наденут ей накрыльник,<br>
+                        И только после настанет мир.<br><br>
+                        Тот самый мир, что наступает беспощадно,<br>
+                        Минуя даже миг покоя для живых.<br>
+                        Она всё хочет разозлить природу.<br>
+                        А может, уже...
+                    </div>
+                    <div class="poem-date">02.05.2026</div>
+                </div>
+
+                <!-- Стих 15 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Ночное»</div>
+                    <div class="poem-text">
+                        Время тянется. Природа ночь брала.<br>
+                        Ты не виноват. Ты сделал так,<br>
+                        Как сделал бы любой.<br>
+                        Нету правила для всех единого.<br>
+                        А есть лишь чьи-то мысли,<br>
+                        Переполнены страдальною душой.<br><br>
+                        Ты видишь те слова,<br>
+                        Те гласные законы,<br>
+                        Которые не видятся в чужих словах.
+                    </div>
+                    <div class="poem-date">02.05.2026</div>
+                </div>
+
+                <!-- Стих 16 -->
+                <div class="poem-block">
+                    <div class="poem-title">«Рой проблем»</div>
+                    <div class="poem-text">
+                        Снова рой проблем,<br>
+                        Снова суета.<br>
+                        Давай забьем на все?<br>
+                        И будет тишина.
+                    </div>
+                    <div class="poem-date">20.05.2026</div>
+                </div>
+
+                <!-- Стих 17 (Цикл) -->
+                <div class="poem-block">
+                    <div class="poem-title">Цикл «25 мая»</div>
+                    <div class="poem-text">
+                        <strong>1.</strong><br>
+                        — Ты видишь?<br>
+                        — Нет.<br>
+                        — А слышишь?<br>
+                        — Нет.<br>
+                        — А знаешь почему?<br>
+                        — Нет.<br>
+                        — Потому что не умеешь слышать и видеть так,<br>
+                        как это вижу и слышу — Я!<br><br>
+
+                        <strong>2.</strong><br>
+                        Не пытайся найти тех, кому на тебя плевать,<br>
+                        Кто не поддержит в нужную минуту,<br>
+                        Кто только выгоду в тебе, как крыса, роет<br>
+                        И махнёт рукой без совести и боли.<br><br>
+
+                        <strong>3.</strong><br>
+                        Ты не ждёшь, когда падёт Олимп,<br>
+                        И не думаешь, когда пробьют часы.<br>
+                        Ты видишь то, что не вижу я.<br>
+                        Ни критики тут нету, ни наказа —<br>
+                        Лишь мысли вслух и больше ничего.<br><br>
+
+                        <strong>4.</strong><br>
+                        Красоты космоса видят космонавты,<br>
+                        Не зная точно, что там, в глубине.<br>
+                        Им говорили, что там бесконечность,<br>
+                        Что там пустота и больше ничего,<br>
+                        Что кроме пыли, звёзд, планет — там вакуум<br>
+                        Без всякой там надежды.<br><br>
+
+                        <strong>5.</strong><br>
+                        Можно я буду падать в пустоту?<br>
+                        Где нету дна,<br>
+                        Где нету атмосферы,<br>
+                        Где виден лишь пустой, унылый,<br>
+                        Чёрный цвет.<br>
+                        Лишь цвет и больше ничего.<br>
+                        А это «ничего» так одиноко.<br>
+                        Всегда одно, ей не с кем говорить,<br>
+                        И нету человека, что поддержит.<br>
+                        Лишь холодный... Чёрный цвет.<br><br>
+
+                        <strong>6.</strong><br>
+                        Не хочешь умирать...<br>
+                        Но придётся. Не хочешь.<br>
+                        Думаешь и не понимаешь,<br>
+                        Зачем ты здесь.<br>
+                        Родиться? Прожить? И так бездушно умереть?<br><br>
+
+                        <strong>7.</strong><br>
+                        Где-то мигает свет,<br>
+                        Где-то мерцают звёзды,<br>
+                        На небе плывёт луна.<br>
+                        Но так простодушно и жалко,<br>
+                        Она безметежна и нежна,<br>
+                        Нельзя её укротить.<br>
+                        Это хрупкая, но вместе с тем сильная,<br>
+                        Красивая вусмерть... ЛУНА.
+                    </div>
+                    <div class="poem-date">Цикл, 25.05.2026</div>
+                </div>
+
             </section>
 
-            <!-- Цитаты из стихов (заполненные) -->
+            <!-- Цитаты из стихов -->
             <section id="quotes" class="content-section">
                 <h2>Короткие цитаты</h2>
                 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px">
@@ -158,6 +528,8 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Ссылки -->
             <section id="links" class="content-section">
                 <div class="">
                     <h2>Ссылки</h2>
@@ -174,5 +546,47 @@
         </footer>
 
         <script src="script.js"></script>
+
+        <!-- Скрипт поиска -->
+        <script>
+        (function() {
+            const searchInput = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearSearch');
+            const noResultsMsg = document.getElementById('noResultsMessage');
+
+            if (!searchInput || !clearBtn || !noResultsMsg) return;
+
+            function filterPoems() {
+                const query = searchInput.value.trim().toLowerCase();
+                clearBtn.classList.toggle('visible', query.length > 0);
+
+                const allPoems = Array.from(document.querySelectorAll('.poem-block'));
+                let visibleCount = 0;
+
+                allPoems.forEach(function(block) {
+                    const titleEl = block.querySelector('.poem-title');
+                    const title = titleEl ? titleEl.textContent.toLowerCase() : '';
+                    const textEl = block.querySelector('.poem-text');
+                    const text = textEl ? textEl.textContent.toLowerCase() : '';
+
+                    const matches = (query === '' || title.includes(query) || text.includes(query));
+                    block.classList.toggle('hidden-by-search', !matches);
+                    if (matches) visibleCount++;
+                });
+
+                noResultsMsg.classList.toggle('show', query !== '' && visibleCount === 0);
+            }
+
+            searchInput.addEventListener('input', filterPoems);
+
+            clearBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                filterPoems();
+                searchInput.focus();
+            });
+
+            filterPoems();
+        })();
+        </script>
     </body>
 </html>
