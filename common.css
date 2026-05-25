@@ -1,40 +1,37 @@
-/* === ПЕРЕМЕННЫЕ (светлая тема по умолчанию) === */
+/* === ПЕРЕМЕННЫЕ (светлая тема) === */
 :root {
-    --bg-body: #f5f5f5;
-    --bg-surface: #ffffff;
-    --text-primary: #333333;
-    --text-secondary: #666666;
-    --border-light: #e0e0e0;
-    --accent: #667eea;
-    --accent-dark: #764ba2;
-    --shadow-light: rgba(0, 0, 0, 0.06);
-    --shadow-medium: rgba(0, 0, 0, 0.1);
-    --menu-overlay: rgba(0, 0, 0, 0.5);
-    --menu-hover: #f0f0f0;
-    --gradient-btn-start: #667eea;
-    --gradient-btn-end: #764ba2;
+    /* Тёплая библиотечная палитра */
+    --bg-body: #faf7f2;
+    --bg-surface: #fffef9;
+    --text-primary: #3d3226;
+    --text-secondary: #6b5e4f;
+    --border-light: #d9cebf;
+    --accent: #8b5e3c;
+    --accent-soft: #a67c52;
+    --shadow-light: rgba(61, 50, 38, 0.06);
+    --shadow-medium: rgba(61, 50, 38, 0.1);
+    --menu-overlay: rgba(61, 50, 38, 0.4);
+    --menu-hover: #f0e8da;
     --font-size-multiplier: 1;
 }
 
 /* === ТЁМНАЯ ТЕМА === */
-html.dark-thema,
+html.dark-theme,
 body.dark-theme {
-    --bg-body: #1a1a2e;
-    --bg-surface: #16213e;
-    --text-primary: #eaeaea;
-    --text-secondary: #b0b0b0;
-    --border-light: #2a3a5c;
-    --accent: #7b8cff;
-    --accent-dark: #9f7aea;
+    --bg-body: #1e1b17;
+    --bg-surface: #28231c;
+    --text-primary: #e8dcc8;
+    --text-secondary: #b8a890;
+    --border-light: #3d3428;
+    --accent: #c49a6c;
+    --accent-soft: #a67c52;
     --shadow-light: rgba(0, 0, 0, 0.3);
     --shadow-medium: rgba(0, 0, 0, 0.4);
-    --menu-overlay: rgba(0, 0, 0, 0.7);
-    --menu-hover: #1f3460;
-    --gradient-btn-start: #7b8cff;
-    --gradient-btn-end: #9f7aea;
+    --menu-overlay: rgba(0, 0, 0, 0.6);
+    --menu-hover: #352e24;
 }
 
-/* === БАЗОВЫЙ СБРОС === */
+/* === СБРОС === */
 *,
 *::before,
 *::after {
@@ -49,26 +46,25 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: "Georgia", "Times New Roman", serif;
     font-size: calc(1rem * var(--font-size-multiplier));
     background: var(--bg-body);
     color: var(--text-primary);
-    line-height: 1.5;
+    line-height: 1.7;
     min-height: 100vh;
 }
 
-/* Заголовки наследуют множитель */
-h1 { font-size: calc(2rem * var(--font-size-multiplier)); }
-h2 { font-size: calc(1.5rem * var(--font-size-multiplier)); }
-h3 { font-size: calc(1.25rem * var(--font-size-multiplier)); }
-h4 { font-size: calc(1.1rem * var(--font-size-multiplier)); }
-h5, h6 { font-size: calc(1rem * var(--font-size-multiplier)); }
+/* Заголовки */
+h1 { font-size: calc(1.8rem * var(--font-size-multiplier)); font-weight: normal; }
+h2 { font-size: calc(1.4rem * var(--font-size-multiplier)); font-weight: normal; }
+h3 { font-size: calc(1.15rem * var(--font-size-multiplier)); font-weight: normal; }
+h4 { font-size: calc(1.05rem * var(--font-size-multiplier)); font-weight: bold; }
 
 /* === ОСНОВНОЙ КОНТЕЙНЕР === */
 main {
-    max-width: 900px;
+    max-width: 860px;
     margin: 0 auto;
-    padding: 5rem 1rem 1rem;
+    padding: 4.5rem 1.2rem 2rem;
 }
 
 /* === БОКОВОЕ МЕНЮ === */
@@ -84,41 +80,40 @@ main {
     width: 40px;
     height: 40px;
     background: var(--bg-surface);
-    border-radius: 8px;
-    box-shadow: 0 2px 10px var(--shadow-light);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5px;
-    transition: transform 0.3s;
+    transition: background 0.2s;
 }
 
 .menu-toggle:hover {
-    transform: scale(1.05);
+    background: var(--menu-hover);
 }
 
 .menu-toggle span {
     display: block;
-    width: 24px;
-    height: 3px;
+    width: 22px;
+    height: 2px;
     background: var(--text-primary);
-    border-radius: 2px;
-    transition: all 0.3s;
+    border-radius: 1px;
 }
 
 .sidebar {
     position: fixed;
     top: 0;
-    left: -280px;
-    width: 280px;
+    left: -260px;
+    width: 260px;
     height: 100vh;
     background: var(--bg-surface);
-    box-shadow: 2px 0 10px var(--shadow-light);
+    border-right: 1px solid var(--border-light);
     z-index: 1000;
-    padding: 5rem 1rem 1rem;
-    transition: left 0.3s ease;
+    padding: 4rem 1rem 1.5rem;
+    transition: left 0.25s ease;
     overflow-y: auto;
 }
 
@@ -128,18 +123,22 @@ main {
 
 .sidebar-title {
     font-weight: bold;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     color: var(--accent);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .sidebar a {
     display: block;
-    padding: 0.8rem 1rem;
+    padding: 0.6rem 0.8rem;
     color: var(--text-primary);
     text-decoration: none;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
-    transition: background 0.2s, color 0.2s;
+    border-radius: 4px;
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+    transition: background 0.15s, color 0.15s;
 }
 
 .sidebar a:hover {
@@ -155,7 +154,7 @@ main {
     z-index: 999;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
+    transition: opacity 0.2s, visibility 0.2s;
 }
 
 .menu-checkbox:checked ~ .overlay {
@@ -163,46 +162,46 @@ main {
     visibility: visible;
 }
 
-/* === КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ === */
+/* === КНОПКА ТЕМЫ === */
 .theme-toggle-btn {
     display: flex;
     align-items: center;
     gap: 8px;
     width: 100%;
-    padding: 0.8rem 1rem;
-    margin-top: 1.5rem;
+    padding: 0.6rem 0.8rem;
+    margin-top: 1.2rem;
     background: var(--bg-surface);
-    border: 2px solid var(--border-light);
-    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
     color: var(--text-primary);
-    font-weight: 500;
+    font-family: inherit;
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background 0.15s;
 }
 
 .theme-toggle-btn:hover {
     background: var(--menu-hover);
-    color: var(--accent);
 }
 
-/* === КНОПКА "НАВЕРХ" === */
+/* === КНОПКА НАВЕРХ === */
 .back-to-top {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--gradient-btn-start), var(--gradient-btn-end));
-    color: white;
-    border: none;
-    border-radius: 50%;
+    bottom: 24px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    font-size: 1.2rem;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s ease;
+    transition: opacity 0.3s, visibility 0.3s;
     z-index: 1000;
     cursor: pointer;
 }
@@ -213,36 +212,32 @@ main {
 }
 
 .back-to-top:hover {
-    transform: scale(1.1) translateY(-5px);
+    background: var(--menu-hover);
 }
 
-/* === АНИМАЦИИ === */
-@keyframes fadeOut {
-    0%   { opacity: 1; }
-    70%  { opacity: 1; }
-    100% { opacity: 0; }
+/* === ПОДВАЛ === */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-light);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
 /* === АДАПТИВ === */
 @media (max-width: 600px) {
     main {
-        padding-top: 4rem;
+        padding-top: 3.8rem;
     }
 
     .menu-toggle {
-        top: 0.8rem;
-        left: 0.8rem;
+        top: 0.7rem;
+        left: 0.7rem;
     }
 
     .back-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
-    }
-
-    header h1,
-    header p {
-        text-align: center;
+        bottom: 16px;
+        right: 16px;
     }
 }
