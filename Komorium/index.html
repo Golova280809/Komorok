@@ -5,12 +5,12 @@
     <link rel="apple-touch-icon" href="../logo.png" />
     <link rel="icon" type="image/png" href="../logo.png" />
 
-    <meta name="description" content="Komorium на реставрации. Библиотека краеведения временно недоступна — полная пересборка структуры." />
-    <meta name="keywords" content="Komorium, реставрация, краеведение, Базаново, библиотека" />
+    <meta name="description" content="Komorium — личная библиотека Александра Головачёва. Краеведение деревни Базаново и статьи о Великой Отечественной войне." />
+    <meta name="keywords" content="Komorium, краеведение, Базаново, Великая Отечественная война, ВОВ" />
     <link rel="canonical" href="https://komorok.ru/Komorium/" />
 
-    <meta property="og:title" content="🏛️ Komorium — Реставрация | Komorok" />
-    <meta property="og:description" content="Библиотека временно закрыта на пересборку. Никакой свалки, никакой Википедии — только избранное." />
+    <meta property="og:title" content="📚 Komorium — Библиотека краеведения | Komorok" />
+    <meta property="og:description" content="Статьи о деревне Базаново и Великой Отечественной войне." />
     <meta property="og:url" content="https://komorok.ru/Komorium/" />
     <meta property="og:image" content="https://komorok.ru/logo.png" />
     <meta property="og:type" content="website" />
@@ -27,91 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../common.css" />
     <link rel="stylesheet" href="komorium.css" />
-    <title>Komorium — Реставрация</title>
-
-    <style>
-        /* Дополнительные стили для страницы-заглушки */
-        .restoration-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            min-height: 60vh;
-            padding: 3rem 1.5rem;
-        }
-
-        .restoration-icon {
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-
-        .restoration-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            letter-spacing: 0.02em;
-        }
-
-        .restoration-subtitle {
-            font-size: 1.35rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            opacity: 0.85;
-        }
-
-        .restoration-divider {
-            width: 60px;
-            height: 3px;
-            background: var(--accent, #5a7d7c);
-            border: none;
-            border-radius: 2px;
-            margin: 0 auto 2rem;
-        }
-
-        .restoration-message {
-            max-width: 560px;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-            opacity: 0.8;
-        }
-
-        .restoration-message strong {
-            font-weight: 600;
-            opacity: 1;
-        }
-
-        .restoration-quote {
-            font-style: italic;
-            font-size: 1.1rem;
-            opacity: 0.7;
-            margin-top: 1rem;
-        }
-
-        .restoration-home-link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.75rem 2rem;
-            border: 2px solid var(--accent, #5a7d7c);
-            border-radius: 2rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            color: var(--accent, #5a7d7c);
-        }
-
-        .restoration-home-link:hover {
-            background: var(--accent, #5a7d7c);
-            color: #fff;
-        }
-    </style>
+    <title>Komorium — Моя библиотека</title>
 </head>
 <body>
     <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
@@ -132,37 +48,66 @@
     </nav>
 
     <label for="menu-toggle" class="overlay"></label>
-
     <header>
-        <h1>🏛️ Komorium</h1>
-        <p>Библиотека краеведения</p>
+        <h1>📚 Komorium</h1>
+        <p>Моя библиотека</p>
     </header>
-
     <button class="back-to-top" id="backToTop">↑</button>
 
     <main>
-        <div class="restoration-container">
-            <div class="restoration-icon">🏗️</div>
-            <h2 class="restoration-title">Реставрация</h2>
-            <p class="restoration-subtitle">Страница временно недоступна</p>
-            <hr class="restoration-divider" />
 
-            <div class="restoration-message">
-                <p>Я полностью <strong>пересобираю структуру</strong> библиотеки.</p>
-                <p><strong>Никакой свалки. Никакой Википедии.</strong><br />Только избранное. Только живое краеведение.</p>
-                <p>Совсем скоро Komorium вернётся обновлённым.</p>
-            </div>
-
-            <p class="restoration-quote">А пока — море рядом 🌊</p>
-
-            <a href="../index.html" class="restoration-home-link">← На главную</a>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или описанию..." autocomplete="off" />
+            <button id="clearSearch" class="search-clear" aria-label="Очистить">✕</button>
         </div>
-    </main>
 
+        <!-- Персональная карточка -->
+        <section class="standalone-card">
+            <h2 style="margin-bottom: 0.75rem;">Головачёв Александр</h2>
+            <div class="articles-grid">
+                <a href="../Alexander.html" class="article-card" data-title="Головачёв Александр" data-desc="Творчество">
+                    <img src="../img/about.webp" alt="📰" class="avatar" />
+                    <div class="card-content">
+                        <span class="card-title">Головачёв Александр</span>
+                        <span class="card-desc">Творчество</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Раздел: Базаново -->
+        <section id="bazanovo" class="category-section">
+            <h2>🏡 Деревня Базаново</h2>
+            <div class="articles-grid">
+                <a href="bazanovo/bazanovo.html" class="article-card" data-title="Деревня: Базаново" data-desc="География, население, история, статьи по теме">
+                    <img src="../img/bazanovo.webp" alt="Базаново" class="avatar" />
+                    <div class="card-content">
+                        <span class="card-title">Деревня: Базаново</span>
+                        <span class="card-desc">География, население, история и другие статьи</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Раздел: Великая Отечественная война -->
+        <section id="war" class="category-section">
+            <h2>⭐ Великая Отечественная война</h2>
+            <div class="articles-grid">
+                <a href="war/" class="article-card" data-title="Великая Отечественная война" data-desc="Статьи по истории Великой Отечественной войны">
+                    <img src="../img/war.webp" alt="ВОВ" class="avatar" />
+                    <div class="card-content">
+                        <span class="card-title">Великая Отечественная война</span>
+                        <span class="card-desc">Статьи по истории ВОВ</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <div id="noResultsMessage" class="no-results-message">🔎 Ничего не найдено. Попробуйте изменить запрос.</div>
+    </main>
     <footer class="footer">
         <p>© 2026 Komorok</p>
     </footer>
-
     <script src="../script.js"></script>
 </body>
 </html>
