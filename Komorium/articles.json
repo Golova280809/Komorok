@@ -112,34 +112,6 @@
     "image": "../img/stogi.webp"
   },
   {
-    "title": "🧬 Биология",
-    "url": "biology/",
-    "category": "other",
-    "date": "2026-05-25",
-    "image": "../img/biology.webp"
-  },
-  {
-    "title": "🧬 Что такое биология?",
-    "url": "biology/what-is-biology/",
-    "category": "other",
-    "date": "2026-05-25",
-    "image": "../img/biology.webp"
-  },
-  {
-    "title": "🦁 Введение в зоологию",
-    "url": "biology/zoology/",
-    "category": "other",
-    "date": "2026-05-25",
-    "image": "../img/koala.webp"
-  },
-  {
-    "title": "🌿 Что такое ботаника?",
-    "url": "biology/botany/",
-    "category": "other",
-    "date": "2026-05-25",
-    "image": "../img/lily.webp"
-  },
-  {
     "title": "🎖️ 81 год Великой Победы",
     "url": "vov/",
     "category": "other",
