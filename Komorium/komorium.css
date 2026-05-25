@@ -1,98 +1,182 @@
-/* === СТИЛИ KOMORIUM (БИБЛИОТЕКА) === */
+/* === KOMORIUM — БИБЛИОТЕЧНЫЙ СТИЛЬ === */
 
-/* --- Базовые секции --- */
+/* Карточка автора и разделы */
+.standalone-card {
+    margin-bottom: 2.5rem;
+}
+
+.standalone-card h2 {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+    font-weight: normal;
+}
+
 .category-section {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .category-section h2 {
+    font-size: 1.3rem;
+    color: var(--accent);
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--border-light);
-    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-light);
+    font-weight: normal;
 }
 
-/* --- Сетка карточек --- */
+/* Сетка карточек */
 .articles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.8rem;
 }
 
+/* Карточка статьи — как библиотечная карточка */
 .article-card {
     display: flex;
     align-items: center;
-    gap: 0.3rem;
-    padding: 0.8rem;
+    gap: 0.8rem;
+    padding: 0.9rem 1rem;
     background: var(--bg-surface);
-    border-radius: 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
     text-decoration: none;
     color: var(--text-primary);
-    box-shadow: 0 2px 8px var(--shadow-light);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: background 0.15s, border-color 0.15s;
 }
 
 .article-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px var(--shadow-medium);
+    background: var(--menu-hover);
+    border-color: var(--accent-soft);
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid var(--border-light);
+    flex-shrink: 0;
 }
 
 .card-content {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.2rem;
+    min-width: 0;
 }
 
 .card-title {
-    font-weight: 600;
+    font-weight: bold;
+    font-size: 0.95rem;
     color: var(--text-primary);
 }
 
 .card-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* === ПОИСК === */
+.search-container {
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.7rem 2.5rem 0.7rem 1rem;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.search-input::placeholder {
     color: var(--text-secondary);
 }
 
-.avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--bg-surface);
+.search-input:focus {
+    border-color: var(--accent-soft);
 }
 
-/* --- Карточка автора --- */
-.standalone-card {
-    margin-bottom: 2rem;
+.search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 4px;
+    display: none;
 }
 
-/* --- Страницы статей --- */
+.search-clear.visible {
+    display: block;
+}
+
+.search-clear:hover {
+    color: var(--text-primary);
+}
+
+/* Нет результатов */
+.no-results-message {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    display: none;
+}
+
+.no-results-message.show {
+    display: block;
+}
+
+/* Скрытые карточки при поиске */
+.article-card.hidden-by-search {
+    display: none !important;
+}
+
+/* === СТРАНИЦЫ СТАТЕЙ === */
 .content-section {
     margin-bottom: 2rem;
 }
 
 .content-section h2 {
-    margin-bottom: 1rem;
-    color: var(--text-primary);
+    font-size: 1.3rem;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    font-weight: normal;
 }
 
 .content-section h3 {
-    margin-top: 1.8rem;
-    margin-bottom: 0.8rem;
-    color: var(--accent);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin: 1.5rem 0 0.6rem;
+    font-weight: bold;
 }
 
 .content-section h4 {
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
+    margin: 1.2rem 0 0.4rem;
+    font-weight: bold;
 }
 
 .content-section p {
-    line-height: 1.5;
+    line-height: 1.8;
     color: var(--text-primary);
     text-align: justify;
     text-indent: 1.5em;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     hyphens: auto;
 }
 
@@ -103,274 +187,193 @@
 .content-section img {
     max-width: 100%;
     height: auto;
-    border-radius: 12px;
+    border-radius: 4px;
     margin: 1rem 0;
-    box-shadow: 0 2px 10px var(--shadow-light);
+    border: 1px solid var(--border-light);
 }
 
 main > h1 {
     text-align: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     color: var(--text-primary);
+    font-weight: normal;
 }
 
-/* --- Таблицы --- */
+main > p {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+/* === ТАБЛИЦЫ === */
 .table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
-    color: var(--text-primary);
+    margin: 1.2rem 0;
+    font-size: 0.9rem;
 }
 
 .table th,
 .table td {
     border: 1px solid var(--border-light);
-    padding: 8px 12px;
-    text-align: center;
+    padding: 8px 10px;
+    text-align: left;
 }
 
 .table th {
-    background: var(--th-body);
+    background: var(--menu-hover);
     font-weight: bold;
 }
 
-.table tr:hover {
-    background: var(--menu-hover);
-}
-
-/* --- Стихи и цитаты --- */
+/* === СТИХИ === */
 .poem-block {
     background: var(--bg-surface);
-    padding: 1.8rem 2rem;
-    margin-bottom: 2rem;
-    border-radius: 18px;
-    box-shadow: 0 4px 12px var(--shadow-light);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
     border: 1px solid var(--border-light);
+    border-radius: 6px;
 }
 
 .poem-title {
-    font-weight: 600;
-    margin-bottom: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 0.6rem;
     color: var(--text-primary);
 }
 
 .poem-text {
     font-family: "Georgia", "Times New Roman", serif;
-    line-height: 1.8;
+    line-height: 1.9;
     white-space: pre-wrap;
     color: var(--text-primary);
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.6rem;
     text-indent: 0;
 }
 
 .poem-date {
     text-align: right;
     color: var(--text-secondary);
+    font-size: 0.9rem;
     border-top: 1px dashed var(--border-light);
-    padding-top: 0.8rem;
-    margin-top: 0.5rem;
+    padding-top: 0.6rem;
 }
 
+/* === ЦИТАТЫ === */
 .quote-badge {
-    background: var(--bg-body);
-    padding: 1.2rem 1.5rem;
-    border-radius: 30px;
-    border-left: 6px solid var(--accent);
+    background: var(--menu-hover);
+    padding: 1rem 1.2rem;
+    border-left: 4px solid var(--accent);
     margin-bottom: 1rem;
-    box-shadow: 0 2px 6px var(--shadow-light);
-}
-
-/* --- Фотогалерея --- */
-.photo-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1.5rem;
-}
-
-.photo-placeholder {
-    width: 180px;
-    height: 140px;
-    background: linear-gradient(145deg, var(--bg-body), var(--bg-surface));
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-secondary);
-    font-weight: 500;
-    box-shadow: 0 4px 8px var(--shadow-light);
-    border: 1px solid var(--border-light);
-}
-
-/* --- Поиск --- */
-.search-container {
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    position: relative;
-}
-
-.search-input {
-    width: 100%;
-    padding: 0.9rem 3rem 0.9rem 1.5rem;
-    border: 2px solid var(--border-light);
-    border-radius: 40px;
-    background: var(--bg-surface);
-    color: var(--text-primary);
-    box-shadow: 0 4px 12px var(--shadow-light);
-    transition: border 0.2s, box-shadow 0.2s;
-    outline: none;
-}
-
-.search-input::placeholder {
-    color: var(--text-secondary);
-    opacity: 0.7;
-}
-
-.search-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
-}
-
-.search-clear {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    cursor: pointer;
-    padding: 0 5px;
-    display: none;
-    line-height: 1;
-    transition: color 0.2s;
-}
-
-.search-clear:hover {
-    color: var(--text-primary);
-}
-
-.search-clear.visible {
-    display: block;
-}
-
-.no-results-message {
-    text-align: center;
-    padding: 2rem;
-    color: var(--text-secondary);
+    border-radius: 0 4px 4px 0;
     font-style: italic;
-    background: var(--bg-surface);
-    border-radius: 20px;
-    margin: 1rem 0;
-    display: none;
 }
 
-.no-results-message.show {
-    display: block;
-}
-
-.article-card.hidden-by-search {
-    display: none !important;
-}
-
-/* --- Оглавление --- */
+/* === ОГЛАВЛЕНИЕ === */
 .toc {
     background: var(--bg-surface);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
     border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .toc h3 {
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
 }
 
 .toc ul {
     list-style: none;
     padding-left: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.3rem;
 }
 
 .toc a {
     color: var(--accent);
     text-decoration: none;
+    font-size: 0.9rem;
 }
 
 .toc a:hover {
     text-decoration: underline;
 }
 
-/* --- Кнопка "Показать ещё" --- */
+/* === КНОПКА "ПОКАЗАТЬ ЕЩЁ" === */
 .show-more-btn {
     display: block;
-    margin: 1rem auto;
-    padding: 0.7rem 2rem;
-    background: linear-gradient(135deg, var(--gradient-btn-start), var(--gradient-btn-end));
-    color: white;
-    border: none;
-    border-radius: 25px;
-    font-weight: 600;
+    margin: 1.2rem auto;
+    padding: 0.6rem 1.8rem;
+    background: var(--bg-surface);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background 0.15s, color 0.15s;
 }
 
 .show-more-btn:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    background: var(--accent);
+    color: #fff;
 }
 
-/* --- Код --- */
+/* === КОД === */
 pre {
-    background: var(--bg-body);
+    background: var(--menu-hover);
     border: 1px solid var(--border-light);
-    border-radius: 12px;
-    padding: 1.2rem;
+    border-radius: 4px;
+    padding: 1rem;
     overflow-x: auto;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
     font-family: "Courier New", monospace;
+    font-size: 0.85rem;
     line-height: 1.5;
-    color: var(--text-primary);
 }
 
 code {
     font-family: "Courier New", monospace;
-    background: transparent;
-    padding: 0;
+    font-size: 0.9em;
 }
 
 :not(pre) > code {
-    background: var(--bg-body);
-    padding: 0.2rem 0.4rem;
-    border-radius: 6px;
+    background: var(--menu-hover);
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
     border: 1px solid var(--border-light);
 }
 
-/* --- Подвал --- */
-.footer {
-    background: #2d3436;
-    color: white;
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: 3rem;
+/* === ФОТОГАЛЕРЕЯ === */
+.photo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+    margin-top: 1.2rem;
 }
 
-.footer p {
-    opacity: 0.8;
+.photo-placeholder {
+    width: 160px;
+    height: 120px;
+    background: var(--menu-hover);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
 }
 
-/* --- Изображения --- */
+/* === ИЗОБРАЖЕНИЯ === */
 img {
     max-width: 100%;
     height: auto;
 }
 
-/* --- Адаптив --- */
+/* === АДАПТИВ === */
 @media (max-width: 600px) {
     .articles-grid {
         grid-template-columns: 1fr;
@@ -381,6 +384,7 @@ img {
     }
 
     pre {
-        padding: 0.8rem;
+        padding: 0.7rem;
+        font-size: 0.8rem;
     }
 }
