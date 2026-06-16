@@ -230,6 +230,7 @@
                     истории этих мест. Геологические исследования показывают, что недра региона ещё содержат
                     значительные запасы полиметаллов, и периодически ведутся работы по оценке новых месторождений.
                 </p>
+                <p>Место положение многих объектов которые здесь называется вы можете посмотреть на <a href="map-bazanovo/">Карте</a></p>
             </section>
 
             <!-- Пожар 2015 года -->
@@ -289,54 +290,7 @@
     </div>
 </section>
 
-            <!-- Интерактивная карта -->
-<section id="map" class="content-section">
-    <h2>🗺️ Интерактивная карта окрестностей</h2>
-    <p>На карте отмечены ключевые точки, связанные с деревней Базаново. Можно перемещать и увеличивать.</p>
-    <div class="map-wrapper">
-        <div id="bazanovo-map"></div>
-    </div>
-    <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary);">
-        <em>Нажмите на маркер, чтобы узнать подробности</em>
-    </p>
-</section>
 
-<!-- ... (остальной код страницы) ... -->
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var bazanovo = [50.9522, 117.7881];
-        var map = L.map('bazanovo-map').setView(bazanovo, 13);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // Маркер Базаново
-        L.marker(bazanovo).addTo(map)
-            .bindPopup('<b>Деревня Базаново</b><br>Основана в 1791 г.')
-            .openPopup();
-
-        // Маркер реки Гуньгунжда (устье, приблизительно)
-        L.marker([50.9519, 117.7881]).addTo(map)
-            .bindPopup('<b>Река Гуньгунжда</b><br>Впадает в Акатуй');
-
-        // Маркер братской могилы (координаты уточнены)
-        L.marker([50.942632, 117.830553]).addTo(map)
-            .bindPopup('<b>🪦 Братская могила 37 партизан</b><br>Расстреляны белогвардейцами 25 марта 1919 г.');
-
-        // Александровский Завод
-        L.marker([50.9333, 117.9333]).addTo(map)
-            .bindPopup('<b>Александровский Завод</b><br>Районный центр');
-
-        // Новый Акатуй
-        L.marker([50.9833, 117.7833]).addTo(map)
-            .bindPopup('<b>Новый Акатуй</b><br>Центр сельского поселения');
-    });
-</script>
 
             <section id="articles" class="content-section">
                 <h2>Статьи — Базаново</h2>
@@ -349,14 +303,14 @@
                 </a>
                 <!-- Новые статьи о Гражданской войне -->
                 <a href="civil-war/ataman-semenov/" class="article-card">
-                    <img src="../../img/no-img.png" alt="Семёнов" class="avatar" />
+                    <img src="../../img/semenov-portrait.webp" alt="Семёнов" class="avatar" />
                     <div class="card-content">
                         <span class="card-title">Семёнов в Забайкалье</span>
                         <span class="card-desc">Восстание, ОМО, трагедия у Базаново</span>
                     </div>
                 </a>
                 <a href="civil-war/semenov-biography/" class="article-card">
-                    <img src="../../img/no-img.png" alt="Биография" class="avatar" />
+                    <img src="../../img/semenov-portrait.webp" alt="Биография" class="avatar" />
                     <div class="card-content">
                         <span class="card-title">Атаман Григорий Семёнов: биография</span>
                         <span class="card-desc">Происхождение, карьера, эмиграция</span>
@@ -369,38 +323,6 @@
         </footer>
         <script src="../../script.js"></script>
 
-        <!-- Leaflet JS -->
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-                integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-                crossorigin=""></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Координаты Базаново
-                var bazanovo = [50.9522, 117.7881];
-                var map = L.map('bazanovo-map').setView(bazanovo, 14);
-
-                // Добавляем слой карты
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
-
-                // Маркер Базаново
-                L.marker(bazanovo).addTo(map)
-                    .bindPopup('<b>Деревня Базаново</b><br>Основана в 1791 г.')
-                    .openPopup();
-
-                // Братская могила партизан (в 3 км, условно восточнее)
-                L.marker([50.955, 117.820]).addTo(map)
-                    .bindPopup('<b>Братская могила 37 партизан(Неточно!)</b><br>1919 г.');
-
-                // Александровский Завод
-                L.marker([50.9333, 117.9333]).addTo(map)
-                    .bindPopup('<b>Александровский Завод</b><br>Районный центр');
-
-                // Новый Акатуй
-                L.marker([50.9833, 117.7833]).addTo(map)
-                    .bindPopup('<b>Новый Акатуй</b><br>Центр сельского поселения');
-            });
-        </script>
+        
     </body>
 </html>
