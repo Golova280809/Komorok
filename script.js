@@ -46,7 +46,6 @@
             const query = searchInput.value.trim().toLowerCase();
             clearBtn.classList.toggle("visible", query.length > 0);
 
-            // каждый раз собираем актуальный список карточек (включая динамические)
             const allCards = Array.from(document.querySelectorAll(".article-card"));
 
             allCards.forEach((card) => {
@@ -115,89 +114,19 @@
 })();
 
 // ============================================================
-//  УНИВЕРСАЛЬНЫЙ ЗАГРУЗЧИК КАРТОЧЕК ДЛЯ СТРАНИЦ-ХАБОВ
+//  КНОПКА "ПОДЕЛИТЬСЯ" (для страниц статей)
 // ============================================================
-/**
- * @param {string}  category    – категория статей (напр. 'china-history').
- * @param {string}  containerId – id контейнера для карточек.
- * @param {number}  batchSize   – сколько карточек за раз (по умолч. 5).
- * @param {string}  articlesPath – путь к articles.json (напр. '../articles.json').
- * @param {string}  imgFallback – путь к заглушке, если нет изображения (по умолч. '../../img/no-img.webp').
- */
-function renderHab(category, containerId, batchSize = 5, articlesPath = 'articles.json', imgFallback = '../../img/no-img.webp') {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    fetch(articlesPath)
-        .then(res => res.json())
-        .then(articles => {
-            const items = articles.filter(a => a.category === category);
-            if (items.length === 0) {
-                container.innerHTML = '<p>Статей пока нет.</p>';
-                return;
-            }
-
-            let offset = 0;
-
-            function renderBatch() {
-                const batch = items.slice(offset, offset + batchSize);
-                batch.forEach(item => {
-                    let rawImg = item.image && item.image.trim() !== '' ? item.image : imgFallback;
-                    // Корректируем пути: ../img/ → ../../img/ для страниц второго уровня
-                    if (rawImg.startsWith('../img/')) {
-                        rawImg = '../../img/' + rawImg.slice(7);
-                    }
-
-                    const a = document.createElement('a');
-                    a.href = '/Komorium/' + item.url;
-                    a.className = 'article-card';
-                    a.setAttribute('data-title', item.title);
-                    a.setAttribute('data-desc', '');
-                    a.innerHTML = `
-                        <img src="${rawImg}" alt="" class="avatar">
-                        <div class="card-content">
-                            <span class="card-title">${item.title}</span>
-                            <span class="card-desc"></span>
-                        </div>`;
-                    container.appendChild(a);
-                });
-                offset += batch.length;
-
-                // Кнопка "Показать ещё"
-                const oldBtn = container.querySelector('.show-more-btn');
-                if (oldBtn) oldBtn.remove();
-                if (offset < items.length) {
-                    const btn = document.createElement('button');
-                    btn.textContent = 'Показать ещё';
-                    btn.className = 'show-more-btn';
-                    btn.addEventListener('click', renderBatch);
-                    container.appendChild(btn);
-                }
-            }
-
-            renderBatch();
-        })
-        .catch(err => console.error('Ошибка загрузки articles.json', err));
-}
-
-
-// Автоматическая кнопка "Поделиться" для страниц статей
 (function() {
-    // Проверяем, что мы на странице статьи (есть навигация .top-menu или характерный заголовок)
     var isArticle = document.querySelector('.top-menu') ||
                     document.querySelector('h1') && document.querySelector('.content-section');
 
     if (!isArticle) return;
-
-    // Проверяем, не добавлена ли уже кнопка
     if (document.getElementById('shareBtnContainer')) return;
 
-    // Создаём контейнер
     var container = document.createElement('div');
     container.id = 'shareBtnContainer';
     container.style.cssText = 'text-align:center; margin:2rem 0;';
 
-    // Кнопка
     var btn = document.createElement('button');
     btn.id = 'shareBtn';
     btn.textContent = '📤 Поделиться';
@@ -222,16 +151,11 @@ function renderHab(category, containerId, batchSize = 5, articlesPath = 'article
         var title = document.title;
 
         if (navigator.share) {
-            navigator.share({
-                title: title,
-                url: url
-            }).catch(function(err) {
+            navigator.share({ title: title, url: url }).catch(function(err) {
                 console.log('Ошибка шаринга: ', err);
             });
         } else {
-            // Копирование ссылки для десктопа
             navigator.clipboard.writeText(url).then(function() {
-                // Показываем всплывающую подсказку
                 var tooltip = document.createElement('span');
                 tooltip.textContent = '✅ Ссылка скопирована!';
                 tooltip.style.cssText = `
@@ -245,9 +169,7 @@ function renderHab(category, containerId, batchSize = 5, articlesPath = 'article
                     animation: fadeOut 2s forwards;
                 `;
                 btn.parentNode.appendChild(tooltip);
-                setTimeout(function() {
-                    tooltip.remove();
-                }, 2000);
+                setTimeout(function() { tooltip.remove(); }, 2000);
             }).catch(function() {
                 alert('Не удалось скопировать ссылку');
             });
@@ -256,12 +178,10 @@ function renderHab(category, containerId, batchSize = 5, articlesPath = 'article
 
     container.appendChild(btn);
 
-    // Вставляем в конец <main> или после последней секции
     var main = document.querySelector('main');
     if (main) {
         main.appendChild(container);
     } else {
-        // Запасной вариант: после последней .content-section
         var sections = document.querySelectorAll('.content-section');
         if (sections.length > 0) {
             var last = sections[sections.length - 1];

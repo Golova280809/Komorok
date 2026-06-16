@@ -1,9 +1,0 @@
-alias komorok='git -C /storage/8396-0F0D/Komorok pull'
-alias komorok1='curl -s https://komorok.ru/sitemap.xml | grep -oP "(?<=<loc>)[^<]+" | xargs linkinator --verbosity error'
-alias komorok1="curl -s https://komorok.ru/sitemap.xml | grep -oP \"(?<=<loc>)[^<]+\" | xargs linkinator --verbosity error --skip \"^(?!https?://komorok.ru)\""
-alias komorok='git -C /storage/emulated/0/Komorok pull'
-alias komorok='git -C /storage/emulated/0/Komorok pull'
-alias komorok='git -C /storage/emulated/0/Komorok pull'
-alias komorok='cd /storage/emulated/0/Komorok && git add . && git commit -m "Обновление с телефона" && git push'
-alias komorok-git='git -C /storage/emulated/0/Komorok pull'
-alias komorok='cd /storage/emulated/0/Komorok && git add . && git commit -m "Обновление с телефона" && (git push || (git pull --rebase && git push))'

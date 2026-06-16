@@ -5,12 +5,12 @@
     <link rel="apple-touch-icon" href="../logo.png" />
     <link rel="icon" type="image/png" href="../logo.png" />
 
-    <meta name="description" content="Komorium — личная библиотека Александра Головачёва. Краеведение деревни Базаново и статьи о Великой Отечественной войне." />
-    <meta name="keywords" content="Komorium, краеведение, Базаново, Великая Отечественная война, ВОВ" />
+    <meta name="description" content="Komorium — личная библиотека Александра Головачёва. Краеведение деревни Базаново, Гражданская война, люди, природа и память о Победе." />
+    <meta name="keywords" content="Komorium, краеведение, Базаново, Семёнов, Гражданская война, Рыбкина, Гуньгунжда, Великая Отечественная война" />
     <link rel="canonical" href="https://komorok.ru/Komorium/" />
 
     <meta property="og:title" content="📚 Komorium — Библиотека краеведения | Komorok" />
-    <meta property="og:description" content="Статьи о деревне Базаново и Великой Отечественной войне." />
+    <meta property="og:description" content="Статьи о деревне Базаново, атамане Семёнове, Валентине Рыбкиной, Гуньгунжде и Великой Победе." />
     <meta property="og:url" content="https://komorok.ru/Komorium/" />
     <meta property="og:image" content="https://komorok.ru/logo.png" />
     <meta property="og:type" content="website" />
@@ -55,11 +55,15 @@
     <button class="back-to-top" id="backToTop">↑</button>
 
     <main>
-
         <div class="search-container">
             <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или описанию..." autocomplete="off" />
             <button id="clearSearch" class="search-clear" aria-label="Очистить">✕</button>
         </div>
+        <div class="quote-badge" style="border-left-color: #c49a6c; background: #fef9e7; margin-bottom: 2rem;">
+    <strong>⚠️ Важное сообщение</strong><br>
+    Komorium находится в активной разработке. Возможны ошибки и недоработки.<br>
+    Мы работаем над улучшением. Спасибо за понимание!
+</div>
 
         <!-- Персональная карточка -->
         <section class="standalone-card">
@@ -75,29 +79,78 @@
             </div>
         </section>
 
-        <!-- Раздел: Базаново -->
-        <section id="bazanovo" class="category-section">
-            <h2>🏡 Деревня Базаново</h2>
+        <!-- Раздел: Населённые пункты -->
+        <section id="villages" class="category-section">
+            <h2>🏡 Населённые пункты</h2>
             <div class="articles-grid">
-                <a href="bazanovo/bazanovo.html" class="article-card" data-title="Деревня: Базаново" data-desc="География, население, история, статьи по теме">
-                    <img src="../img/bazanovo.webp" alt="Базаново" class="avatar" />
+                <a href="bazanovo/" class="article-card" data-title="Базаново" data-desc="Деревня в Забайкалье">
+                    <img src="../img/no-img.webp" alt="Базаново" class="avatar" />
                     <div class="card-content">
-                        <span class="card-title">Деревня: Базаново</span>
-                        <span class="card-desc">География, население, история и другие статьи</span>
+                        <span class="card-title">Базаново</span>
+                        <span class="card-desc">Деревня в Забайкалье</span>
                     </div>
                 </a>
             </div>
         </section>
 
-        <!-- Раздел: Великая Отечественная война -->
-        <section id="war" class="category-section">
-            <h2>⭐ Великая Отечественная война</h2>
+        <!-- Раздел: Гражданская война -->
+        <section id="civil-war" class="category-section">
+            <h2>⚔️ Гражданская война</h2>
             <div class="articles-grid">
-                <a href="war/" class="article-card" data-title="Великая Отечественная война" data-desc="Статьи по истории Великой Отечественной войны">
-                    <img src="../img/vov-1.webp" alt="ВОВ" class="avatar" />
+                <a href="bazanovo/civil-war/semenov-biography/" class="article-card" data-title="👤 Атаман Григорий Семёнов: биография" data-desc="Биография атамана">
+                    <img src="../img/semenov-portrait.webp" alt="Семёнов" class="avatar" />
                     <div class="card-content">
-                        <span class="card-title">Великая Отечественная война</span>
-                        <span class="card-desc">Статьи по истории ВОВ</span>
+                        <span class="card-title">👤 Атаман Григорий Семёнов: биография</span>
+                        <span class="card-desc">Биография атамана</span>
+                    </div>
+                </a>
+                <a href="bazanovo/civil-war/ataman-semenov/" class="article-card" data-title="⚔️ Семёнов в Забайкалье" data-desc="Действия атамана в регионе">
+                    <img src="../img/semenov-portrait.webp" alt="Семёнов в Забайкалье" class="avatar" />
+                    <div class="card-content">
+                        <span class="card-title">⚔️ Семёнов в Забайкалье</span>
+                        <span class="card-desc">Действия атамана в регионе</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Раздел: Голоса -->
+        <section id="voices" class="category-section">
+            <h2>🗣️ Голоса Базаново</h2>
+            <div class="articles-grid">
+                <a href="bazanovo/people/Valentina-Rybkina/" class="article-card" data-title="🗣️ Валентина Рыбкина" data-desc="Воспоминания жительницы">
+                    <img src="../img/no-img.webp" alt="Рыбкина" class="avatar" />
+                    <div class="card-content">
+                        <span class="card-title">🗣️ Валентина Рыбкина</span>
+                        <span class="card-desc">Воспоминания жительницы</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Раздел: Природа -->
+        <section id="nature" class="category-section">
+            <h2>🌿 Природа</h2>
+            <div class="articles-grid">
+                <a href="bazanovo/Gungunzhda/" class="article-card" data-title="Гуньгунжда" data-desc="Природный объект">
+                    <img src="../img/no-img.webp" alt="Гуньгунжда" class="avatar" />
+                    <div class="card-content">
+                        <span class="card-title">Гуньгунжда</span>
+                        <span class="card-desc">Природный объект</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Раздел: Другое -->
+        <section id="other" class="category-section">
+            <h2>📌 Другое</h2>
+            <div class="articles-grid">
+                <a href="vov/" class="article-card" data-title="🎖️ 81 год Великой Победы" data-desc="Статьи о Великой Отечественной войне">
+                    <img src="../img/vov-1.webp" alt="Победа" class="avatar" />
+                    <div class="card-content">
+                        <span class="card-title">🎖️ 81 год Великой Победы</span>
+                        <span class="card-desc">Статьи о Великой Отечественной войне</span>
                     </div>
                 </a>
             </div>
