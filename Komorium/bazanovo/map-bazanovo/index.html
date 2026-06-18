@@ -2,113 +2,122 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
-        <link rel="canonical" href="https://komorok.ru/Komorium/bazanovo/map-bazanovo/" />
-        <link rel="apple-touch-icon" href="../../../logo.png" />
-        <link rel="icon" type="image/png" href="../../../logo.png" />
+    <link rel="canonical" href="https://komorok.ru/Komorium/bazanovo/map-bazanovo/" />
+    <link rel="apple-touch-icon" href="../../../logo.png" />
+    <link rel="icon" type="image/png" href="../../../logo.png" />
 
-        <!-- SEO мета-теги -->
-        <meta
-            name="description"
-            content="Деревня Базаново в Забайкальском крае: Карта с метками"
-        />
-        <meta
-            name="keywords"
-            content="Базаново, деревня Базаново, Забайкальский край: Карта с метками"
-        />
+    <!-- SEO мета-теги -->
+    <meta
+        name="description"
+        content="Деревня Базаново в Забайкальском крае: Карта с метками"
+    />
+    <meta
+        name="keywords"
+        content="Базаново, деревня Базаново, Забайкальский край: Карта с метками"
+    />
 
-        <!-- Open Graph (Telegram, VK, Facebook, WhatsApp) -->
-        <meta property="og:title" content="Базаново — деревня в Забайкалье | Komorok" />
-        <meta
-            property="og:description"
-            content="Базаново, деревня Базаново, Забайкальский край: Карта с метками"
-        />
-        <meta property="og:url" content="https://komorok.ru/Komorium/bazanovo/" />
-        <meta property="og:image" content="https://komorok.ru/logo.png" />
-        <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="Komorok" />
-        <!-- Остальное -->
-        <script>
-            (function () {
-                var theme = localStorage.getItem("theme");
-                if (theme === "dark") {
-                    document.documentElement.classList.add("dark-theme");
-                }
-            })();
-        </script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../../../common.css" />
-        <link rel="stylesheet" href="../../komorium.css" />
-
-        <!-- Leaflet CSS -->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-              integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-              crossorigin=""/>
-        <style>
-            #bazanovo-map {
-                height: 450px;
-                width: 100%;
-                border-radius: 12px;
-                z-index: 1;
+    <!-- Open Graph (Telegram, VK, Facebook, WhatsApp) -->
+    <meta property="og:title" content="Базаново — деревня в Забайкалье | Komorok" />
+    <meta
+        property="og:description"
+        content="Базаново, деревня Базаново, Забайкальский край: Карта с метками"
+    />
+    <meta property="og:url" content="https://komorok.ru/Komorium/bazanovo/" />
+    <meta property="og:image" content="https://komorok.ru/logo.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Komorok" />
+    <!-- Остальное -->
+    <script>
+        (function () {
+            var theme = localStorage.getItem("theme");
+            if (theme === "dark") {
+                document.documentElement.classList.add("dark-theme");
             }
-            .map-wrapper {
-                margin: 2rem 0;
-            }
-        </style>
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../common.css" />
+    <link rel="stylesheet" href="../../komorium.css" />
 
-        <title>Базаново — Komorok</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <style>
+        #bazanovo-map {
+            height: 450px;
+            width: 100%;
+            border-radius: 12px;
+            z-index: 1;
+        }
+        .map-wrapper {
+            margin: 2rem 0;
+        }
+    </style>
+
+    <title>Базаново — Komorok</title>
 </head>
 <body>
     <main>
-        
-            <!-- Интерактивная карта -->
-<section id="map" class="content-section">
-    <h2>🗺️ Интерактивная карта окрестностей</h2>
-    <p>На карте отмечены ключевые точки, связанные с деревней Базаново. Можно перемещать и увеличивать.</p>
-    <div class="map-wrapper">
-        <div id="bazanovo-map"></div>
-    </div>
-    <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary);">
-        <em>Нажмите на маркер, чтобы узнать подробности</em>
-    </p>
-</section>
-        
+        <!-- Интерактивная карта -->
+        <section id="map" class="content-section">
+            <h2>🗺️ Интерактивная карта окрестностей</h2>
+            <p>На карте отмечены ключевые точки, связанные с деревней Базаново. Можно перемещать и увеличивать.</p>
+            <div class="map-wrapper">
+                <div id="bazanovo-map"></div>
+            </div>
+            <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary);">
+                <em>Нажмите на маркер, чтобы узнать подробности</em>
+            </p>
+        </section>
     </main>
+
     <!-- Leaflet JS -->
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-                integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-                crossorigin=""></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Координаты Базаново
-                var bazanovo = [50.9522, 117.7881];
-                var map = L.map('bazanovo-map').setView(bazanovo, 14);
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Координаты Базаново
+            var bazanovo = [50.9522, 117.7881];
+            var map = L.map('bazanovo-map').setView(bazanovo, 14);
 
-                // Добавляем слой карты
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
+            // Добавляем слой карты
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
 
-                // Маркер Базаново
-                L.marker(bazanovo).addTo(map)
-                    .bindPopup('<b>Деревня Базаново</b><br>Основана в 1791 г.')
-                    .openPopup();
+            // Маркер Базаново
+            L.marker(bazanovo).addTo(map)
+                .bindPopup('<b>Деревня Базаново</b><br>Основана в 1791 г.')
+                .openPopup();
 
-                // Братская могила партизан (в 3 км, условно восточнее)
-                L.marker([50.942626, 117.830561]).addTo(map)
-                    .bindPopup('<b>Братская могила 37 партизан(Приблизительно!)</b><br>1919 г.');
+            // Братская могила партизан (в 3 км, условно восточнее)
+            L.marker([50.942626, 117.830561]).addTo(map)
+                .bindPopup('<b>Братская могила 37 партизан (приблизительно!)</b><br>1919 г.');
 
-                // Александровский Завод
-                L.marker([50.924393, 117.935547]).addTo(map)
-                    .bindPopup('<b>Александровский Завод</b><br>Районный центр');
+            // Александровский Завод
+            L.marker([50.924393, 117.935547]).addTo(map)
+                .bindPopup('<b>Александровский Завод</b><br>Районный центр');
 
-                // Новый Акатуй
-                L.marker([50.9833, 117.7833]).addTo(map)
-                    .bindPopup('<b>Новый Акатуй</b><br>Центр сельского поселения');
-            });
-        </script>
-        <p><a href="../">Назад</a></p>
-        <footer class="footer">
-            <p>© 2026 Komorok-Komorium</p>
-        </footer>
+            // Новый Акатуй
+            L.marker([50.9833, 117.7833]).addTo(map)
+                .bindPopup('<b>Новый Акатуй</b><br>Центр сельского поселения');
+
+            // ----- НОВЫЕ МЕТКИ (добавлены 18.06.2026) -----
+            // Школа в Базаново
+            L.marker([50.952171, 117.787471]).addTo(map)
+                .bindPopup('<b>Базановская начальная школа</b><br>Здесь находилась школа.<br>Сгорела в 2015 г.');
+
+            // Сопка (примерное место трагедии)
+            L.marker([50.960530, 117.784535]).addTo(map)
+                .bindPopup('<b>Сопка (предположительно Меркурьевская)</b><br>По легенде, здесь в 1970-х повесились парень и девушка.<br>Координаты неточные.');
+        });
+    </script>
+
+    <p><a href="../">Назад</a></p>
+    <footer class="footer">
+        <p>© 2026 Komorok-Komorium</p>
+    </footer>
 </body>
 </html>
