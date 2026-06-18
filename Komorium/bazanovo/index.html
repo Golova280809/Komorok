@@ -39,7 +39,44 @@
         <link rel="stylesheet" href="../../common.css" />
         <link rel="stylesheet" href="../komorium.css" />
 
-        
+        <style>
+    /* ===== ЯВНЫЕ СТИЛИ ДЛЯ НАВИГАЦИИ (временно, чтобы кнопки точно отображались) ===== */
+    .top-menu {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+        padding: 0.8rem 0.5rem;
+        background: #f0ebe3; /* светлый фон, замените под свой */
+        border-radius: 12px;
+    }
+    .top-menu a {
+        display: inline-block;
+        background: #b33939; /* яркий бордовый, можно заменить */
+        color: #fff !important;
+        padding: 0.5rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: background 0.2s, transform 0.1s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        border: none;
+    }
+    .top-menu a:hover {
+        background: #7a1f1a;
+        transform: translateY(-2px);
+        color: #fff !important;
+        text-decoration: none;
+    }
+    @media (max-width: 480px) {
+        .top-menu a {
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+        }
+    }
+</style>
 
         <title>Базаново — Komorok</title>
     </head>
