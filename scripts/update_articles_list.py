@@ -27,19 +27,16 @@ def get_category(rel_path):
     return best[1] if best else 'other'
 
 def get_title_and_meta_description(html_file):
-    """Извлекает заголовок из <h1> и описание из <meta name='description'>."""
     title = os.path.basename(os.path.dirname(html_file))
     description = ""
     try:
         with open(html_file, 'r', encoding='utf-8') as f:
             content = f.read()
-
-        # Заголовок (h1)
+        # Заголовок из <h1>
         match = re.search(r'<h1[^>]*>(.*?)</h1>', content, re.IGNORECASE)
         if match:
             title = re.sub(r'<[^>]+>', '', match.group(1)).strip()
-
-        # Описание из meta-description
+        # Описание из meta description
         meta_match = re.search(
             r'<meta\s+name=["\']description["\']\s+content=["\'](.*?)["\']',
             content, re.IGNORECASE
@@ -49,13 +46,11 @@ def get_title_and_meta_description(html_file):
     except:
         pass
 
-    # Дата по времени изменения файла
     try:
         mtime = os.path.getmtime(html_file)
         date = datetime.fromtimestamp(mtime).strftime('%Y-%m-%d')
     except:
         date = datetime.now().strftime('%Y-%m-%d')
-
     return title, date, description
 
 def find_image(rel_path, existing_image):
@@ -99,18 +94,15 @@ def find_articles():
         if 'index.html' in filenames and dirpath != ROOT:
             rel_path = os.path.relpath(dirpath, ROOT)
             html_path = os.path.join(dirpath, 'index.html')
-
             title, date, auto_description = get_title_and_meta_description(html_path)
             category = get_category(rel_path)
             url = f"{rel_path}/"
 
             existing_entry = existing.get(url)
             if existing_entry:
-                # сохраняем ручное описание, если было, иначе берём из meta
                 description = existing_entry.get('description', '')
                 if not description:
                     description = auto_description
-                # изображение тоже стараемся сохранить существующее
                 existing_image = existing_entry.get('image', '')
                 if existing_image and os.path.isfile(os.path.join(ROOT, existing_image)):
                     image = existing_image
@@ -130,7 +122,56 @@ def find_articles():
             })
     return articles
 
-# ... (остальные функции fix_broken_urls и generate_sitemap без изменений) ...
+def fix_broken_urls():
+    """Исправляет дублирующиеся сегменты в URL (однократно)."""
+    articles_path = os.path.join(REPO_ROOT, 'Komorium', 'articles.json')
+    if not os.path.isfile(articles_path):
+        return
+    with open(articles_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    changed = False
+    for article in data:
+        url = article.get('url', '')
+        parts = url.split('/')
+        new_parts = []
+        for p in parts:
+            if p and new_parts and p == new_parts[-1]:
+                continue
+            new_parts.append(p)
+        new_url = '/'.join(new_parts)
+        if new_url != url:
+            article['url'] = new_url
+            changed = True
+            print(f'Исправлен URL: {url} → {new_url}')
+
+    if changed:
+        with open(articles_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        print('✅ Неправильные ссылки исправлены в articles.json')
+    else:
+        print('✅ Все ссылки уже корректны')
+
+def generate_sitemap(articles):
+    base_url = "https://komorok.ru"
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>']
+    lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+    lines.append(f"  <url><loc>{base_url}/</loc><priority>1.0</priority></url>")
+    static_pages = [
+        ('/about.html', '0.8'),
+        ('/Alexander.html', '0.6'),
+        ('/Komorium/', '0.9'),
+    ]
+    for path, priority in static_pages:
+        lines.append(f"  <url><loc>{base_url}{path}</loc><priority>{priority}</priority></url>")
+    for article in articles:
+        loc = f"{base_url}/Komorium/{article['url']}"
+        lines.append(f"  <url><loc>{loc}</loc><lastmod>{article['date']}</lastmod><priority>0.7</priority></url>")
+    lines.append('</urlset>')
+    sitemap_path = os.path.join(REPO_ROOT, 'sitemap.xml')
+    with open(sitemap_path, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(lines))
+    print(f"✅ sitemap.xml сгенерирован (статей: {len(articles)})")
 
 if __name__ == '__main__':
     fix_broken_urls()
