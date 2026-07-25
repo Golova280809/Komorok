@@ -5,12 +5,12 @@
     <link rel="apple-touch-icon" href="../logo.png" />
     <link rel="icon" type="image/png" href="../logo.png" />
 
-    <meta name="description" content="Все статьи библиотеки Komorium. Поиск по названию и категории." />
+    <meta name="description" content="Все статьи библиотеки Komorium. Поиск по названию и описанию." />
     <meta name="keywords" content="Komorium, статьи, библиотека, краеведение" />
     <link rel="canonical" href="https://komorok.ru/Komorium/articles.html" />
 
     <meta property="og:title" content="📚 Все статьи Komorium | Komorok" />
-    <meta property="og:description" content="Полный список краеведческих статей с поиском." />
+    <meta property="og:description" content="Полный список краеведческих статей с удобным поиском." />
     <meta property="og:url" content="https://komorok.ru/Komorium/articles.html" />
     <meta property="og:image" content="https://komorok.ru/logo.png" />
     <meta property="og:type" content="website" />
@@ -19,6 +19,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../common.css" />
     <link rel="stylesheet" href="komorium.css" />
+
+    <style>
+        .article-card.hidden {
+            display: none !important;
+        }
+        #showMoreContainer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+    </style>
+
     <title>Все статьи — Komorium</title>
 </head>
 <body>
@@ -44,13 +55,12 @@
 
     <main>
         <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или категории..." autocomplete="off" />
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или описанию..." autocomplete="off" />
             <button id="clearSearch" class="search-clear" aria-label="Очистить">✕</button>
         </div>
 
-        <!-- Сюда будут вставлены карточки -->
         <div id="articles-container"></div>
-
+        <div id="showMoreContainer"></div>
         <div id="noResultsMessage" class="no-results-message">🔎 Ничего не найдено. Попробуйте изменить запрос.</div>
     </main>
 
@@ -59,97 +69,125 @@
     </footer>
 
     <script>
-        (function() {
-            const container = document.getElementById('articles-container');
-            const searchInput = document.getElementById('searchInput');
-            const clearBtn = document.getElementById('clearSearch');
-            const noResultsMsg = document.getElementById('noResultsMessage');
+    (function() {
+        const container = document.getElementById('articles-container');
+        const showMoreContainer = document.getElementById('showMoreContainer');
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearSearch');
+        const noResultsMsg = document.getElementById('noResultsMessage');
+        const BATCH_SIZE = 5;
 
-            // Загрузка JSON со списком статей
-            fetch('../articles.json')
-                .then(response => response.json())
-                .then(articles => {
-                    // Генерация карточек
-                    articles.forEach(article => {
-                        const card = document.createElement('a');
-                        card.href = article.url;
-                        card.className = 'article-card';
-                        card.setAttribute('data-title', article.title);
-                        // В качестве описания используем категорию (можно будет заменить на поле desc, когда появится)
-                        card.setAttribute('data-desc', article.category || '');
+        let allCards = [];
+        let filteredCards = [];
+        let visibleCount = 0;
 
-                        // Изображение
-                        const imgSrc = article.image && article.image.trim() !== '' 
-                                      ? article.image 
-                                      : '../img/no-img.webp';
-                        const img = document.createElement('img');
-                        img.src = imgSrc;
-                        img.alt = article.title;
-                        img.className = 'avatar';
-                        img.loading = 'lazy';
+        // Рендер одной карточки
+        function createCard(article) {
+            const card = document.createElement('a');
+            card.href = article.url;
+            card.className = 'article-card hidden';
+            card.setAttribute('data-title', article.title);
 
-                        // Текстовый блок
-                        const content = document.createElement('div');
-                        content.className = 'card-content';
+            // Берём описание из поля description, если оно есть и не пустое.
+            // Иначе откатываемся на category.
+            const description = (article.description && article.description.trim() !== '')
+                                    ? article.description
+                                    : article.category || '';
+            card.setAttribute('data-desc', description);
 
-                        const titleSpan = document.createElement('span');
-                        titleSpan.className = 'card-title';
-                        titleSpan.textContent = article.title;
+            // Изображение
+            const imgSrc = article.image && article.image.trim() !== ''
+                            ? article.image
+                            : '../img/no-img.webp';
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = article.title;
+            img.className = 'avatar';
+            img.loading = 'lazy';
 
-                        const descSpan = document.createElement('span');
-                        descSpan.className = 'card-desc';
-                        // Показываем категорию как подпись
-                        descSpan.textContent = article.category || '';
+            // Текстовый блок
+            const content = document.createElement('div');
+            content.className = 'card-content';
 
-                        content.appendChild(titleSpan);
-                        content.appendChild(descSpan);
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'card-title';
+            titleSpan.textContent = article.title;
 
-                        card.appendChild(img);
-                        card.appendChild(content);
+            const descSpan = document.createElement('span');
+            descSpan.className = 'card-desc';
+            // Показываем то же описание, что и в data-desc
+            descSpan.textContent = description;
 
-                        container.appendChild(card);
-                    });
+            content.appendChild(titleSpan);
+            content.appendChild(descSpan);
+            card.appendChild(img);
+            card.appendChild(content);
 
-                    // После загрузки статей настраиваем поиск
-                    setupSearch();
-                })
-                .catch(error => {
-                    container.innerHTML = '<p style="text-align:center; color:var(--text-secondary);">Не удалось загрузить статьи. Попробуйте позже.</p>';
-                    console.error('Ошибка загрузки статей:', error);
-                });
+            return card;
+        }
 
-            function setupSearch() {
-                if (!searchInput || !clearBtn || !noResultsMsg) return;
+        // Применяем фильтр и сбрасываем пагинацию
+        function applyFilter() {
+            const query = searchInput.value.trim().toLowerCase();
 
-                function filterCards() {
-                    const query = searchInput.value.trim().toLowerCase();
-                    clearBtn.classList.toggle('visible', query.length > 0);
+            filteredCards = allCards.filter(card => {
+                const title = (card.getAttribute('data-title') || '').toLowerCase();
+                const desc = (card.getAttribute('data-desc') || '').toLowerCase();
+                return query === '' || title.includes(query) || desc.includes(query);
+            });
 
-                    const allCards = Array.from(container.querySelectorAll('.article-card'));
-                    let visibleCount = 0;
+            allCards.forEach(card => card.classList.add('hidden'));
+            visibleCount = 0;
+            showNextBatch();
+            updateShowMoreButton();
+            noResultsMsg.classList.toggle('show', query !== '' && filteredCards.length === 0);
+        }
 
-                    allCards.forEach(card => {
-                        const title = (card.getAttribute('data-title') || '').toLowerCase();
-                        const desc = (card.getAttribute('data-desc') || '').toLowerCase();
-                        const matches = query === '' || title.includes(query) || desc.includes(query);
-                        card.classList.toggle('hidden-by-search', !matches);
-                        if (matches) visibleCount++;
-                    });
+        function showNextBatch() {
+            const batch = filteredCards.slice(visibleCount, visibleCount + BATCH_SIZE);
+            batch.forEach(card => card.classList.remove('hidden'));
+            visibleCount += batch.length;
+        }
 
-                    noResultsMsg.classList.toggle('show', query !== '' && visibleCount === 0);
-                }
+        function loadMore() {
+            showNextBatch();
+            updateShowMoreButton();
+        }
 
-                searchInput.addEventListener('input', filterCards);
-                clearBtn.addEventListener('click', () => {
-                    searchInput.value = '';
-                    filterCards();
-                    searchInput.focus();
-                });
-
-                // Начальное состояние (показать всё)
-                filterCards();
+        function updateShowMoreButton() {
+            showMoreContainer.innerHTML = '';
+            if (visibleCount < filteredCards.length) {
+                const btn = document.createElement('button');
+                btn.className = 'show-more-btn';
+                btn.textContent = 'Показать ещё';
+                btn.addEventListener('click', loadMore);
+                showMoreContainer.appendChild(btn);
             }
-        })();
+        }
+
+        // Загрузка JSON
+        fetch('articles.json')
+            .then(response => response.json())
+            .then(articles => {
+                articles.forEach(article => {
+                    const card = createCard(article);
+                    container.appendChild(card);
+                    allCards.push(card);
+                });
+                applyFilter();   // первый показ – первые 5 статей
+            })
+            .catch(error => {
+                container.innerHTML = '<p style="text-align:center; color:var(--text-secondary);">Ошибка загрузки статей.</p>';
+                console.error(error);
+            });
+
+        searchInput.addEventListener('input', applyFilter);
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            applyFilter();
+            searchInput.focus();
+        });
+    })();
     </script>
 </body>
 </html>
