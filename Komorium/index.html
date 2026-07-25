@@ -19,6 +19,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../common.css" />
     <link rel="stylesheet" href="komorium.css" />
+
+    <style>
+        /* Стили новостного блока (такие же, как на главной) */
+        .news-block {
+            margin-bottom: 3em;
+            margin-top: 2.5rem;
+            background: var(--bg-surface);
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 8px 20px var(--shadow-light);
+            border: 1px solid var(--border-light);
+        }
+
+        .news-block h2 {
+            font-size: 1.7rem;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .news-content {
+            color: var(--text-primary);
+        }
+
+        .news-list {
+            margin: 1rem 0 1.2rem 1.5rem;
+            line-height: 1.7;
+        }
+
+        .news-list li {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .news-list li strong {
+            color: var(--accent);
+        }
+
+        .news-alert {
+            margin-top: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: rgba(102, 126, 234, 0.08); /* полупрозрачный акцент */
+            border-left: 6px solid var(--accent);
+            border-radius: 16px;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .news-block {
+                padding: 1.5rem 1.2rem;
+            }
+            .news-block h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Кнопка-ссылка на все статьи */
+        .all-articles-link {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .all-articles-link a {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: background 0.2s, transform 0.1s;
+        }
+        .all-articles-link a:hover {
+            background: var(--accent-soft);
+        }
+    </style>
+
     <title>Komorium — Моя библиотека</title>
 </head>
 <body>
@@ -44,24 +126,11 @@
 
     <main>
         <!-- Заметная ссылка на все статьи -->
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <a href="articles.html" style="
-                display: inline-block;
-                background: var(--accent);
-                color: #fff;
-                padding: 0.8rem 2rem;
-                border-radius: 30px;
-                text-decoration: none;
-                font-size: 1.1rem;
-                font-weight: bold;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-                transition: background 0.2s, transform 0.1s;
-            " onmouseover="this.style.background='var(--accent-soft)'" 
-               onmouseout="this.style.background='var(--accent)'">
-                📚 Смотреть все статьи →
-            </a>
+        <div class="all-articles-link">
+            <a href="articles.html">📚 Смотреть все статьи →</a>
         </div>
 
+        <!-- Описание проекта -->
         <div class="about-container" style="margin-top: 1rem;">
             <div class="about-section">
                 <h2>📖 Что такое Komorium?</h2>
@@ -76,26 +145,38 @@
                 </p>
             </div>
 
-            <!-- Новости Komorium -->
-            <div class="about-section">
+            <!-- Новостной блок (в том же стиле, что и на главной) -->
+            <section class="news-block">
                 <h2>📢 Новости</h2>
-                <div class="news-list" style="margin-top: 1rem;">
+                <div class="news-content">
+                    <p>Свежие обновления Komorium:</p>
+                    <ul class="news-list">
+                        <li>
+                            🆕 <strong>Все статьи теперь в одном месте!</strong> 
+                            Я сделал удобную страницу, где можно посмотреть полный список материалов и быстро найти нужное 
+                            по названию или описанию. Переходите: <a href="articles.html">все статьи Komorium</a>.
+                        </li>
+                        <li>
+                            🔍 <strong>Работает поиск</strong> — просто начните вводить ключевые слова, 
+                            и список отфильтруется сам. Статьи подгружаются по мере прокрутки.
+                        </li>
+                        <li>
+                            ⚠️ <strong>Библиотека ещё в разработке</strong> — возможны небольшие ошибки и опечатки. 
+                            Если заметите — дайте знать, буду исправлять.
+                        </li>
+                    </ul>
                     <p>
-                        🆕 <strong>Все статьи теперь в одном месте!</strong> 
-                        Я сделал удобную страницу, где можно посмотреть полный список материалов и быстро найти нужное 
-                        по названию или описанию. Переходите: <a href="articles.html">все статьи Komorium</a>.
+                        Вся самая свежая информация о новых статьях и улучшениях — в 
+                        <a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">канале Max</a>.
                     </p>
-                    <p>
-                        🔍 На странице работает <strong>поиск</strong> — просто начните вводить ключевые слова, 
-                        и список отфильтруется сам.
-                    </p>
-                    <p>
-                        ⚠️ Библиотека всё ещё в разработке, возможны небольшие шероховатости. 
-                        Если заметите ошибку — дайте знать, буду исправлять.
-                    </p>
+                    <div class="news-alert">
+                        <strong>💡 Следите за обновлениями!</strong><br />
+                        Мы постоянно добавляем новые материалы и улучшаем библиотеку. Подписывайтесь, чтобы ничего не пропустить.
+                    </div>
                 </div>
-            </div>
+            </section>
 
+            <!-- Предупреждение о разработке -->
             <div class="quote-badge" style="border-left-color: #c49a6c; background: #fef9e7; margin-top: 2rem;">
                 <strong>⚠️ Важное сообщение</strong><br>
                 Komorium находится в активной разработке. Возможны ошибки и недоработки.<br>
