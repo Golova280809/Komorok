@@ -31,6 +31,7 @@
         <div class="sidebar-title">Меню</div>
         <a href="../index.html">Главная</a>
         <a href="index.html">Komorium</a>
+        <a href="articles.html">Все статьи</a>
         <a href="../about.html">О проекте</a>
     </nav>
 
@@ -42,6 +43,25 @@
     </header>
 
     <main>
+        <!-- Заметная ссылка на все статьи -->
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <a href="articles.html" style="
+                display: inline-block;
+                background: var(--accent);
+                color: #fff;
+                padding: 0.8rem 2rem;
+                border-radius: 30px;
+                text-decoration: none;
+                font-size: 1.1rem;
+                font-weight: bold;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                transition: background 0.2s, transform 0.1s;
+            " onmouseover="this.style.background='var(--accent-soft)'" 
+               onmouseout="this.style.background='var(--accent)'">
+                📚 Смотреть все статьи →
+            </a>
+        </div>
+
         <div class="about-container" style="margin-top: 1rem;">
             <div class="about-section">
                 <h2>📖 Что такое Komorium?</h2>
@@ -56,20 +76,24 @@
                 </p>
             </div>
 
+            <!-- Новости Komorium -->
             <div class="about-section">
-                <h2>🚧 Что появится в будущем</h2>
-                <p>
-                    Сейчас я работаю над отдельной страницей, где будут собраны <strong>все статьи</strong>. 
-                    Её можно будет легко найти и на сайте, и через поиск в интернете.
-                </p>
-                <p>
-                    На самой странице появится удобный <strong>поиск по названию и описанию</strong> — вы сможете 
-                    быстро находить нужный материал, просто набирая ключевые слова. 
-                </p>
-                <p>
-                    А для тех, кто ищет статьи через Яндекс или Google, каждая публикация получит свою постоянную 
-                    ссылку — так что найти её можно будет прямо из поисковика.
-                </p>
+                <h2>📢 Новости</h2>
+                <div class="news-list" style="margin-top: 1rem;">
+                    <p>
+                        🆕 <strong>Все статьи теперь в одном месте!</strong> 
+                        Я сделал удобную страницу, где можно посмотреть полный список материалов и быстро найти нужное 
+                        по названию или описанию. Переходите: <a href="articles.html">все статьи Komorium</a>.
+                    </p>
+                    <p>
+                        🔍 На странице работает <strong>поиск</strong> — просто начните вводить ключевые слова, 
+                        и список отфильтруется сам.
+                    </p>
+                    <p>
+                        ⚠️ Библиотека всё ещё в разработке, возможны небольшие шероховатости. 
+                        Если заметите ошибку — дайте знать, буду исправлять.
+                    </p>
+                </div>
             </div>
 
             <div class="quote-badge" style="border-left-color: #c49a6c; background: #fef9e7; margin-top: 2rem;">
