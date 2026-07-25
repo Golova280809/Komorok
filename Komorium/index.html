@@ -5,25 +5,17 @@
     <link rel="apple-touch-icon" href="../logo.png" />
     <link rel="icon" type="image/png" href="../logo.png" />
 
-    <meta name="description" content="Komorium — личная библиотека Александра Головачёва. Краеведение деревни Базаново, Гражданская война, люди, природа и память о Победе." />
-    <meta name="keywords" content="Komorium, краеведение, Базаново, Семёнов, Гражданская война, Рыбкина, Гуньгунжда, Великая Отечественная война" />
+    <meta name="description" content="Komorium — личная библиотека Александра Головачёва. Краеведение, история, люди Забайкалья." />
+    <meta name="keywords" content="Komorium, краеведение, библиотека, Базаново" />
     <link rel="canonical" href="https://komorok.ru/Komorium/" />
 
-    <meta property="og:title" content="📚 Komorium — Библиотека краеведения | Komorok" />
-    <meta property="og:description" content="Статьи о деревне Базаново, атамане Семёнове, Валентине Рыбкиной, Гуньгунжде и Великой Победе." />
+    <meta property="og:title" content="📚 Komorium — Моя библиотека | Komorok" />
+    <meta property="og:description" content="Авторская краеведческая библиотека. Сейчас в разработке." />
     <meta property="og:url" content="https://komorok.ru/Komorium/" />
     <meta property="og:image" content="https://komorok.ru/logo.png" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Komorok" />
 
-    <script>
-        (function () {
-            var theme = localStorage.getItem("theme");
-            if (theme === "dark") {
-                document.documentElement.classList.add("dark-theme");
-            }
-        })();
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../common.css" />
     <link rel="stylesheet" href="komorium.css" />
@@ -40,127 +32,58 @@
         <a href="../index.html">Главная</a>
         <a href="index.html">Komorium</a>
         <a href="../about.html">О проекте</a>
-        <a href="../settings.html">⚙️ Настройки</a>
-        <button class="theme-toggle-btn" id="themeToggle">
-            <span class="icon">🌙</span>
-            <span>Тёмная тема</span>
-        </button>
     </nav>
 
     <label for="menu-toggle" class="overlay"></label>
+
     <header>
         <h1>📚 Komorium</h1>
         <p>Моя библиотека</p>
     </header>
-    <button class="back-to-top" id="backToTop">↑</button>
 
     <main>
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или описанию..." autocomplete="off" />
-            <button id="clearSearch" class="search-clear" aria-label="Очистить">✕</button>
+        <div class="about-container" style="margin-top: 1rem;">
+            <div class="about-section">
+                <h2>📖 Что такое Komorium?</h2>
+                <p>
+                    <strong>Komorium</strong> — это моя личная краеведческая библиотека. Здесь я собираю статьи о Забайкалье, 
+                    деревне Базаново, её людях, природе и истории. Проект начинался как небольшая энциклопедия, а теперь 
+                    перерастает в полноценный архив знаний, которым хочется делиться.
+                </p>
+                <p>
+                    Пока библиотека находится в активной разработке, и материалов ещё не так много, но каждый текст 
+                    пишется с душой и вниманием к деталям.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h2>🚧 Что появится в будущем</h2>
+                <p>
+                    Сейчас я работаю над отдельной страницей, где будут собраны <strong>все статьи</strong>. 
+                    Её можно будет легко найти и на сайте, и через поиск в интернете.
+                </p>
+                <p>
+                    На самой странице появится удобный <strong>поиск по названию и описанию</strong> — вы сможете 
+                    быстро находить нужный материал, просто набирая ключевые слова. 
+                </p>
+                <p>
+                    А для тех, кто ищет статьи через Яндекс или Google, каждая публикация получит свою постоянную 
+                    ссылку — так что найти её можно будет прямо из поисковика.
+                </p>
+            </div>
+
+            <div class="quote-badge" style="border-left-color: #c49a6c; background: #fef9e7; margin-top: 2rem;">
+                <strong>⚠️ Важное сообщение</strong><br>
+                Komorium находится в активной разработке. Возможны ошибки и недоработки.<br>
+                Мы работаем над улучшением. Спасибо за понимание!
+            </div>
         </div>
-        <div class="quote-badge" style="border-left-color: #c49a6c; background: #fef9e7; margin-bottom: 2rem;">
-    <strong>⚠️ Важное сообщение</strong><br>
-    Komorium находится в активной разработке. Возможны ошибки и недоработки.<br>
-    Мы работаем над улучшением. Спасибо за понимание!
-</div>
-
-        <!-- Персональная карточка -->
-        <section class="standalone-card">
-            <h2 style="margin-bottom: 0.75rem;">Головачёв Александр</h2>
-            <div class="articles-grid">
-                <a href="../Alexander.html" class="article-card" data-title="Головачёв Александр" data-desc="Творчество">
-                    <img src="../img/about.webp" alt="📰" class="avatar" />
-                    <div class="card-content">
-                        <span class="card-title">Головачёв Александр</span>
-                        <span class="card-desc">Творчество</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- Раздел: Населённые пункты -->
-        <section id="villages" class="category-section">
-            <h2>🏡 Населённые пункты</h2>
-            <div class="articles-grid">
-                <a href="bazanovo/bazanovo.html" class="article-card" data-title="Базаново" data-desc="Деревня в Забайкалье">
-                    <img src="../img/no-img.webp" alt="Базаново" class="avatar" />
-                    <div class="card-content">
-                        <span class="card-title">Базаново</span>
-                        <span class="card-desc">Деревня в Забайкалье</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- Раздел: Гражданская война -->
-        <section id="civil-war" class="category-section">
-            <h2>⚔️ Гражданская война</h2>
-            <div class="articles-grid">
-                <a href="bazanovo/civil-war/semenov-biography/" class="article-card" data-title="👤 Атаман Григорий Семёнов: биография" data-desc="Биография атамана">
-                    <img src="../img/semenov-portrait.webp" alt="Семёнов" class="avatar" />
-                    <div class="card-content">
-                        <span class="card-title">👤 Атаман Григорий Семёнов: биография</span>
-                        <span class="card-desc">Биография атамана</span>
-                    </div>
-                </a>
-                <a href="bazanovo/civil-war/ataman-semenov/" class="article-card" data-title="⚔️ Семёнов в Забайкалье" data-desc="Действия атамана в регионе">
-                    <img src="../img/semenov-portrait.webp" alt="Семёнов в Забайкалье" class="avatar" />
-                    <div class="card-content">
-                        <span class="card-title">⚔️ Семёнов в Забайкалье</span>
-                        <span class="card-desc">Действия атамана в регионе</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- Раздел: Голоса -->
-        <section id="voices" class="category-section">
-            <h2>🗣️ Голоса Базаново</h2>
-            <div class="articles-grid">
-                <a href="bazanovo/people/Valentina-Rybkina/" class="article-card" data-title="🗣️ Валентина Рыбкина" data-desc="Воспоминания жительницы">
-                    <img src="../img/no-img.webp" alt="Рыбкина" class="avatar" />
-                    <div class="card-content">
-                        <span class="card-title">🗣️ Валентина Рыбкина</span>
-                        <span class="card-desc">Воспоминания жительницы</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- Раздел: Природа -->
-        <section id="nature" class="category-section">
-            <h2>🌿 Природа</h2>
-            <div class="articles-grid">
-                <a href="bazanovo/Gungunzhda/" class="article-card" data-title="Гуньгунжда" data-desc="Природный объект">
-                    <img src="../img/no-img.webp" alt="Гуньгунжда" class="avatar" />
-                    <div class="card-content">
-                        <span class="card-title">Гуньгунжда</span>
-                        <span class="card-desc">Природный объект</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- Раздел: Другое -->
-        <section id="other" class="category-section">
-            <h2>📌 Другое</h2>
-            <div class="articles-grid">
-                <a href="vov/" class="article-card" data-title="🎖️ 81 год Великой Победы" data-desc="Статьи о Великой Отечественной войне">
-                    <img src="../img/vov-1.webp" alt="Победа" class="avatar" />
-                    <div class="card-content">
-                        <span class="card-title">🎖️ 81 год Великой Победы</span>
-                        <span class="card-desc">Статьи о Великой Отечественной войне</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <div id="noResultsMessage" class="no-results-message">🔎 Ничего не найдено. Попробуйте изменить запрос.</div>
     </main>
+
     <footer class="footer">
         <p>© 2026 Komorok</p>
     </footer>
+
     <script src="../script.js"></script>
 </body>
 </html>
