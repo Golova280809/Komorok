@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="apple-touch-icon" href="../logo.png" />
+    <link rel="icon" type="image/png" href="../logo.png" />
+
+    <meta name="description" content="Все статьи библиотеки Komorium. Поиск по названию и категории." />
+    <meta name="keywords" content="Komorium, статьи, библиотека, краеведение" />
+    <link rel="canonical" href="https://komorok.ru/Komorium/articles.html" />
+
+    <meta property="og:title" content="📚 Все статьи Komorium | Komorok" />
+    <meta property="og:description" content="Полный список краеведческих статей с поиском." />
+    <meta property="og:url" content="https://komorok.ru/Komorium/articles.html" />
+    <meta property="og:image" content="https://komorok.ru/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Komorok" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../common.css" />
+    <link rel="stylesheet" href="komorium.css" />
+    <title>Все статьи — Komorium</title>
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+    <label for="menu-toggle" class="menu-toggle">
+        <span></span><span></span><span></span>
+    </label>
+
+    <nav class="sidebar">
+        <div class="sidebar-title">Меню</div>
+        <a href="../index.html">Главная</a>
+        <a href="index.html">Komorium</a>
+        <a href="articles.html">Все статьи</a>
+        <a href="../about.html">О проекте</a>
+    </nav>
+
+    <label for="menu-toggle" class="overlay"></label>
+
+    <header>
+        <h1>📚 Все статьи</h1>
+        <p>Полный список материалов библиотеки</p>
+    </header>
+
+    <main>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или категории..." autocomplete="off" />
+            <button id="clearSearch" class="search-clear" aria-label="Очистить">✕</button>
+        </div>
+
+        <!-- Сюда будут вставлены карточки -->
+        <div id="articles-container"></div>
+
+        <div id="noResultsMessage" class="no-results-message">🔎 Ничего не найдено. Попробуйте изменить запрос.</div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Komorok</p>
+    </footer>
+
+    <script>
+        (function() {
+            const container = document.getElementById('articles-container');
+            const searchInput = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearSearch');
+            const noResultsMsg = document.getElementById('noResultsMessage');
+
+            // Загрузка JSON со списком статей
+            fetch('../articles.json')
+                .then(response => response.json())
+                .then(articles => {
+                    // Генерация карточек
+                    articles.forEach(article => {
+                        const card = document.createElement('a');
+                        card.href = article.url;
+                        card.className = 'article-card';
+                        card.setAttribute('data-title', article.title);
+                        // В качестве описания используем категорию (можно будет заменить на поле desc, когда появится)
+                        card.setAttribute('data-desc', article.category || '');
+
+                        // Изображение
+                        const imgSrc = article.image && article.image.trim() !== '' 
+                                      ? article.image 
+                                      : '../img/no-img.webp';
+                        const img = document.createElement('img');
+                        img.src = imgSrc;
+                        img.alt = article.title;
+                        img.className = 'avatar';
+                        img.loading = 'lazy';
+
+                        // Текстовый блок
+                        const content = document.createElement('div');
+                        content.className = 'card-content';
+
+                        const titleSpan = document.createElement('span');
+                        titleSpan.className = 'card-title';
+                        titleSpan.textContent = article.title;
+
+                        const descSpan = document.createElement('span');
+                        descSpan.className = 'card-desc';
+                        // Показываем категорию как подпись
+                        descSpan.textContent = article.category || '';
+
+                        content.appendChild(titleSpan);
+                        content.appendChild(descSpan);
+
+                        card.appendChild(img);
+                        card.appendChild(content);
+
+                        container.appendChild(card);
+                    });
+
+                    // После загрузки статей настраиваем поиск
+                    setupSearch();
+                })
+                .catch(error => {
+                    container.innerHTML = '<p style="text-align:center; color:var(--text-secondary);">Не удалось загрузить статьи. Попробуйте позже.</p>';
+                    console.error('Ошибка загрузки статей:', error);
+                });
+
+            function setupSearch() {
+                if (!searchInput || !clearBtn || !noResultsMsg) return;
+
+                function filterCards() {
+                    const query = searchInput.value.trim().toLowerCase();
+                    clearBtn.classList.toggle('visible', query.length > 0);
+
+                    const allCards = Array.from(container.querySelectorAll('.article-card'));
+                    let visibleCount = 0;
+
+                    allCards.forEach(card => {
+                        const title = (card.getAttribute('data-title') || '').toLowerCase();
+                        const desc = (card.getAttribute('data-desc') || '').toLowerCase();
+                        const matches = query === '' || title.includes(query) || desc.includes(query);
+                        card.classList.toggle('hidden-by-search', !matches);
+                        if (matches) visibleCount++;
+                    });
+
+                    noResultsMsg.classList.toggle('show', query !== '' && visibleCount === 0);
+                }
+
+                searchInput.addEventListener('input', filterCards);
+                clearBtn.addEventListener('click', () => {
+                    searchInput.value = '';
+                    filterCards();
+                    searchInput.focus();
+                });
+
+                // Начальное состояние (показать всё)
+                filterCards();
+            }
+        })();
+    </script>
+</body>
+</html>
