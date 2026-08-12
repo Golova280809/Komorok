@@ -67,122 +67,38 @@ main {
     padding: 4.5rem 1.2rem 2rem;
 }
 
-/* === БОКОВОЕ МЕНЮ === */
-.menu-checkbox {
-    display: none;
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding: 20px 0;
 }
 
-.menu-toggle {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: 1001;
-    width: 40px;
-    height: 40px;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    transition: background 0.2s;
+.menu a {
+  position: relative;
+  text-decoration: none;
+  color: #1f2937;
+  font-size: 17px;
+  font-weight: 500;
+  overflow: hidden;
 }
 
-.menu-toggle:hover {
-    background: var(--menu-hover);
+.menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #2563eb;
+  transition: width 0.3s ease;
 }
 
-.menu-toggle span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--text-primary);
-    border-radius: 1px;
+.menu a:hover::after,
+.menu a.active::after {
+  width: 100%;
 }
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -260px;
-    width: 260px;
-    height: 100vh;
-    background: var(--bg-surface);
-    border-right: 1px solid var(--border-light);
-    z-index: 1000;
-    padding: 4rem 1rem 1.5rem;
-    transition: left 0.25s ease;
-    overflow-y: auto;
-}
-
-.menu-checkbox:checked ~ .sidebar {
-    left: 0;
-}
-
-.sidebar-title {
-    font-weight: bold;
-    margin-bottom: 1.2rem;
-    color: var(--accent);
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.sidebar a {
-    display: block;
-    padding: 0.6rem 0.8rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    border-radius: 4px;
-    margin-bottom: 0.3rem;
-    font-size: 0.95rem;
-    transition: background 0.15s, color 0.15s;
-}
-
-.sidebar a:hover {
-    background: var(--menu-hover);
-    color: var(--accent);
-}
-
-/* Оверлей */
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: var(--menu-overlay);
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s, visibility 0.2s;
-}
-
-.menu-checkbox:checked ~ .overlay {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* === КНОПКА ТЕМЫ === */
-.theme-toggle-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    padding: 0.6rem 0.8rem;
-    margin-top: 1.2rem;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    border-radius: 4px;
-    color: var(--text-primary);
-    font-family: inherit;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.15s;
-}
-
-.theme-toggle-btn:hover {
-    background: var(--menu-hover);
-}
 
 /* === КНОПКА НАВЕРХ === */
 .back-to-top {
