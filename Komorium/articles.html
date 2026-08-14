@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ru">
 <head>
@@ -6,13 +5,13 @@
     <link rel="apple-touch-icon" href="../logo.png" />
     <link rel="icon" type="image/png" href="../logo.png" />
 
-    <meta name="description" content="Все статьи библиотеки Komorium. Поиск по названию и описанию." />
-    <meta name="keywords" content="Komorium, статьи, библиотека, краеведение" />
-    <link rel="canonical" href="https://komorok.ru/Komorium/articles.html" />
+    <meta name="description" content="Komorium — личная библиотека Александра Головачёва. Краеведение, история, люди Забайкалья." />
+    <meta name="keywords" content="Komorium, краеведение, библиотека, Базаново" />
+    <link rel="canonical" href="https://komorok.ru/Komorium/" />
 
-    <meta property="og:title" content="📚 Все статьи Komorium | Komorok" />
-    <meta property="og:description" content="Полный список краеведческих статей с удобным поиском." />
-    <meta property="og:url" content="https://komorok.ru/Komorium/articles.html" />
+    <meta property="og:title" content="📚 Komorium — Моя библиотека | Komorok" />
+    <meta property="og:description" content="Авторская краеведческая библиотека. Сейчас в разработке." />
+    <meta property="og:url" content="https://komorok.ru/Komorium/" />
     <meta property="og:image" content="https://komorok.ru/logo.png" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Komorok" />
@@ -22,232 +21,172 @@
     <link rel="stylesheet" href="komorium.css" />
 
     <style>
-        .article-card.hidden {
-            display: none !important;
-        }
-        #showMoreContainer {
-            text-align: center;
-            margin-top: 1.5rem;
-        }
-
-        /* Стили для карточек в стиле Дзена */
-        .articles-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        /* Стили новостного блока (такие же, как на главной) */
+        .news-block {
+            margin-bottom: 3em;
+            margin-top: 2.5rem;
+            background: var(--bg-surface);
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 8px 20px var(--shadow-light);
+            border: 1px solid var(--border-light);
         }
 
-        .article-card {
+        .news-block h2 {
+            font-size: 1.7rem;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
             display: flex;
-            align-items: flex-start;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 16px 0;
-            transition: opacity 0.2s ease;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .article-image-wrapper {
-            flex: 0 0 140px;
-            margin-right: 16px;
+        .news-content {
+            color: var(--text-primary);
         }
 
-        .article-image {
-            width: 100%;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 4px;
-            background-color: #f5f5f5;
+        .news-list {
+            margin: 1rem 0 1.2rem 1.5rem;
+            line-height: 1.7;
         }
 
-        .article-content {
-            flex: 1;
-            min-width: 0; /* чтобы текст корректно обрезался в flex-контейнере */
+        .news-list li {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
         }
 
-        .article-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0 0 6px;
-            color: #1a1a1a;
+        .news-list li strong {
+            color: var(--accent);
         }
 
-        .article-meta {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 6px;
+        .news-alert {
+            margin-top: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: rgba(102, 126, 234, 0.08); /* полупрозрачный акцент */
+            border-left: 6px solid var(--accent);
+            border-radius: 16px;
+            font-size: 1.1rem;
+            color: var(--text-primary);
         }
 
-        .article-description {
-            font-size: 14px;
-            color: #333;
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .news-block {
+                padding: 1.5rem 1.2rem;
+            }
+            .news-block h2 {
+                font-size: 1.5rem;
+            }
         }
 
-        .article-link {
+        /* Кнопка-ссылка на все статьи */
+        .all-articles-link {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .all-articles-link a {
             display: inline-block;
-            margin-top: 8px;
-            font-size: 14px;
-            color: #007bff;
-            text-decoration: underline;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: background 0.2s, transform 0.1s;
         }
-
-        @media (max-width: 640px) {
-            .article-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            .article-image-wrapper {
-                flex: none;
-                width: 100%;
-                height: 120px;
-                margin-right: 0;
-                margin-bottom: 12px;
-            }
-            .article-content {
-                text-align: center;
-            }
+        .all-articles-link a:hover {
+            background: var(--accent-soft);
         }
     </style>
 
-    <title>Все статьи — Komorium</title>
+    <title>Komorium — Моя библиотека</title>
 </head>
 <body>
-    <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
-    <label for="menu-toggle" class="menu-toggle">
-        <span></span><span></span><span></span>
-    </label>
-
-    <nav class="sidebar">
-        <div class="sidebar-title">Меню</div>
-        <a href="../index.html">Главная</a>
-        <a href="index.html">Komorium</a>
-        <a href="articles.html">Все статьи</a>
-        <a href="../about.html">О проекте</a>
-    </nav>
-
-    <label for="menu-toggle" class="overlay"></label>
-
+    
+     <nav class='menu'>
+            <a href="../index.html">Главная</a>
+            <a href="Komorium/">Komorium</a>
+            <a href="../about.html">О проекте</a>
+        </nav>
+        <hr>
     <header>
-        <h1>📚 Все статьи</h1>
-        <p>Полный список материалов библиотеки</p>
+        <div>
+            <h1>📚 Komorium</h1>
+            <p>Моя библиотека</p>
+        </div>
     </header>
 
     <main>
-        <ul class="articles-list">
-            <li class="article-card">
-                <div class="article-image-wrapper">
-                    <img src="../img/vov-1.webp" alt="81 год Великой Победы" class="article-image" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">🎖️ 81 год Великой Победы</h2>
-                    <div class="article-meta">Категория: other | Дата: 2026-08-14</div>
-                    <p class="article-description">81 год Победы в Великой Отечественной войне. Поздравление, история, значение. Komorok.</p>
-                    <a href="vov/" class="article-link">Читать статью →</a>
-                </div>
+        <!-- Заметная ссылка на все статьи -->
+        <div class="all-articles-link">
+            <a href="articles.html">📚 Смотреть все статьи →</a>
+        </div>
+
+        <!-- Описание проекта -->
+        <div class="about-container" style="margin-top: 1rem;">
+            <div class="about-section">
+                <h2>📖 Что такое Komorium?</h2>
+                <p>
+                    <strong>Komorium</strong> — это моя личная краеведческая библиотека. Здесь я собираю статьи о Забайкалье, 
+                    деревне Базаново, её людях, природе и истории. Проект начинался как небольшая энциклопедия, а теперь 
+                    перерастает в полноценный архив знаний, которым хочется делиться.
+                </p>
+                <p>
+                    Пока библиотека находится в активной разработке, и материалов ещё не так много, но каждый текст 
+                    пишется с душой и вниманием к деталям.
+                </p>
+            </div>
+
+            <!-- Новостной блок (в том же стиле, что и на главной) -->
+            <section class="news-block">
+    <h2>📢 Новости</h2>
+    <div class="news-content">
+        <p>Свежие обновления Komorium:</p>
+        <ul class="news-list">
+            <!-- 🔥 Розыгрыш — выделенный элемент -->
+            <li style="background: #fff7e0; border: 1px solid #f0c040; border-left: 6px solid #e6a800; border-radius: 12px; padding: 1.2rem 1.5rem; margin: 0.5rem 0 1.2rem; box-shadow: 0 4px 12px rgba(230,168,0,0.15);">
+                <strong style="font-size: 1.3rem; color: #b8860b;">🎉 Розыгрыш для внимательных!</strong><br>
+                <span style="color: #5e4630;">
+                    Ищем ошибки на сайте: опечатки, битые ссылки, странности вёрстки. 
+                    Победитель получит именное упоминание на сайте, пост в канале Max и преимущество в следующих конкурсах.
+                    Присылайте находки в <a href="https://max.ru/join/Hcgp4P6URKHkYSqOWitLfox62HH7nc3-mrchHgIxitI">чат канала Max</a> 
+                    или в комментарии к посту о розыгрыше. Чем больше уникальных ошибок — тем выше шанс!
+                </span>
             </li>
-            <br>
-            <li class="article-card">
-                <div class="article-image-wrapper">
-                    <img src="" alt="Деревня Базаново" class="article-image" style="background-color:#ddd;" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">Базаново</h2>
-                    <div class="article-meta">Категория: villages | Дата: 2026-08-14</div>
-                    <p class="article-description">Деревня Базаново в Забайкальском крае: история, география, население, достопримечательности и трагический пожар 2015 года.</p>
-                    <a href="bazanovo/" class="article-link">Читать статью →</a>
-                </div>
+
+            <li>
+                🆕 <strong>Все статьи теперь в одном месте!</strong> 
+                Я сделал удобную страницу, где можно посмотреть полный список материалов и быстро найти нужное 
+                по названию или описанию. Переходите: <a href="articles.html">все статьи Komorium</a>.
             </li>
-            <br>
-            <li class="article-card">
-                <div class="article-image-wrapper">
-                    <img src="" alt="Школа имени Валентины Соловьёвой" class="article-image" style="background-color:#ddd;" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">📖 Школа имени Валентины Соловьёвой</h2>
-                    <div class="article-meta">Категория: villages | Дата: 2026-08-14</div>
-                    <p class="article-description"></p>
-                    <a href="bazanovo/shkola/" class="article-link">Читать статью →</a>
-                </div>
+            <li>
+                🔍 <strong>Работает поиск</strong> — просто начните вводить ключевые слова, 
+                и список отфильтруется сам. Статьи подгружаются по мере прокрутки.
             </li>
-            <br>
-            <li class="article-card">
-                <div class="article-image-wrapper">
-                    <img src="" alt="Фотоальбом Базаново" class="article-image" style="background-color:#ddd;" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">📸 Фотоальбом Базаново</h2>
-                    <div class="article-meta">Категория: villages | Дата: 2026-08-14</div>
-                    <p class="article-description"></p>
-                    <a href="bazanovo/album/" class="article-link">Смотреть альбом →</a>
-                </div>
-            </li>
-            <br>
-            <li class="article-card">
-                <div class="article-image-wrapper">
-                    <img src="" alt="Река Гуньгунжда" class="article-image" style="background-color:#ddd;" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">Гуньгунжда</h2>
-                    <div class="article-meta">Категория: nature | Дата: 2026-08-14</div>
-                    <p class="article-description">Река Гуньгунжда — приток Акатуя в Забайкальском крае. Маршрут, гидрология, природа, ближайшие поселения (Базаново, Александровский Завод).</p>
-                    <a href="bazanovo/Gungunzhda/" class="article-link">Читать статью →</a>
-                </div>
-            </li>
-            <br>
-            <li class="article-card">
-                <div class="article-image-wrapper">
-                    <img src="" alt="Семёнов в Забайкалье" class="article-image" style="background-color:#ddd;" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">⚔️ Семёнов в Забайкалье</h2>
-                    <div class="article-meta">Категория: civil-war | Дата: 2026-08-14</div>
-                    <p class="article-description">Атаман Семёнов в Забайкалье: восстание, Особый Маньчжурский отряд, расстрел 37 партизан у Базаново и отступление в Маньчжурию. С портретом атамана и картой Забайкалья.</p>
-                    <a href="bazanovo/civil-war/ataman-semenov/" class="article-link">Читать статью →</a>
-                </div>
-            </li>
-            <br>
-            <li class="article-card">
-                <div class="article-image-wrapper">
-                    <img src="" alt="Атаман Григорий Семёнов: биография" class="article-image" style="background-color:#ddd;" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">👤 Атаман Григорий Семёнов: биография</h2>
-                    <div class="article-meta">Категория: villages | Дата: 2026-08-14</div>
-                    <p class="article-description">Атаман Григорий Семёнов — биография лидера белоказаков Забайкалья. Происхождение, Первая мировая война, Гражданская война, эмиграция и казнь.</p>
-                    <a href="bazanovo/civil-war/semenov-biography/" class="article-link">Читать статью →</a>
-                </div>
-            </li>
-            <br>
-            <li class="article-card">
-                <div class="article-image-wrapper">
-                    <img src="" alt="Валентина Рыбкина" class="article-image" style="background-color:#ddd;" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">🗣️ Валентина Рыбкина</h2>
-                    <div class="article-meta">Категория: voices | Дата: 2026-08-14</div>
-                    <p class="article-description">Валентина Рыбкина — бывшая жительница Базаново. Воспоминания о доме, природе, людях и истории деревни.</p>
-                    <a href="bazanovo/people/Valentina-Rybkina/" class="article-link">Читать воспоминания →</a>
-                </div>
-            </li>
-            <br>
-            <li class="article-card">
-                <div class="article-image-wrapper">
-                    <img src="" alt="Совхоз «Журавлёвский»" class="article-image" style="background-color:#ddd;" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">🚜 Совхоз «Журавлёвский»</h2>
-                    <div class="article-meta">Категория: villages | Дата: 2026-08-14</div>
-                    <p class="article-description"></p>
-                    <a href="bazanovo/sovhoz/" class="article-link">Читать статью →</a>
-                </div>
+            <li>
+                ⚠️ <strong>Библиотека ещё в разработке</strong> — возможны небольшие ошибки и опечатки. 
+                Если заметите — дайте знать, буду исправлять.
             </li>
         </ul>
+        <p>
+            Вся самая свежая информация о новых статьях и улучшениях — в 
+            <a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">канале Max</a>.
+        </p>
+        <div class="news-alert">
+            <strong>💡 Следите за обновлениями!</strong><br />
+            Мы постоянно добавляем новые материалы и улучшаем библиотеку. Подписывайтесь, чтобы ничего не пропустить.
+        </div>
+    </div>
+</section>
 
-        <div id="showMoreContainer">
-            <!-- Кнопка «Показать ещё» может быть добавлена через JS -->
+            <!-- Предупреждение о разработке -->
+            <div class="quote-badge" style="border-left-color: #c49a6c; background: #fef9e7; margin-top: 2rem;">
+                <strong>⚠️ Важное сообщение</strong><br>
+                Komorium находится в активной разработке. Возможны ошибки и недоработки.<br>
+                Мы работаем над улучшением. Спасибо за понимание!
+            </div>
         </div>
     </main>
 
