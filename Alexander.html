@@ -15,16 +15,6 @@
     <meta property="og:image" content="https://komorok.ru/logo.png" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Komorok" />
-
-    <script>
-        (function () {
-            var theme = localStorage.getItem("theme");
-            if (theme === "dark") {
-                document.documentElement.classList.add("dark-theme");
-            }
-        })();
-    </script>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="common.css" />
     <link rel="stylesheet" href="Komorium/komorium.css" />
@@ -239,49 +229,5 @@
         <p>© Skaut9910</p>
         <p>© 2026 Komorok · Стихи и проза Александра Головачёва</p>
     </footer>
-
-    <script src="script.js"></script>
-
-    <!-- Скрипт поиска -->
-    <script>
-    (function() {
-        var searchInput = document.getElementById('searchInput');
-        var clearBtn = document.getElementById('clearSearch');
-        var noResultsMsg = document.getElementById('noResultsMessage');
-
-        if (!searchInput || !clearBtn || !noResultsMsg) return;
-
-        function filterPoems() {
-            var query = searchInput.value.trim().toLowerCase();
-            clearBtn.classList.toggle('visible', query.length > 0);
-
-            var allPoems = document.querySelectorAll('.poem-block');
-            var visibleCount = 0;
-
-            allPoems.forEach(function(block) {
-                var titleEl = block.querySelector('.poem-title');
-                var title = titleEl ? titleEl.textContent.toLowerCase() : '';
-                var textEl = block.querySelector('.poem-text');
-                var text = textEl ? textEl.textContent.toLowerCase() : '';
-
-                var matches = (query === '' || title.indexOf(query) !== -1 || text.indexOf(query) !== -1);
-                block.classList.toggle('hidden-by-search', !matches);
-                if (matches) visibleCount++;
-            });
-
-            noResultsMsg.classList.toggle('show', query !== '' && visibleCount === 0);
-        }
-
-        searchInput.addEventListener('input', filterPoems);
-
-        clearBtn.addEventListener('click', function() {
-            searchInput.value = '';
-            filterPoems();
-            searchInput.focus();
-        });
-
-        filterPoems();
-    })();
-    </script>
 </body>
 </html>
