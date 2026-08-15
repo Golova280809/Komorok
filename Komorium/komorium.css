@@ -1,14 +1,24 @@
 /* === KOMORIUM */
 /* Стили для карточек в стиле Дзена */
-        .articles-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+
+ .article-card.hidden {
+            display: none !important;
+        }
+        #showMoreContainer {
+            text-align: center;
+            margin-top: 1.5rem;
         }
 
-        .article-card {
-            display: flex;
-            align-items: flex-start;
+        
+.articles-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+.article-card {
+        display: flex;
+        align-items: flex-start;
             border-bottom: 1px solid #e0e0e0;
             padding: 16px 0;
             transition: opacity 0.2s ease;
@@ -20,7 +30,7 @@
         }
 
         .article-image {
-            width: 100%;
+            width: 10%;
             height: 90px;
             object-fit: cover;
             border-radius: 4px;
