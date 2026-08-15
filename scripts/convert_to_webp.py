@@ -1,7 +1,7 @@
 import os
 from PIL import Image
 
-IMG_DIR = 'img'
+IMG_DIR = 'komorium/bazanovo/album/img/'
 SUPPORTED = ('.png', '.jpg', '.jpeg')
 
 for filename in os.listdir(IMG_DIR):
