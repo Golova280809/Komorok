@@ -96,7 +96,6 @@ header {
 
 .menu div.vertical-line {
   border-left: 1px solid #000; /* Линия слева направо */
-  height: 100vh; /* Занимает всю высоту контейнера */
   width: 1px; /* Фиксированная толщина */
 }
 
