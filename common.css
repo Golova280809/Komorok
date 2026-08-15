@@ -94,10 +94,7 @@ header {
   display: inline-block;
 }
 
-.menu div.vertical-line {
-  border-left: 1px solid #000; /* Линия слева направо */
-  width: 1px; /* Фиксированная толщина */
-}
+
 
 
 /* Ховер: мягкий фон, цвет чуть светлее */
