@@ -264,17 +264,6 @@ main > p {
     border-top: 1px dashed var(--border-light);
     padding-top: 0.6rem;
 }
-
-/* === ЦИТАТЫ === */
-.quote-badge {
-    background: var(--menu-hover);
-    padding: 1rem 1.2rem;
-    border-left: 4px solid var(--accent);
-    margin-bottom: 1rem;
-    border-radius: 0 4px 4px 0;
-    font-style: italic;
-}
-
 /* === ОГЛАВЛЕНИЕ === */
 .toc {
     background: var(--bg-surface);
@@ -326,31 +315,6 @@ main > p {
 .show-more-btn:hover {
     background: var(--accent);
     color: #fff;
-}
-
-/* === КОД === */
-pre {
-    background: var(--menu-hover);
-    border: 1px solid var(--border-light);
-    border-radius: 4px;
-    padding: 1rem;
-    overflow-x: auto;
-    margin: 1rem 0;
-    font-family: "Courier New", monospace;
-    font-size: 0.85rem;
-    line-height: 1.5;
-}
-
-code {
-    font-family: "Courier New", monospace;
-    font-size: 0.9em;
-}
-
-:not(pre) > code {
-    background: var(--menu-hover);
-    padding: 0.15em 0.4em;
-    border-radius: 3px;
-    border: 1px solid var(--border-light);
 }
 
 /* === ФОТОГАЛЕРЕЯ === */

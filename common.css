@@ -72,6 +72,16 @@ header {
   justify-content: center;
 }
 
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрирование по горизонтали */
+  justify-content: center; /* Центрирование по вертикали (если задана высота) */
+  text-align: center; /* Выравнивание текста внутри элементов */
+  padding: 40px 20px;
+}
+
+
 /* Контейнер-обёртка: делает меню отдельным блоком */
 .main-menu-wrapper {
   background-color: var(--bg-surface);
