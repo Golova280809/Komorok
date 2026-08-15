@@ -15,21 +15,7 @@
     --font-size-multiplier: 1;
 }
 
-/* === ТЁМНАЯ ТЕМА === */
-html.dark-theme,
-body.dark-theme {
-    --bg-body: #1e1b17;
-    --bg-surface: #28231c;
-    --text-primary: #e8dcc8;
-    --text-secondary: #b8a890;
-    --border-light: #3d3428;
-    --accent: #c49a6c;
-    --accent-soft: #a67c52;
-    --shadow-light: rgba(0, 0, 0, 0.3);
-    --shadow-medium: rgba(0, 0, 0, 0.4);
-    --menu-overlay: rgba(0, 0, 0, 0.6);
-    --menu-hover: #352e24;
-}
+
 
 /* === СБРОС === */
 *,
@@ -107,6 +93,13 @@ header {
   transition: all 0.2s ease;
   display: inline-block;
 }
+
+.menu div.vertical-line {
+  border-left: 1px solid #000; /* Линия слева направо */
+  height: 100vh; /* Занимает всю высоту контейнера */
+  width: 1px; /* Фиксированная толщина */
+}
+
 
 /* Ховер: мягкий фон, цвет чуть светлее */
 .menu a:hover,
