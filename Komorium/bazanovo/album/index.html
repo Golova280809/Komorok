@@ -6,74 +6,16 @@
     <title>Фотоальбом — Базаново</title>
     <!-- ПОДКЛЮЧАЕМ ОБЩИЙ СТИЛЬ РАЗДЕЛА -->
     <link rel="stylesheet" href="../bazanovo-komorium.css">
-    <style>
-        /* Уникальные стили для галереи */
-        .gallery {
-            display: grid;
-            gap: 1.2rem;
-            margin: 2rem 0;
-        }
-        @media (min-width: 1024px) {
-            .gallery {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .gallery img {
-                height: 280px;
-            }
-        }
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .gallery img {
-                height: 220px;
-            }
-        }
-        @media (max-width: 599px) {
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-            .gallery img {
-                height: 160px;
-            }
-        }
-        .gallery a {
-            display: block;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #d5c9b8;
-            transition: transform 0.2s, box-shadow 0.2s;
-            background: #f0ebe3;
-            text-decoration: none;
-        }
-        .gallery a:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-        .gallery img {
-            width: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .gallery .caption {
-            padding: 0.5rem 0.8rem;
-            font-size: 0.9rem;
-            color: #2c2c2c;
-            background: #fffdf9;
-            text-align: center;
-            border-top: 1px solid #d5c9b8;
-        }
-    </style>
+    
 </head>
 <body>
 <div class="container">
-    <div class="breadcrumb"><a href="../index.html">Главная</a> / Фотоальбом</div>
     <h1>📸 Фотоальбом Базаново</h1>
     <p>Снимки, сделанные во время поездок в Базаново и окрестности. Кликните на фото, чтобы посмотреть в полном размере.</p>
 
     <div class="gallery">
         <!-- Памятник партизанам -->
-        <a href="../img/memorial-partizan.jpg" target="_blank">
+        <a href="../../bazanovo/album/monument-partizan.html" target="_blank">
             <img src="../img/memorial-partizan.jpg" alt="Братская могила 37 партизан">
             <div class="caption">Братская могила партизан (1919)</div>
         </a>
