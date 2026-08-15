@@ -9,6 +9,16 @@
 }
 
 
+
+.hero img {
+    width: 100%;
+    height: auto;
+    max-height: 50vh;
+    object-fit: contain;
+    margin: 0 auto 20px;
+    border-radius: 8px;
+}
+
 .menu-info {
     background: var(--bg-surface);
     padding: 25px;
