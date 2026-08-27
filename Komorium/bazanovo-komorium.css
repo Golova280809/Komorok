@@ -19,6 +19,48 @@ body {
     box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
+.pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none; /* Убираем подчеркивание */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+/* Наведение */
+.page-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  transform: translateY(-2px);
+}
+
+/* Активная страница */
+.page-btn.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(59,130,246,0.4);
+  cursor: default;
+  pointer-events: none; /* Чтобы нельзя было кликнуть */
+  transform: translateY(-2px);
+}
+
 /* Хлебные крошки */
 .breadcrumb {
     font-size: 0.9em;
