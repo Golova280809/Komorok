@@ -18,6 +18,16 @@
         (a, b) => new Date(b.date) - new Date(a.date)
     );
 
+    // === Чтение параметров URL (?q=... и ?category=...) ===
+    const params = new URLSearchParams(window.location.search);
+    const urlQ = params.get('q');
+    const urlCat = params.get('category');
+
+    if (urlQ) {
+        currentSearch = urlQ;
+        if (searchInput) searchInput.value = urlQ;
+    }
+
     const categoriesMap = new Map();
     categoriesMap.set('all', 'Все');
     sorted.forEach(a => {
@@ -101,7 +111,7 @@
             btn.className = 'filter-btn';
             btn.textContent = label;
             btn.dataset.category = key;
-            if (key === 'all') btn.classList.add('active');
+            if (key === currentCategory) btn.classList.add('active');
 
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn')
@@ -128,5 +138,17 @@
     });
 
     renderFilters();
+
+    // Если в URL есть ?category= — активируем соответствующую кнопку
+    if (urlCat) {
+        const btn = document.querySelector(`.filter-btn[data-category="${urlCat}"]`);
+        if (btn) {
+            document.querySelectorAll('.filter-btn')
+                .forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = urlCat;
+        }
+    }
+
     render();
 })();
