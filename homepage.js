@@ -3,15 +3,6 @@
     if (typeof articlesData === 'undefined') return;
 
     // ============ УТИЛИТЫ ============
-    function shuffle(arr) {
-        const copy = [...arr];
-        for (let i = copy.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [copy[i], copy[j]] = [copy[j], copy[i]];
-        }
-        return copy;
-    }
-
     function formatDate(iso) {
         if (!iso) return '';
         const d = new Date(iso);
@@ -45,27 +36,39 @@
         latestGrid.innerHTML = latest.map(cardHTML).join('');
     }
 
-    // ============ 2. СТАТЬЯ ДНЯ ============
+    // ============ 2. СТАТЬЯ ДНЯ (одна и та же весь день) ============
     const dailyBox = document.getElementById('daily-article');
-    if (dailyBox) {
-        const random = shuffle(all)[0];
-        if (random) {
-            const image = random.image
-                ? `<img src="${escapeAttr(random.image)}" alt="${escapeAttr(random.title)}" loading="lazy">`
+    if (dailyBox && all.length > 0) {
+        // Определяем «номер дня» — количество дней с 1 января 2020 года.
+        // В течение суток число не меняется, значит статья тоже.
+        const today = new Date();
+        const startDate = new Date(2020, 0, 1);
+        const dayNumber = Math.floor(
+            (Date.UTC(today.getFullYear(), today.getMonth(), today.getDate())
+                - Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()))
+            / (1000 * 60 * 60 * 24)
+        );
+
+        // Берём статью по индексу от «номера дня»
+        const daily = all[dayNumber % all.length];
+
+        if (daily) {
+            const image = daily.image
+                ? `<img src="${escapeAttr(daily.image)}" alt="${escapeAttr(daily.title)}" loading="lazy">`
                 : `<span class="placeholder">📄</span>`;
 
             dailyBox.innerHTML = `
-                <div class="daily-label">🎲 Статья дня</div>
+                <div class="daily-label">📅 Статья дня</div>
                 <div class="daily-card">
                     <div class="daily-image">${image}</div>
                     <div class="daily-body">
-                        <h3 class="daily-title">${escapeHTML(random.title)}</h3>
+                        <h3 class="daily-title">${escapeHTML(daily.title)}</h3>
                         <div class="daily-meta">
-                            <span class="badge">${escapeHTML(random.categoryLabel || random.category)}</span>
-                            <span>${escapeHTML(formatDate(random.date))}</span>
+                            <span class="badge">${escapeHTML(daily.categoryLabel || daily.category)}</span>
+                            <span>${escapeHTML(formatDate(daily.date))}</span>
                         </div>
-                        <p class="daily-desc">${escapeHTML(random.description || '')}</p>
-                        <a href="Komorium/${escapeAttr(random.url)}" class="daily-link">Читать →</a>
+                        <p class="daily-desc">${escapeHTML(daily.description || '')}</p>
+                        <a href="Komorium/${escapeAttr(daily.url)}" class="daily-link">Читать →</a>
                     </div>
                 </div>
             `;
