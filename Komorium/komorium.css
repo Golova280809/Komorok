@@ -107,29 +107,148 @@ h3 {
     color: #a93226;
 }
 
-/* Таблицы (используются на главной) */
+/* ====================================================
+   ТАБЛИЦЫ
+   ==================================================== */
+
 .table {
     width: 100%;
     border-collapse: collapse;
     margin: 1.2rem 0;
     font-size: 0.95rem;
+    background: var(--bg-surface, #fffef9);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px var(--shadow-light, rgba(61,50,38,0.08));
+    border: 1px solid var(--border-light, #d9cebf);
 }
+
+/* Ячейки */
 .table th,
 .table td {
-    border: 1px solid #d5c9b8;
-    padding: 8px 10px;
+    padding: 10px 14px;
     text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border-light, #d9cebf);
+    color: var(--text-primary, #3d3226);
 }
-.table th {
-    background: #d5c9b8;
-    font-weight: bold;
+
+/* Убираем нижнюю рамку у последней строки */
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+    border-bottom: none;
 }
+
+/* Левая колонка (заголовки свойств) */
+.table tbody th {
+    background: var(--menu-hover, #f0e8da);
+    font-weight: 600;
+    color: var(--text-primary, #3d3226);
+    width: 40%;
+    border-right: 1px solid var(--border-light, #d9cebf);
+}
+
+/* Ячейки данных */
+.table tbody td {
+    background: var(--bg-surface, #fffef9);
+}
+
+/* Зебра: чётные строки чуть темнее */
+.table tbody tr:nth-child(even) td {
+    background: rgba(217, 206, 191, 0.18);
+}
+.table tbody tr:nth-child(even) th {
+    background: rgba(217, 206, 191, 0.35);
+}
+
+/* Ховер — мягкая подсветка строки */
+.table tbody tr:hover th,
+.table tbody tr:hover td {
+    background: var(--menu-hover, #f0e8da);
+}
+
+/* Секции внутри таблицы (объединённые строки) */
+.table .table-section th {
+    background: var(--accent, #8b5e3c);
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 12px 14px;
+    border-right: none;
+    border-bottom: 1px solid var(--accent-dark, #6d4830);
+    width: auto;
+}
+.table .table-section th:hover {
+    background: var(--accent, #8b5e3c);
+}
+
+/* Обычная шапка (годы в «Населении») */
+.table .table-head th {
+    background: var(--accent-soft, #a67c52);
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    border-right: 1px solid var(--accent, #8b5e3c);
+    width: auto;
+}
+.table .table-head th:last-child {
+    border-right: none;
+}
+
+/* Ссылки внутри таблиц */
 .table a {
-    color: #a93226;
+    color: var(--accent, #8b5e3c);
     text-decoration: none;
+    font-weight: 500;
 }
 .table a:hover {
     text-decoration: underline;
+    color: var(--accent-dark, #6d4830);
+}
+
+/* Стрелка падения численности */
+.arrow-down {
+    color: #c0392b;
+    font-weight: bold;
+    margin-right: 2px;
+}
+
+/* Таблица «Население» — центрируем значения */
+.table-population tbody td {
+    text-align: center;
+    font-weight: 500;
+}
+.table-population .table-section th {
+    text-align: center;
+}
+
+/* ====================================================
+   АДАПТИВ: горизонтальный скролл на телефоне
+   ==================================================== */
+@media (max-width: 640px) {
+    .table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        font-size: 0.88rem;
+    }
+    .table th,
+    .table td {
+        padding: 8px 10px;
+    }
+    .table tbody th {
+        width: auto;
+        min-width: 120px;
+    }
+    /* Убираем белый фон у блока скролла, чтобы скруглённые углы работали */
+    .table thead,
+    .table tbody {
+        display: table;
+        width: 100%;
+        min-width: 100%;
+    }
 }
 
 /* Навигационные ссылки внизу страниц */
