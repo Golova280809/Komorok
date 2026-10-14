@@ -37,12 +37,41 @@
             <h1>Добро пожаловать</h1>
             <h3>Девиз нашего сайта:<br /><em>Locus ubi mundus incipit</em></h3>
 
+            <!-- Поиск по статьям -->
+            <form class="home-search" id="home-search-form" role="search">
+                <input
+                    type="search"
+                    name="q"
+                    placeholder="🔍 Поиск по энциклопедии..."
+                    autocomplete="off"
+                />
+                <button type="submit">Найти</button>
+            </form>
+
             <p>Это мой личный сайт, открытый для всех.</p>
             <!-- project-age-counter -->
             <p>С момента запуска сайта прошло: 199 дней</p>
             <!-- articles-count -->
             <p>В энциклопедии 9 статей</p>
         </header>
+
+        <!-- Статья дня (заполняется автоматически) -->
+        <section class="home-daily" id="daily-article"></section>
+
+        <!-- Последние материалы (заполняется автоматически) -->
+        <section class="home-latest">
+            <h2>📚 Последние материалы</h2>
+            <ul class="articles-grid" id="latest-grid"></ul>
+            <div class="home-latest-more">
+                <a href="Komorium/articles.html">Смотреть все статьи →</a>
+            </div>
+        </section>
+
+        <!-- Категории (заполняется автоматически) -->
+        <section class="home-categories">
+            <h2>📂 Категории</h2>
+            <div class="categories-grid" id="categories-grid"></div>
+        </section>
 
         <!-- Новостной блок -->
         <section class="news-block">
@@ -117,6 +146,10 @@
     <footer class="footer">
         <p>© 2026 Komorok</p>
     </footer>
+
+    <!-- Скрипты -->
+    <script src="Komorium/articles-data.js"></script>
+    <script src="homepage.js"></script>
 
 </body>
 </html>
