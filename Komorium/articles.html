@@ -32,14 +32,18 @@
     </header>
 
     <main>
-        <!-- Кнопки фильтров (заполняются из JS) -->
+        <div class="search-box">
+            <input type="search" id="search-input" placeholder="🔍 Поиск по статьям..." />
+        </div>
+
         <div class="filters" id="filters"></div>
 
-        <!-- Сетка карточек (заполняется из JS) -->
         <ul class="articles-grid" id="articles-grid"></ul>
 
+        <button class="show-more-btn" id="show-more-btn">Показать ещё</button>
+
         <p class="empty-message" id="empty-message" style="display:none;">
-            В этой категории пока нет статей.
+            Ничего не найдено.
         </p>
     </main>
 
@@ -47,85 +51,9 @@
         <p>© 2026 Komorok</p>
     </footer>
 
+    <!-- Данные -->
+    <script src="articles-data.js"></script>
+    <!-- Логика -->
     <script src="articles.js"></script>
-    <script>
-        (function () {
-            const grid = document.getElementById('articles-grid');
-            const filtersBox = document.getElementById('filters');
-            const emptyMsg = document.getElementById('empty-message');
-
-            const sorted = [...articlesData].sort(
-                (a, b) => new Date(b.date) - new Date(a.date)
-            );
-
-            const categoriesMap = new Map();
-            categoriesMap.set('all', 'Все');
-            sorted.forEach(a => {
-                if (!categoriesMap.has(a.category)) {
-                    categoriesMap.set(a.category, a.categoryLabel || a.category);
-                }
-            });
-
-            function renderCard(article) {
-                const li = document.createElement('li');
-                li.className = 'article-card';
-
-                const imageHTML = article.image
-                    ? `<img src="${article.image}" alt="${article.title}" loading="lazy">`
-                    : `<span class="placeholder">📄</span>`;
-
-                li.innerHTML = `
-                    <div class="article-image-wrapper">${imageHTML}</div>
-                    <div class="article-content">
-                        <h2 class="article-title">${article.title}</h2>
-                        <div class="article-meta">
-                            <span class="badge">${article.categoryLabel || article.category}</span>
-                            <span>${article.date}</span>
-                        </div>
-                        <p class="article-description">${article.description || ''}</p>
-                        <a href="${article.url}" class="article-link">Читать статью →</a>
-                    </div>
-                `;
-                return li;
-            }
-
-            function renderArticles(category) {
-                grid.innerHTML = '';
-                const filtered = category === 'all'
-                    ? sorted
-                    : sorted.filter(a => a.category === category);
-
-                if (filtered.length === 0) {
-                    emptyMsg.style.display = 'block';
-                    return;
-                }
-                emptyMsg.style.display = 'none';
-
-                filtered.forEach(a => grid.appendChild(renderCard(a)));
-            }
-
-            function renderFilters() {
-                categoriesMap.forEach((label, key) => {
-                    const btn = document.createElement('button');
-                    btn.className = 'filter-btn';
-                    btn.textContent = label;
-                    btn.dataset.category = key;
-                    if (key === 'all') btn.classList.add('active');
-
-                    btn.addEventListener('click', () => {
-                        document.querySelectorAll('.filter-btn')
-                            .forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                        renderArticles(key);
-                    });
-
-                    filtersBox.appendChild(btn);
-                });
-            }
-
-            renderFilters();
-            renderArticles('all');
-        })();
-    </script>
 </body>
 </html>

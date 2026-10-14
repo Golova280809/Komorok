@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ru">
 <head>
@@ -21,98 +20,19 @@
     <link rel="stylesheet" href="../common.css" />
     <link rel="stylesheet" href="komorium.css" />
 
-    <style>
-        /* Стили новостного блока (такие же, как на главной) */
-        .news-block {
-            margin-bottom: 3em;
-            margin-top: 2.5rem;
-            background: var(--bg-surface);
-            border-radius: 20px;
-            padding: 1.8rem 2rem;
-            box-shadow: 0 8px 20px var(--shadow-light);
-            border: 1px solid var(--border-light);
-        }
-
-        .news-block h2 {
-            font-size: 1.7rem;
-            color: var(--accent);
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .news-content {
-            color: var(--text-primary);
-        }
-
-        .news-list {
-            margin: 1rem 0 1.2rem 1.5rem;
-            line-height: 1.7;
-        }
-
-        .news-list li {
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .news-list li strong {
-            color: var(--accent);
-        }
-
-        .news-alert {
-            margin-top: 1.5rem;
-            padding: 1rem 1.5rem;
-            background: rgba(102, 126, 234, 0.08); /* полупрозрачный акцент */
-            border-left: 6px solid var(--accent);
-            border-radius: 16px;
-            font-size: 1.1rem;
-            color: var(--text-primary);
-        }
-
-        /* Адаптивность */
-        @media (max-width: 600px) {
-            .news-block {
-                padding: 1.5rem 1.2rem;
-            }
-            .news-block h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Кнопка-ссылка на все статьи */
-        .all-articles-link {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .all-articles-link a {
-            display: inline-block;
-            background: var(--accent);
-            color: #fff;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: bold;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            transition: background 0.2s, transform 0.1s;
-        }
-        .all-articles-link a:hover {
-            background: var(--accent-soft);
-        }
-    </style>
-
     <title>Komorium — Моя библиотека</title>
 </head>
 <body>
-     <nav class='menu'>
+
+    <nav class="menu">
         <a href="../index.html">Главная</a>
         <a href="articles.html">Все статьи</a>
         <a href="../about.html">О проекте</a>
     </nav>
     <hr>
+
     <header>
-        <h1>📚 Komorium - Моя библиотека</h1>
+        <h1>📚 Komorium — Моя библиотека</h1>
     </header>
 
     <main>
@@ -122,48 +42,71 @@
         </div>
 
         <!-- Описание проекта -->
-        <div class="about-container" style="margin-top: 1rem;">
+        <div class="about-container">
             <div class="about-section">
                 <h2>📖 Что такое Komorium?</h2>
                 <p>
-                    <strong>Komorium</strong> — это моя личная краеведческая библиотека. Здесь я собираю статьи о Забайкалье, 
-                    деревне Базаново, её людях, природе и истории. Проект начинался как небольшая энциклопедия, а теперь 
+                    <strong>Komorium</strong> — это моя личная краеведческая библиотека. Здесь я собираю статьи о Забайкалье,
+                    деревне Базаново, её людях, природе и истории. Проект начинался как небольшая энциклопедия, а теперь
                     перерастает в полноценный архив знаний, которым хочется делиться.
                 </p>
                 <p>
-                    Пока библиотека находится в активной разработке, и материалов ещё не так много, но каждый текст 
+                    Пока библиотека находится в активной разработке, и материалов ещё не так много, но каждый текст
                     пишется с душой и вниманием к деталям.
                 </p>
             </div>
-
-            <!-- Новостной блок (в том же стиле, что и на главной) -->
-            <section class="news-block">
+            <section class="stats-block">
+    <h2>📊 Библиотека в цифрах</h2>
+    <div class="stats-grid" id="stats-grid">
+        <div class="stat-item">
+            <span class="stat-value" id="stat-articles">—</span>
+            <span class="stat-label">статей</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value" id="stat-categories">—</span>
+            <span class="stat-label">категорий</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value" id="stat-date">—</span>
+            <span class="stat-label">последняя статья</span>
+        </div>
+    </div>
+</section>
+            <!-- Новостной блок -->
+<section class="news-block">
     <h2>📢 Новости</h2>
     <div class="news-content">
         <p>Свежие обновления Komorium:</p>
         <ul class="news-list">
-            <!-- 🔥 Розыгрыш — выделенный элемент -->
-            <li style="background: #fff7e0; border: 1px solid #f0c040; border-left: 6px solid #e6a800; border-radius: 12px; padding: 1.2rem 1.5rem; margin: 0.5rem 0 1.2rem; box-shadow: 0 4px 12px rgba(230,168,0,0.15);">
-                <strong style="font-size: 1.3rem; color: #b8860b;">🎉 Розыгрыш для внимательных!</strong><br>
-                <span style="color: #5e4630;">
-                    Ищем ошибки на сайте: опечатки, битые ссылки, странности вёрстки. 
-                    Победитель получит именное упоминание на сайте, пост в канале Max и преимущество в следующих конкурсах.
-                    Присылайте находки в <a href="https://max.ru/join/Hcgp4P6URKHkYSqOWitLfox62HH7nc3-mrchHgIxitI">чат канала Max</a> 
-                    или в комментарии к посту о розыгрыше. Чем больше уникальных ошибок — тем выше шанс!
-                </span>
-            </li>
-
             <li>
-                🆕 <strong>Все статьи теперь в одном месте!</strong> 
-                Я сделал удобную страницу, где можно посмотреть полный список материалов. Переходите: <a href="articles.html">все статьи Komorium</a>.
+                🔍 <strong>Поиск и «Показать ещё» вернулись!</strong>
+                На странице <a href="articles.html">всех статей</a> снова работает поиск по материалам, порционная
+                подгрузка карточек и подсветка совпадений жёлтым — сразу видно, где нашлось то, что вы искали.
             </li>
             <li>
-                ⚠️ <strong>Библиотека ещё в разработке</strong> — возможны небольшие ошибки и опечатки. 
+                🔗 <strong>Кнопка «Поделиться» на каждой статье.</strong>
+                Теперь у каждой статьи внизу есть кнопка «Поделиться». На телефоне открывается системное меню со
+                списком приложений, на компьютере — ссылка копируется в буфер обмена.
+            </li>
+            <li>
+                🗂️ <strong>Страница Базаново стала хабом.</strong>
+                Раздел <a href="bazanovo/">«Базаново»</a> теперь собрал все материалы о деревне в одном месте:
+                совхоз, школа, фотоальбом, река Гуньгунжда, статьи о Гражданской войне и воспоминания.
+            </li>
+            <li>
+                📚 <strong>Добавлены новые статьи!</strong> Доступны разделы:
+                <a href="bazanovo/shkola/">«Школа имени Соловьёвой»</a>,
+                <a href="bazanovo/sovhoz/">«Совхоз «Журавлёвский»</a>,
+                <a href="bazanovo/people/Valentina-Rybkina/">интервью с Валентиной Рыбкиной</a>
+                и <a href="bazanovo/Gungunzhda/">река Гуньгунжда</a>.
+            </li>
+            <li>
+                ⚠️ <strong>Библиотека ещё в разработке</strong> — возможны небольшие ошибки и опечатки.
                 Если заметите — дайте знать, буду исправлять.
             </li>
         </ul>
         <p>
-            Вся самая свежая информация о новых статьях и улучшениях — в 
+            Вся самая свежая информация о новых статьях и улучшениях — в
             <a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">канале Max</a>.
         </p>
         <div class="news-alert">
@@ -180,6 +123,8 @@
                 Мы работаем над улучшением. Спасибо за понимание!
             </div>
         </div>
+        <script src="articles-data.js"></script>
+<script src="stats.js"></script>
     </main>
 
     <footer class="footer">

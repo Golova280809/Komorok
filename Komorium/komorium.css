@@ -20,43 +20,43 @@ body {
 }
 
 .pagination {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
 }
 
 .page-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  border: 1.5px solid #e2e8f0;
-  background: #ffffff;
-  color: #1e293b;
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  cursor: pointer;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1.5px solid #e2e8f0;
+    background: #ffffff;
+    color: #1e293b;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 .page-btn:hover {
-  background: #f1f5f9;
-  border-color: #94a3b8;
-  transform: translateY(-2px);
+    background: #f1f5f9;
+    border-color: #94a3b8;
+    transform: translateY(-2px);
 }
 
 .page-btn.active {
-  background: #3b82f6;
-  border-color: #3b82f6;
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(59,130,246,0.4);
-  cursor: default;
-  pointer-events: none;
-  transform: translateY(-2px);
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(59,130,246,0.4);
+    cursor: default;
+    pointer-events: none;
+    transform: translateY(-2px);
 }
 
 /* Хлебные крошки */
@@ -220,6 +220,8 @@ h3 {
     color: var(--accent, #8b5e3c);
     margin-bottom: 0.8rem;
     font-weight: normal;
+    border-left: none;
+    padding-left: 0;
 }
 
 .content-section h3 {
@@ -260,6 +262,8 @@ main > h1 {
     margin-bottom: 0.3rem;
     color: var(--text-primary, #3d3226);
     font-weight: normal;
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 main > p {
@@ -333,27 +337,7 @@ main > p {
     text-decoration: underline;
 }
 
-/* === КНОПКА "ПОКАЗАТЬ ЕЩЁ" === */
-.show-more-btn {
-    display: block;
-    margin: 1.2rem auto;
-    padding: 0.6rem 1.8rem;
-    background: var(--bg-surface, #fffdf9);
-    color: var(--accent, #8b5e3c);
-    border: 1px solid var(--accent, #8b5e3c);
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
-}
-
-.show-more-btn:hover {
-    background: var(--accent, #8b5e3c);
-    color: #fff;
-}
-
-/* === ФОТОГАЛЕРЕЯ === */
+/* === ФОТОГАЛЕРЕЯ (заглушки) === */
 .photo-grid {
     display: flex;
     flex-wrap: wrap;
@@ -365,7 +349,7 @@ main > p {
 .photo-placeholder {
     width: 160px;
     height: 120px;
-    background: var(--menu-hover, #f0ebe3);
+    background: var(--menu-hover, #f0e8da);
     border: 1px solid var(--border-light, #d9cebf);
     border-radius: 4px;
     display: flex;
@@ -397,7 +381,7 @@ img {
 
 .top-menu a {
     display: inline-block;
-    background: var(--accent, #b33939);
+    background: var(--accent, #8b5e3c);
     color: #fff;
     padding: 0.5rem 1.2rem;
     border-radius: 30px;
@@ -410,7 +394,7 @@ img {
 }
 
 .top-menu a:hover {
-    background: var(--accent-dark, #7a1f1a);
+    background: var(--accent-dark, #6d4830);
     transform: translateY(-2px);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
     text-decoration: none;
@@ -421,16 +405,28 @@ img {
    СТРАНИЦА «ВСЕ СТАТЬИ» — фильтры, сетка, карточки
    ==================================================== */
 
-/* --- Фильтры категорий --- */
+/* --- Фильтры категорий (горизонтальный скролл) --- */
 .filters {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     gap: 0.5rem;
-    justify-content: center;
-    margin: 1.5rem 0 2rem;
+    margin: 1.5rem -0.5rem 2rem;
+    padding: 0.2rem 0.5rem 0.4rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.filters::-webkit-scrollbar {
+    display: none;
 }
 
 .filter-btn {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    white-space: nowrap;
     background: var(--bg-surface, #fffdf9);
     color: var(--text-primary, #3d3226);
     border: 1.5px solid var(--border-light, #d9cebf);
@@ -443,7 +439,7 @@ img {
 }
 
 .filter-btn:hover {
-    background: var(--menu-hover, #f0ebe3);
+    background: var(--menu-hover, #f0e8da);
     transform: translateY(-1px);
 }
 
@@ -518,6 +514,8 @@ img {
     font-weight: 600;
     color: var(--text-primary, #3d3226);
     line-height: 1.35;
+    border: none;
+    padding: 0;
 }
 
 .article-meta {
@@ -530,7 +528,7 @@ img {
 }
 
 .article-meta .badge {
-    background: var(--menu-hover, #f0ebe3);
+    background: var(--menu-hover, #f0e8da);
     padding: 2px 10px;
     border-radius: 20px;
     color: var(--accent, #8b5e3c);
@@ -555,8 +553,17 @@ img {
 }
 
 .article-link:hover {
-    color: var(--accent-dark, #7a1f1a);
+    color: var(--accent-dark, #6d4830);
     text-decoration: underline;
+}
+
+/* --- Подсветка совпадений в поиске --- */
+.article-card mark {
+    background: #ffe066;
+    color: inherit;
+    padding: 0 3px;
+    border-radius: 3px;
+    font-weight: 600;
 }
 
 /* --- Пустой результат --- */
@@ -568,6 +575,285 @@ img {
 }
 
 /* ====================================================
+   ПОИСК (articles.html)
+   ==================================================== */
+.search-box {
+    max-width: 500px;
+    margin: 1.5rem auto 0;
+    padding: 0 0.5rem;
+}
+
+.search-box input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.85rem 1.2rem;
+    border-radius: 30px;
+    border: 1.5px solid var(--border-light, #d9cebf);
+    background: var(--bg-surface, #fffef9);
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text-primary, #3d3226);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-box input:focus {
+    border-color: var(--accent, #8b5e3c);
+    box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.15);
+}
+
+/* ====================================================
+   КНОПКА «ПОКАЗАТЬ ЕЩЁ» (articles.html)
+   ==================================================== */
+.show-more-btn {
+    display: block;
+    margin: 1.2rem auto 2rem;
+    padding: 0.7rem 2rem;
+    background: var(--bg-surface, #fffef9);
+    color: var(--accent, #8b5e3c);
+    border: 1.5px solid var(--accent, #8b5e3c);
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, transform 0.1s;
+}
+
+.show-more-btn:hover {
+    background: var(--accent, #8b5e3c);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+/* ====================================================
+   КНОПКА «ПОДЕЛИТЬСЯ» (на страницах статей)
+   ==================================================== */
+.share-container {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem 0 1rem;
+    padding: 1rem 1.2rem;
+    background: var(--bg-surface, #fffef9);
+    border: 1px solid var(--border-light, #d9cebf);
+    border-radius: 12px;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.8rem;
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    background: var(--accent, #8b5e3c);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.15s, background 0.2s;
+    box-shadow: 0 3px 10px rgba(139, 94, 60, 0.3);
+}
+
+.share-btn:hover {
+    background: var(--accent-dark, #6d4830);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(139, 94, 60, 0.4);
+}
+
+.share-btn:active {
+    transform: translateY(0);
+}
+
+.share-btn.copied {
+    background: #2e7d32;
+    box-shadow: 0 3px 10px rgba(46, 125, 50, 0.4);
+}
+
+/* ====================================================
+   ГЛАВНАЯ KOMORIUM — новости, кнопка «все статьи», about
+   ==================================================== */
+
+.all-articles-link {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.all-articles-link a {
+    display: inline-block;
+    background: var(--accent, #8b5e3c);
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: background 0.2s, transform 0.1s;
+}
+.all-articles-link a:hover {
+    background: var(--accent-dark, #6d4830);
+    transform: translateY(-2px);
+}
+
+.about-container {
+    margin-top: 1rem;
+}
+.about-section p {
+    line-height: 1.8;
+    margin-bottom: 0.8rem;
+}
+
+.news-block {
+    margin-bottom: 3em;
+    margin-top: 2.5rem;
+    background: var(--bg-surface, #fffef9);
+    border-radius: 20px;
+    padding: 1.8rem 2rem;
+    box-shadow: 0 8px 20px var(--shadow-light, rgba(61, 50, 38, 0.06));
+    border: 1px solid var(--border-light, #d9cebf);
+}
+
+.news-block h2 {
+    font-size: 1.7rem;
+    color: var(--accent, #8b5e3c);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-left: none;
+    padding-left: 0;
+    margin-top: 0;
+}
+
+.news-content {
+    color: var(--text-primary, #3d3226);
+}
+
+.news-list {
+    margin: 1rem 0 1.2rem 1.5rem;
+    line-height: 1.7;
+    padding-left: 0;
+    list-style: disc;
+}
+
+.news-list li {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary, #3d3226);
+}
+
+.news-list li strong {
+    color: var(--accent, #8b5e3c);
+}
+
+.news-alert {
+    margin-top: 1.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(139, 94, 60, 0.08);
+    border-left: 6px solid var(--accent, #8b5e3c);
+    border-radius: 16px;
+    font-size: 1.1rem;
+    color: var(--text-primary, #3d3226);
+}
+
+/* Предупреждение внутри новостей */
+.news-important {
+    background: #fef9e7;
+    border: 1px solid #e0c36a;
+    border-left: 5px solid #c49a6c;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin: 0.5rem 0;
+    color: #5e4630;
+}
+.news-important a {
+    color: #8b5e3c;
+    font-weight: 600;
+}
+.news-important a:hover {
+    text-decoration: underline;
+}
+
+/* ====================================================
+   БЛОК СТАТИСТИКИ (Komorium/index.html)
+   ==================================================== */
+.stats-block {
+    margin: 2.5rem 0;
+    background: var(--bg-surface, #fffef9);
+    border: 1px solid var(--border-light, #d9cebf);
+    border-radius: 20px;
+    padding: 1.8rem 2rem;
+    box-shadow: 0 8px 20px var(--shadow-light, rgba(61,50,38,0.06));
+}
+.stats-block h2 {
+    font-size: 1.7rem;
+    color: var(--accent, #8b5e3c);
+    margin-bottom: 1.2rem;
+    border-left: none;
+    padding-left: 0;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+}
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0.5rem;
+    background: var(--menu-hover, #f0e8da);
+    border-radius: 12px;
+    border: 1px solid var(--border-light, #d9cebf);
+}
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent, #8b5e3c);
+    line-height: 1.1;
+}
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #6b5e4f);
+    margin-top: 0.3rem;
+}
+
+/* ====================================================
+   ХАБ БАЗАНОВО — карточки внутри content-section
+   ==================================================== */
+.hub-grid {
+    margin-top: 1.5rem;
+}
+.hub-grid .article-title {
+    border-left: none;
+    padding-left: 0;
+    margin-top: 0;
+    font-weight: 600;
+}
+.hub-grid .article-description {
+    text-indent: 0;
+    text-align: left;
+    hyphens: none;
+}
+.hub-grid .article-content h2 {
+    border-left: none;
+    padding-left: 0;
+    margin-top: 0;
+    color: var(--text-primary, #3d3226);
+    font-size: 1.15rem;
+}
+.hub-grid .article-link {
+    text-indent: 0;
+}
+
+/* ====================================================
    АДАПТИВ
    ==================================================== */
 
@@ -576,12 +862,10 @@ img {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-
     .article-card {
         flex-direction: row;
         border-radius: 12px;
     }
-
     .article-image-wrapper {
         width: 110px;
         height: auto;
@@ -590,29 +874,23 @@ img {
         padding: 4px;
         box-sizing: border-box;
     }
-
     .article-image-wrapper img {
         padding: 2px;
     }
-
     .article-image-wrapper .placeholder {
         font-size: 2rem;
     }
-
     .article-content {
         padding: 0.8rem 1rem;
     }
-
     .article-title {
         font-size: 1rem;
         margin-bottom: 0.3rem;
     }
-
     .article-meta {
         font-size: 0.72rem;
         margin-bottom: 0.4rem;
     }
-
     .article-description {
         font-size: 0.85rem;
         margin-bottom: 0.6rem;
@@ -621,7 +899,6 @@ img {
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
-
     .article-link {
         font-size: 0.85rem;
     }
@@ -631,22 +908,40 @@ img {
         padding: 0.4rem 0.9rem;
     }
 
+    .search-box input {
+        font-size: 0.95rem;
+        padding: 0.7rem 1rem;
+    }
+    .show-more-btn {
+        font-size: 0.88rem;
+        padding: 0.6rem 1.6rem;
+    }
+
     .container {
         padding: 20px;
     }
-
     h1 {
         font-size: 1.8rem;
     }
-
     .toc ul {
         grid-template-columns: 1fr;
     }
 
-    pre {
-        padding: 0.7rem;
-        font-size: 0.8rem;
+    .news-block {
+        padding: 1.5rem 1.2rem;
     }
+    .news-block h2 {
+        font-size: 1.5rem;
+    }
+    .all-articles-link a {
+        font-size: 1rem;
+        padding: 0.7rem 1.5rem;
+    }
+
+    .stats-block { padding: 1.5rem 1.2rem; }
+    .stats-block h2 { font-size: 1.5rem; }
+    .stat-value { font-size: 1.6rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 480px) {
@@ -657,5 +952,14 @@ img {
     .top-menu a {
         font-size: 0.8rem;
         padding: 0.3rem 0.8rem;
+    }
+
+    .share-container {
+        padding: 0.8rem;
+    }
+    .share-btn {
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 0.75rem 1rem;
     }
 }
