@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="apple-touch-icon" href="../logo.png" />
     <link rel="icon" type="image/png" href="../logo.png" />
     <meta name="description" content="Все статьи библиотеки Komorium." />
@@ -31,119 +32,100 @@
     </header>
 
     <main>
-        <ul class="articles-list">
-            <li class="article-card">
-                <div class="article-image">
-                    <img src="../img/vov-1.webp" alt="81 год Великой Победы" class="article-image" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">🎖️ 81 год Великой Победы</h2>
-                    <div class="article-meta">Категория: other | Дата: 2026-08-14</div>
-                    <p class="article-description">81 год Победы в Великой Отечественной войне. Поздравление, история, значение. Komorok.</p>
-                    <a href="vov/" class="article-link">Читать статью →</a>
-                </div>
-            </li>
+        <!-- Кнопки фильтров (заполняются из JS) -->
+        <div class="filters" id="filters"></div>
 
-            <li class="article-card">
-                <div class="article-image">
-                    <img src="bazanovo/album/img/Bazanovo_13.webp" alt="Деревня Базаново" class="article-image" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">Базаново</h2>
-                    <div class="article-meta">Категория: villages | Дата: 2026-08-14</div>
-                    <p class="article-description">Деревня Базаново в Забайкальском крае: история, география, население, достопримечательности и трагический пожар 2015 года.</p>
-                    <a href="bazanovo/" class="article-link">Читать статью →</a>
-                </div>
-            </li>
+        <!-- Сетка карточек (заполняется из JS) -->
+        <ul class="articles-grid" id="articles-grid"></ul>
 
-            <li class="article-card">
-                <div class="article-image">
-                    <img src="" alt="Школа имени Валентины Соловьёвой" class="article-image" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">📖 Школа имени Валентины Соловьёвой</h2>
-                    <div class="article-meta">Категория: villages | Дата: 2026-08-14</div>
-                    <p class="article-description"></p>
-                    <a href="bazanovo/shkola/" class="article-link">Читать статью →</a>
-                </div>
-            </li>
-
-            <li class="article-card">
-                <div class="article-image">
-                    <img src="bazanovo/album/img/Bazanovo_13.webp" alt="Фотоальбом Базаново" class="article-image" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">📸 Фотоальбом Базаново</h2>
-                    <div class="article-meta">Категория: villages | Дата: 2026-08-14</div>
-                    <p class="article-description"></p>
-                    <a href="bazanovo/album/" class="article-link">Смотреть альбом →</a>
-                </div>
-            </li>
-
-            <li class="article-card">
-                <div class="article-image">
-                    <img src="" alt="Река Гуньгунжда" class="article-image" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">Гуньгунжда</h2>
-                    <div class="article-meta">Категория: nature | Дата: 2026-08-14</div>
-                    <p class="article-description">Река Гуньгунжда — приток Акатуя в Забайкальском крае. Маршрут, гидрология, природа, ближайшие поселения (Базаново, Александровский Завод).</p>
-                    <a href="bazanovo/Gungunzhda/" class="article-link">Читать статью →</a>
-                </div>
-            </li>
-
-            <li class="article-card">
-                <div class="article-image">
-                    <img src="../img/semenov-portrait.webp" alt="Семёнов в Забайкалье" class="article-image" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">⚔️ Семёнов в Забайкалье</h2>
-                    <div class="article-meta">Категория: civil-war | Дата: 2026-08-14</div>
-                    <p class="article-description">Атаман Семёнов в Забайкалье: восстание, Особый Маньчжурский отряд, расстрел 37 партизан у Базаново и отступление в Маньчжурию. С портретом атамана и картой Забайкалья.</p>
-                    <a href="bazanovo/civil-war/ataman-semenov/" class="article-link">Читать статью →</a>
-                </div>
-            </li>
-
-            <li class="article-card">
-                <div class="article-image">
-                    <img src="../img/semenov-portrait.webp" alt="Атаман Григорий Семёнов: биография" class="article-image" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">👤 Атаман Григорий Семёнов: биография</h2>
-                    <div class="article-meta">Категория: villages | Дата: 2026-08-14</div>
-                    <p class="article-description">Атаман Григорий Семёнов — биография лидера белоказаков Забайкалья. Происхождение, Первая мировая война, Гражданская война, эмиграция и казнь.</p>
-                    <a href="bazanovo/civil-war/semenov-biography/" class="article-link">Читать статью →</a>
-                </div>
-            </li>
-
-            <li class="article-card">
-                <div class="article-image">
-                    <img src="" alt="Валентина Рыбкина" class="article-image" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">🗣️ Валентина Рыбкина</h2>
-                    <div class="article-meta">Категория: voices | Дата: 2026-08-14</div>
-                    <p class="article-description">Валентина Рыбкина — бывшая жительница Базаново. Воспоминания о доме, природе, людях и истории деревни.</p>
-                    <a href="bazanovo/people/Valentina-Rybkina/" class="article-link">Читать воспоминания →</a>
-                </div>
-            </li>
-
-            <li class="article-card">
-                <div class="article-image">
-                    <img src="" alt="Совхоз «Журавлёвский»" class="article-image" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title">🚜 Совхоз «Журавлёвский»</h2>
-                    <div class="article-meta">Категория: villages | Дата: 2026-08-14</div>
-                    <p class="article-description"></p>
-                    <a href="bazanovo/sovhoz/" class="article-link">Читать статью →</a>
-                </div>
-            </li>
-        </ul>
+        <p class="empty-message" id="empty-message" style="display:none;">
+            В этой категории пока нет статей.
+        </p>
     </main>
 
     <footer class="footer">
         <p>© 2026 Komorok</p>
     </footer>
+
+    <script src="articles.js"></script>
+    <script>
+        (function () {
+            const grid = document.getElementById('articles-grid');
+            const filtersBox = document.getElementById('filters');
+            const emptyMsg = document.getElementById('empty-message');
+
+            const sorted = [...articlesData].sort(
+                (a, b) => new Date(b.date) - new Date(a.date)
+            );
+
+            const categoriesMap = new Map();
+            categoriesMap.set('all', 'Все');
+            sorted.forEach(a => {
+                if (!categoriesMap.has(a.category)) {
+                    categoriesMap.set(a.category, a.categoryLabel || a.category);
+                }
+            });
+
+            function renderCard(article) {
+                const li = document.createElement('li');
+                li.className = 'article-card';
+
+                const imageHTML = article.image
+                    ? `<img src="${article.image}" alt="${article.title}" loading="lazy">`
+                    : `<span class="placeholder">📄</span>`;
+
+                li.innerHTML = `
+                    <div class="article-image-wrapper">${imageHTML}</div>
+                    <div class="article-content">
+                        <h2 class="article-title">${article.title}</h2>
+                        <div class="article-meta">
+                            <span class="badge">${article.categoryLabel || article.category}</span>
+                            <span>${article.date}</span>
+                        </div>
+                        <p class="article-description">${article.description || ''}</p>
+                        <a href="${article.url}" class="article-link">Читать статью →</a>
+                    </div>
+                `;
+                return li;
+            }
+
+            function renderArticles(category) {
+                grid.innerHTML = '';
+                const filtered = category === 'all'
+                    ? sorted
+                    : sorted.filter(a => a.category === category);
+
+                if (filtered.length === 0) {
+                    emptyMsg.style.display = 'block';
+                    return;
+                }
+                emptyMsg.style.display = 'none';
+
+                filtered.forEach(a => grid.appendChild(renderCard(a)));
+            }
+
+            function renderFilters() {
+                categoriesMap.forEach((label, key) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'filter-btn';
+                    btn.textContent = label;
+                    btn.dataset.category = key;
+                    if (key === 'all') btn.classList.add('active');
+
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.filter-btn')
+                            .forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        renderArticles(key);
+                    });
+
+                    filtersBox.appendChild(btn);
+                });
+            }
+
+            renderFilters();
+            renderArticles('all');
+        })();
+    </script>
 </body>
 </html>
