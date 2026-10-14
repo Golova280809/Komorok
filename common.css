@@ -142,3 +142,30 @@ header {
         padding: 10px 8px;
     }
 }
+
+/* ====================================================
+   ДОПОЛНЕНИЯ — акценты, важное, общие мелочи
+   ==================================================== */
+
+/* Тёмный акцент (используется в hover кнопок Komorium) */
+:root {
+    --accent-dark: #6d4830;
+}
+
+/* Блок «⚠️ Важно!» в новостях */
+.news-important {
+    background: #fef9e7;
+    border: 1px solid #e0c36a;
+    border-left: 5px solid #c49a6c;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin: 0.5rem 0;
+    color: #5e4630;
+}
+.news-important a {
+    color: #8b5e3c;
+    font-weight: 600;
+}
+.news-important a:hover {
+    text-decoration: underline;
+}
