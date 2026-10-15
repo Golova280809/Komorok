@@ -22,6 +22,12 @@
 </head>
 <body>
 
+    <!-- ============ Кнопка приложения: на десктопе — правый верхний угол ============ -->
+    <a href="app.html" class="app-corner-btn" aria-label="Скачать приложение">
+        <span class="app-corner-icon">📱</span>
+        <span class="app-corner-text">Скачать приложение</span>
+    </a>
+
     <nav class="menu">
         <a href="#">Главная</a>
         <a href="Komorium/index.html">Komorium</a>
@@ -30,20 +36,12 @@
     </nav>
     <hr>
 
-    <!-- Основной контент -->
     <main>
-        <!-- Приветствие -->
         <header class="hero">
             <img src="logo.png" alt="KOMORIUM" />
             <h1>Добро пожаловать</h1>
             <h3>Девиз нашего сайта:<br /><em>Locus ubi mundus incipit</em></h3>
 
-            <!-- Кнопка перехода на страницу приложения -->
-            <a href="app.html" class="app-link-btn">
-                📱 Скачать приложение
-            </a>
-
-            <!-- Поиск по статьям -->
             <form class="home-search" id="home-search-form" role="search">
                 <input
                     type="search"
@@ -55,16 +53,17 @@
             </form>
 
             <p>Это мой личный сайт, открытый для всех.</p>
-            <!-- project-age-counter -->
             <p>С момента запуска сайта прошло: 200 дней</p>
-            <!-- articles-count -->
             <p>В энциклопедии 9 статей</p>
+
+            <!-- ============ Кнопка приложения: на телефоне — здесь ============ -->
+            <a href="app.html" class="app-inline-btn">
+                📱 Скачать приложение
+            </a>
         </header>
 
-        <!-- Статья дня (заполняется автоматически) -->
         <section class="home-daily" id="daily-article"></section>
 
-        <!-- Последние материалы (заполняется автоматически) -->
         <section class="home-latest">
             <h2>📚 Последние материалы</h2>
             <ul class="articles-grid" id="latest-grid"></ul>
@@ -73,46 +72,63 @@
             </div>
         </section>
 
-        <!-- Категории (заполняется автоматически) -->
         <section class="home-categories">
             <h2>📂 Категории</h2>
             <div class="categories-grid" id="categories-grid"></div>
         </section>
 
-        <!-- Новостной блок -->
+        <!-- ============ ОБНОВЛЁННЫЕ НОВОСТИ ============ -->
         <section class="news-block">
             <h2>📢 Новости сайта</h2>
             <div class="news-content">
                 <p>Свежие обновления на Komorok:</p>
                 <ul class="news-list">
                     <li>
-                        🔍 <strong>Поиск и «Показать ещё» вернулись!</strong>
-                        На <a href="Komorium/articles.html">странице всех статей</a> снова работает поиск по материалам,
-                        порционная подгрузка карточек и подсветка совпадений жёлтым — сразу видно, где нашлось то, что вы искали.
+                        📱 <strong>Вышло приложение для Android!</strong>
+                        Теперь Komorium удобно читать с телефона — как обычное приложение, а не через браузер.
+                        Скачать можно на <a href="app.html">отдельной странице</a>. Пока только Android, iOS — в разработке.
                     </li>
                     <li>
-                        🔗 <strong>Кнопка «Поделиться» на каждой статье.</strong>
-                        На телефоне открывается системное меню со списком приложений, на компьютере — ссылка копируется
-                        в буфер обмена.
+                        📅 <strong>Статья дня на главной!</strong>
+                        Каждый день на главной появляется новая статья — одна и та же в течение суток.
+                        Заходите утром и вечером — увидите разные.
+                    </li>
+                    <li>
+                        📂 <strong>Категории прямо на главной.</strong>
+                        Теперь видно, сколько статей в каждой теме — «Деревни», «Природа»,
+                        «Гражданская война», «Голоса», «ВОВ». Клик — и открывается список
+                        с уже включённым фильтром.
+                    </li>
+                    <li>
+                        🔍 <strong>Поиск прямо на главной.</strong>
+                        Не нужно заходить в библиотеку — вводите слово и сразу переходите к найденным статьям
+                        с подсветкой совпадений.
                     </li>
                     <li>
                         🗂️ <strong>Страница Базаново стала хабом.</strong>
-                        Раздел <a href="Komorium/bazanovo/">«Базаново»</a> собрал все материалы о деревне в одном месте:
+                        Раздел <a href="Komorium/bazanovo/">«Базаново»</a> собрал все материалы о деревне:
                         совхоз, школа, фотоальбом, река Гуньгунжда, статьи о Гражданской войне и воспоминания.
                     </li>
                     <li>
-                        📚 <strong>Добавлены новые статьи!</strong> Доступны разделы:
+                        🔗 <strong>Кнопка «Поделиться» на каждой статье.</strong>
+                        На телефоне открывается системное меню со списком приложений, на компьютере —
+                        ссылка копируется в буфер обмена.
+                    </li>
+                    <li>
+                        📚 <strong>Добавлены новые статьи:</strong>
                         <a href="Komorium/bazanovo/shkola/">«Школа имени Соловьёвой»</a>,
                         <a href="Komorium/bazanovo/sovhoz/">«Совхоз «Журавлёвский»</a>,
-                        <a href="Komorium/bazanovo/people/Valentina-Rybkina/">интервью с Валентиной Рыбкиной</a>
-                        и <a href="Komorium/bazanovo/Gungunzhda/">река Гуньгунжда</a>.
+                        <a href="Komorium/bazanovo/people/Valentina-Rybkina/">интервью с Валентиной Рыбкиной</a>,
+                        <a href="Komorium/bazanovo/Gungunzhda/">река Гуньгунжда</a>,
+                        <a href="Komorium/bazanovo/civil-war/ataman-semenov/">«Семёнов в Забайкалье»</a>
+                        и <a href="Komorium/bazanovo/civil-war/semenov-biography/">биография атамана Семёнова</a>.
                     </li>
                     <li>
                         <div class="news-important">
                             <strong>⚠️ Важно!</strong>
                             Сайт находится в активной разработке. В текстах могут встречаться технические,
-                            повествовательные или орфографические ошибки. Если вы их заметили — пожалуйста, сообщите нам
-                            в <a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">Max</a>.
+                            повествовательные или орфографические ошибки. Если вы их заметили — пожалуйста,
+                            сообщите нам в <a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">Max</a>.
                             Мы будем благодарны за помощь!
                         </div>
                     </li>
@@ -148,12 +164,10 @@
         </section>
     </main>
 
-    <!-- Подвал -->
     <footer class="footer">
         <p>© 2026 Komorok</p>
     </footer>
 
-    <!-- Скрипты -->
     <script src="Komorium/articles-data.js"></script>
     <script src="homepage.js"></script>
 

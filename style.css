@@ -545,3 +545,93 @@
         font-size: 0.9rem;
     }
 }
+
+
+/* ====================================================
+   КНОПКА «СКАЧАТЬ ПРИЛОЖЕНИЕ» — два поведения
+   ==================================================== */
+
+/* ===== На компьютере: правый верхний угол ===== */
+.app-corner-btn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.2rem;
+    background: linear-gradient(135deg, #8b5e3c, #6d4830);
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(139, 94, 60, 0.35);
+    transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+}
+
+.app-corner-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(139, 94, 60, 0.5);
+    color: #fff;
+}
+.app-corner-btn:active {
+    transform: translateY(0);
+}
+
+.app-corner-icon {
+    font-size: 1.1rem;
+}
+.app-corner-text {
+    white-space: nowrap;
+}
+
+/* ===== На телефоне: обычная кнопка в hero ===== */
+.app-inline-btn {
+    display: none; /* по умолчанию скрыта */
+    padding: 0.75rem 1.8rem;
+    margin: 1rem 0 0.3rem;
+    background: linear-gradient(135deg, #8b5e3c, #6d4830);
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(139, 94, 60, 0.35);
+    transition: transform 0.15s, box-shadow 0.2s;
+}
+.app-inline-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(139, 94, 60, 0.5);
+    color: #fff;
+}
+.app-inline-btn:active {
+    transform: translateY(0);
+}
+
+/* ====================================================
+   АДАПТИВ: на телефоне — меняем кнопки местами
+   ==================================================== */
+@media (max-width: 700px) {
+    /* Скрываем верхнюю угловую кнопку */
+    .app-corner-btn {
+        display: none;
+    }
+    /* Показываем встроенную в hero */
+    .app-inline-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+}
+
+/* На очень широких экранах — чуть крупнее угловая кнопка */
+@media (min-width: 1200px) {
+    .app-corner-btn {
+        top: 20px;
+        right: 24px;
+        padding: 0.75rem 1.4rem;
+        font-size: 1rem;
+    }
+}

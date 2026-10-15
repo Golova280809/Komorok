@@ -2,7 +2,6 @@
 (function () {
     if (typeof articlesData === 'undefined') return;
 
-    // ============ УТИЛИТЫ ============
     function formatDate(iso) {
         if (!iso) return '';
         const d = new Date(iso);
@@ -24,23 +23,28 @@
         return String(s).replace(/"/g, '&quot;');
     }
 
-    // Все статьи, свежие сверху
+    // Универсальный путь к картинке для главной страницы
+    // "../img/x"      → "img/x"          (файл в корне сайта)
+    // "bazanovo/x"    → "Komorium/bazanovo/x"  (файл внутри Komorium)
+    function imageURL(img) {
+        if (!img) return '';
+        if (img.startsWith('../')) return img.slice(3);
+        return 'Komorium/' + img;
+    }
+
     const all = [...articlesData].sort(
         (a, b) => new Date(b.date) - new Date(a.date)
     );
 
-    // ============ 1. ПОСЛЕДНИЕ МАТЕРИАЛЫ ============
+    // 1. Последние материалы
     const latestGrid = document.getElementById('latest-grid');
     if (latestGrid) {
-        const latest = all.slice(0, 3);
-        latestGrid.innerHTML = latest.map(cardHTML).join('');
+        latestGrid.innerHTML = all.slice(0, 3).map(cardHTML).join('');
     }
 
-    // ============ 2. СТАТЬЯ ДНЯ (одна и та же весь день) ============
+    // 2. Статья дня
     const dailyBox = document.getElementById('daily-article');
     if (dailyBox && all.length > 0) {
-        // Определяем «номер дня» — количество дней с 1 января 2020 года.
-        // В течение суток число не меняется, значит статья тоже.
         const today = new Date();
         const startDate = new Date(2020, 0, 1);
         const dayNumber = Math.floor(
@@ -48,13 +52,11 @@
                 - Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()))
             / (1000 * 60 * 60 * 24)
         );
-
-        // Берём статью по индексу от «номера дня»
         const daily = all[dayNumber % all.length];
 
         if (daily) {
             const image = daily.image
-                ? `<img src="${escapeAttr(daily.image)}" alt="${escapeAttr(daily.title)}" loading="lazy">`
+                ? `<img src="${escapeAttr(imageURL(daily.image))}" alt="${escapeAttr(daily.title)}" loading="lazy">`
                 : `<span class="placeholder">📄</span>`;
 
             dailyBox.innerHTML = `
@@ -75,7 +77,7 @@
         }
     }
 
-    // ============ 3. КАТЕГОРИИ ============
+    // 3. Категории
     const catGrid = document.getElementById('categories-grid');
     if (catGrid) {
         const map = new Map();
@@ -101,7 +103,7 @@
         `).join('');
     }
 
-    // ============ 4. ПОИСК ============
+    // 4. Поиск
     const searchForm = document.getElementById('home-search-form');
     if (searchForm) {
         searchForm.addEventListener('submit', (e) => {
@@ -113,10 +115,10 @@
         });
     }
 
-    // ============ Карточка статьи (как в articles.html) ============
+    // Карточка статьи
     function cardHTML(a) {
         const image = a.image
-            ? `<img src="${escapeAttr(a.image)}" alt="${escapeAttr(a.title)}" loading="lazy">`
+            ? `<img src="${escapeAttr(imageURL(a.image))}" alt="${escapeAttr(a.title)}" loading="lazy">`
             : `<span class="placeholder">📄</span>`;
         return `
             <li class="article-card">
