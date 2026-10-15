@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="canonical" href="https://komorok.ru/app.html" />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <link rel="icon" type="image/png" href="logo.png" />
+
+    <meta
+        name="description"
+        content="Приложение Komorok для Android — читайте статьи об истории Забайкалья и Базаново с телефона."
+    />
+    <meta
+        name="keywords"
+        content="Komorok, приложение, APK, Android, Забайкалье, Базаново, скачать"
+    />
+
+    <meta property="og:title" content="📱 Приложение Komorok для Android" />
+    <meta
+        property="og:description"
+        content="Читайте статьи Komorium с телефона. Скачать APK бесплатно."
+    />
+    <meta property="og:url" content="https://komorok.ru/app.html" />
+    <meta property="og:image" content="https://komorok.ru/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Komorok" />
+
+    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>📱 Приложение Komorok — скачать для Android</title>
+
+    <style>
+        .app-hero {
+            text-align: center;
+            margin: 2rem 0 3rem;
+        }
+        .app-hero img {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            margin-bottom: 1.2rem;
+        }
+        .app-hero h1 {
+            font-size: 2rem;
+            color: var(--accent, #8b5e3c);
+            margin-bottom: 0.5rem;
+        }
+        .app-hero .app-subtitle {
+            color: var(--text-secondary, #6b5e4f);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #8b5e3c, #6d4830);
+            color: #fff;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.15rem;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(139, 94, 60, 0.4);
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 26px rgba(139, 94, 60, 0.55);
+            color: #fff;
+        }
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+        .download-info {
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary, #6b5e4f);
+        }
+
+        .app-section {
+            background: var(--bg-surface, #fffef9);
+            border: 1px solid var(--border-light, #d9cebf);
+            border-radius: 16px;
+            padding: 1.5rem 1.8rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 4px 14px var(--shadow-light, rgba(61,50,38,0.06));
+        }
+        .app-section h2 {
+            font-size: 1.2rem;
+            color: var(--accent, #8b5e3c);
+            margin: 0 0 0.8rem;
+            border-left: none;
+            padding-left: 0;
+            font-weight: 600;
+        }
+        .app-section ul {
+            margin: 0.4rem 0 0 1.2rem;
+            padding: 0;
+            line-height: 1.8;
+        }
+        .app-section li {
+            margin-bottom: 0.4rem;
+        }
+
+        .app-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .spec-item {
+            background: var(--bg-body, #faf7f2);
+            border: 1px solid var(--border-light, #d9cebf);
+            border-radius: 10px;
+            padding: 0.7rem 1rem;
+        }
+        .spec-label {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-secondary, #6b5e4f);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.2rem;
+        }
+        .spec-value {
+            font-weight: 600;
+            color: var(--text-primary, #3d3226);
+            font-size: 0.95rem;
+        }
+
+        .install-steps {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
+        }
+        .install-steps li {
+            position: relative;
+            padding: 0.6rem 0 0.6rem 3rem;
+            border-bottom: 1px solid var(--border-light, #d9cebf);
+            line-height: 1.6;
+        }
+        .install-steps li:last-child {
+            border-bottom: none;
+        }
+        .install-steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: var(--accent, #8b5e3c);
+            color: #fff;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .app-warning {
+            background: #fef9e7;
+            border: 1px solid #e0c36a;
+            border-left: 5px solid #c49a6c;
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            margin: 1rem 0;
+            color: #5e4630;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .app-warning strong {
+            color: #8b5e3c;
+        }
+
+        .screenshots {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 0.5rem 0 1rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .screenshots::-webkit-scrollbar {
+            height: 6px;
+        }
+        .screenshots::-webkit-scrollbar-thumb {
+            background: var(--border-light, #d9cebf);
+            border-radius: 3px;
+        }
+        .screenshots img {
+            height: 380px;
+            width: auto;
+            border-radius: 16px;
+            border: 1px solid var(--border-light, #d9cebf);
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            box-shadow: 0 4px 14px var(--shadow-light, rgba(61,50,38,0.08));
+        }
+        @media (max-width: 640px) {
+            .screenshots img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="menu">
+        <a href="index.html">Главная</a>
+        <a href="Komorium/index.html">Komorium</a>
+        <a href="Komorium/articles.html">Все статьи</a>
+        <a href="app.html">📱 Приложение</a>
+        <a href="about.html">О проекте</a>
+    </nav>
+    <hr>
+
+    <main>
+
+        <section class="app-hero">
+            <img src="logo.png" alt="Komorok" />
+            <h1>Приложение Komorok</h1>
+            <p class="app-subtitle">Читайте статьи об истории Забайкалья с телефона</p>
+
+            <!-- ⚠️ Замените путь на реальный файл приложения -->
+            <a href="app/komorok.apk" class="download-btn" download>
+                📥 Скачать для Android (.apk)
+            </a>
+            <p class="download-info">
+                Версия 1.0 · Около 5 МБ · Android 7.0 и новее
+            </p>
+        </section>
+
+        <section class="app-section">
+            <h2>📖 Что внутри</h2>
+            <ul>
+                <li>Все статьи Komorium в удобном формате для телефона</li>
+                <li>Быстрая загрузка и плавная навигация</li>
+                <li>Работает без сторонней рекламы и трекеров</li>
+                <li>Тёмная и светлая темы — по системной настройке</li>
+                <li>Кнопка «Поделиться» — делитесь статьями в мессенджерах</li>
+                <li>Обновления статей подтягиваются из сети</li>
+            </ul>
+        </section>
+
+        <section class="app-section">
+            <h2>📋 Характеристики</h2>
+            <div class="app-specs">
+                <div class="spec-item">
+                    <span class="spec-label">Платформа</span>
+                    <span class="spec-value">Android</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Версия</span>
+                    <span class="spec-value">1.0</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Размер</span>
+                    <span class="spec-value">~5 МБ</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Мин. Android</span>
+                    <span class="spec-value">7.0</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Язык</span>
+                    <span class="spec-value">Русский</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Цена</span>
+                    <span class="spec-value">Бесплатно</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="app-section">
+            <h2>📲 Как установить</h2>
+            <ol class="install-steps">
+                <li>Скачайте файл <strong>.apk</strong> по кнопке выше.</li>
+                <li>Откройте его в уведомлениях или в папке «Загрузки».</li>
+                <li>Android спросит разрешение — включите «Установка из неизвестных источников» для браузера.</li>
+                <li>Нажмите «Установить» и дождитесь окончания.</li>
+                <li>Откройте приложение Komorok на рабочем столе.</li>
+            </ol>
+            <div class="app-warning">
+                <strong>⚠️ Почему «неизвестный источник»?</strong><br>
+                Приложение распространяется напрямую, не через Google Play. Это нормально — Android всегда
+                предупреждает при установке из APK-файла.
+            </div>
+        </section>
+
+        <section class="app-section">
+            <h2>📸 Как выглядит</h2>
+            <p style="color: var(--text-secondary, #6b5e4f); font-size: 0.9rem; margin: 0 0 0.5rem;">
+                (Скриншоты можно будет добавить позже — сейчас показаны заглушки)
+            </p>
+            <div class="screenshots">
+                <img src="img/screen-1.webp" alt="Экран 1" onerror="this.style.display='none'">
+                <img src="img/screen-2.webp" alt="Экран 2" onerror="this.style.display='none'">
+                <img src="img/screen-3.webp" alt="Экран 3" onerror="this.style.display='none'">
+            </div>
+        </section>
+
+        <section class="app-section">
+            <h2>🍎 А для iPhone?</h2>
+            <p>
+                Пока приложение доступно <strong>только для Android</strong>. Версия для iOS в разработке —
+                следите за новостями в нашем <a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">канале в Max</a>.
+            </p>
+            <p>
+                Пока что на iPhone и iPad можно пользоваться сайтом через браузер — все статьи доступны
+                в разделе <a href="Komorium/articles.html">Komorium</a>.
+            </p>
+        </section>
+
+        <section class="app-section">
+            <h2>❓ Вопросы и проблемы</h2>
+            <p>
+                Если приложение не устанавливается, не запускается или вы нашли ошибку — напишите нам
+                в <a href="https://max.ru/join/eRw-DepbGxxxNPAAFlD3dJbdwG7sUe0Z9KyDsrlrQWY">канал Max</a>.
+                Постараемся помочь.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Komorok</p>
+    </footer>
+
+</body>
+</html>
