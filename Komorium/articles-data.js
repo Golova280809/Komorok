@@ -80,5 +80,23 @@ const articlesData = [
     date: "2026-10-13",
     image: "",
     description: "Школа в Базаново, названная в честь Валентины Соловьёвой."
+  },
+  {
+    title: "📖 Литература",
+    url: "literature/",
+    category: "literature",
+    categoryLabel: "Литература",
+    date: "2026-10-15",
+    image: "",
+    description: "Русские писатели и поэты — биографии, произведения, интересные факты."
+  },
+  {
+    title: "📜 Александр Сергеевич Пушкин",
+    url: "literature/author/Pushkin/",
+    category: "literature",
+    categoryLabel: "Литература",
+    date: "2026-10-15",
+    image: "../img/pushkin.webp",
+    description: "«Солнце русской поэзии»: подробная биография, ключевые произведения, интересные факты."
   }
 ];
