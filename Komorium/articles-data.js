@@ -100,6 +100,15 @@ const articlesData = [
     description: "История молодого города Забайкалья: от геологической экспедиции 1963 года до урановой столицы России."
   },
   {
+    title: "🏙 Моногород",
+    url: "krasnokamensk/monogorod/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Что такое моногород (монопрофильное муниципальное образование). Почему Краснокаменск — моногород, риски и господдержка."
+  },
+  {
     title: "⚙️ ППГХО имени Е. П. Славского",
     url: "krasnokamensk/ppgho/",
     category: "cities",
