@@ -3,37 +3,67 @@
 
 import os
 import re
+from pathlib import Path
 
-# 1. Корневая папка энциклопедии
-articles_root = "Komorium"
+# 1. Корневая папка энциклопедии (относительно корня репозитория)
+ARTICLES_ROOT = "Komorium"
+HTML_FILE = Path("index.html")
 
-# 2. Рекурсивно находим все index.html, исключая главную страницу энциклопедии
-count = 0
-for root, dirs, files in os.walk(articles_root):
-    for file in files:
-        if file == "index.html":
-            # Пропускаем саму главную страницу Komorium/index.html
-            if root == articles_root:
-                continue
-            count += 1
 
-print(f"Найдено статей: {count}")
+def count_articles() -> int:
+    """Рекурсивно считает index.html внутри Komorium, кроме самого Komorium/index.html."""
+    count = 0
+    for root, dirs, files in os.walk(ARTICLES_ROOT):
+        for file in files:
+            if file == "index.html" and root != ARTICLES_ROOT:
+                count += 1
+    return count
 
-# 3. Обновляем index.html (главную страницу сайта)
-html_file = "index.html"
-with open(html_file, "r", encoding="utf-8") as f:
-    content = f.read()
 
-pattern = r"(<!-- articles-count -->\s*<p>В энциклопедии уже )\d+( статей</p>)"
-replacement = rf"\g<1>{count}\g<2>"
+def articles_word(n: int) -> str:
+    """Правильное склонение слова 'статья'."""
+    n10 = n % 10
+    n100 = n % 100
+    if n100 in (11, 12, 13, 14):
+        return "статей"
+    if n10 == 1:
+        return "статья"
+    if n10 in (2, 3, 4):
+        return "статьи"
+    return "статей"
 
-new_content = re.sub(pattern, replacement, content)
 
-if new_content == content:
-    print("Количество статей не изменилось.")
-    exit(0)
+def main():
+    count = count_articles()
+    word = articles_word(count)
+    print(f"Найдено статей: {count}")
 
-with open(html_file, "w", encoding="utf-8") as f:
-    f.write(new_content)
+    if not HTML_FILE.exists():
+        print(f"⚠️ Файл {HTML_FILE} не найден.")
+        return
 
-print(f"Главная страница обновлена! Статей: {count}")
+    content = HTML_FILE.read_text(encoding="utf-8")
+
+    # Регулярка ищет: <!-- articles-count --> ... <p>В энциклопедии N статей</p>
+    pattern = re.compile(
+        r"(<!-- articles-count -->\s*<p>В энциклопедии\s*)\d+(\s*стат\w*)",
+        re.UNICODE
+    )
+
+    new_content, subs = pattern.subn(rf"\g<1>{count} {word}", content)
+
+    if subs == 0:
+        print("⚠️ Строка со счётчиком статей не найдена в index.html.")
+        print("   Проверьте, что над <p>В энциклопедии N статей есть <!-- articles-count -->.")
+        return
+
+    if new_content == content:
+        print(f"ℹ️ Изменений нет — уже {count} {word}.")
+        return
+
+    HTML_FILE.write_text(new_content, encoding="utf-8")
+    print(f"✅ Главная обновлена! Статей: {count} ({word}).")
+
+
+if __name__ == "__main__":
+    main()
