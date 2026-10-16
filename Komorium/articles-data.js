@@ -80,5 +80,50 @@ const articlesData = [
     date: "2026-10-13",
     image: "",
     description: "Школа в Базаново, названная в честь Валентины Соловьёвой."
+  },
+  {
+    title: "🏙 Краснокаменск",
+    url: "krasnokamensk/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "../img/Krasnokamensk/photo-1.webp",
+    description: "Краснокаменск — город в Забайкальском крае. История, ППГХО, места, люди."
+  },
+  {
+    title: "📜 История Краснокаменска",
+    url: "krasnokamensk/istoriya/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "История молодого города Забайкалья, основанного в 1969 году."
+  },
+  {
+    title: "⚙️ ППГХО",
+    url: "krasnokamensk/ppgho/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Приаргунское производственное горно-химическое объединение — градообразующее предприятие Краснокаменска."
+  },
+  {
+    title: "🏛 Места Краснокаменска",
+    url: "krasnokamensk/places/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Памятники, храмы, парки и площади Краснокаменска."
+  },
+  {
+    title: "👥 Люди Краснокаменска",
+    url: "krasnokamensk/people/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Рассказы о людях, оставивших след в истории Краснокаменска."
   }
 ];
