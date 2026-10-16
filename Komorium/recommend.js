@@ -5,10 +5,37 @@
     const container = document.getElementById('recommend-container');
     if (!container) return;
 
-    const COUNT = 4; // сколько рекомендаций показывать
+    const COUNT = 4;
 
-    // === Определяем URL текущей статьи относительно Komorium/ ===
-    // Например: /Komorium/bazanovo/shkola/ → "bazanovo/shkola/"
+    // === Определяем базовый префикс для ссылок ===
+    // Смотрим на путь страницы и вычисляем, сколько "../" нужно,
+    // чтобы дойти до папки Komorium/
+    function getKomoriumPrefix() {
+        // Примеры:
+        // /Komorium/vov/index.html           → "../"
+        // /Komorium/bazanovo/index.html      → "../"
+        // /Komorium/bazanovo/shkola/index.html → "../../"
+        // /Komorium/krasnokamensk/places/index.html → "../../"
+        // /Komorium/krasnokamensk/civil-war/ataman-semenov/index.html → "../../../"
+
+        const path = window.location.pathname.replace(/\/[^/]*$/, ''); // убираем "index.html"
+        const idx = path.indexOf('/Komorium/');
+        if (idx === -1) {
+            // Не внутри Komorium — возвращаем корень
+            return '';
+        }
+        // Часть пути ПОСЛЕ /Komorium/
+        const after = path.substring(idx + '/Komorium/'.length);
+        if (!after) return ''; // мы уже в Komorium/
+
+        // Считаем количество сегментов
+        const segments = after.split('/').filter(Boolean);
+        return '../'.repeat(segments.length);
+    }
+
+    const PREFIX = getKomoriumPrefix();
+
+    // === Определяем текущую статью ===
     const path = window.location.pathname;
     let currentUrl = '';
     for (const a of articlesData) {
@@ -20,22 +47,17 @@
         }
     }
 
-    // === Ищем текущую статью ===
     const current = articlesData.find(a => a.url === currentUrl) || null;
     const currentCategory = current ? current.category : null;
 
-    // === Собираем пул кандидатов ===
-    // 1) той же категории, кроме текущей
+    // === Кандидаты ===
     let sameCategory = articlesData.filter(a =>
         a.url !== currentUrl && currentCategory && a.category === currentCategory
     );
-
-    // 2) остальные (не текущая и не из sameCategory)
     let others = articlesData.filter(a =>
         a.url !== currentUrl && a.category !== currentCategory
     );
 
-    // Перемешиваем
     function shuffle(arr) {
         const copy = [...arr];
         for (let i = copy.length - 1; i > 0; i--) {
@@ -47,7 +69,6 @@
     sameCategory = shuffle(sameCategory);
     others = shuffle(others);
 
-    // Итог: сначала из той же категории, добираем из других
     const picked = [...sameCategory, ...others].slice(0, COUNT);
 
     if (picked.length === 0) {
@@ -55,16 +76,37 @@
         return;
     }
 
-    // === Заголовок блока ===
     const headingText = currentCategory
         ? '📖 Читайте также'
         : '📖 Рекомендуем почитать';
 
-    // === Карточки ===
+    // === Карточка ===
+    // КАРТИНКИ — путь считается отдельно:
+    //   "../img/x" → <PREFIX> + "img/x"
+    //   "bazanovo/x" → <PREFIX> + "bazanovo/x"
+    // Потому что картинки в data тоже записаны от Komorium/
+    function imageURL(img) {
+        if (!img) return '';
+        // Если путь уже начинается с ../ — считаем его от корня сайта
+        // Но для recommend.js мы находимся внутри Komorium, поэтому
+        // любой путь в articles-data.js "относительно Komorium".
+        // Используем универсальный подход:
+        if (img.startsWith('../')) {
+            // "../img/x" — файл в корне сайта
+            // Тогда PREFIX ведёт до Komorium, а нам нужно ещё на 1 выше → добавляем ../
+            return PREFIX + '../' + img.slice(3);
+        }
+        return PREFIX + img;
+    }
+
     function cardHTML(a) {
         const image = a.image
-            ? `<img src="${a.image}" alt="${escapeAttr(a.title)}" loading="lazy">`
+            ? `<img src="${escapeAttr(imageURL(a.image))}" alt="${escapeAttr(a.title)}" loading="lazy">`
             : `<span class="placeholder">📄</span>`;
+
+        // ССЫЛКА на статью — PREFIX + url из данных
+        const href = PREFIX + a.url;
+
         return `
             <li class="article-card">
                 <div class="article-image-wrapper">${image}</div>
@@ -75,7 +117,7 @@
                         <span>${escapeHTML(a.date)}</span>
                     </div>
                     <p class="article-description">${escapeHTML(a.description || '')}</p>
-                    <a href="${a.url}" class="article-link">Читать статью →</a>
+                    <a href="${href}" class="article-link">Читать статью →</a>
                 </div>
             </li>
         `;
