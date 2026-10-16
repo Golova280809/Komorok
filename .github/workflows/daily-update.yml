@@ -7,8 +7,8 @@ on:
       - 'index.html'
       - 'scripts/**'
   schedule:
-    - cron: '0 8 * * *'   # каждый день в 8:00 UTC
-  workflow_dispatch:        # ручной запуск
+    - cron: '0 8 * * *'
+  workflow_dispatch:
 
 jobs:
   update:
@@ -24,11 +24,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
-      - name: Установить зависимости (если нужны)
-        run: |
-          python -m pip install --upgrade pip
-          # pip install requests  # раскомментируйте, если нужно
 
       - name: Обновить счётчик дней на сайте
         run: python scripts/update_days.py
@@ -55,4 +50,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "🤖 Автообновление: счётчики, sitemap"
+          git pull --rebase origin main
           git push
