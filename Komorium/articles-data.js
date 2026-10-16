@@ -87,8 +87,8 @@ const articlesData = [
     category: "cities",
     categoryLabel: "Города",
     date: "2026-10-16",
-    image: "../img/Krasnokamensk/photo-1.webp",
-    description: "Краснокаменск — город в Забайкальском крае. История, ППГХО, места, люди."
+    image: "",
+    description: "Краснокаменск — город тополей и урана, второй по величине в Забайкальском крае. История, ППГХО, места, люди."
   },
   {
     title: "📜 История Краснокаменска",
@@ -97,16 +97,61 @@ const articlesData = [
     categoryLabel: "Города",
     date: "2026-10-16",
     image: "",
-    description: "История молодого города Забайкалья, основанного в 1969 году."
+    description: "История молодого города Забайкалья: от геологической экспедиции 1963 года до урановой столицы России."
   },
   {
-    title: "⚙️ ППГХО",
+    title: "⚙️ ППГХО имени Е. П. Славского",
     url: "krasnokamensk/ppgho/",
     category: "cities",
     categoryLabel: "Города",
     date: "2026-10-16",
     image: "",
-    description: "Приаргунское производственное горно-химическое объединение — градообразующее предприятие Краснокаменска."
+    description: "ПАО «ППГХО имени Е. П. Славского» — крупнейшее уранодобывающее предприятие России. История, продукция, подразделения, награды."
+  },
+  {
+    title: "⛏ Урановое горно-рудное управление (УГРУ)",
+    url: "krasnokamensk/ppgho/ugru/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "УГРУ — подразделение ППГХО, преемник первого рудника, единственное в России предприятие по добыче природного урана."
+  },
+  {
+    title: "⛏ Посёлок Уртуйский",
+    url: "krasnokamensk/ppgho/urtuysky/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Посёлок и угольный разрез ППГХО в Оловяннинском районе Забайкальского края. История, география, население."
+  },
+  {
+    title: "🏢 Атомредметзолото (АРМЗ)",
+    url: "krasnokamensk/ppgho/armz/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Урановый холдинг Росатома, горнорудный дивизион. Владеет 97,7% акций ППГХО."
+  },
+  {
+    title: "🏅 Орден Ленина",
+    url: "krasnokamensk/ppgho/orden-lenina/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Высшая государственная награда СССР. ППГХО награждён орденом Ленина в 1980 году."
+  },
+  {
+    title: "🏅 Орден Трудового Красного Знамени",
+    url: "krasnokamensk/ppgho/orden-trudovogo-znameni/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Общегражданская награда СССР за трудовые заслуги. ППГХО награждён в 1980 году."
   },
   {
     title: "🏛 Места Краснокаменска",
@@ -115,7 +160,7 @@ const articlesData = [
     categoryLabel: "Города",
     date: "2026-10-16",
     image: "",
-    description: "Памятники, храмы, парки и площади Краснокаменска."
+    description: "ДК «Даурия», Минералогический музей, храм Спаса Нерукотворного, памятники, Вал Чингисхана."
   },
   {
     title: "👥 Люди Краснокаменска",
@@ -124,6 +169,51 @@ const articlesData = [
     categoryLabel: "Города",
     date: "2026-10-16",
     image: "",
-    description: "Рассказы о людях, оставивших след в истории Краснокаменска."
+    description: "Рассказы о тех, кто строил и строит Краснокаменск: Славский, Покровский, Щербина, Киселёв, Зверев."
+  },
+  {
+    title: "👤 Ефим Павлович Славский",
+    url: "krasnokamensk/people/slavsky/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Трижды Герой Социалистического Труда, министр среднего машиностроения СССР. Его именем названо ППГХО в Краснокаменске."
+  },
+  {
+    title: "👤 Сталь Сергеевич Покровский",
+    url: "krasnokamensk/people/pokrovsky/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Первый директор ППГХО (1968–1997), Герой Социалистического Труда, почётный гражданин Краснокаменска."
+  },
+  {
+    title: "👤 Эдуард Алексеевич Щербина",
+    url: "krasnokamensk/people/shcherbina/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Горняк ППГХО, бригадир. Герой Труда Российской Федерации (2023)."
+  },
+  {
+    title: "👤 Иван Александрович Киселев",
+    url: "krasnokamensk/people/kiselev/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Генеральный директор ПАО «ППГХО имени Е. П. Славского» (с 2019 г.), потомственный горняк."
+  },
+  {
+    title: "👤 Константин Анатольевич Зверев",
+    url: "krasnokamensk/people/zverev/",
+    category: "cities",
+    categoryLabel: "Города",
+    date: "2026-10-16",
+    image: "",
+    description: "Глава Краснокаменского муниципального округа (с 26 сентября 2025 г.). Курирует мастер-план развития города."
   }
 ];
