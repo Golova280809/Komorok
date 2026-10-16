@@ -1,10 +1,292 @@
 /* ====================================================
-   РАЗДЕЛ «КРАСНОКАМЕНСК» — собственные стили
+   РАЗДЕЛ «КРАСНОКАМЕНСК»
+   ТОПОЛИНО-УРАНОВЫЙ СТИЛЬ
+   Зелень тополей + урановое свечение
    ==================================================== */
 
-/* Здесь можно добавлять специфичные стили,
-   которые не подходят для всего Komorium. */
+/* ====================================================
+   ПЕРЕМЕННЫЕ (только для Краснокаменска)
+   ==================================================== */
+.krasnokamensk-content {
+    /* Уран — изумруд и свечение */
+    --uran-dark: #0d3b2e;         /* глубокий изумруд */
+    --uran-main: #1a7a52;         /* основной уран-зелёный */
+    --uran-bright: #2ecc71;       /* яркое свечение */
+    --uran-glow: rgba(46, 204, 113, 0.35);
 
-/* Например — стили для будущих карточек или разделов. */
+    /* Тополь — светлая листва */
+    --poplar-leaf: #7cb342;       /* листва тополя */
+    --poplar-light: #c5e1a5;      /* молодая листва */
+    --poplar-puh: #f5f5dc;        /* тополиный пух */
 
-/* Сейчас файл почти пуст — всё берётся из komorium.css */
+    /* Фон и границы */
+    --uran-bg: #f0f9f4;           /* мягкий зелёный фон */
+    --uran-border: #a8e6c1;
+    --uran-text: #1a3d2c;
+}
+
+/* ====================================================
+   ЗАГОЛОВКИ
+   ==================================================== */
+.krasnokamensk-content > h1 {
+    color: var(--uran-dark);
+    border-bottom: 3px solid var(--uran-main);
+    padding-bottom: 12px;
+    text-align: center;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    position: relative;
+}
+
+/* Тонкий «лист» под заголовком */
+.krasnokamensk-content > h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--poplar-leaf);
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+.krasnokamensk-content h2 {
+    color: var(--uran-dark);
+    border-left: 6px solid var(--poplar-leaf);
+    padding-left: 15px;
+    margin-top: 30px;
+    font-weight: normal;
+    position: relative;
+}
+
+/* Светящаяся «урановая» точка */
+.krasnokamensk-content h2::before {
+    content: "";
+    position: absolute;
+    left: -3px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--uran-bright);
+    box-shadow: 0 0 12px var(--uran-glow);
+    opacity: 0.85;
+}
+
+.krasnokamensk-content h3 {
+    color: var(--uran-main);
+    margin-top: 25px;
+    font-weight: 600;
+    position: relative;
+    padding-left: 22px;
+}
+
+/* Маленький «листок» перед H3 */
+.krasnokamensk-content h3::before {
+    content: "🍃";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+/* ====================================================
+   ССЫЛКИ — зелёные, «урановые»
+   ==================================================== */
+.krasnokamensk-content a:not([class]) {
+    color: var(--uran-main);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--uran-main);
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.krasnokamensk-content a:not([class]):hover {
+    color: var(--uran-dark);
+    border-bottom-color: var(--poplar-leaf);
+    border-bottom-style: solid;
+    background: var(--poplar-puh);
+}
+
+.krasnokamensk-content a:not([class]):visited {
+    color: #4a7c59;
+    border-bottom-color: #4a7c59;
+}
+
+/* ====================================================
+   ССЫЛКА «← Назад» — серая, без подчёркивания
+   ==================================================== */
+.krasnokamensk-back {
+    color: var(--text-secondary, #6b5e4f) !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
+    font-size: 0.9rem;
+    background: none !important;
+}
+.krasnokamensk-back:hover {
+    color: var(--uran-main) !important;
+}
+
+/* ====================================================
+   ТАБЛИЦЫ — тополино-урановый стиль
+   ==================================================== */
+.krasnokamensk-content .table {
+    border: 1px solid var(--uran-border);
+    box-shadow: 0 2px 12px rgba(26, 122, 82, 0.12);
+}
+
+.krasnokamensk-content .table .table-section th {
+    background: linear-gradient(135deg, var(--uran-main), var(--uran-dark)) !important;
+    color: #fff !important;
+    border-bottom: 1px solid var(--uran-dark) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.03em;
+}
+
+.krasnokamensk-content .table tbody th {
+    background: var(--poplar-light) !important;
+    color: var(--uran-dark) !important;
+    border-right: 1px solid var(--uran-border) !important;
+}
+
+.krasnokamensk-content .table tbody tr:nth-child(even) td {
+    background: rgba(197, 225, 165, 0.25) !important;
+}
+.krasnokamensk-content .table tbody tr:nth-child(even) th {
+    background: rgba(168, 230, 193, 0.5) !important;
+}
+
+.krasnokamensk-content .table tbody tr:hover th,
+.krasnokamensk-content .table tbody tr:hover td {
+    background: var(--poplar-puh) !important;
+}
+
+.krasnokamensk-content .table a {
+    color: var(--uran-main) !important;
+    border-bottom: 1px dashed var(--uran-main) !important;
+}
+.krasnokamensk-content .table a:hover {
+    color: var(--uran-dark) !important;
+    border-bottom-style: solid !important;
+}
+
+/* ====================================================
+   TOP-MENU (навигация в хабе) — тополино-урановые кнопки
+   ==================================================== */
+.krasnokamensk-content .top-menu a {
+    background: linear-gradient(135deg, var(--poplar-leaf), var(--uran-main));
+    color: #fff;
+    border: none;
+    box-shadow: 0 3px 12px rgba(26, 122, 82, 0.35);
+    transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+}
+
+.krasnokamensk-content .top-menu a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(46, 204, 113, 0.45);
+    background: linear-gradient(135deg, var(--uran-bright), var(--poplar-leaf));
+    color: #fff;
+    text-decoration: none;
+}
+
+/* ====================================================
+   БЛОКИ ЦИТАТ — тополиный пух
+   ==================================================== */
+.krasnokamensk-content .quote,
+.krasnokamensk-content .quote-badge {
+    background: var(--poplar-puh) !important;
+    border-left-color: var(--poplar-leaf) !important;
+    color: var(--uran-dark) !important;
+}
+
+/* ====================================================
+   HIGHLIGHT (выделение слов)
+   ==================================================== */
+.krasnokamensk-content .highlight {
+    background: var(--poplar-puh);
+    color: var(--uran-dark);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* ====================================================
+   КАРТИНКИ — зелёная тень
+   ==================================================== */
+.krasnokamensk-content .article-figure img,
+.krasnokamensk-content figure img {
+    border: 1px solid var(--uran-border);
+    box-shadow: 0 4px 16px rgba(26, 122, 82, 0.15);
+}
+
+/* ====================================================
+   РЕКОМЕНДАЦИИ В КОНЦЕ
+   ==================================================== */
+.krasnokamensk-content .recommend-block {
+    border-top: 2px solid var(--uran-border);
+}
+
+.krasnokamensk-content .recommend-block h2 {
+    border-left: none;
+    padding-left: 0;
+    color: var(--uran-main);
+    position: relative;
+}
+.krasnokamensk-content .recommend-block h2::before {
+    display: none;
+}
+
+/* ====================================================
+   КНОПКА «ПОДЕЛИТЬСЯ»
+   ==================================================== */
+.krasnokamensk-content .share-btn {
+    background: linear-gradient(135deg, var(--poplar-leaf), var(--uran-main)) !important;
+    box-shadow: 0 3px 12px rgba(26, 122, 82, 0.35) !important;
+}
+.krasnokamensk-content .share-btn:hover {
+    background: linear-gradient(135deg, var(--uran-bright), var(--poplar-leaf)) !important;
+    box-shadow: 0 6px 18px rgba(46, 204, 113, 0.5) !important;
+}
+
+/* ====================================================
+   ХЛЕБНЫЕ КРОШКИ
+   ==================================================== */
+.krasnokamensk-content .breadcrumb a {
+    color: var(--uran-main);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--uran-main);
+}
+.krasnokamensk-content .breadcrumb a:hover {
+    color: var(--uran-dark);
+    border-bottom-style: solid;
+}
+
+/* ====================================================
+   ДЕКОР: тополиный пух в шапке раздела
+   ==================================================== */
+
+/* Плавное появление лёгких «пушинок» на фоне hero-блока */
+.krasnokamensk-content > h1::before {
+    content: "🌿";
+    display: block;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 0.3rem;
+    opacity: 0.7;
+    animation: krasno-leaf 3s ease-in-out infinite;
+}
+
+@keyframes krasno-leaf {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50%      { transform: translateY(-4px) rotate(3deg); }
+}
+
+/* Ссылки в тексте получают лёгкое «дыхание» при наведении */
+.krasnokamensk-content a:not([class]):hover {
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 3px;
+    transition: padding 0.15s, background 0.15s;
+}
