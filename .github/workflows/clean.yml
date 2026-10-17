@@ -1,0 +1,32 @@
+name: Очистка репозитория (WebP + сортировка)
+
+on:
+  workflow_dispatch:   # запуск вручную кнопкой
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # чтобы мог коммитить изменения обратно
+
+    steps:
+      - name: Клонировать репозиторий
+        uses: actions/checkout@v4
+
+      - name: Установить Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Установить Pillow
+        run: pip install Pillow
+
+      - name: Запустить скрипт очистки
+        run: python scripts/clean_repo.py
+
+      - name: Закоммитить изменения
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Автоочистка: WebP и сортировка" && git push)
