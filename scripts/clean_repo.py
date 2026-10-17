@@ -123,17 +123,7 @@ def step2_convert_all_images():
 def step3_replace_everywhere():
     """
     Заменить ссылки на .png/.jpg/.jpeg на .webp во ВСЕХ текстовых файлах.
-
-    Ловит:
-    - src="...png"
-    - href="...jpg"
-    - url(...png)
-    - srcset="...png 1x, ...jpg 2x"
-    - любые строки вида "путь/файл.png"
     """
-    # Регулярка: любое слово с расширением .png/.jpg/.jpeg,
-    # но только если перед ним есть / или начало строки (чтобы не трогать "hello.png.txt")
-    # Используем границу слова перед точкой.
     pattern = re.compile(
         r"([\w\-./\\]+?)\.(png|jpg|jpeg)(\b)",
         re.IGNORECASE
@@ -170,10 +160,8 @@ def step3_replace_everywhere():
 
 def step4_check_broken_links():
     """Проверить битые ссылки в HTML и CSS."""
-    # В HTML: src="..." и href="..." (только для картинок/локальных файлов)
-    # В CSS: url(...)
-    html_pattern = re.compile(r'(?:src|href)=["\']([^"\']+)["\']')
-    css_pattern = re.compile(r"url\(["\']?([^"\')]+)["\']?\)")
+    html_pattern = re.compile(r'''(?:src|href)=["']([^"']+)["']''')
+    css_pattern = re.compile(r"""url\(["']?([^"')]+)["']?\)""")
 
     broken = 0
 
@@ -199,7 +187,7 @@ def step4_check_broken_links():
             if src.startswith(("http://", "https://", "data:", "//", "#", "mailto:", "tel:")):
                 continue
             if src.endswith((".html", ".htm")):
-                continue  # ссылки на страницы, не картинки
+                continue
 
             target = (file.parent / src).resolve()
             if not target.exists():
