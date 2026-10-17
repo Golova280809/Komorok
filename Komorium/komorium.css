@@ -1168,3 +1168,60 @@ img {
         padding: 0.75rem 1rem;
     }
 }
+
+/* ====================================================
+   ПАГИНАЦИЯ
+   ==================================================== */
+.pagination {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0 2rem;
+    flex-wrap: wrap;
+}
+
+.page-btn {
+    min-width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border-light, #d9cebf);
+    background: var(--bg-surface, #fffef9);
+    color: var(--text-primary, #3d3226);
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-btn:hover {
+    background: var(--menu-hover, #f0e8da);
+    border-color: var(--accent, #8b5e3c);
+    transform: translateY(-2px);
+}
+
+.page-btn.active {
+    background: var(--accent, #8b5e3c);
+    border-color: var(--accent, #8b5e3c);
+    color: #fff;
+    cursor: default;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(139, 94, 60, 0.3);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+    .page-btn {
+        min-width: 38px;
+        height: 38px;
+        font-size: 14px;
+    }
+    .pagination {
+        gap: 6px;
+    }
+}
