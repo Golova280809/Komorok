@@ -5,12 +5,12 @@ import datetime
 import re
 from pathlib import Path
 
-# 1. Дата рождения проекта (первый коммит — 29 марта 2026)
+# Дата рождения проекта (первый коммит — 29 марта 2026)
 BIRTHDAY = datetime.date(2026, 3, 29)
 TODAY = datetime.date.today()
 DAYS = (TODAY - BIRTHDAY).days
 
-# 2. Путь к главной странице (относительно корня репозитория)
+# Путь к главной странице (относительно корня репозитория)
 HTML_FILE = Path("index.html")
 
 
@@ -32,11 +32,23 @@ def main():
         print(f"⚠️ Файл {HTML_FILE} не найден.")
         return
 
-    content = HTML_FILE.read_text(encoding="utf-8")
+    # utf-8-sig автоматически снимает BOM, если он есть
+    content = HTML_FILE.read_text(encoding="utf-8-sig")
+
+    # Заменяем невидимые пробелы на обычные
+    for invisible in ("\u00a0", "\u2009", "\u202f", "\u2007", "\u2008"):
+        content = content.replace(invisible, " ")
 
     word = days_word(DAYS)
+
+    # Гибкая регулярка:
+    # — комментарий с любыми пробелами
+    # — <p> с любым содержимым до слова «прошло»
+    # — «прошло», необязательное двоеточие, любые пробелы
+    # — число (заменяем)
+    # — слово «день/дня/дней» (тоже заменяем)
     pattern = re.compile(
-        r"(<!-- project-age-counter -->\s*<p>С момента запуска сайта прошло:\s*)\d+(\s*дн\w*)",
+        r"(<!--\s*project-age-counter\s*-->\s*<p>[^<]*?прошло\s*:?\s*)\d+(\s*дн\w*)",
         re.UNICODE
     )
 
@@ -44,7 +56,7 @@ def main():
 
     if count == 0:
         print("⚠️ Строка со счётчиком дней не найдена в index.html.")
-        print("   Проверьте, что над <p> есть комментарий <!-- project-age-counter -->.")
+        print("   Проверьте кодировку и скрытые символы.")
         return
 
     if new_content == content:
