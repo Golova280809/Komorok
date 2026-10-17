@@ -10,6 +10,69 @@ const articlesData = [
     description: "81 год Победы в Великой Отечественной войне. Поздравление, история, значение. Komorok."
   },
   {
+    title: "👥 Люди ВОВ",
+    url: "vov/people/",
+    category: "VOV",
+    categoryLabel: "ВОВ",
+    date: "2026-10-17",
+    image: "",
+    description: "Герои Великой Отечественной войны: пионеры-герои, партизаны, солдаты."
+  },
+  {
+    title: "🎖️ Пионеры-герои",
+    url: "vov/people/pionery-geroi/",
+    category: "VOV",
+    categoryLabel: "ВОВ",
+    date: "2026-10-17",
+    image: "",
+    description: "Юные защитники Родины, Герои Советского Союза: Зина Портнова, Марат Казей, Валя Котик, Саша Чекалин, Лёня Голиков."
+  },
+  {
+    title: "🎖️ Зина Портнова",
+    url: "vov/people/pionery-geroi/zina-portnova/",
+    category: "VOV",
+    categoryLabel: "ВОВ",
+    date: "2026-10-17",
+    image: "",
+    description: "Юная подпольщица и Герой Советского Союза. Подполье «Юные мстители», диверсия в столовой, пытки и казнь."
+  },
+  {
+    title: "🎖️ Марат Казей",
+    url: "vov/people/pionery-geroi/marat-kazey/",
+    category: "VOV",
+    categoryLabel: "ВОВ",
+    date: "2026-10-17",
+    image: "",
+    description: "Юный партизан-разведчик, Герой Советского Союза. Погиб в 14 лет, подорвав себя гранатой."
+  },
+  {
+    title: "🎖️ Валя Котик",
+    url: "vov/people/pionery-geroi/valya-kotik/",
+    category: "VOV",
+    categoryLabel: "ВОВ",
+    date: "2026-10-17",
+    image: "",
+    description: "Самый молодой Герой Советского Союза. Юный партизан-разведчик из Шепетовки."
+  },
+  {
+    title: "🎖️ Саша Чекалин",
+    url: "vov/people/pionery-geroi/sasha-chekalin/",
+    category: "VOV",
+    categoryLabel: "ВОВ",
+    date: "2026-10-17",
+    image: "",
+    description: "Юный партизан Тульской области, Герой Советского Союза. Казнён фашистами в 16 лет."
+  },
+  {
+    title: "🎖️ Лёня Голиков",
+    url: "vov/people/pionery-geroi/lenya-golikov/",
+    category: "VOV",
+    categoryLabel: "ВОВ",
+    date: "2026-10-17",
+    image: "",
+    description: "Юный партизан, Герой Советского Союза. Захватил портфель с документами немецкого генерала."
+  },
+  {
     title: "Базаново",
     url: "bazanovo/",
     category: "villages",
