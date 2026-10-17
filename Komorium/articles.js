@@ -8,8 +8,9 @@
 
     if (!grid) return;
 
-    const PAGE_SIZE = 6;          // сколько карточек за раз по «Показать ещё»
-    const PAGINATION_SIZE = 50;   // сколько карточек на одной странице пагинации
+    const PAGE_SIZE = 6;
+    const PAGINATION_SIZE = 50;
+    const CONTEXT_CHARS = 60;   // сколько символов вокруг совпадения показывать
 
     let currentCategory = 'all';
     let currentSearch = '';
@@ -62,12 +63,39 @@
         return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
+    // === Подсветка + вырезание контекста вокруг совпадения ===
     function highlight(text, query) {
-        const safe = escapeHTML(text);
+        const raw = String(text || '');
+        const safe = escapeHTML(raw);
         const q = (query || '').trim();
+
         if (!q) return safe;
+
+        // Ищем первое совпадение в исходном тексте
+        const lowerText = raw.toLowerCase();
+        const lowerQ = q.toLowerCase();
+        const matchIdx = lowerText.indexOf(lowerQ);
+
+        // Если не нашли — просто возвращаем как есть
+        if (matchIdx === -1) return safe;
+
+        // Вырезаем фрагмент вокруг совпадения
+        const matchLen = q.length;
+        const start = Math.max(0, matchIdx - CONTEXT_CHARS);
+        const end = Math.min(raw.length, matchIdx + matchLen + CONTEXT_CHARS);
+
+        let snippet = raw.slice(start, end);
+
+        // Добавляем многоточия по краям, если обрезали
+        const prefix = start > 0 ? '… ' : '';
+        const suffix = end < raw.length ? ' …' : '';
+
+        // Экранируем и подсвечиваем
+        const safeSnippet = escapeHTML(snippet);
         const re = new RegExp(escapeRegex(escapeHTML(q)), 'gi');
-        return safe.replace(re, match => `<mark>${match}</mark>`);
+        const highlighted = safeSnippet.replace(re, match => `<mark>${match}</mark>`);
+
+        return prefix + highlighted + suffix;
     }
 
     function renderCard(article) {
@@ -138,7 +166,6 @@
         pagination.style.display = 'flex';
         pagination.innerHTML = '';
 
-        // Кнопка «Назад»
         if (currentPage > 1) {
             const prev = document.createElement('button');
             prev.className = 'page-btn';
@@ -152,7 +179,6 @@
             pagination.appendChild(prev);
         }
 
-        // Кнопки страниц
         for (let i = 1; i <= totalPages; i++) {
             const btn = document.createElement('button');
             btn.className = 'page-btn';
@@ -167,7 +193,6 @@
             pagination.appendChild(btn);
         }
 
-        // Кнопка «Вперёд»
         if (currentPage < totalPages) {
             const next = document.createElement('button');
             next.className = 'page-btn';
@@ -218,7 +243,6 @@
 
     renderFilters();
 
-    // Если в URL есть ?category= — активируем соответствующую кнопку
     if (urlCat) {
         const btn = document.querySelector(`.filter-btn[data-category="${urlCat}"]`);
         if (btn) {
