@@ -4,11 +4,12 @@ clean_repo.py — полная очистка и оптимизация репо
 
 Что делает:
 1. Удаляет пустую папку blog/ (если пустая).
-2. Находит ВСЕ PNG/JPG/JPEG во всём репозитории (не только img/).
+2. Находит ВСЕ PNG/JPG/JPEG во всём репозитории.
 3. Конвертирует их в WebP и удаляет оригиналы.
-4. Обновляет HTML-файлы: заменяет .png/.jpg/.jpeg на .webp в путях.
-5. Логирует битые ссылки (файл не найден).
-6. Раскладывает картинки из img/ по папкам статей (по правилам).
+4. Во ВСЕХ текстовых файлах (HTML, CSS, JS, JSON) заменяет
+   ссылки на .png/.jpg/.jpeg → .webp.
+5. Логирует битые ссылки в HTML/CSS.
+6. Раскладывает картинки из img/ по папкам статей.
 """
 
 import re
@@ -18,14 +19,18 @@ from PIL import Image
 
 ROOT = Path(__file__).parent.parent
 BLOG_DIR = ROOT / "blog"
+IMG_DIR = ROOT / "img"
 
 CONVERT_EXTENSIONS = {".png", ".jpg", ".jpeg"}
 WEBP_QUALITY = 85
 
-# Расширения, которые заменяем в HTML
-HTML_EXTENSIONS = {".html", ".htm"}
+# Файлы, где надо менять пути
+TEXT_EXTENSIONS = {".html", ".htm", ".css", ".js", ".json", ".md", ".txt", ".xml"}
 
-# Правила: ключевое слово в имени → куда переложить
+# Папки, которые пропускаем
+SKIP_DIRS = {".git", "node_modules", ".github", "app"}
+
+# Правила сортировки
 RULES = {
     "zina":       "Komorium/vov/people/pionery-geroi/zina-portnova/img",
     "портнова":   "Komorium/vov/people/pionery-geroi/zina-portnova/img",
@@ -71,8 +76,11 @@ RULES = {
 }
 
 
+def is_skipped(path: Path) -> bool:
+    return any(part in SKIP_DIRS for part in path.parts)
+
+
 def step1_remove_blog():
-    """Удалить пустую blog/."""
     if not BLOG_DIR.exists():
         print("⏭  blog/ — не найдена.")
         return
@@ -85,26 +93,18 @@ def step1_remove_blog():
 
 
 def step2_convert_all_images():
-    """Найти ВСЕ картинки во всём репозитории и конвертировать в WebP."""
+    """Найти все картинки и конвертировать в WebP."""
     converted = 0
-    skipped = 0
-
     for file in ROOT.rglob("*"):
-        # Пропускаем .git и служебные папки
-        if any(part in {".git", "node_modules", ".github"} for part in file.parts):
-            continue
-        if not file.is_file():
+        if is_skipped(file) or not file.is_file():
             continue
         if file.suffix.lower() not in CONVERT_EXTENSIONS:
             continue
 
         new_file = file.with_suffix(".webp")
-
-        # Если WebP уже есть — удаляем оригинал
         if new_file.exists():
             print(f"⏭  {file.relative_to(ROOT)} — WebP уже есть.")
             file.unlink()
-            skipped += 1
             continue
 
         try:
@@ -117,62 +117,93 @@ def step2_convert_all_images():
             converted += 1
         except Exception as e:
             print(f"❌ {file.relative_to(ROOT)} — ошибка: {e}")
+    print(f"\nКонвертация: {converted} файлов.")
 
-    print(f"\nКонвертация: {converted} файлов, пропущено {skipped}.")
 
+def step3_replace_everywhere():
+    """
+    Заменить ссылки на .png/.jpg/.jpeg на .webp во ВСЕХ текстовых файлах.
 
-def step3_update_html_paths():
-    """Найти HTML-файлы и заменить .png/.jpg/.jpeg на .webp в путях картинок."""
-    # Регулярка ищет в src="..." пути с расширениями png/jpg/jpeg
+    Ловит:
+    - src="...png"
+    - href="...jpg"
+    - url(...png)
+    - srcset="...png 1x, ...jpg 2x"
+    - любые строки вида "путь/файл.png"
+    """
+    # Регулярка: любое слово с расширением .png/.jpg/.jpeg,
+    # но только если перед ним есть / или начало строки (чтобы не трогать "hello.png.txt")
+    # Используем границу слова перед точкой.
     pattern = re.compile(
-        r'(src=["\'])([^"\']+)\.(png|jpg|jpeg)(["\'])',
+        r"([\w\-./\\]+?)\.(png|jpg|jpeg)(\b)",
         re.IGNORECASE
     )
 
-    updated = 0
+    updated_files = 0
+    total_replacements = 0
 
     for file in ROOT.rglob("*"):
-        if any(part in {".git", "node_modules"} for part in file.parts):
+        if is_skipped(file) or not file.is_file():
             continue
-        if not file.is_file() or file.suffix.lower() not in HTML_EXTENSIONS:
+        if file.suffix.lower() not in TEXT_EXTENSIONS:
             continue
 
-        content = file.read_text(encoding="utf-8", errors="ignore")
-        new_content, count = pattern.subn(r'\1\2.webp\4', content)
+        try:
+            content = file.read_text(encoding="utf-8", errors="ignore")
+        except Exception as e:
+            print(f"❌ {file.relative_to(ROOT)} — ошибка чтения: {e}")
+            continue
+
+        new_content, count = pattern.subn(r"\1.webp\3", content)
 
         if count > 0 and new_content != content:
-            file.write_text(new_content, encoding="utf-8")
-            print(f"✅ {file.relative_to(ROOT)} — заменено {count} путей.")
-            updated += 1
+            try:
+                file.write_text(new_content, encoding="utf-8")
+                print(f"✅ {file.relative_to(ROOT)} — заменено {count}.")
+                updated_files += 1
+                total_replacements += count
+            except Exception as e:
+                print(f"❌ {file.relative_to(ROOT)} — ошибка записи: {e}")
 
-    print(f"\nОбновлено HTML-файлов: {updated}.")
+    print(f"\nОбновлено файлов: {updated_files}, заменено путей: {total_replacements}.")
 
 
 def step4_check_broken_links():
-    """Проверить, что все src в HTML указывают на существующие файлы."""
+    """Проверить битые ссылки в HTML и CSS."""
+    # В HTML: src="..." и href="..." (только для картинок/локальных файлов)
+    # В CSS: url(...)
+    html_pattern = re.compile(r'(?:src|href)=["\']([^"\']+)["\']')
+    css_pattern = re.compile(r"url\(["\']?([^"\')]+)["\']?\)")
+
     broken = 0
 
-    # Регулярка ищет все src="..." (кроме http, https, data)
-    pattern = re.compile(r'src=["\']([^"\']+)["\']')
-
-    for file in ROOT.rglob("*.html"):
-        if any(part in {".git", "node_modules"} for part in file.parts):
+    for file in ROOT.rglob("*"):
+        if is_skipped(file) or not file.is_file():
             continue
 
-        content = file.read_text(encoding="utf-8", errors="ignore")
+        suffix = file.suffix.lower()
+        if suffix not in {".html", ".htm", ".css"}:
+            continue
 
-        for match in pattern.finditer(content):
-            src = match.group(1)
+        try:
+            content = file.read_text(encoding="utf-8", errors="ignore")
+        except Exception:
+            continue
 
-            # Пропускаем внешние ссылки и data-URI
-            if src.startswith(("http://", "https://", "data:", "//", "#")):
+        if suffix in {".html", ".htm"}:
+            matches = html_pattern.findall(content)
+        else:
+            matches = css_pattern.findall(content)
+
+        for src in matches:
+            if src.startswith(("http://", "https://", "data:", "//", "#", "mailto:", "tel:")):
                 continue
+            if src.endswith((".html", ".htm")):
+                continue  # ссылки на страницы, не картинки
 
-            # Считаем путь относительно HTML-файла
             target = (file.parent / src).resolve()
-
             if not target.exists():
-                print(f"⚠️  {file.relative_to(ROOT)} → битая ссылка: {src}")
+                print(f"⚠️  {file.relative_to(ROOT)} → {src}")
                 broken += 1
 
     print(f"\nБитых ссылок: {broken}.")
@@ -180,14 +211,12 @@ def step4_check_broken_links():
 
 def step5_sort_images():
     """Разложить картинки из img/ по папкам статей."""
-    img_dir = ROOT / "img"
-    if not img_dir.exists():
+    if not IMG_DIR.exists():
         print("⏭  img/ — не найдена.")
         return
 
     moved = 0
-
-    for file in sorted(img_dir.rglob("*")):
+    for file in sorted(IMG_DIR.rglob("*")):
         if not file.is_file() or file.suffix.lower() != ".webp":
             continue
 
@@ -228,13 +257,13 @@ def main():
     print("\nШАГ 2: Конвертация картинок в WebP")
     step2_convert_all_images()
 
-    print("\nШАГ 3: Обновление путей в HTML")
-    step3_update_html_paths()
+    print("\nШАГ 3: Замена путей везде (HTML, CSS, JS, JSON)")
+    step3_replace_everywhere()
 
     print("\nШАГ 4: Проверка битых ссылок")
     step4_check_broken_links()
 
-    print("\nШАГ 5: Сортировка img/ по папкам")
+    print("\nШАГ 5: Сортировка img/")
     step5_sort_images()
 
     print("\n" + "=" * 60)
