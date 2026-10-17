@@ -8,11 +8,13 @@
 
     if (!grid) return;
 
-    const PAGE_SIZE = 6;
+    const PAGE_SIZE = 6;          // сколько карточек за раз по «Показать ещё»
+    const PAGINATION_SIZE = 50;   // сколько карточек на одной странице пагинации
 
     let currentCategory = 'all';
     let currentSearch = '';
     let visibleCount = PAGE_SIZE;
+    let currentPage = 1;
 
     const sorted = [...articlesData].sort(
         (a, b) => new Date(b.date) - new Date(a.date)
@@ -96,13 +98,88 @@
 
     function render() {
         const filtered = getFiltered();
-        const slice = filtered.slice(0, visibleCount);
+
+        const totalPages = Math.max(1, Math.ceil(filtered.length / PAGINATION_SIZE));
+        const pageStart = (currentPage - 1) * PAGINATION_SIZE;
+        const slice = filtered.slice(pageStart, pageStart + visibleCount);
 
         grid.innerHTML = '';
         slice.forEach(a => grid.appendChild(renderCard(a)));
 
         emptyMsg.style.display = filtered.length === 0 ? 'block' : 'none';
-        showMoreBtn.style.display = filtered.length > visibleCount ? 'block' : 'none';
+
+        const shownOnThisPage = slice.length;
+        const totalOnThisPage = Math.min(
+            PAGINATION_SIZE,
+            Math.max(0, filtered.length - pageStart)
+        );
+        showMoreBtn.style.display =
+            shownOnThisPage < totalOnThisPage ? 'block' : 'none';
+
+        renderPagination(totalPages);
+    }
+
+    function renderPagination(totalPages) {
+        let pagination = document.getElementById('pagination');
+
+        if (!pagination) {
+            pagination = document.createElement('div');
+            pagination.id = 'pagination';
+            pagination.className = 'pagination';
+            showMoreBtn.parentNode.insertBefore(pagination, showMoreBtn.nextSibling);
+        }
+
+        if (totalPages <= 1) {
+            pagination.innerHTML = '';
+            pagination.style.display = 'none';
+            return;
+        }
+
+        pagination.style.display = 'flex';
+        pagination.innerHTML = '';
+
+        // Кнопка «Назад»
+        if (currentPage > 1) {
+            const prev = document.createElement('button');
+            prev.className = 'page-btn';
+            prev.textContent = '←';
+            prev.addEventListener('click', () => {
+                currentPage--;
+                visibleCount = PAGE_SIZE;
+                render();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            pagination.appendChild(prev);
+        }
+
+        // Кнопки страниц
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement('button');
+            btn.className = 'page-btn';
+            if (i === currentPage) btn.classList.add('active');
+            btn.textContent = i;
+            btn.addEventListener('click', () => {
+                currentPage = i;
+                visibleCount = PAGE_SIZE;
+                render();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            pagination.appendChild(btn);
+        }
+
+        // Кнопка «Вперёд»
+        if (currentPage < totalPages) {
+            const next = document.createElement('button');
+            next.className = 'page-btn';
+            next.textContent = '→';
+            next.addEventListener('click', () => {
+                currentPage++;
+                visibleCount = PAGE_SIZE;
+                render();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            pagination.appendChild(next);
+        }
     }
 
     function renderFilters() {
@@ -119,6 +196,7 @@
                 btn.classList.add('active');
                 currentCategory = key;
                 visibleCount = PAGE_SIZE;
+                currentPage = 1;
                 render();
             });
 
@@ -129,6 +207,7 @@
     searchInput.addEventListener('input', (e) => {
         currentSearch = e.target.value;
         visibleCount = PAGE_SIZE;
+        currentPage = 1;
         render();
     });
 
