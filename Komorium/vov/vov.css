@@ -1,0 +1,327 @@
+/* ====================================================
+   РАЗДЕЛ «ВЕЛИКАЯ ОТЕЧЕСТВЕННАЯ ВОЙНА»
+   Стиль «Красная звезда»
+   ==================================================== */
+
+/* ====================================================
+   ПЕРЕМЕННЫЕ
+   ==================================================== */
+.vov-content {
+    --vov-dark: #5c1010;         /* тёмно-красный, глубокий */
+    --vov-main: #8b1a1a;         /* основной красный */
+    --vov-bright: #c0392b;       /* яркий, для акцентов */
+    --vov-gold: #d4a017;         /* тёплый золотой */
+    --vov-gold-light: #f4d97a;   /* светлое золото */
+    --vov-paper: #fdf6e8;        /* тёплый светлый фон */
+    --vov-border: #e0c9a0;       /* тёплая граница */
+    --vov-glow: rgba(192, 57, 43, 0.3);
+}
+
+/* ====================================================
+   ЗАГОЛОВКИ
+   ==================================================== */
+.vov-content > h1 {
+    color: var(--vov-dark);
+    border-bottom: 3px solid var(--vov-main);
+    padding-bottom: 12px;
+    text-align: center;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.vov-content > h1::before {
+    content: "★";
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--vov-gold);
+    margin-bottom: 0.3rem;
+    text-shadow: 0 0 12px rgba(212, 160, 23, 0.5);
+    animation: vov-star 3s ease-in-out infinite;
+}
+
+@keyframes vov-star {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50%      { transform: scale(1.08); opacity: 1; }
+}
+
+.vov-content h2 {
+    color: var(--vov-dark);
+    border-left: 6px solid var(--vov-gold);
+    padding-left: 15px;
+    margin-top: 30px;
+    font-weight: normal;
+    position: relative;
+}
+
+/* Маленькая красная точка рядом с H2 */
+.vov-content h2::before {
+    content: "";
+    position: absolute;
+    left: -3px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--vov-main);
+    box-shadow: 0 0 12px var(--vov-glow);
+    opacity: 0.85;
+}
+
+.vov-content h3 {
+    color: var(--vov-main);
+    margin-top: 25px;
+    font-weight: 600;
+    position: relative;
+    padding-left: 22px;
+}
+
+/* Звёздочка перед H3 */
+.vov-content h3::before {
+    content: "★";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 0.9rem;
+    color: var(--vov-gold);
+}
+
+/* ====================================================
+   ССЫЛКИ
+   ==================================================== */
+.vov-content a:not([class]) {
+    color: var(--vov-main);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--vov-main);
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.vov-content a:not([class]):hover {
+    color: var(--vov-dark);
+    border-bottom-color: var(--vov-gold);
+    border-bottom-style: solid;
+    background: rgba(244, 217, 122, 0.3);
+}
+
+.vov-content a:not([class]):visited {
+    color: #7a3a3a;
+    border-bottom-color: #7a3a3a;
+}
+
+/* Ссылка «← Назад» — серая */
+.vov-back {
+    color: var(--text-secondary, #6b5e4f) !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
+    font-size: 0.9rem;
+    background: none !important;
+}
+.vov-back:hover {
+    color: var(--vov-main) !important;
+}
+
+/* ====================================================
+   ТАБЛИЦЫ
+   ==================================================== */
+.vov-content .table {
+    border: 1px solid var(--vov-border);
+    box-shadow: 0 2px 12px rgba(92, 16, 16, 0.12);
+}
+
+.vov-content .table .table-section th {
+    background: linear-gradient(135deg, var(--vov-main), var(--vov-dark)) !important;
+    color: #fff !important;
+    border-bottom: 1px solid var(--vov-dark) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.03em;
+}
+
+.vov-content .table tbody th {
+    background: var(--vov-paper) !important;
+    color: var(--vov-dark) !important;
+    border-right: 1px solid var(--vov-border) !important;
+}
+
+.vov-content .table tbody tr:nth-child(even) td {
+    background: rgba(253, 246, 232, 0.6) !important;
+}
+.vov-content .table tbody tr:nth-child(even) th {
+    background: rgba(224, 201, 160, 0.5) !important;
+}
+
+.vov-content .table tbody tr:hover th,
+.vov-content .table tbody tr:hover td {
+    background: rgba(244, 217, 122, 0.25) !important;
+}
+
+.vov-content .table a {
+    color: var(--vov-main) !important;
+    border-bottom: 1px dashed var(--vov-main) !important;
+}
+.vov-content .table a:hover {
+    color: var(--vov-dark) !important;
+    border-bottom-style: solid !important;
+}
+
+/* ====================================================
+   TOP-MENU
+   ==================================================== */
+.vov-content .top-menu a {
+    background: linear-gradient(135deg, var(--vov-main), var(--vov-dark));
+    color: #fff;
+    border: none;
+    box-shadow: 0 3px 12px rgba(92, 16, 16, 0.35);
+    transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+}
+
+.vov-content .top-menu a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(192, 57, 43, 0.5);
+    background: linear-gradient(135deg, var(--vov-bright), var(--vov-main));
+    color: #fff;
+    text-decoration: none;
+}
+
+/* ====================================================
+   ЦИТАТЫ
+   ==================================================== */
+.vov-content .quote,
+.vov-content .quote-badge {
+    background: var(--vov-paper) !important;
+    border-left-color: var(--vov-gold) !important;
+    color: var(--vov-dark) !important;
+}
+
+/* ====================================================
+   HIGHLIGHT
+   ==================================================== */
+.vov-content .highlight {
+    background: rgba(244, 217, 122, 0.5);
+    color: var(--vov-dark);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* ====================================================
+   КАРТИНКИ
+   ==================================================== */
+.vov-content .article-figure img,
+.vov-content figure img {
+    border: 1px solid var(--vov-border);
+    box-shadow: 0 4px 16px rgba(92, 16, 16, 0.15);
+}
+
+/* ====================================================
+   РЕКОМЕНДАЦИИ
+   ==================================================== */
+.vov-content .recommend-block {
+    border-top: 2px solid var(--vov-border);
+    position: relative;
+}
+
+/* Георгиевская лента над рекомендациями */
+.vov-content .recommend-block::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(
+        90deg,
+        #000 0,
+        #000 8px,
+        #d4a017 8px,
+        #d4a017 16px,
+        #000 16px,
+        #000 24px
+    );
+}
+
+.vov-content .recommend-block h2 {
+    border-left: none;
+    padding-left: 0;
+    color: var(--vov-main);
+}
+.vov-content .recommend-block h2::before {
+    display: none;
+}
+
+/* ====================================================
+   КНОПКА «ПОДЕЛИТЬСЯ»
+   ==================================================== */
+.vov-content .share-btn {
+    background: linear-gradient(135deg, var(--vov-main), var(--vov-dark)) !important;
+    box-shadow: 0 3px 12px rgba(92, 16, 16, 0.35) !important;
+}
+.vov-content .share-btn:hover {
+    background: linear-gradient(135deg, var(--vov-bright), var(--vov-main)) !important;
+    box-shadow: 0 6px 18px rgba(192, 57, 43, 0.5) !important;
+}
+
+/* ====================================================
+   ХЛЕБНЫЕ КРОШКИ
+   ==================================================== */
+.vov-content .breadcrumb a {
+    color: var(--vov-main);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--vov-main);
+}
+.vov-content .breadcrumb a:hover {
+    color: var(--vov-dark);
+    border-bottom-style: solid;
+}
+
+/* ====================================================
+   КАРТОЧКИ ПИОНЕРОВ-ГЕРОЕВ — особые
+   ==================================================== */
+.vov-content .articles-grid .article-card {
+    border: 1px solid var(--vov-border);
+    background: var(--vov-paper);
+}
+
+.vov-content .articles-grid .article-card:hover {
+    border-color: var(--vov-main);
+    box-shadow: 0 8px 20px rgba(92, 16, 16, 0.15);
+}
+
+.vov-content .articles-grid .article-image-wrapper {
+    background: linear-gradient(135deg, #fef6e8, #f4d97a);
+}
+
+.vov-content .articles-grid .article-title {
+    color: var(--vov-dark);
+}
+
+.vov-content .articles-grid .article-meta .badge {
+    background: var(--vov-main);
+    color: #fff;
+}
+
+.vov-content .articles-grid .article-link {
+    color: var(--vov-main);
+}
+.vov-content .articles-grid .article-link:hover {
+    color: var(--vov-dark);
+}
+
+/* ====================================================
+   АДАПТИВ
+   ==================================================== */
+@media (max-width: 640px) {
+    .vov-content > h1::before {
+        font-size: 1.5rem;
+    }
+    .vov-content h2 {
+        padding-left: 12px;
+        border-left-width: 4px;
+    }
+    .vov-content .recommend-block::before {
+        height: 3px;
+    }
+}
